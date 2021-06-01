@@ -28,6 +28,7 @@ namespace API
                 await context.Database.MigrateAsync();
                 await Seed.SeedData(context);
                 //await Seed.SeedDataCity(context);
+                await Seed.SeedDataReceptionists(context);
 
                 
 
