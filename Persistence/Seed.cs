@@ -10,6 +10,23 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context)
         {
+
+            if (context.BloodTypes.Any()) return;
+            
+            var types = new List<BloodType>
+            {
+                new BloodType
+                {
+                    type = "A",
+                },
+                new BloodType
+                {
+                    type = "B",
+                },
+            };
+
+            await context.BloodTypes.AddRangeAsync(types);
+            await context.SaveChangesAsync();
             if (context.Departments.Any()) return;
             
             var departments = new List<Department>
@@ -25,7 +42,7 @@ namespace Persistence
             };
 
             await context.Departments.AddRangeAsync(departments);
-            await context.SaveChangesAsync();
+           await context.SaveChangesAsync();
 
          if (context.PatientInfo.Any()) return;
             

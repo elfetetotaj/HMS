@@ -15,6 +15,9 @@ namespace Persistence
          public DbSet<Room> RoomInfo { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
+        public DbSet<Nurse> Nurses { get; set; }
+        public DbSet<BloodType> BloodTypes { get; set; }
+
 
         
     }
