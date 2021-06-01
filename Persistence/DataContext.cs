@@ -10,5 +10,9 @@ namespace Persistence
         }
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Receptionist> Receptionists { get; set; }
+
+        
     }
 }

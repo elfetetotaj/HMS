@@ -3,27 +3,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialCreatee : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Departments",
+                name: "Cities",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    DepartmentName = table.Column<string>(type: "TEXT", nullable: true)
+                    CityId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CityName = table.Column<string>(type: "TEXT", nullable: true),
+                    ZipCode = table.Column<int>(type: "INTEGER", nullable: false)
                 },
-                constraints: table => 
+                constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departments", x => x.Id);
+                    table.PrimaryKey("PK_Cities", x => x.CityId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Cities");
         }
     }
 }
