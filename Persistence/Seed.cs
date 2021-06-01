@@ -8,9 +8,44 @@ namespace Persistence
 {
     public class Seed
     {
+
+        public static async Task SeedDataCity(DataContext context){
+            if (context.Cities.Any()) return;
+            
+            var cities= new List<City>
+            {
+                new City
+                {
+                    CityName="Prizren",
+                    ZipCode=20000,
+                },
+                new City
+                {
+                    CityName="Prishtine",
+                    ZipCode=50000,
+                },
+                new City
+                {
+                    CityName="Gjakove",
+                    ZipCode=80000,
+                },
+                new City
+                {
+                    CityName="Mitrovic",
+                    ZipCode=40000,
+                },
+            };
+
+            await context.Cities.AddRangeAsync(cities);
+            await context.SaveChangesAsync();
+
+
+        }
+
+        
         public static async Task SeedData(DataContext context)
         {
-
+            
             if (context.BloodTypes.Any()) return;
             
             var types = new List<BloodType>
@@ -23,10 +58,18 @@ namespace Persistence
                 {
                     type = "B",
                 },
+                new BloodType
+                {
+                    type = "AB",
+                },
+                new BloodType
+                {
+                    type = "0",
+                },
             };
 
             await context.BloodTypes.AddRangeAsync(types);
-            await context.SaveChangesAsync();
+           // await context.SaveChangesAsync();
             if (context.Departments.Any()) return;
             
             var departments = new List<Department>
@@ -42,7 +85,7 @@ namespace Persistence
             };
 
             await context.Departments.AddRangeAsync(departments);
-           await context.SaveChangesAsync();
+           //await context.SaveChangesAsync();
 
          if (context.PatientInfo.Any()) return;
             
@@ -262,36 +305,10 @@ namespace Persistence
                 },
         };
           await context.RoomInfo.AddRangeAsync(roominfo);
-          await context.SaveChangesAsync();
+          //await context.SaveChangesAsync();
         
 
-            if (context.Cities.Any()) return;
-            
-            var cities= new List<City>
-            {
-                new City
-                {
-                    CityName="Prizren",
-                    ZipCode=20000,
-                },
-                new City
-                {
-                    CityName="Prishtine",
-                    ZipCode=50000,
-                },
-                new City
-                {
-                    CityName="Gjakove",
-                    ZipCode=80000,
-                },
-                new City
-                {
-                    CityName="Mitrovic",
-                    ZipCode=40000,
-                },
-            };
-
-            await context.Cities.AddRangeAsync(cities);
+           
             await context.SaveChangesAsync();
 
              if (context.Receptionists.Any()) return;
