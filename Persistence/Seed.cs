@@ -267,6 +267,11 @@ namespace Persistence
                     CityName="Gjakove",
                     ZipCode=80000,
                 },
+                new City
+                {
+                    CityName="Mitrovic",
+                    ZipCode=40000,
+                },
             };
 
             await context.Cities.AddRangeAsync(cities);
