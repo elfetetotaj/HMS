@@ -65,6 +65,10 @@ namespace API
             }
 
             //app.UseHttpsRedirection();
+            //app.UseMvc();
+            
+            
+            
 
             app.UseRouting();
 
