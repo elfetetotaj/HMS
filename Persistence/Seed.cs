@@ -8,41 +8,139 @@ namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedDataReceptionists(DataContext context){
-
-
-                 if (context.Receptionists.Any()) return;
-            
-            var receptionists= new List<Receptionist>
-            {
-                new Receptionist
-                {
-                    Name = "Elfete",
-                    lastName = "Totaj",
-                    username = "elfetet",
-                    password = "",
-                    email = "et@gmail.com",
-                    dob = DateTime.Now.AddMonths(-1),
-                    gender='F',
-                    street_address="Mrika",
-                    city="Prizren",
-                    country="Kosove",
-                    postal_code="SE1",
-                    phone=044369963,
-                    Department="Stomatologji",
-                },
-              
-            };
-
-            await context.Receptionists.AddRangeAsync(receptionists);
-            await context.SaveChangesAsync();
-        }
-    
         public static async Task SeedData(DataContext context)
         {
+            if (context.Departments.Any()) return;
             
+            var departments = new List<Department>
+            {
+                new Department
+                {
+                    DepartmentName = "Otorinolaringologjia",
+                },
+                new Department
+                {
+                    DepartmentName = "Stomatologjia",
+                },
+            };
 
-        
+            await context.Departments.AddRangeAsync(departments);
+            await context.SaveChangesAsync();
+
+         if (context.PatientInfo.Any()) return;
+            
+            var patientinfo = new List<Patient>
+            {
+                new Patient
+                {
+                    p_fname = "Erza",
+                    p_lname = "Shatri",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'F',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345612",
+                    p_weight = 50,
+                    other_det = "Cancer",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Elfete",
+                    p_lname = "Totaj",
+                    dob = DateTime.Now.AddMonths(-3),
+                    p_gender = 'F',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "Prizren",
+                    p_country = "Kosovo",
+                    p_postal_code = "90000",
+                    p_phone = "9876345612",
+                    p_weight = 50,
+                    other_det = "Suffer from cold",
+                    p_rdate = DateTime.Now.AddMonths(-1),
+                },
+                new Patient
+                {
+                    p_fname = "Ibadete",
+                    p_lname = "Gashi",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'F',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "98768795612",
+                    p_weight = 50,
+                    other_det = "High Blook Pressure",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Xhastin",
+                    p_lname = "Bojagji",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'M',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345345",
+                    p_weight = 73,
+                    other_det = "Head ache",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Sam",
+                    p_lname = "Fisher",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'M',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345612",
+                    p_weight = 95,
+                    other_det = "Stroke",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Damiano",
+                    p_lname = "David",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'M',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345612",
+                    p_weight = 70,
+                    other_det = "Heart ache",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Emma",
+                    p_lname = "Fisher",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'F',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345612",
+                    p_weight = 40,
+                    other_det = "High Blook Pressure",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+               
+            };
+
+            await context.PatientInfo.AddRangeAsync(patientinfo);
+            await context.SaveChangesAsync();
 
              if (context.DoctorInfo.Any()) return;
             
