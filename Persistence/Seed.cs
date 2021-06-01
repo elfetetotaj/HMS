@@ -9,6 +9,30 @@ namespace Persistence
     public class Seed
 {
 
+        public static async Task SeedDataNurse(DataContext context){
+            if(context.Nurses.Any())return;
+            var nurses = new List<Nurse>{
+
+                new Nurse{
+                    emri = "Zoja",
+                    mbiemri = "Gjeraj",
+                    username = "Zogi",
+                    datelindja = "2000-04-01",
+                    adresa ="Te kullat",
+                    qyteti = "Prizren",
+                    email="zoja@gmail.com",
+                    gjinia =  'F',
+                    paga = 200
+                },
+            };
+               await context.Nurses.AddRangeAsync(nurses);
+            await context.SaveChangesAsync();
+
+        }
+
+
+    
+
             
         public static async Task SeedDataReceptionist(DataContext context){
                if (context.Receptionists.Any()) return;

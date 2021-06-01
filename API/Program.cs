@@ -32,13 +32,9 @@ namespace API
                 await Seed.SeedDataPatientInfo(context);
                 await Seed.SeedDataReceptionist(context);
                 await Seed.SeedDataRoom(context);
+                await Seed.SeedDataNurse(context);
 
-
-
-
-               
-
-                
+      
 
             } 
             catch (Exception ex)
