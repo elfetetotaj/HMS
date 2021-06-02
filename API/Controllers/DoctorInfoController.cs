@@ -19,14 +19,14 @@
 //          }
 
 //         [HttpGet]
-//         public async Task<ActionResult<List<Doctor>>> GetDoctors()
+//         public async Task<ActionResult<List<Doctor>>> GetDoctorinfo()
 //         {
 //             return await _context.DoctorInfo.ToListAsync();
 
 //         }
 //         [HttpGet("{id}")]
 
-//         public async Task<ActionResult<Doctor>> GetPatient(Guid id)
+//         public async Task<ActionResult<Doctor>> GetDoctor(Guid id)
 //         {
 //             return await _context.DoctorInfo.FindAsync(id);
 //         }
