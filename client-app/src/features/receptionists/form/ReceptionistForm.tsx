@@ -1,0 +1,61 @@
+import React, { ChangeEvent, useState } from 'react';
+import { Button, Form, Segment } from 'semantic-ui-react';
+import { Receptionist } from '../../../app/models/receptionist';
+
+interface Props {
+    receptionist: Receptionist | undefined;
+    closeForm: () => void;
+    createOrEdit: (receptionist: Receptionist) => void;
+}
+
+export default function ReceptionistForm({receptionist: selectedReceptionist, closeForm, createOrEdit}: Props) {
+
+    const initialState = selectedReceptionist ?? {
+        id: '',
+        name: '',
+        lastName: '',
+        username: '',
+        password: '',
+        email: '',
+        dob: '',
+        gender: '',
+        street_address: '',
+        city: '',
+        country: '',
+        postal_code: '',
+        phone: '',
+        department: ''
+    }
+
+    const [receptionist, setReceptionist] = useState(initialState);
+
+    function handleSubmit() {
+        createOrEdit(receptionist);
+    }
+
+    function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const {name, value} = event.target;
+        setReceptionist({...receptionist, [name]: value})
+    }
+
+    return (
+        <Segment clearing>
+            <Form onSubmit={handleSubmit} autoComplete='off'>
+                <Form.Input placeholder='Name' value={receptionist.name} name='name' onChange={handleInputChange} />
+                <Form.TextArea placeholder='Last Name' value={receptionist.lastName} name='lastName' onChange={handleInputChange} />
+                <Form.Input placeholder='Username' value={receptionist.username} name='username' onChange={handleInputChange} />
+                <Form.Input placeholder='Email' value={receptionist.email} name='email' onChange={handleInputChange} />
+                <Form.Input placeholder='Birthday' value={receptionist.dob} name='dob' onChange={handleInputChange} />
+                <Form.Input placeholder='Gender' value={receptionist.gender} name='gender' onChange={handleInputChange} />
+                <Form.Input placeholder='Addres' value={receptionist.street_address} name='dtreet_address' onChange={handleInputChange} />
+                <Form.Input placeholder='City' value={receptionist.city} name='city' onChange={handleInputChange}/>
+                <Form.Input placeholder='Country' value={receptionist.country} name='country' onChange={handleInputChange}/>
+                <Form.Input placeholder='PostalCode' value={receptionist.postal_code} name='postal_code' onChange={handleInputChange}/>
+                <Form.Input placeholder='Phone' value={receptionist.phone} name='phone' onChange={handleInputChange}/>
+                <Form.Input placeholder='Department' value={receptionist.department} name='department' onChange={handleInputChange}/>
+                <Button floated='right' positive type='submit' content='Submit' />
+                <Button onClick={closeForm} floated='right' type='button' content='Cancel' />
+            </Form>
+        </Segment>
+    )
+} 

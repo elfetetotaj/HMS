@@ -16,7 +16,7 @@ namespace Domain
         public string city { get; set; }
         public string country { get; set; }
         public string postal_code { get; set; }
-        public int phone { get; set; }
+        public string phone { get; set; }
         public string Department { get; set; }
     }
 }

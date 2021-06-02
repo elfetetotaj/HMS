@@ -94,7 +94,7 @@ namespace Persistence
                     city="Prizren",
                     country="Kosove",
                     postal_code="SE1",
-                    phone=044369963,
+                    phone="0443699603",
                     Department="Stomatologji",
                 },
                 new Receptionist
@@ -110,7 +110,7 @@ namespace Persistence
                     city="Prizren",
                     country="Kosove",
                     postal_code="SE1",
-                    phone=044369963,
+                    phone="044369963",
                     Department="Stomatologji",
                 },
             };
