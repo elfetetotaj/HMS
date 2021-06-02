@@ -8,7 +8,49 @@ namespace Persistence
 {
     public class Seed
 {
+        
+         public static async Task SeedDataBlood(DataContext context)
+        {
+            if (context.BloodTypes.Any()) return;
+            
+            var types = new List<BloodType>
+            {
+                new BloodType
+                {
+                    type = "A",
+                },
+                new BloodType
+                {
+                    type = "A",
+                },
+                new BloodType
+                {
+                    type = "AB",
+                },
+                new BloodType
+                {
+                    type = "0",
+                },
+                  new BloodType
+                {
+                    type = "A-",
+                },
+                  new BloodType
+                {
+                    type = "B-",
+                },  new BloodType
+                {
+                    type = "AB-",
+                },  new BloodType
+                {
+                    type = "0-",
+                },
+            };
 
+            await context.BloodTypes.AddRangeAsync(types);
+            await context.SaveChangesAsync();
+
+        }
         public static async Task SeedDataNurse(DataContext context){
             if(context.Nurses.Any())return;
             var nurses = new List<Nurse>{
@@ -364,12 +406,6 @@ namespace Persistence
             await context.Departments.AddRangeAsync(departments);
             await context.SaveChangesAsync();
 
-     
-
-
-          
-
-          
         }
     }
 }
