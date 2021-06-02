@@ -7,11 +7,77 @@ using Domain;
 namespace Persistence
 {
     public class Seed
-    {
-        public static async Task SeedDataReceptionists(DataContext context){
+{
+        
+         public static async Task SeedDataBlood(DataContext context)
+        {
+            if (context.BloodTypes.Any()) return;
+            
+            var types = new List<BloodType>
+            {
+                new BloodType
+                {
+                    type = "A",
+                },
+                new BloodType
+                {
+                    type = "A",
+                },
+                new BloodType
+                {
+                    type = "AB",
+                },
+                new BloodType
+                {
+                    type = "0",
+                },
+                  new BloodType
+                {
+                    type = "A-",
+                },
+                  new BloodType
+                {
+                    type = "B-",
+                },  new BloodType
+                {
+                    type = "AB-",
+                },  new BloodType
+                {
+                    type = "0-",
+                },
+            };
+
+            await context.BloodTypes.AddRangeAsync(types);
+            await context.SaveChangesAsync();
+
+        }
+        public static async Task SeedDataNurse(DataContext context){
+            if(context.Nurses.Any())return;
+            var nurses = new List<Nurse>{
+
+                new Nurse{
+                    emri = "Zoja",
+                    mbiemri = "Gjeraj",
+                    username = "Zogi",
+                    datelindja = "2000-04-01",
+                    adresa ="Te kullat",
+                    qyteti = "Prizren",
+                    email="zoja@gmail.com",
+                    gjinia =  'F',
+                    paga = 200
+                },
+            };
+               await context.Nurses.AddRangeAsync(nurses);
+            await context.SaveChangesAsync();
+
+        }
 
 
-                 if (context.Receptionists.Any()) return;
+    
+
+            
+        public static async Task SeedDataReceptionist(DataContext context){
+               if (context.Receptionists.Any()) return;
             
             var receptionists= new List<Receptionist>
             {
@@ -31,19 +97,32 @@ namespace Persistence
                     phone=044369963,
                     Department="Stomatologji",
                 },
-              
+                new Receptionist
+                {
+                    Name = "Erza",
+                    lastName = "Shatri",
+                    username = "erzash",
+                    password = "",
+                    email = "es@gmail.com",
+                    dob = DateTime.Now.AddMonths(-1),
+                    gender='F',
+                    street_address="Sami Frasheri",
+                    city="Prizren",
+                    country="Kosove",
+                    postal_code="SE1",
+                    phone=044369963,
+                    Department="Stomatologji",
+                },
             };
 
             await context.Receptionists.AddRangeAsync(receptionists);
             await context.SaveChangesAsync();
+
         }
-    
-        public static async Task SeedData(DataContext context)
-        {
+
+
+        public static async Task SeedDataDoctorInfo(DataContext context){
             
-
-        
-
              if (context.DoctorInfo.Any()) return;
             
             var doctorinfo = new List<Doctor>
@@ -105,7 +184,164 @@ namespace Persistence
              await context.DoctorInfo.AddRangeAsync(doctorinfo);
              await context.SaveChangesAsync();
 
-              if (context.RoomInfo.Any()) return;
+              
+        
+
+        }
+
+
+
+        public static async Task SeedDataPatientInfo(DataContext context){
+                if (context.PatientInfo.Any()) return;
+            
+            var patientinfo = new List<Patient>
+            {
+                new Patient
+                {
+                    p_fname = "Erza",
+                    p_lname = "Shatri",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'F',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345612",
+                    p_weight = 50,
+                    other_det = "Cancer",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Elfete",
+                    p_lname = "Totaj",
+                    dob = DateTime.Now.AddMonths(-3),
+                    p_gender = 'F',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "Prizren",
+                    p_country = "Kosovo",
+                    p_postal_code = "90000",
+                    p_phone = "9876345612",
+                    p_weight = 50,
+                    other_det = "Suffer from cold",
+                    p_rdate = DateTime.Now.AddMonths(-1),
+                },
+                new Patient
+                {
+                    p_fname = "Ibadete",
+                    p_lname = "Gashi",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'F',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "98768795612",
+                    p_weight = 50,
+                    other_det = "High Blook Pressure",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Xhastin",
+                    p_lname = "Bojagji",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'M',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345345",
+                    p_weight = 73,
+                    other_det = "Head ache",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Sam",
+                    p_lname = "Fisher",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'M',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345612",
+                    p_weight = 95,
+                    other_det = "Stroke",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Damiano",
+                    p_lname = "David",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'M',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345612",
+                    p_weight = 70,
+                    other_det = "Heart ache",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+                new Patient
+                {
+                    p_fname = "Emma",
+                    p_lname = "Fisher",
+                    dob = DateTime.Now.AddMonths(-1),
+                    p_gender = 'F',
+                    p_street_address = "C6 Thorne Street",
+                    p_city = "London",
+                    p_country = "UK",
+                    p_postal_code = "SE2",
+                    p_phone = "9876345612",
+                    p_weight = 40,
+                    other_det = "High Blook Pressure",
+                    p_rdate = DateTime.Now.AddMonths(-3),
+                },
+               
+            };
+
+            await context.PatientInfo.AddRangeAsync(patientinfo);
+            await context.SaveChangesAsync();
+
+        }
+
+
+        public static async Task SeedDataCity(DataContext context){
+ if (context.Cities.Any()) return;
+            
+            var cities= new List<City>
+            {
+                new City
+                {
+                    CityName="Prizren",
+                    ZipCode=20000,
+                },
+                new City
+                {
+                    CityName="Prishtine",
+                    ZipCode=50000,
+                },
+                new City
+                {
+                    CityName="Gjakove",
+                    ZipCode=80000,
+                },
+                new City
+                {
+                    CityName="Mitrovic",
+                    ZipCode=40000,
+                },
+            };
+
+            await context.Cities.AddRangeAsync(cities);
+            await context.SaveChangesAsync();
+        }
+        public static async Task SeedDataRoom(DataContext context){
+            if (context.RoomInfo.Any()) return;
             
             var roominfo = new List<Room>
             {
@@ -148,77 +384,28 @@ namespace Persistence
         };
           await context.RoomInfo.AddRangeAsync(roominfo);
           await context.SaveChangesAsync();
-        
 
-            if (context.Cities.Any()) return;
+        }
+
+        public static async Task SeedData(DataContext context)
+        {
+            if (context.Departments.Any()) return;
             
-            var cities= new List<City>
+            var departments = new List<Department>
             {
-                new City
+                new Department
                 {
-                    CityName="Prizren",
-                    ZipCode=20000,
+                    DepartmentName = "Otorinolaringologjia",
                 },
-                new City
+                new Department
                 {
-                    CityName="Prishtine",
-                    ZipCode=50000,
-                },
-                new City
-                {
-                    CityName="Gjakove",
-                    ZipCode=80000,
-                },
-                new City
-                {
-                    CityName="Mitrovic",
-                    ZipCode=40000,
+                    DepartmentName = "Stomatologjia",
                 },
             };
 
-            await context.Cities.AddRangeAsync(cities);
+            await context.Departments.AddRangeAsync(departments);
             await context.SaveChangesAsync();
 
-             if (context.Receptionists.Any()) return;
-            
-            var receptionists= new List<Receptionist>
-            {
-                new Receptionist
-                {
-                    Name = "Elfete",
-                    lastName = "Totaj",
-                    username = "elfetet",
-                    password = "",
-                    email = "et@gmail.com",
-                    dob = DateTime.Now.AddMonths(-1),
-                    gender='F',
-                    street_address="Mrika",
-                    city="Prizren",
-                    country="Kosove",
-                    postal_code="SE1",
-                    phone=044369963,
-                    Department="Stomatologji",
-                },
-                new Receptionist
-                {
-                    Name = "Erza",
-                    lastName = "Shatri",
-                    username = "erzash",
-                    password = "",
-                    email = "es@gmail.com",
-                    dob = DateTime.Now.AddMonths(-1),
-                    gender='F',
-                    street_address="Sami Frasheri",
-                    city="Prizren",
-                    country="Kosove",
-                    postal_code="SE1",
-                    phone=044369963,
-                    Department="Stomatologji",
-                },
-            };
-
-            await context.Receptionists.AddRangeAsync(receptionists);
-            await context.SaveChangesAsync();
         }
     }
 }
