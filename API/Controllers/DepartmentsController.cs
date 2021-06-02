@@ -1,31 +1,43 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Departments;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace API.Controllers
 {
     public class DepartmentsController : BaseApiController
     {
-        private readonly DataContext _context;
-        public DepartmentsController(DataContext context)
-        {
-            _context = context;
-        }
-
         [HttpGet]
         public async Task<ActionResult<List<Department>>> GetDepartments()
         {
-           return await _context.Departments.ToListAsync();
+            return await Mediator.Send(new List.Query());
         }
 
         [HttpGet("{id}")] //departments/id
         public async Task<ActionResult<Department>> GetDepartment(Guid id)
         {
-            return await _context.Departments.FindAsync(id);
+            return await Mediator.Send(new Details.Query{Id = id});
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateDepartment(Department department)
+        {
+            return Ok(await Mediator.Send(new Create.Command {Department = department}));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditDepartment(Guid id, Department department)
+        {
+            department.Id = id;
+            return Ok(await Mediator.Send(new Edit.Command{Department = department}));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteDepartment(Guid id)
+        {
+            return Ok(await Mediator.Send(new Delete.Command{Id = id}));
         }
     }
 }
