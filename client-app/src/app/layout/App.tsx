@@ -5,6 +5,8 @@ import { Header, List } from 'semantic-ui-react';
 function App() {
   const [cities, setCities] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [bloodtypes, setBloodTypes] = useState([]);
+
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/cities').then(response => {
@@ -13,6 +15,10 @@ function App() {
     axios.get('http://localhost:5000/api/departments').then(response => {
       console.log(response);
       setDepartments(response.data);
+    })
+    axios.get('http://localhost:5000/api/bloodtypes').then(response => {
+      console.log(response);
+      setBloodTypes(response.data);
     })
   }, [])
   
@@ -31,6 +37,14 @@ function App() {
             <List.Item key={city.id}>
               {city.cityName}
               {city.zipCode}
+            </List.Item>
+          ))}
+        </List>
+        <List>
+        {bloodtypes.map((type: any) => (
+            <List.Item key={type.id}>
+              {type.type}
+      
             </List.Item>
           ))}
         </List>
