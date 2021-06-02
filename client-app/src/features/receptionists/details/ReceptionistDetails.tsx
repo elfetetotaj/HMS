@@ -18,19 +18,9 @@ export default function ReceptionistDetails({ receptionist, cancelSelectReceptio
                     <span>{receptionist.department}</span>
                 </Card.Meta>
                 <Card.Description>
-                    {receptionist.id},     
-                    {receptionist.name},
-                    {receptionist.lastName},
-                    {receptionist.username},
-                    {receptionist.email},
-                    {receptionist.dob},
-                    {receptionist.gender},
-                    {receptionist.street_address},
-                    {receptionist.city},
-                    {receptionist.country},
-                    {receptionist.postal_code},
-                    {receptionist.phone},
-                    {receptionist.department}
+                    <div>{receptionist.name}, {receptionist.lastName}</div>
+                    <div>{receptionist.city}, {receptionist.country} , {receptionist.department}</div>
+                    <div>{receptionist.email}, {receptionist.gender}, {receptionist.street_address}</div>
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>

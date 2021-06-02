@@ -42,7 +42,7 @@ export default function ReceptionistForm({receptionist: selectedReceptionist, cl
         <Segment clearing>
             <Form onSubmit={handleSubmit} autoComplete='off'>
                 <Form.Input placeholder='Name' value={receptionist.name} name='name' onChange={handleInputChange} />
-                <Form.TextArea placeholder='Last Name' value={receptionist.lastName} name='lastName' onChange={handleInputChange} />
+                <Form.Input placeholder='Last Name' value={receptionist.lastName} name='lastName' onChange={handleInputChange} />
                 <Form.Input placeholder='Username' value={receptionist.username} name='username' onChange={handleInputChange} />
                 <Form.Input placeholder='Email' value={receptionist.email} name='email' onChange={handleInputChange} />
                 <Form.Input placeholder='Birthday' value={receptionist.dob} name='dob' onChange={handleInputChange} />
