@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Image } from 'semantic-ui-react';
+import { Button, Card } from 'semantic-ui-react';
 import { Receptionist } from '../../../app/models/receptionist';
 
 interface Props {
@@ -18,18 +18,18 @@ export default function ReceptionistDetails({ receptionist, cancelSelectReceptio
                     <span>{receptionist.department}</span>
                 </Card.Meta>
                 <Card.Description>
-                    {receptionist.id}
-                    {receptionist.name}
-                    {receptionist.lastName}
-                    {receptionist.username}
-                    {receptionist.email}
-                    {receptionist.dob}
-                    {receptionist.gender}
-                    {receptionist.street_address}
-                    {receptionist.city}
-                    {receptionist.country}
-                    {receptionist.postal_code}
-                    {receptionist.phone}
+                    {receptionist.id},     
+                    {receptionist.name},
+                    {receptionist.lastName},
+                    {receptionist.username},
+                    {receptionist.email},
+                    {receptionist.dob},
+                    {receptionist.gender},
+                    {receptionist.street_address},
+                    {receptionist.city},
+                    {receptionist.country},
+                    {receptionist.postal_code},
+                    {receptionist.phone},
                     {receptionist.department}
                 </Card.Description>
             </Card.Content>
