@@ -11,6 +11,8 @@ function App() {
   const [selectedDepartment, setSelectedDepartment] = useState<Department | undefined>(undefined);
   const [editMode, setEditMode] = useState(false);
   const [cities, setCities] = useState([]);
+  const [bloodtypes, setBloodTypes] = useState([]);
+
 
   useEffect(() => {
     axios.get<Department[]>('http://localhost:5000/api/departments').then(response => {
@@ -18,6 +20,10 @@ function App() {
     })
     axios.get('http://localhost:5000/api/cities').then(response => {
       setCities(response.data);
+    })
+    axios.get('http://localhost:5000/api/bloodtypes').then(response => {
+      console.log(response);
+      setBloodTypes(response.data);
     })
   }, [])
 
