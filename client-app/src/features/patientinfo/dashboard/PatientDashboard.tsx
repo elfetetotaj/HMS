@@ -1,5 +1,6 @@
+import React from 'react';
 import { Grid, List } from 'semantic-ui-react';
-import { Patient } from '../../../app/models/Patient';
+import { Patient } from '../../../app/models/patient';
 import PatientList from './PatientList';
 import PatientDetails from '../details/PatientDetails';
 import PatientForm from '../form/PatientForm';
