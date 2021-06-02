@@ -1,34 +1,29 @@
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.Cities
+namespace Application.Receptionists
 {
-    public class Edit
+    public class Create
     {
         public class Command : IRequest
         {
-            public City City { get; set; }
+            public Receptionist Receptionist { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
-            private readonly IMapper _mapper;
-            public Handler(DataContext context, IMapper mapper)
+            public Handler(DataContext context)
             {
-                _mapper = mapper;
                 _context = context;
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var city = await _context.Cities.FindAsync(request.City.Id);
-
-                _mapper.Map(request.City, city);
+                _context.Receptionists.Add(request.Receptionist);
 
                 await _context.SaveChangesAsync();
 

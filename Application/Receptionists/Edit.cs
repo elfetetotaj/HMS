@@ -5,13 +5,13 @@ using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.Cities
+namespace Application.Receptionists
 {
     public class Edit
     {
         public class Command : IRequest
         {
-            public City City { get; set; }
+            public Receptionist Receptionist { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -26,9 +26,9 @@ namespace Application.Cities
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var city = await _context.Cities.FindAsync(request.City.Id);
+                var receptionist = await _context.Receptionists.FindAsync(request.Receptionist.Id);
 
-                _mapper.Map(request.City, city);
+                _mapper.Map(request.Receptionist, receptionist);
 
                 await _context.SaveChangesAsync();
 
