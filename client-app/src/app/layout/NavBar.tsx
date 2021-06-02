@@ -23,14 +23,13 @@ export default function NavBar({openForm}: Props) {
                 <Menu.Item>
                     <Button onClick={openForm} positive content='Create Receptionist' />
                 </Menu.Item>
-                
                 <Menu.Item header>
                     <img src ="/assets/logo.png" alt="logo" style = {{marginRight: '10px'}}/>
                     PatientInfo
                 </Menu.Item>
                 <Menu.Item name = 'PatientInfo'/>
                 <Menu.Item>
-                    <Button positive content ="Create Patient"/>
+                    <Button onClick={openForm} positive content='Create Patient' />
                 </Menu.Item>
             </Container>
         </Menu>
