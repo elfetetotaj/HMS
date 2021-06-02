@@ -9,7 +9,7 @@ function App() {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/activities').then(response => {
+    axios.get('http://localhost:5000/api/cities').then(response => {
       console.log(response);
       setCities(response.data);
     })
@@ -32,8 +32,8 @@ function App() {
         <List>
         {cities.map((city: any) => (
             <List.Item key={city.id}>
-              {city.CityName}
-              {city.ZipCode}
+              {city.cityName}
+              {city.zipCode}
             </List.Item>
           ))}
         </List>
