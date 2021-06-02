@@ -27,7 +27,7 @@ namespace Persistence.Migrations
                     emri = table.Column<string>(type: "TEXT", nullable: true),
                     mbiemri = table.Column<string>(type: "TEXT", nullable: true),
                     username = table.Column<string>(type: "TEXT", nullable: true),
-                    datelindja = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    datelindja = table.Column<string>(type: "TEXT", nullable: false),
                     adresa = table.Column<string>(type: "TEXT", nullable: true),
                     qyteti = table.Column<string>(type: "TEXT", nullable: true),
                     email = table.Column<string>(type: "TEXT", nullable: true),
