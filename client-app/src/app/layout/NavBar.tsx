@@ -10,6 +10,12 @@ export default function NavBar({openForm}: Props) {
         <Menu inverted fixed='top'>
             <Container>
                 <Menu.Item header>
+                    <img src="/assets/logo.png" alt="logo" style={{marginRight: '10px'}}/>
+                    HMS
+                </Menu.Item>
+                <Menu.Item name='Departments' />
+                <Menu.Item>
+                    <Button onClick={openForm} positive content='Create Department' />
                     <img src="/assets/logo.png" alt="logo" style={{marginRight: '10px'}} />
                     Receptionist
                 </Menu.Item>
