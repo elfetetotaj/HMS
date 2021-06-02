@@ -4,7 +4,7 @@ namespace Domain
 {
     public class Receptionist
     {
-        public Guid ReceptionistId { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string lastName { get; set; } 
         public string username { get; set; } 
