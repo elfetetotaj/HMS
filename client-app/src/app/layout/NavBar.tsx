@@ -2,10 +2,12 @@ import React from 'react';
 import { Button, Container, Menu } from 'semantic-ui-react';
 
 interface Props {
-    openForm: () => void;
+    openFormDepartment: () => void;
+    openFormReceptionist: () => void;
+    openFormPatient: () => void;
 }
 
-export default function NavBar({openForm}: Props) {
+export default function NavBar({openFormDepartment, openFormReceptionist, openFormPatient}: Props) {
     return (
         <Menu inverted fixed='top'>
             <Container>
@@ -15,15 +17,15 @@ export default function NavBar({openForm}: Props) {
                 </Menu.Item>
                 <Menu.Item name='Departments' />
                 <Menu.Item>
-                    <Button onClick={openForm} positive content='Create Department' />
+                    <Button onClick={openFormDepartment} positive content='Create Department' />
                 </Menu.Item>
                 <Menu.Item name='Receptionist' />
                 <Menu.Item>
-                    <Button onClick={openForm} positive content='Create Receptionist' />
+                    <Button onClick={openFormReceptionist} positive content='Create Receptionist' />
                 </Menu.Item>
                 <Menu.Item name ='PatientInfo' />
                 <Menu.Item>
-                    <Button onClick={openForm} positive content='Create Patient' />
+                    <Button onClick={openFormPatient} positive content='Create Patient' />
                 </Menu.Item>
             </Container>
         </Menu>

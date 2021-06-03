@@ -137,7 +137,11 @@ function App() {
 
   return (
     <Fragment>
-      <NavBar openForm={handleFormOpenDepartament} />
+      <NavBar 
+      openFormDepartment={handleFormOpenDepartament} 
+      openFormReceptionist={handleFormOpenReceptionist} 
+      openFormPatient={handleFormOpenPatient} 
+      />
         <Container style={{marginTop: '7em'}}>
           <DepartmentDashboard 
             departments={departments} 
@@ -145,7 +149,7 @@ function App() {
             selectDepartment={handleSelectDepartment}
             cancelSelectDepartment={handleCancelSelectDepartment}
             editModeDepartment={editModeDepartment}
-            openForm={handleFormOpenDepartament}
+            openFormDepartment={handleFormOpenDepartament}
             closeForm={handleFormCloseDepartment}
             createOrEdit={handleCreateOrEditDepartment}
             deleteDepartment={handleDeleteDepartment}
@@ -156,7 +160,7 @@ function App() {
             selectReceptionist={handleSelectReceptionist}
             cancelSelectReceptionist={handleCancelSelectReceptionist}
             editModeReceptionist={editModeReceptionist}
-            openForm={handleFormOpenReceptionist}
+            openFormReceptionist={handleFormOpenReceptionist}
             closeForm={handleFormCloseReceptionist}
             createOrEdit={handleCreateOrEditReceptionist}
             deleteReceptionist={handleDeleteReceptionist}
@@ -167,7 +171,7 @@ function App() {
             selectPatient={handleSelectPatient}
             cancelSelectPatient={handleCancelSelectPatient}
             editModePatient={editModePatient}
-            openForm={handleFormOpenPatient}
+            openFormPatient={handleFormOpenPatient}
             closeForm={handleFormClosePatient}
             createOrEdit={handleCreateOrEditPatient}
             deletePatient={handleDeletePatient}

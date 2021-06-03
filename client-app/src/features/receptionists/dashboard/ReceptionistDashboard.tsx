@@ -11,14 +11,14 @@ interface Props {
     selectReceptionist: (id: string) => void;
     cancelSelectReceptionist: () => void;
     editModeReceptionist: boolean;
-    openForm: (id: string) => void;
+    openFormReceptionist: (id: string) => void;
     closeForm: () => void;
     createOrEdit: (receptionist: Receptionist) => void;
     deleteReceptionist: (id: string) => void;
 }
 
 export default function ReceptionistDashboard({receptionists, selectedReceptionist, deleteReceptionist,
-        selectReceptionist, cancelSelectReceptionist, editModeReceptionist, openForm, closeForm, createOrEdit}: Props) {
+        selectReceptionist, cancelSelectReceptionist, editModeReceptionist, openFormReceptionist, closeForm, createOrEdit}: Props) {
     return (
         <Grid>
             <Grid.Column width='10'>
@@ -32,7 +32,7 @@ export default function ReceptionistDashboard({receptionists, selectedReceptioni
                 <ReceptionistDetails 
                     receptionist={selectedReceptionist} 
                     cancelSelectReceptionist={cancelSelectReceptionist}
-                    openForm={openForm} 
+                    openFormReceptionist={openFormReceptionist} 
                 />}
                 {editModeReceptionist &&
                 <ReceptionistForm closeForm={closeForm} receptionist={selectedReceptionist} createOrEdit={createOrEdit} />}

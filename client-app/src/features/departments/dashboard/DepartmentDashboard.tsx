@@ -11,13 +11,13 @@ interface Props {
     selectDepartment: (id: string) => void;
     cancelSelectDepartment: () => void;
     editModeDepartment: boolean;
-    openForm: (id: string) => void;
+    openFormDepartment: (id: string) => void;
     closeForm: () => void;
     createOrEdit: (department: Department) => void;
     deleteDepartment: (id: string) => void;
 }
 
-export default function DepartmentDashboard({departments, selectedDepartment, selectDepartment, cancelSelectDepartment, editModeDepartment, openForm, closeForm, createOrEdit, deleteDepartment}: Props) {
+export default function DepartmentDashboard({departments, selectedDepartment, selectDepartment, cancelSelectDepartment, editModeDepartment, openFormDepartment, closeForm, createOrEdit, deleteDepartment}: Props) {
     return (
         <Grid>
             <Grid.Column width='10'>
@@ -32,7 +32,7 @@ export default function DepartmentDashboard({departments, selectedDepartment, se
                 <DepartmentDetails 
                     department={selectedDepartment} 
                     cancelSelectDepartment={cancelSelectDepartment} 
-                    openForm={openForm}
+                    openFormDepartment={openFormDepartment}
                 />}
                 {editModeDepartment &&
                 <DepartmentForm closeForm={closeForm} department={selectedDepartment} createOrEdit={createOrEdit} />}

@@ -5,10 +5,10 @@ import { Patient } from '../../../app/models/patient';
 interface Props {
     patient: Patient;
     cancelSelectPatient: () => void;
-    openForm: (id: string) => void;
+    openFormPatient: (id: string) => void;
 }
 
-export default function PatientDetails({patient, cancelSelectPatient, openForm}: Props) {
+export default function PatientDetails({patient, cancelSelectPatient, openFormPatient}: Props) {
     return (
       <Card fluid>
         <Image src={`/assets/user.png`} />
@@ -24,7 +24,7 @@ export default function PatientDetails({patient, cancelSelectPatient, openForm}:
         </Card.Content>
         <Card.Content extra>
           <Button.Group widths='2'>
-            <Button onClick={() => openForm(patient.id)} basic color='blue' content='Edit' />
+            <Button onClick={() => openFormPatient(patient.id)} basic color='blue' content='Edit' />
             <Button onClick={cancelSelectPatient} basic color='grey' content='Cancel' />
           </Button.Group>
         </Card.Content>

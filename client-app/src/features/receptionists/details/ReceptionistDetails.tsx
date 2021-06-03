@@ -5,10 +5,10 @@ import { Receptionist } from '../../../app/models/receptionist';
 interface Props {
     receptionist: Receptionist;
     cancelSelectReceptionist: () => void;
-    openForm: (id: string) => void;
+    openFormReceptionist: (id: string) => void;
 }
 
-export default function ReceptionistDetails({ receptionist, cancelSelectReceptionist, openForm }: Props) {
+export default function ReceptionistDetails({ receptionist, cancelSelectReceptionist, openFormReceptionist }: Props) {
     return (
         <Card fluid>
             {/* <Image src={`/assets/categoryImages/${activity.category}.jpg`} /> */}
@@ -25,7 +25,7 @@ export default function ReceptionistDetails({ receptionist, cancelSelectReceptio
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => openForm(receptionist.id)} basic color='blue' content='Edit' />
+                    <Button onClick={() => openFormReceptionist(receptionist.id)} basic color='blue' content='Edit' />
                     <Button onClick={cancelSelectReceptionist} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>

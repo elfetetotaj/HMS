@@ -11,13 +11,13 @@ interface Props {
     selectPatient: (id: string) => void;
     cancelSelectPatient: () => void;
     editModePatient: boolean;
-    openForm: (id: string) => void;
+    openFormPatient: (id: string) => void;
     closeForm: () => void;
     createOrEdit: (patient: Patient) => void;
     deletePatient: (id: string) => void;
 }
 
-export default function PatientDashboard({patientinfo, selectedPatient, selectPatient, cancelSelectPatient, editModePatient, openForm, closeForm, createOrEdit, deletePatient}: Props) {
+export default function PatientDashboard({patientinfo, selectedPatient, selectPatient, cancelSelectPatient, editModePatient, openFormPatient, closeForm, createOrEdit, deletePatient}: Props) {
     return (
         <Grid>
             <Grid.Column width='10'>
@@ -32,7 +32,7 @@ export default function PatientDashboard({patientinfo, selectedPatient, selectPa
                 <PatientDetails 
                     patient={selectedPatient} 
                     cancelSelectPatient={cancelSelectPatient} 
-                    openForm={openForm}
+                    openFormPatient={openFormPatient}
                 />}
                 {editModePatient &&
                 <PatientForm closeForm={closeForm} patient={selectedPatient} createOrEdit={createOrEdit} />}
