@@ -10,15 +10,15 @@ interface Props {
     selectedReceptionist: Receptionist | undefined;
     selectReceptionist: (id: string) => void;
     cancelSelectReceptionist: () => void;
-    editMode: boolean;
-    openForm: (id: string) => void;
+    editModeReceptionist: boolean;
+    openFormReceptionist: (id: string) => void;
     closeForm: () => void;
     createOrEdit: (receptionist: Receptionist) => void;
     deleteReceptionist: (id: string) => void;
 }
 
 export default function ReceptionistDashboard({receptionists, selectedReceptionist, deleteReceptionist,
-        selectReceptionist, cancelSelectReceptionist, editMode, openForm, closeForm, createOrEdit}: Props) {
+        selectReceptionist, cancelSelectReceptionist, editModeReceptionist, openFormReceptionist, closeForm, createOrEdit}: Props) {
     return (
         <Grid>
             <Grid.Column width='10'>
@@ -28,13 +28,13 @@ export default function ReceptionistDashboard({receptionists, selectedReceptioni
                 />
             </Grid.Column>
             <Grid.Column width='6'>
-                {selectedReceptionist && !editMode &&
+                {selectedReceptionist && !editModeReceptionist &&
                 <ReceptionistDetails 
                     receptionist={selectedReceptionist} 
                     cancelSelectReceptionist={cancelSelectReceptionist}
-                    openForm={openForm} 
+                    openFormReceptionist={openFormReceptionist} 
                 />}
-                {editMode &&
+                {editModeReceptionist &&
                 <ReceptionistForm closeForm={closeForm} receptionist={selectedReceptionist} createOrEdit={createOrEdit} />}
             </Grid.Column>
         </Grid>

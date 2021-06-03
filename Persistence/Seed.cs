@@ -7,12 +7,12 @@ using Domain;
 namespace Persistence
 {
     public class Seed
-{
-        
-         public static async Task SeedDataBlood(DataContext context)
+    {
+
+        public static async Task SeedDataBlood(DataContext context)
         {
             if (context.BloodTypes.Any()) return;
-            
+
             var types = new List<BloodType>
             {
                 new BloodType
@@ -49,10 +49,10 @@ namespace Persistence
 
             await context.BloodTypes.AddRangeAsync(types);
             await context.SaveChangesAsync();
-
         }
-        public static async Task SeedDataNurse(DataContext context){
-            if(context.Nurses.Any())return;
+        public static async Task SeedDataNurse(DataContext context)
+        {
+            if (context.Nurses.Any()) return;
             var nurses = new List<Nurse>{
 
                 new Nurse{
@@ -67,19 +67,16 @@ namespace Persistence
                     paga = 200
                 },
             };
-               await context.Nurses.AddRangeAsync(nurses);
+            
+            await context.Nurses.AddRangeAsync(nurses);
             await context.SaveChangesAsync();
-
         }
 
+        public static async Task SeedDataReceptionist(DataContext context)
+        {
+            if (context.Receptionists.Any()) return;
 
-    
-
-            
-        public static async Task SeedDataReceptionist(DataContext context){
-               if (context.Receptionists.Any()) return;
-            
-            var receptionists= new List<Receptionist>
+            var receptionists = new List<Receptionist>
             {
                 new Receptionist
                 {
@@ -117,14 +114,13 @@ namespace Persistence
 
             await context.Receptionists.AddRangeAsync(receptionists);
             await context.SaveChangesAsync();
-
         }
 
+        public static async Task SeedDataDoctorInfo(DataContext context)
+        {
 
-        public static async Task SeedDataDoctorInfo(DataContext context){
-            
-             if (context.DoctorInfo.Any()) return;
-            
+            if (context.DoctorInfo.Any()) return;
+
             var doctorinfo = new List<Doctor>
             {
                 new Doctor
@@ -179,21 +175,16 @@ namespace Persistence
                     d_phone = "9876345612",
                     designation="Specialist"
                 }
-
         };
-             await context.DoctorInfo.AddRangeAsync(doctorinfo);
-             await context.SaveChangesAsync();
 
-              
-        
-
+            await context.DoctorInfo.AddRangeAsync(doctorinfo);
+            await context.SaveChangesAsync();
         }
 
+        public static async Task SeedDataPatientInfo(DataContext context)
+        {
+            if (context.PatientInfo.Any()) return;
 
-
-        public static async Task SeedDataPatientInfo(DataContext context){
-                if (context.PatientInfo.Any()) return;
-            
             var patientinfo = new List<Patient>
             {
                 new Patient
@@ -244,7 +235,7 @@ namespace Persistence
                 new Patient
                 {
                     p_fname = "Xhastin",
-                    p_lname = "Bojagji",
+                    p_lname = "Bojaxhiu",
                     dob = DateTime.Now.AddMonths(-1),
                     p_gender = 'M',
                     p_street_address = "C6 Thorne Street",
@@ -301,19 +292,18 @@ namespace Persistence
                     other_det = "High Blook Pressure",
                     p_rdate = DateTime.Now.AddMonths(-3),
                 },
-               
+
             };
 
             await context.PatientInfo.AddRangeAsync(patientinfo);
             await context.SaveChangesAsync();
-
         }
 
+        public static async Task SeedDataCity(DataContext context)
+        {
+            if (context.Cities.Any()) return;
 
-        public static async Task SeedDataCity(DataContext context){
- if (context.Cities.Any()) return;
-            
-            var cities= new List<City>
+            var cities = new List<City>
             {
                 new City
                 {
@@ -340,14 +330,15 @@ namespace Persistence
             await context.Cities.AddRangeAsync(cities);
             await context.SaveChangesAsync();
         }
-        public static async Task SeedDataRoom(DataContext context){
+        public static async Task SeedDataRoom(DataContext context)
+        {
             if (context.RoomInfo.Any()) return;
-            
+
             var roominfo = new List<Room>
             {
                 new Room
                 {
-                    
+
                     r_type = "Single",
                     tot_bed = 1,
                     tot_bed_occupied = 1,
@@ -356,7 +347,7 @@ namespace Persistence
                 },
                 new Room
                 {
-                    
+
                     r_type = "Duplex",
                     tot_bed = 2,
                     tot_bed_occupied = 1,
@@ -365,7 +356,7 @@ namespace Persistence
                 },
                 new Room
                 {
-                    
+
                     r_type = "Triplex",
                     tot_bed = 3,
                     tot_bed_occupied = 1,
@@ -374,7 +365,7 @@ namespace Persistence
                 },
                 new Room
                 {
-                   
+
                     r_type = "Common",
                     tot_bed = 5,
                     tot_bed_occupied = 5,
@@ -382,15 +373,15 @@ namespace Persistence
                     floor_no = 4,
                 },
         };
-          await context.RoomInfo.AddRangeAsync(roominfo);
-          await context.SaveChangesAsync();
 
+            await context.RoomInfo.AddRangeAsync(roominfo);
+            await context.SaveChangesAsync();
         }
 
         public static async Task SeedData(DataContext context)
         {
             if (context.Departments.Any()) return;
-            
+
             var departments = new List<Department>
             {
                 new Department
@@ -405,7 +396,6 @@ namespace Persistence
 
             await context.Departments.AddRangeAsync(departments);
             await context.SaveChangesAsync();
-
         }
     }
 }

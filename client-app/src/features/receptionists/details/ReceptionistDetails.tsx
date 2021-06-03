@@ -5,10 +5,10 @@ import { Receptionist } from '../../../app/models/receptionist';
 interface Props {
     receptionist: Receptionist;
     cancelSelectReceptionist: () => void;
-    openForm: (id: string) => void;
+    openFormReceptionist: (id: string) => void;
 }
 
-export default function ReceptionistDetails({ receptionist, cancelSelectReceptionist, openForm }: Props) {
+export default function ReceptionistDetails({ receptionist, cancelSelectReceptionist, openFormReceptionist }: Props) {
     return (
         <Card fluid>
             {/* <Image src={`/assets/categoryImages/${activity.category}.jpg`} /> */}
@@ -18,24 +18,14 @@ export default function ReceptionistDetails({ receptionist, cancelSelectReceptio
                     <span>{receptionist.department}</span>
                 </Card.Meta>
                 <Card.Description>
-                    {receptionist.id},     
-                    {receptionist.name},
-                    {receptionist.lastName},
-                    {receptionist.username},
-                    {receptionist.email},
-                    {receptionist.dob},
-                    {receptionist.gender},
-                    {receptionist.street_address},
-                    {receptionist.city},
-                    {receptionist.country},
-                    {receptionist.postal_code},
-                    {receptionist.phone},
-                    {receptionist.department}
+                    <div>{receptionist.name}, {receptionist.lastName}</div>
+                    <div>{receptionist.city}, {receptionist.country} , {receptionist.department}</div>
+                    <div>{receptionist.email}, {receptionist.gender}, {receptionist.street_address}</div>
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => openForm(receptionist.id)} basic color='blue' content='Edit' />
+                    <Button onClick={() => openFormReceptionist(receptionist.id)} basic color='blue' content='Edit' />
                     <Button onClick={cancelSelectReceptionist} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>

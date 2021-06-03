@@ -34,11 +34,7 @@ namespace API
                 await Seed.SeedDataRoom(context);
                 await Seed.SeedDataNurse(context);
                 await Seed.SeedDataBlood(context);
-
-
-      
-
-            } 
+            }
             catch (Exception ex)
             {
                 var logger = services.GetRequiredService<ILogger<Program>>();

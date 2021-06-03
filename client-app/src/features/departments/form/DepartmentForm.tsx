@@ -6,9 +6,11 @@ interface Props {
     department: Department | undefined;
     closeForm: () => void;
     createOrEdit: (department: Department) => void;
+    submitting: boolean;
 }
 
-export default function DepartmentForm({department: selectedDepartment, closeForm, createOrEdit}: Props) {
+export default function DepartmentForm({department: selectedDepartment, closeForm, 
+    createOrEdit, submitting}: Props) {
 
 const initialState = selectedDepartment ?? {
     id: '',
@@ -31,7 +33,7 @@ function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaEle
             <Form onSubmit={handleSubmit} autoComplete='off'>
                 <Form.Input placeholder='Name' value={department.departmentName} name='departmentName' onChange={handleInputChange} />
                 {/* <Form.TextArea placeholder='Description' value={department.?????????} name='??????' onChange={handleInputChange} /> ***Will be added later in the Department crud*** */}
-                <Button floated='right' positive type='submit' content='Submit' />
+                <Button loading={submitting} floated='right' positive type='submit' content='Submit' />
                 <Button onClick={closeForm} floated='right' type='submit' content='Cancel' />
             </Form>
         </Segment>
