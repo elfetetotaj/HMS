@@ -13,11 +13,13 @@ import {v4 as uuid} from 'uuid';
 function App() {
   const [departments, setDepartments] = useState<Department[]>([]);
   const [selectedDepartment, setSelectedDepartment] = useState<Department | undefined>(undefined);
+  const [editModeDepartment, setEditModeDepartment] = useState(false);
   const [receptionists, setReceptionists] = useState<Receptionist[]>([]);
   const [selectedReceptionist, setSelectedReceptionist] = useState<Receptionist | undefined>(undefined);
+  const [editModeReceptionist, setEditModeReceptionist] = useState(false);
   const [patientinfo, setPatientinfo] = useState<Patient[]>([]);
   const [selectedPatient, setSelectedPatient] = useState<Patient | undefined>(undefined);
-  const [editMode, setEditMode] = useState(false);
+  const [editModePatient, setEditModePatient] = useState(false);
 
   useEffect(() => {
     axios.get<Department[]>('http://localhost:5000/api/departments').then(response => {
@@ -57,41 +59,67 @@ function App() {
 
   function handleFormOpenDepartament(id?: string) {
     id ? handleSelectDepartment(id) : handleCancelSelectDepartment();
-    setEditMode(true);
+    setEditModeDepartment(true);
+    setEditModeReceptionist(false);
+    setEditModePatient(false);
   }
 
   function handleFormOpenReceptionist(id?: string) {
     id ? handleSelectReceptionist(id) : handleCancelSelectReceptionist();
-    setEditMode(true);
+    setEditModeDepartment(false);
+    setEditModeReceptionist(true);
+    setEditModePatient(false);
   }
 
   function handleFormOpenPatient(id?: string) {
     id ? handleSelectPatient(id) : handleCancelSelectPatient();
-    setEditMode(true);
+    setEditModeDepartment(false);
+    setEditModeReceptionist(false);
+    setEditModePatient(true);
   }
 
-  function handleFormClose() {
-    setEditMode(false);
+  function handleFormCloseDepartment() {
+    setEditModeDepartment(false);
+    setEditModeReceptionist(false);
+    setEditModePatient(false);
+  }
+
+  function handleFormCloseReceptionist() {
+    setEditModeDepartment(false);
+    setEditModeReceptionist(false);
+    setEditModePatient(false);
+  }
+
+  function handleFormClosePatient() {
+    setEditModeDepartment(false);
+    setEditModeReceptionist(false);
+    setEditModePatient(false);
   }
 
   function handleCreateOrEditDepartment(department: Department) {
     department.id ? setDepartments([...departments.filter(x => x.id !== department.id), department])
     : setDepartments([...departments, {...department, id: uuid()}]);
-    setEditMode(false);
+    setEditModeDepartment(false);
+    setEditModeReceptionist(false);
+    setEditModePatient(false);
     setSelectedDepartment(department);
   }
 
   function handleCreateOrEditReceptionist(receptionist: Receptionist) {
     receptionist.id ? setReceptionists([...receptionists.filter(x => x.id !== receptionist.id), receptionist])
-      : setReceptionists([...receptionists, { ...receptionist, id: uuid() }]);
-    setEditMode(false);
+    : setReceptionists([...receptionists, { ...receptionist, id: uuid() }]);
+    setEditModeDepartment(false);
+    setEditModeReceptionist(false);
+    setEditModePatient(false);
     setSelectedReceptionist(receptionist);
   }
 
   function handleCreateOrEditPatient(patient: Patient) {
     patient.id ? setPatientinfo([...patientinfo.filter(x => x.id !== patient.id), patient])
-      : setPatientinfo([...patientinfo, { ...patient, id: uuid() }]);
-    setEditMode(false);
+    : setPatientinfo([...patientinfo, { ...patient, id: uuid() }]);
+    setEditModeDepartment(false);
+    setEditModeReceptionist(false);
+    setEditModePatient(false);
     setSelectedPatient(patient);
   }
 
@@ -116,9 +144,9 @@ function App() {
             selectedDepartment={selectedDepartment}
             selectDepartment={handleSelectDepartment}
             cancelSelectDepartment={handleCancelSelectDepartment}
-            editMode={editMode}
+            editModeDepartment={editModeDepartment}
             openForm={handleFormOpenDepartament}
-            closeForm={handleFormClose}
+            closeForm={handleFormCloseDepartment}
             createOrEdit={handleCreateOrEditDepartment}
             deleteDepartment={handleDeleteDepartment}
           />
@@ -127,9 +155,9 @@ function App() {
             selectedReceptionist={selectedReceptionist}
             selectReceptionist={handleSelectReceptionist}
             cancelSelectReceptionist={handleCancelSelectReceptionist}
-            editMode={editMode}
+            editModeReceptionist={editModeReceptionist}
             openForm={handleFormOpenReceptionist}
-            closeForm={handleFormClose}
+            closeForm={handleFormCloseReceptionist}
             createOrEdit={handleCreateOrEditReceptionist}
             deleteReceptionist={handleDeleteReceptionist}
           />
@@ -138,9 +166,9 @@ function App() {
             selectedPatient={selectedPatient}
             selectPatient={handleSelectPatient}
             cancelSelectPatient={handleCancelSelectPatient}
-            editMode={editMode}
+            editModePatient={editModePatient}
             openForm={handleFormOpenPatient}
-            closeForm={handleFormClose}
+            closeForm={handleFormClosePatient}
             createOrEdit={handleCreateOrEditPatient}
             deletePatient={handleDeletePatient}
           />

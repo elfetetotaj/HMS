@@ -21,7 +21,7 @@ export default function NavBar({openForm}: Props) {
                 <Menu.Item>
                     <Button onClick={openForm} positive content='Create Receptionist' />
                 </Menu.Item>
-                <Menu.Item name = 'PatientInfo'/>
+                <Menu.Item name ='PatientInfo' />
                 <Menu.Item>
                     <Button onClick={openForm} positive content='Create Patient' />
                 </Menu.Item>
