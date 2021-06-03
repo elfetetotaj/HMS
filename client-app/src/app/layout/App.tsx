@@ -9,6 +9,8 @@ import DepartmentDashboard from '../../features/departments/dashboard/Department
 import ReceptionistDashboard from '../../features/receptionists/dashboard/ReceptionistDashboard';
 import PatientDashboard from '../../features/patientinfo/dashboard/PatientDashboard';
 import {v4 as uuid} from 'uuid';
+import agent from '../api/agent';
+import LoadingComponent from './LoadingComponent';
 
 function App() {
   const [departments, setDepartments] = useState<Department[]>([]);
@@ -20,10 +22,18 @@ function App() {
   const [patientinfo, setPatientinfo] = useState<Patient[]>([]);
   const [selectedPatient, setSelectedPatient] = useState<Patient | undefined>(undefined);
   const [editModePatient, setEditModePatient] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    axios.get<Department[]>('http://localhost:5000/api/departments').then(response => {
-      setDepartments(response.data);
+    agent.Departments.list().then(response => {
+      let departments: Department[] = [];
+      response.forEach(department => {
+        // department.date = department.date.split('T')[0];
+        departments.push(department);
+      })
+      setDepartments(departments);
+      setLoading(false);
     })
     axios.get<Receptionist[]>('http://localhost:5000/api/receptionists').then(response => {
       setReceptionists(response.data);
@@ -97,12 +107,27 @@ function App() {
   }
 
   function handleCreateOrEditDepartment(department: Department) {
-    department.id ? setDepartments([...departments.filter(x => x.id !== department.id), department])
-    : setDepartments([...departments, {...department, id: uuid()}]);
-    setEditModeDepartment(false);
-    setEditModeReceptionist(false);
-    setEditModePatient(false);
-    setSelectedDepartment(department);
+    setSubmitting(true);
+    if (department.id) {
+      agent.Departments.update(department).then(() => {
+        setDepartments([...departments.filter(x => x.id !== department.id), department])
+        setSelectedDepartment(department);
+        setEditModeDepartment(false);
+        setEditModeReceptionist(false);
+        setEditModePatient(false);
+        setSubmitting(false);
+      })
+    } else {
+      department.id = uuid();
+      agent.Departments.create(department).then(() => {
+        setDepartments([...departments, department])
+        setSelectedDepartment(department);
+        setEditModeDepartment(false);
+        setEditModeReceptionist(false);
+        setEditModePatient(false);
+        setSubmitting(false);
+      })
+    }
   }
 
   function handleCreateOrEditReceptionist(receptionist: Receptionist) {
@@ -124,7 +149,11 @@ function App() {
   }
 
   function handleDeleteDepartment(id: string) {
-    setDepartments([...departments.filter(x => x.id !== id)])
+    setSubmitting(true);
+    agent.Departments.delete(id).then(() => {
+      setDepartments([...departments.filter(x => x.id !== id)])
+      setSubmitting(false);
+    })
   }
 
   function handleDeleteReceptionist(id: string) {
@@ -134,6 +163,8 @@ function App() {
   function handleDeletePatient(id: string) {
     setPatientinfo([...patientinfo.filter(x => x.id !== id)])
   }
+
+  if (loading) return <LoadingComponent content='Loading app' />
 
   return (
     <Fragment>
@@ -153,6 +184,7 @@ function App() {
             closeForm={handleFormCloseDepartment}
             createOrEdit={handleCreateOrEditDepartment}
             deleteDepartment={handleDeleteDepartment}
+            submitting={submitting}
           />
           <ReceptionistDashboard
             receptionists={receptionists}
