@@ -15,8 +15,8 @@ export default class ReceptionistStore {
     }
 
     get receptionistsByDate() {
-        return Array.from(this.receptionistRegistry.values()).sort((a, b) => 
-            Date.parse(a.date) - Date.parse(b.date));
+        return Array.from(this.receptionistRegistry.values())/*.sort((a, b) => 
+            Date.parse(a.date) - Date.parse(b.date));*/
     }
 
     loadReceptionists = async () => {
@@ -24,7 +24,7 @@ export default class ReceptionistStore {
         try {
             const receptionists = await agent.Receptionists.list();
                 receptionists.forEach(receptionist => {
-                    receptionist = receptionist.split('T')[0];
+                    // receptionist = receptionist.split('T')[0];
                     this.receptionistRegistry.set(receptionist.id, receptionist);
                 })
                 this.setLoadingInitial(false);
