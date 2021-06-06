@@ -4,8 +4,6 @@ import { Button, Container, Menu } from 'semantic-ui-react';
 
 export default function NavBar() {
 
-export default function NavBar(/*{openFormDepartment, openFormPatient}: Props*/) {
-
     return (
         <Menu inverted fixed='top'>
             <Container>
