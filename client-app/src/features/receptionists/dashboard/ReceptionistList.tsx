@@ -1,14 +1,22 @@
-import React from 'react';
-import { Button, Item, Label, Segment } from 'semantic-ui-react';
+import React, { SyntheticEvent, useState } from 'react';
+import { Button, Item, Segment } from 'semantic-ui-react';
 import { Receptionist } from '../../../app/models/receptionist';
 
 interface Props {
     receptionists: Receptionist[];
     selectReceptionist: (id: string) => void;
     deleteReceptionist: (id: string) => void;
+    submitting: boolean;
 }
 
-export default function ReceptionistList({ receptionists, selectReceptionist, deleteReceptionist }: Props) {
+export default function ReceptionistList({ receptionists, selectReceptionist, deleteReceptionist, submitting }: Props) {
+    const [target, setTarget] = useState('');
+
+    function handleReceptionistDelete(e: SyntheticEvent<HTMLButtonElement>, id: string){
+        setTarget(e.currentTarget.name);
+        deleteReceptionist(id);
+    }
+
     return (
         <Segment>
             <Item.Group divided>
@@ -24,8 +32,14 @@ export default function ReceptionistList({ receptionists, selectReceptionist, de
                             </Item.Description>
                             <Item.Extra>
                                 <Button onClick={() => selectReceptionist(receptionist.id)} floated='right' content='View' color='blue' />
-                                <Button onClick={() => deleteReceptionist(receptionist.id)} floated='right' content='Delete' color='red' />
-                                <Label basic content={receptionist.department} />
+                                <Button 
+                                    name={receptionist.id}
+                                    loading={submitting && target === receptionist.id} 
+                                    onClick={(e) => handleReceptionistDelete(e, receptionist.id)} 
+                                    floated='right' 
+                                    content='Delete'
+                                     color='red' 
+                                />
                             </Item.Extra>
                         </Item.Content>
                     </Item>

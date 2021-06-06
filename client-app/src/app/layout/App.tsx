@@ -11,7 +11,6 @@ import PatientDashboard from '../../features/patientinfo/dashboard/PatientDashbo
 import {v4 as uuid} from 'uuid';
 import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
-import agent from '../api/agent';
 
 function App() {
   const [departments, setDepartments] = useState<Department[]>([]);
@@ -36,18 +35,17 @@ function App() {
       setDepartments(departments);
       setLoading(false);
     })
-    axios.get<Receptionist[]>('http://localhost:5000/api/receptionists').then(response => {
-      setReceptionists(response.data);
-    axios.get<Department[]>('http://localhost:5000/api/departments').then(response => {
-      setDepartments(response.data);
-    })
+    // axios.get<Department[]>('http://localhost:5000/api/departments').then(response => {
+    //   setDepartments(response.data);
+    // })
     agent.Receptionists.list().then(response => {
       let receptionists: Receptionist[] = [];
       response.forEach(receptionist => {
-       // receptionist = receptionist.department.split('T')[0];
+      //  receptionist = receptionist.department.split('T')[0];
         receptionists.push(receptionist);
       })
-      setReceptionists(response);
+      setReceptionists(receptionists);
+      setLoading(false);
     })
     axios.get<Patient[]>('http://localhost:5000/api/patientinfo').then(response => {
       setPatientinfo(response.data);
@@ -142,12 +140,23 @@ function App() {
   }
 
   function handleCreateOrEditReceptionist(receptionist: Receptionist) {
-    receptionist.id ? setReceptionists([...receptionists.filter(x => x.id !== receptionist.id), receptionist])
-    : setReceptionists([...receptionists, { ...receptionist, id: uuid() }]);
-    setEditModeDepartment(false);
-    setEditModeReceptionist(false);
-    setEditModePatient(false);
-    setSelectedReceptionist(receptionist);
+    setSubmitting(true);
+    if(receptionist.id){
+      agent.Receptionists.update(receptionist).then(() => {
+        setReceptionists([...receptionists.filter(x => x.id !== receptionist.id), receptionist])
+        setSelectedReceptionist(receptionist);
+        setEditModeDepartment(false);
+        setSubmitting(false);
+      })
+    }else{
+      receptionist.id= uuid();
+      agent.Receptionists.create(receptionist).then(() => {
+        setReceptionists([...receptionists,receptionist])
+        setSelectedReceptionist(receptionist);
+        setEditModeDepartment(false);
+        setSubmitting(false);
+      }) 
+    }
   }
 
   function handleCreateOrEditPatient(patient: Patient) {
@@ -168,7 +177,12 @@ function App() {
   }
 
   function handleDeleteReceptionist(id: string) {
-    setReceptionists([...receptionists.filter(x => x.id !== id)])
+    setSubmitting(true);
+    agent.Receptionists.delete(id).then(() => {
+      setReceptionists([...receptionists.filter(x => x.id !== id)])
+      setSubmitting(false);
+    })
+   
   }
 
   function handleDeletePatient(id: string) {
@@ -207,6 +221,7 @@ function App() {
             closeForm={handleFormCloseReceptionist}
             createOrEdit={handleCreateOrEditReceptionist}
             deleteReceptionist={handleDeleteReceptionist}
+            submitting={submitting}
           />
           <PatientDashboard
             patientinfo={patientinfo}

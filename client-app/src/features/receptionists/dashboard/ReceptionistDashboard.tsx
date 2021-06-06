@@ -15,16 +15,18 @@ interface Props {
     closeForm: () => void;
     createOrEdit: (receptionist: Receptionist) => void;
     deleteReceptionist: (id: string) => void;
+    submitting: boolean;
 }
 
 export default function ReceptionistDashboard({receptionists, selectedReceptionist, deleteReceptionist,
-        selectReceptionist, cancelSelectReceptionist, editModeReceptionist, openFormReceptionist, closeForm, createOrEdit}: Props) {
+        selectReceptionist, cancelSelectReceptionist, editModeReceptionist, openFormReceptionist, closeForm, createOrEdit, submitting}: Props) {
     return (
         <Grid>
             <Grid.Column width='10'>
                 <ReceptionistList receptionists={receptionists} 
                     selectReceptionist={selectReceptionist} 
                     deleteReceptionist={deleteReceptionist}
+                    submitting={submitting}
                 />
             </Grid.Column>
             <Grid.Column width='6'>
@@ -35,7 +37,12 @@ export default function ReceptionistDashboard({receptionists, selectedReceptioni
                     openFormReceptionist={openFormReceptionist} 
                 />}
                 {editModeReceptionist &&
-                <ReceptionistForm closeForm={closeForm} receptionist={selectedReceptionist} createOrEdit={createOrEdit} />}
+                <ReceptionistForm 
+                    closeForm={closeForm} 
+                    receptionist={selectedReceptionist} 
+                    createOrEdit={createOrEdit} 
+                    submitting={submitting}
+                    />}
             </Grid.Column>
         </Grid>
     )
