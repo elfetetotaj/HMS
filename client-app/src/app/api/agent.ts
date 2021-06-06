@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Department } from '../models/department';
-import {Receptionist} from '../models/receptionist'
+import { Receptionist } from '../models/receptionist';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {

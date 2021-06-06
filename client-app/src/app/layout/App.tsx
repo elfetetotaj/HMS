@@ -146,6 +146,8 @@ function App() {
         setReceptionists([...receptionists.filter(x => x.id !== receptionist.id), receptionist])
         setSelectedReceptionist(receptionist);
         setEditModeDepartment(false);
+        setEditModeReceptionist(false);
+        setEditModePatient(false);
         setSubmitting(false);
       })
     }else{
@@ -154,6 +156,8 @@ function App() {
         setReceptionists([...receptionists,receptionist])
         setSelectedReceptionist(receptionist);
         setEditModeDepartment(false);
+        setEditModeReceptionist(false);
+        setEditModePatient(false);
         setSubmitting(false);
       }) 
     }
