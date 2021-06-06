@@ -2,13 +2,9 @@ import React from 'react';
 import { Button, Container, Menu } from 'semantic-ui-react';
 import { useStore } from '../stores/store';
 
-// interface Props {
-//     openFormDepartment: () => void;
-//     openFormPatient: () => void;
-// }
+export default function NavBar() {
 
-export default function NavBar(/*{openFormDepartment, openFormPatient}: Props*/) {
-
+    const {departmentStore} = useStore();
     const {receptionistStore} = useStore();
 
     return (
@@ -18,10 +14,10 @@ export default function NavBar(/*{openFormDepartment, openFormPatient}: Props*/)
                     <img src="/assets/logo.png" alt="logo" style={{marginRight: '10px' }}/>
                     HMS
                 </Menu.Item>
-                {/* <Menu.Item name='Departments' />
+                <Menu.Item name='Departments' />
                 <Menu.Item>
-                    <Button onClick={openFormDepartment} positive content='Create Department' />
-                </Menu.Item> */}
+                    <Button onClick={() => departmentStore.openForm()} positive content='Create Department' />
+                </Menu.Item>
                 <Menu.Item name='Receptionist' />
                 <Menu.Item>
                     <Button onClick={() => receptionistStore.openForm()} positive content='Create Receptionist' />

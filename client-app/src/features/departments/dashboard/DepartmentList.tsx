@@ -1,15 +1,12 @@
+import { observer } from 'mobx-react-lite';
 import React, { SyntheticEvent, useState } from 'react';
 import { Button, Item, Segment } from 'semantic-ui-react';
-import { Department } from '../../../app/models/department';
+import { useStore } from '../../../app/stores/store';
 
-interface Props {
-    departments: Department[];
-    selectDepartment: (id: string) => void;
-    deleteDepartment: (id: string) => void;
-    submitting: boolean;
-}
+export default observer(function DepartmentList() {
+    const {departmentStore} = useStore();
+    const {deleteDepartment, departmentsByDate, loading} = departmentStore
 
-export default function DepartmentList({departments, selectDepartment, deleteDepartment, submitting}: Props) {
     const [target, setTarget] = useState('');
 
     function handleDepartmentDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
@@ -17,18 +14,19 @@ export default function DepartmentList({departments, selectDepartment, deleteDep
         deleteDepartment(id);
     }
 
+
     return ( //video 5.7
         <Segment>
             <Item.Group divided>
-                {departments.map(department => (
+                {departmentsByDate.map(department => (
                     <Item key={department.id}>
                         <Item.Content> 
                             <Item.Header as='a'>{department.departmentName}</Item.Header>
                             <Item.Extra>
-                                <Button onClick={() => selectDepartment(department.id)} floated='right' content='View' color='blue' />
+                                <Button onClick={() => departmentStore.selectDepartment(department.id)} floated='right' content='View' color='blue' />
                                 <Button 
                                     name={department.id}
-                                    loading={submitting && target === department.id} 
+                                    loading={loading && target === department.id} 
                                     onClick={(e) => handleDepartmentDelete(e, department.id)} 
                                     floated='right' 
                                     content='Delete' 
@@ -41,4 +39,4 @@ export default function DepartmentList({departments, selectDepartment, deleteDep
             </Item.Group>
         </Segment>
     )
-}
+})
