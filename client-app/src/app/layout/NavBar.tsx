@@ -2,10 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Container, Menu } from 'semantic-ui-react';
 
-// interface Props {
-//     openFormDepartment: () => void;
-//     openFormPatient: () => void;
-// }
+export default function NavBar() {
 
 export default function NavBar(/*{openFormDepartment, openFormPatient}: Props*/) {
 

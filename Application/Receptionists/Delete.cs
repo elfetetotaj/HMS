@@ -23,9 +23,9 @@ namespace Application.Receptionists
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var city = await _context.Receptionists.FindAsync(request.Id);
+                var receptionist = await _context.Receptionists.FindAsync(request.Id);
 
-                _context.Remove(city);
+                _context.Remove(receptionist);
 
                 await _context.SaveChangesAsync();
 

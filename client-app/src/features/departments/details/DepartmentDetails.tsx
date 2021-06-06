@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button, Card, Image } from 'semantic-ui-react';
-import { Department } from '../../../app/models/department';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
+import { useStore } from '../../../app/stores/store';
 
-interface Props {
-    department: Department;
-    cancelSelectDepartment: () => void;
-    openFormDepartment: (id: string) => void;
-}
+export default function DepartmentDetails() {
+    const {departmentStore} = useStore();
+    const {selectedDepartment: department, openForm, cancelSelectedDepartment} = departmentStore;
 
-export default function DepartmentDetails({department, cancelSelectDepartment, openFormDepartment}: Props) {
+    if (!department) return <LoadingComponent />;
+
     return (
         <Card fluid>
             <Image src={`/assets/departmentImages/${department.departmentName}.jpg`} />
@@ -20,8 +20,8 @@ export default function DepartmentDetails({department, cancelSelectDepartment, o
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => openFormDepartment(department.id)} basic color='blue' content='Edit' />
-                    <Button onClick={cancelSelectDepartment} basic color='grey' content='Cancel' />
+                    <Button onClick={() => openForm(department.id)} basic color='blue' content='Edit' />
+                    <Button onClick={cancelSelectedDepartment} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>
         </Card>

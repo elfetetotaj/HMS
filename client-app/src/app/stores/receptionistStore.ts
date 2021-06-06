@@ -7,7 +7,7 @@ export default class ReceptionistStore {
     selectedReceptionist: Receptionist | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial = false;
+    loadingInitial = true;
 
     constructor() {
         makeAutoObservable(this)

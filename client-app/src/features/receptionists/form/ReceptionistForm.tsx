@@ -65,7 +65,7 @@ export default observer(function ReceptionistForm() {
                 <Form.Input type='email' placeholder='Email' value={receptionist.email} name='email' onChange={handleInputChange} />
                 <Form.Input type='date' placeholder='Birthday' value={receptionist.dob} name='dob' onChange={handleInputChange} />
                 <Form.Input placeholder='Gender' value={receptionist.gender} name='gender' onChange={handleInputChange} />
-                <Form.Input placeholder='Addres' value={receptionist.street_address} name='dtreet_address' onChange={handleInputChange} />
+                <Form.Input placeholder='Addres' value={receptionist.street_address} name='street_address' onChange={handleInputChange} />
                 <Form.Input placeholder='City' value={receptionist.city} name='city' onChange={handleInputChange}/>
                 <Form.Input placeholder='Country' value={receptionist.country} name='country' onChange={handleInputChange}/>
                 <Form.Input placeholder='PostalCode' value={receptionist.postal_code} name='postal_code' onChange={handleInputChange}/>
