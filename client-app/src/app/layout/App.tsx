@@ -9,6 +9,7 @@ import DepartmentDashboard from '../../features/departments/dashboard/Department
 import ReceptionistDashboard from '../../features/receptionists/dashboard/ReceptionistDashboard';
 import PatientDashboard from '../../features/patientinfo/dashboard/PatientDashboard';
 import {v4 as uuid} from 'uuid';
+import agent from '../api/agent';
 
 function App() {
   const [departments, setDepartments] = useState<Department[]>([]);
@@ -25,8 +26,13 @@ function App() {
     axios.get<Department[]>('http://localhost:5000/api/departments').then(response => {
       setDepartments(response.data);
     })
-    axios.get<Receptionist[]>('http://localhost:5000/api/receptionists').then(response => {
-      setReceptionists(response.data);
+    agent.Receptionists.list().then(response => {
+      let receptionists: Receptionist[] = [];
+      response.forEach(receptionist => {
+       // receptionist = receptionist.department.split('T')[0];
+        receptionists.push(receptionist);
+      })
+      setReceptionists(response);
     })
     axios.get<Patient[]>('http://localhost:5000/api/patientinfo').then(response => {
       setPatientinfo(response.data);

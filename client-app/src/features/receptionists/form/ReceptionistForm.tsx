@@ -44,14 +44,14 @@ export default function ReceptionistForm({receptionist: selectedReceptionist, cl
                 <Form.Input placeholder='Name' value={receptionist.name} name='name' onChange={handleInputChange} />
                 <Form.Input placeholder='Last Name' value={receptionist.lastName} name='lastName' onChange={handleInputChange} />
                 <Form.Input placeholder='Username' value={receptionist.username} name='username' onChange={handleInputChange} />
-                <Form.Input placeholder='Email' value={receptionist.email} name='email' onChange={handleInputChange} />
-                <Form.Input placeholder='Birthday' value={receptionist.dob} name='dob' onChange={handleInputChange} />
+                <Form.Input type='email' placeholder='Email' value={receptionist.email} name='email' onChange={handleInputChange} />
+                <Form.Input type='date' placeholder='Birthday' value={receptionist.dob} name='dob' onChange={handleInputChange} />
                 <Form.Input placeholder='Gender' value={receptionist.gender} name='gender' onChange={handleInputChange} />
                 <Form.Input placeholder='Addres' value={receptionist.street_address} name='dtreet_address' onChange={handleInputChange} />
                 <Form.Input placeholder='City' value={receptionist.city} name='city' onChange={handleInputChange}/>
                 <Form.Input placeholder='Country' value={receptionist.country} name='country' onChange={handleInputChange}/>
                 <Form.Input placeholder='PostalCode' value={receptionist.postal_code} name='postal_code' onChange={handleInputChange}/>
-                <Form.Input placeholder='Phone' value={receptionist.phone} name='phone' onChange={handleInputChange}/>
+                <Form.Input type='int' placeholder='Phone' value={receptionist.phone} name='phone' onChange={handleInputChange}/>
                 <Form.Input placeholder='Department' value={receptionist.department} name='department' onChange={handleInputChange}/>
                 <Button floated='right' positive type='submit' content='Submit' />
                 <Button onClick={closeForm} floated='right' type='button' content='Cancel' />
