@@ -1,14 +1,20 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
 import { observer } from 'mobx-react-lite';
+import { useHistory, useParams } from 'react-router';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
+import { v4 as uuid } from 'uuid';
+import { Link } from 'react-router-dom';
 
 
 export default observer(function ReceptionistForm() {
+    const history = useHistory();
     const {receptionistStore} = useStore();
-    const{selectedReceptionist, closeForm, createReceptionist, updateReceptionist, loading} = receptionistStore;
+    const{createReceptionist, updateReceptionist, loading, loadReceptionist, loadingInitial} = receptionistStore;
+    const {id} = useParams<{id: string}>();
 
-    const initialState = selectedReceptionist ?? {
+    const [receptionist, setReceptionist] = useState({
         id: '',
         name: '',
         lastName: '',
@@ -23,12 +29,23 @@ export default observer(function ReceptionistForm() {
         postal_code: '',
         phone: '',
         department: ''
-    }
+    });
 
-    const [receptionist, setReceptionist] = useState(initialState);
+    useEffect(() => {
+        if(id) loadReceptionist(id).then(receptionist => setReceptionist(receptionist!))
+    },[id, loadReceptionist]);
+
 
     function handleSubmit() {
-        receptionist.id ? updateReceptionist(receptionist) : createReceptionist(receptionist);
+       if(receptionist.id.length === 0){
+           let newReceptionist = {
+               ...receptionist,
+               id: uuid()
+           };
+           createReceptionist(newReceptionist).then(() => history.push(`/receptionists/${receptionist.id}`))
+       }else{
+           updateReceptionist(receptionist).then(() => history.push(`/receptionists/${receptionist.id}`))
+       }
     }
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -36,12 +53,15 @@ export default observer(function ReceptionistForm() {
         setReceptionist({...receptionist, [name]: value})
     }
 
+    if(loadingInitial) return <LoadingComponent content='Loading receptionist ...' />
+
     return (
         <Segment clearing>
             <Form onSubmit={handleSubmit} autoComplete='off'>
                 <Form.Input placeholder='Name' value={receptionist.name} name='name' onChange={handleInputChange} />
                 <Form.Input placeholder='Last Name' value={receptionist.lastName} name='lastName' onChange={handleInputChange} />
                 <Form.Input placeholder='Username' value={receptionist.username} name='username' onChange={handleInputChange} />
+                <Form.Input type='password' placeholder='Password' value={receptionist.password} name='password' onChange={handleInputChange} />
                 <Form.Input type='email' placeholder='Email' value={receptionist.email} name='email' onChange={handleInputChange} />
                 <Form.Input type='date' placeholder='Birthday' value={receptionist.dob} name='dob' onChange={handleInputChange} />
                 <Form.Input placeholder='Gender' value={receptionist.gender} name='gender' onChange={handleInputChange} />
@@ -52,7 +72,7 @@ export default observer(function ReceptionistForm() {
                 <Form.Input type='int' placeholder='Phone' value={receptionist.phone} name='phone' onChange={handleInputChange}/>
                 <Form.Input placeholder='Department' value={receptionist.department} name='department' onChange={handleInputChange}/>
                 <Button loading={loading} floated='right' positive type='submit' content='Submit' />
-                <Button onClick={closeForm} floated='right' type='button' content='Cancel' />
+                <Button as={Link} to='/receptionists' floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>
     )

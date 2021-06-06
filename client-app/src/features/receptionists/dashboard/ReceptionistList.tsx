@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { SyntheticEvent, useState } from 'react';
 import { Button, Item, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import { useStore } from '../../../app/stores/store';
 
 export default observer (function ReceptionistList() {
@@ -28,7 +29,7 @@ export default observer (function ReceptionistList() {
                                 <div>{receptionist.email}, {receptionist.gender}, {receptionist.street_address}</div>
                             </Item.Description>
                             <Item.Extra>
-                            <Button onClick={() => receptionistStore.selectReceptionist(receptionist.id)} floated='right' content='View' color='blue' />
+                            <Button as={Link} to={`/receptionists/${receptionist.id}`} floated='right' content='View' color='blue' />
                                 <Button 
                                     name={receptionist.id}
                                     loading={loading && target === receptionist.id} 

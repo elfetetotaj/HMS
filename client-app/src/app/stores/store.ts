@@ -6,7 +6,7 @@ interface Store{
 }
 
 export const store: Store = {
-    receptionistStore: new ReceptionistStore
+    receptionistStore: new ReceptionistStore()
 }
 
 export const StoreContext = createContext(store);

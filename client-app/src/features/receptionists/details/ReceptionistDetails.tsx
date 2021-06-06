@@ -1,18 +1,26 @@
-import React from 'react';
-import { Button, Card } from 'semantic-ui-react';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import { Button, Card, Image } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 
-export default function ReceptionistDetails() {
+export default observer (function ReceptionistDetails() {
 
     const {receptionistStore} = useStore();
-    const {selectedReceptionist: receptionist, openForm, cancelSelectedReceptionist} = receptionistStore;
+    const {selectedReceptionist: receptionist, loadReceptionist, loadingInitial} = receptionistStore;
+    const {id} = useParams<{id: string}>();
 
-    if (!receptionist) return <LoadingComponent />;
+    useEffect(() => {
+        if (id) loadReceptionist(id);
+    },[id, loadReceptionist]);
+
+    if (loadingInitial || !receptionist ) return <LoadingComponent />;
 
     return (
         <Card fluid>
-            {/* <Image src={`/assets/categoryImages/${activity.category}.jpg`} /> */}
+             {/* <Image src={`/assets/departmentImages/${department.departmentName}.jpg`} /> */}
             <Card.Content>
                 <Card.Header>{receptionist.username}</Card.Header>
                 <Card.Meta>
@@ -26,10 +34,10 @@ export default function ReceptionistDetails() {
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => openForm(receptionist.id)} basic color='blue' content='Edit' />
-                    <Button onClick={cancelSelectedReceptionist} basic color='grey' content='Cancel' />
+                    <Button as={Link} to={`/manage/${receptionist.id}`} basic color='blue' content='Edit' />
+                    <Button as={Link} to={'/receptionists'} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>
         </Card>
     )
-} 
+} )

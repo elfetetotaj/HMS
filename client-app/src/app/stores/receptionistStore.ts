@@ -1,7 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import agent from '../api/agent';
 import { Receptionist } from '../models/receptionist';
-import { v4 as uuid } from 'uuid';
 
 export default class ReceptionistStore {
     receptionistRegistry = new Map<string, Receptionist>();
@@ -20,14 +19,13 @@ export default class ReceptionistStore {
     }
 
     loadReceptionists = async () => {
-        this.setLoadingInitial(true);
+        this.loadingInitial = true;
         try {
             const receptionists = await agent.Receptionists.list();
-                receptionists.forEach(receptionist => {
-                    // receptionist = receptionist.split('T')[0];
-                    this.receptionistRegistry.set(receptionist.id, receptionist);
-                })
-                this.setLoadingInitial(false);
+            receptionists.forEach(receptionist => {
+                this.setReceptionist(receptionist);
+            })
+            this.setLoadingInitial(false);
 
         } catch (error) {
             console.log(error);
@@ -35,30 +33,44 @@ export default class ReceptionistStore {
         }
     }
 
-    setLoadingInitial = (state: boolean) =>{
+    private setReceptionist = (receptionist: Receptionist) => {
+        // receptionist.date = receptionist.date.split('T')[0];
+        this.receptionistRegistry.set(receptionist.id, receptionist);
+    }
+
+    loadReceptionist = async (id: string) => {
+        let receptionist = this.getReceptionist(id);
+        if (receptionist) {
+            this.selectedReceptionist = receptionist;
+            return receptionist;
+        } else {
+            this.loadingInitial = true;
+            try {
+                receptionist = await agent.Receptionists.details(id);
+                this.setReceptionist(receptionist);
+                runInAction(() => {
+                    this.selectedReceptionist = receptionist;
+                })
+                this.setLoadingInitial(false);
+                return receptionist;
+            } catch (error) {
+                console.log(error);
+                this.setLoadingInitial(false);
+            }
+        }
+    }
+
+    private getReceptionist = (id: string) => {
+        return this.receptionistRegistry.get(id);
+    }
+
+    setLoadingInitial = (state: boolean) => {
         this.loadingInitial = state;
-    }
-
-    selectReceptionist = (id: string) => {
-        this.selectedReceptionist = this.receptionistRegistry.get(id);
-    }
-
-    cancelSelectedReceptionist = () => {
-        this.selectedReceptionist = undefined;
-    }
-    openForm = (id?: string) => {
-        id ? this.selectReceptionist(id) : this.cancelSelectedReceptionist();
-        this.editMode=true;
-    }
-
-    closeForm = () => {
-        this.editMode = false;
     }
 
     createReceptionist = async (receptionist: Receptionist) => {
         this.loading = true;
-        receptionist.id = uuid();
-        try{
+        try {
             await agent.Receptionists.create(receptionist);
             runInAction(() => {
                 this.receptionistRegistry.set(receptionist.id, receptionist);
@@ -66,16 +78,16 @@ export default class ReceptionistStore {
                 this.editMode = false;
                 this.loading = false;
             })
-        }catch(error){
+        } catch (error) {
             console.log(error);
             runInAction(() => {
                 this.loading = false;
             })
         }
     }
-    updateReceptionist = async (receptionist: Receptionist) =>{
+    updateReceptionist = async (receptionist: Receptionist) => {
         this.loading = true;
-        try{
+        try {
             await agent.Receptionists.update(receptionist);
             runInAction(() => {
                 this.receptionistRegistry.set(receptionist.id, receptionist);
@@ -83,7 +95,7 @@ export default class ReceptionistStore {
                 this.editMode = false;
                 this.loading = false;
             })
-        }catch(error){
+        } catch (error) {
             console.log(error);
             runInAction(() => {
                 this.loading = false;
@@ -93,15 +105,14 @@ export default class ReceptionistStore {
 
     deleteReceptionist = async (id: string) => {
         this.loading = true;
-        try{
+        try {
             await agent.Receptionists.delete(id);
             runInAction(() => {
                 this.receptionistRegistry.delete(id);
-                if (this.selectedReceptionist?.id === id) this.cancelSelectedReceptionist();
                 this.loading = false;
             })
 
-        }catch(error){
+        } catch (error) {
             console.log(error);
             runInAction(() => {
                 this.loading = false;
