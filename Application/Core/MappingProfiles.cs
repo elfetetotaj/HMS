@@ -8,6 +8,7 @@ namespace Application.Core
         public MappingProfiles()
         {
             CreateMap<Department, Department>();
+            CreateMap<Receptionist, Receptionist>();
             CreateMap<Patient, Patient>();
             CreateMap<City, City>();
             CreateMap<BloodType, BloodType>(); 

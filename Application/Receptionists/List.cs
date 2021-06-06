@@ -22,7 +22,7 @@ namespace Application.Receptionists
 
             public async Task<List<Receptionist>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Receptionists.ToListAsync(cancellationToken);
+                return await _context.Receptionists.ToListAsync();
             }
         }
     }
