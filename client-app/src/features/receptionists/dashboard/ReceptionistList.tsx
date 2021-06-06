@@ -1,15 +1,12 @@
+import { observer } from 'mobx-react-lite';
 import React, { SyntheticEvent, useState } from 'react';
 import { Button, Item, Segment } from 'semantic-ui-react';
-import { Receptionist } from '../../../app/models/receptionist';
+import { useStore } from '../../../app/stores/store';
 
-interface Props {
-    receptionists: Receptionist[];
-    selectReceptionist: (id: string) => void;
-    deleteReceptionist: (id: string) => void;
-    submitting: boolean;
-}
+export default observer (function ReceptionistList() {
+    const {receptionistStore} = useStore();
+    const {deleteReceptionist, receptionistsByDate, loading } = receptionistStore;
 
-export default function ReceptionistList({ receptionists, selectReceptionist, deleteReceptionist, submitting }: Props) {
     const [target, setTarget] = useState('');
 
     function handleReceptionistDelete(e: SyntheticEvent<HTMLButtonElement>, id: string){
@@ -20,7 +17,7 @@ export default function ReceptionistList({ receptionists, selectReceptionist, de
     return (
         <Segment>
             <Item.Group divided>
-                {receptionists.map(receptionist => (
+                {receptionistsByDate.map(receptionist => (
                     <Item key={receptionist.id}>
                         <Item.Content>
                             <Item.Header as='a'>{receptionist.username}</Item.Header>
@@ -31,10 +28,10 @@ export default function ReceptionistList({ receptionists, selectReceptionist, de
                                 <div>{receptionist.email}, {receptionist.gender}, {receptionist.street_address}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => selectReceptionist(receptionist.id)} floated='right' content='View' color='blue' />
+                            <Button onClick={() => receptionistStore.selectReceptionist(receptionist.id)} floated='right' content='View' color='blue' />
                                 <Button 
                                     name={receptionist.id}
-                                    loading={submitting && target === receptionist.id} 
+                                    loading={loading && target === receptionist.id} 
                                     onClick={(e) => handleReceptionistDelete(e, receptionist.id)} 
                                     floated='right' 
                                     content='Delete'
@@ -47,4 +44,4 @@ export default function ReceptionistList({ receptionists, selectReceptionist, de
             </Item.Group>
         </Segment>
     )
-} 
+} )

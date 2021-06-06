@@ -1,49 +1,28 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
-import { Receptionist } from '../../../app/models/receptionist';
+import { useStore } from '../../../app/stores/store';
 import ReceptionistDetails from '../details/ReceptionistDetails';
 import ReceptionistForm from '../form/ReceptionistForm';
 import ReceptionistList from './ReceptionistList';
 
-interface Props {
-    receptionists: Receptionist[];
-    selectedReceptionist: Receptionist | undefined;
-    selectReceptionist: (id: string) => void;
-    cancelSelectReceptionist: () => void;
-    editModeReceptionist: boolean;
-    openFormReceptionist: (id: string) => void;
-    closeForm: () => void;
-    createOrEdit: (receptionist: Receptionist) => void;
-    deleteReceptionist: (id: string) => void;
-    submitting: boolean;
-}
+export default observer(function ReceptionistDashboard() {
+    
+    const {receptionistStore} = useStore();
+    const{selectedReceptionist, editMode} = receptionistStore;
 
-export default function ReceptionistDashboard({receptionists, selectedReceptionist, deleteReceptionist,
-        selectReceptionist, cancelSelectReceptionist, editModeReceptionist, openFormReceptionist, closeForm, createOrEdit, submitting}: Props) {
+
     return (
         <Grid>
             <Grid.Column width='10'>
-                <ReceptionistList receptionists={receptionists} 
-                    selectReceptionist={selectReceptionist} 
-                    deleteReceptionist={deleteReceptionist}
-                    submitting={submitting}
-                />
+                <ReceptionistList/>
             </Grid.Column>
             <Grid.Column width='6'>
-                {selectedReceptionist && !editModeReceptionist &&
-                <ReceptionistDetails 
-                    receptionist={selectedReceptionist} 
-                    cancelSelectReceptionist={cancelSelectReceptionist}
-                    openFormReceptionist={openFormReceptionist} 
-                />}
-                {editModeReceptionist &&
-                <ReceptionistForm 
-                    closeForm={closeForm} 
-                    receptionist={selectedReceptionist} 
-                    createOrEdit={createOrEdit} 
-                    submitting={submitting}
-                    />}
+                {selectedReceptionist && !editMode &&
+                <ReceptionistDetails/>}
+                {editMode &&
+                <ReceptionistForm/>}
             </Grid.Column>
         </Grid>
     )
-} 
+}) 

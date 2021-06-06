@@ -1,13 +1,16 @@
 import React from 'react';
 import { Button, Container, Menu } from 'semantic-ui-react';
+import { useStore } from '../stores/store';
 
-interface Props {
-    openFormDepartment: () => void;
-    openFormReceptionist: () => void;
-    openFormPatient: () => void;
-}
+// interface Props {
+//     openFormDepartment: () => void;
+//     openFormPatient: () => void;
+// }
 
-export default function NavBar({openFormDepartment, openFormReceptionist, openFormPatient}: Props) {
+export default function NavBar(/*{openFormDepartment, openFormPatient}: Props*/) {
+
+    const {receptionistStore} = useStore();
+
     return (
         <Menu inverted fixed='top'>
             <Container>
@@ -15,18 +18,18 @@ export default function NavBar({openFormDepartment, openFormReceptionist, openFo
                     <img src="/assets/logo.png" alt="logo" style={{marginRight: '10px' }}/>
                     HMS
                 </Menu.Item>
-                <Menu.Item name='Departments' />
+                {/* <Menu.Item name='Departments' />
                 <Menu.Item>
                     <Button onClick={openFormDepartment} positive content='Create Department' />
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item name='Receptionist' />
                 <Menu.Item>
-                    <Button onClick={openFormReceptionist} positive content='Create Receptionist' />
+                    <Button onClick={() => receptionistStore.openForm()} positive content='Create Receptionist' />
                 </Menu.Item>
-                <Menu.Item name ='PatientInfo' />
+                {/* <Menu.Item name ='PatientInfo' />
                 <Menu.Item>
                     <Button onClick={openFormPatient} positive content='Create Patient' />
-                </Menu.Item>
+                </Menu.Item> */}
             </Container>
         </Menu>
     )

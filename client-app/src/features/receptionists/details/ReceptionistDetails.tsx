@@ -1,14 +1,15 @@
 import React from 'react';
 import { Button, Card } from 'semantic-ui-react';
-import { Receptionist } from '../../../app/models/receptionist';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
+import { useStore } from '../../../app/stores/store';
 
-interface Props {
-    receptionist: Receptionist;
-    cancelSelectReceptionist: () => void;
-    openFormReceptionist: (id: string) => void;
-}
+export default function ReceptionistDetails() {
 
-export default function ReceptionistDetails({ receptionist, cancelSelectReceptionist, openFormReceptionist }: Props) {
+    const {receptionistStore} = useStore();
+    const {selectedReceptionist: receptionist, openForm, cancelSelectedReceptionist} = receptionistStore;
+
+    if (!receptionist) return <LoadingComponent />;
+
     return (
         <Card fluid>
             {/* <Image src={`/assets/categoryImages/${activity.category}.jpg`} /> */}
@@ -25,8 +26,8 @@ export default function ReceptionistDetails({ receptionist, cancelSelectReceptio
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => openFormReceptionist(receptionist.id)} basic color='blue' content='Edit' />
-                    <Button onClick={cancelSelectReceptionist} basic color='grey' content='Cancel' />
+                    <Button onClick={() => openForm(receptionist.id)} basic color='blue' content='Edit' />
+                    <Button onClick={cancelSelectedReceptionist} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>
         </Card>
