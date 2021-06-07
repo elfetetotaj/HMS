@@ -35,7 +35,7 @@ export default observer (function NurseDetails() {
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button as={Link} to={`/manage/${nurse.id}`} basic color='blue' content='Edit' />
+                    <Button as={Link} to={`/managenurse/${nurse.id}`} basic color='blue' content='Edit' />
                     <Button as={Link} to={'/nurses'} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>
