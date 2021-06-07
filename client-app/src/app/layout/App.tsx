@@ -10,6 +10,8 @@ import DepartmentForm from '../../features/departments/form/DepartmentForm';
 import ReceptionistDashboard from '../../features/receptionists/dashboard/ReceptionistDashboard';
 import ReceptionistDetails from '../../features/receptionists/details/ReceptionistDetails';
 import ReceptionistForm from '../../features/receptionists/form/ReceptionistForm';
+import NurseDashboard from '../../features/nurses/dashboard/NurseDashboard';
+import NurseDetails from '../../features/nurses/details/NurseDetails';
 
 function App() {
   const location = useLocation(); 
@@ -31,6 +33,9 @@ function App() {
               <Route exact path='/receptionists' component={ReceptionistDashboard} />
               <Route path='/receptionists/:id' component={ReceptionistDetails} />
               <Route key={location.key} path={['/createReceptionist', '/managereceptionist/:id']} component={ReceptionistForm} />
+
+              <Route exact path='/nurses' component={NurseDashboard} />
+              <Route path='/nurses/:id' component={NurseDetails} />
             </Container>
           </>
         )}

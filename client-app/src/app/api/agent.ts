@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Department } from '../models/department';
+import { Nurse } from '../models/nurse';
 import { Receptionist } from '../models/receptionist';
 
 const sleep = (delay: number) => {
@@ -43,10 +44,17 @@ const Receptionists = {
     update: (receptionist: Receptionist) => axios.put<void>(`/receptionists/${receptionist.id}`, receptionist),
     delete: (id: string) => axios.delete<void>(`/receptionists/${id}`)
 }
-
+const Nurses = {
+    list: () => requests.get<Nurse[]>('/nurses'),
+    details: (id: string) => requests.get<Nurse>(`/nurses/${id}`),
+    create: (nurse: Nurse) => axios.post<void>('/nurses', nurse),
+    update: (nurse: Nurse) => axios.put<void>(`/nurses/${nurse.id}`, nurse),
+    delete: (id: string) => axios.delete<void>(`/nurses/${id}`)
+}
 const agent = {
     Departments,
-    Receptionists
+    Receptionists,
+    Nurses
 }
 
 export default agent;
