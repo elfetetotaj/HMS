@@ -8,6 +8,7 @@ import { useStore } from '../../../app/stores/store';
 
 
 
+
 export default observer (function NurseDetails() {
 
     const {nurseStore} = useStore();
@@ -21,11 +22,12 @@ export default observer (function NurseDetails() {
     if (loadingInitial || !nurse ) return <LoadingComponent />;
 
     return (
-        <Card fluid>
-             {/* <Image src={`/assets/departmentImages/${department.departmentName}.jpg`} /> */}
+        <Card fluid widths='50%'>
+             {<Image src={`/assets/nursesImages/${nurse.emri}.jpg`} width='400px' hight='500px'  /> }
             <Card.Content>
                 <Card.Header>{nurse.emri}</Card.Header>
                 <Card.Meta>
+    
                     <span>{nurse.qyteti}</span>
                 </Card.Meta>
                 <Card.Description>

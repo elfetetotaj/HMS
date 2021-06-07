@@ -12,6 +12,8 @@ namespace Application.Core
             CreateMap<Patient, Patient>();
             CreateMap<City, City>();
             CreateMap<BloodType, BloodType>(); 
+            CreateMap<Nurse, Nurse>(); 
+
 
         }
     }
