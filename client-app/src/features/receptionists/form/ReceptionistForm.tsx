@@ -1,11 +1,10 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { Button, Form, Segment } from 'semantic-ui-react';
-import { useStore } from '../../../app/stores/store';
 import { observer } from 'mobx-react-lite';
-import { useHistory, useParams } from 'react-router';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { Button, Form, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
-import { v4 as uuid } from 'uuid';
-import { Link } from 'react-router-dom';
+import { useStore } from '../../../app/stores/store';
+import {v4 as uuid} from 'uuid';
 
 
 export default observer(function ReceptionistForm() {
