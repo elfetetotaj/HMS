@@ -20,9 +20,9 @@ export default observer (function ReceptionistDetails() {
 
     return (
         <Card fluid>
-             {/* <Image src={`/assets/departmentImages/${department.departmentName}.jpg`} /> */}
+             <Image src={`/assets/cities/${receptionist.city}.png`} />
             <Card.Content>
-                <Card.Header>{receptionist.username}</Card.Header>
+                <Card.Header>{receptionist.city}</Card.Header>
                 <Card.Meta>
                     <span>{receptionist.department}</span>
                 </Card.Meta>
@@ -30,6 +30,7 @@ export default observer (function ReceptionistDetails() {
                     <div>{receptionist.name}, {receptionist.lastName}</div>
                     <div>{receptionist.city}, {receptionist.country} , {receptionist.department}</div>
                     <div>{receptionist.email}, {receptionist.gender}, {receptionist.street_address}</div>
+                    <div>{receptionist.username}</div>
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
