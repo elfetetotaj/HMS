@@ -1,11 +1,12 @@
 import { observer } from 'mobx-react-lite';
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import DepartmentList from './DepartmentList';
 
-export default observer( function DepartmentDashboard() {
+export default observer(function DepartmentDashboard() {
 
     const {departmentStore} = useStore();
     const {loadDepartments, departmentRegistry} = departmentStore;

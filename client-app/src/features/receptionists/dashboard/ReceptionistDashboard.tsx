@@ -13,7 +13,7 @@ export default observer(function ReceptionistDashboard() {
 
 
     useEffect(() => {
-      if(receptionistRegistry.size === 0) loadReceptionists();
+      if(receptionistRegistry.size <= 1) loadReceptionists();
     }, [receptionistRegistry.size, loadReceptionists])
   
     

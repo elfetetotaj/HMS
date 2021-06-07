@@ -41,7 +41,7 @@ export default observer(function ReceptionistForm() {
                ...receptionist,
                id: uuid()
            };
-           createReceptionist(newReceptionist).then(() => history.push(`/receptionists/${receptionist.id}`))
+           createReceptionist(newReceptionist).then(() => history.push(`/receptionists/${newReceptionist.id}`))
        }else{
            updateReceptionist(receptionist).then(() => history.push(`/receptionists/${receptionist.id}`))
        }
