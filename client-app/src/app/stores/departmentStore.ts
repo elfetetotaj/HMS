@@ -14,7 +14,7 @@ export default class DepartmentStore {
     }
 
     get departmentsByDate() {
-        return Array.from(this.departmentRegistry.values())
+        return Array.from(this.departmentRegistry.values());
     }
 
     loadDepartments = async () => {
@@ -29,6 +29,11 @@ export default class DepartmentStore {
             console.log(error);
             this.setLoadingInitial(false);
         }
+    }
+    
+    private setDepartment = (department: Department) => {
+        // department.date = department.date.split('T')[0];
+        this.departmentRegistry.set(department.id, department);
     }
 
     loadDepartment = async (id: string) => {
@@ -51,11 +56,6 @@ export default class DepartmentStore {
                 this.setLoadingInitial(false);
             }
         }
-    }
-
-    private setDepartment = (department: Department) => {
-        // department.date = department.date.split('T')[0];
-        this.departmentRegistry.set(department.id, department);
     }
 
     private getDepartment = (id: string) => {

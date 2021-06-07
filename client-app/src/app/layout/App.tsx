@@ -12,7 +12,8 @@ import ReceptionistDetails from '../../features/receptionists/details/Receptioni
 import ReceptionistForm from '../../features/receptionists/form/ReceptionistForm';
 
 function App() {
-  const location = useLocation();
+  const location = useLocation(); 
+  // temporary fix, location.key removed te <Route path={['/createDepartment',
 
   return (
     <>
@@ -25,7 +26,7 @@ function App() {
             <Container style={{ marginTop: '7em' }}>
               <Route exact path='/departments' component={DepartmentDashboard} />
               <Route path='/departments/:id' component={DepartmentDetails} />
-              <Route key={location.key} path={['/createDepartment', '/managedepartment/:id']} component={DepartmentForm} />
+              <Route path={['/createDepartment', '/managedepartment/:id']} component={DepartmentForm} />
 
               <Route exact path='/receptionists' component={ReceptionistDashboard} />
               <Route path='/receptionists/:id' component={ReceptionistDetails} />
