@@ -35,7 +35,7 @@ export default observer (function ReceptionistDetails() {
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button as={Link} to={`/manage/${receptionist.id}`} basic color='blue' content='Edit' />
+                    <Button as={Link} to={`/managereceptionist/${receptionist.id}`} basic color='blue' content='Edit' />
                     <Button as={Link} to={'/receptionists'} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>

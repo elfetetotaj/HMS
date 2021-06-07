@@ -1,13 +1,21 @@
-import React from 'react';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Button, Card, Image } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 
-export default function DepartmentDetails() {
+export default observer(function DepartmentDetails() {
     const {departmentStore} = useStore();
-    const {selectedDepartment: department, openForm, cancelSelectedDepartment} = departmentStore;
+    const {selectedDepartment: department, loadDepartment, loadingInitial} = departmentStore;
+    const {id} = useParams<{id: string}>();
 
-    if (!department) return <LoadingComponent />;
+    useEffect(() => {
+        if (id) loadDepartment(id);
+    }, [id, loadDepartment]);
+
+    if (loadingInitial || !department) return <LoadingComponent />;
 
     return (
         <Card fluid>
@@ -20,10 +28,10 @@ export default function DepartmentDetails() {
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => openForm(department.id)} basic color='blue' content='Edit' />
-                    <Button onClick={cancelSelectedDepartment} basic color='grey' content='Cancel' />
+                    <Button as={Link} to={`/managedepartment/${department.id}`} basic color='blue' content='Edit' />
+                    <Button as={Link} to='/departments' basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>
         </Card>
     )
-}
+})

@@ -1,25 +1,29 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
+import { useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
-import DepartmentDetails from '../details/DepartmentDetails';
-import DepartmentForm from '../form/DepartmentForm';
 import DepartmentList from './DepartmentList';
 
-export default observer( function DepartmentDashboard() {
+export default observer(function DepartmentDashboard() {
 
     const {departmentStore} = useStore();
-    const {selectedDepartment, editMode} = departmentStore;
+    const {loadDepartments, departmentRegistry} = departmentStore;
+
+    useEffect(() => {
+        if (departmentRegistry.size <= 1) loadDepartments();
+    }, [departmentRegistry.size, loadDepartments])
+
+    if (departmentStore.loadingInitial) return <LoadingComponent content='Loading app' />
+
     return (
         <Grid>
             <Grid.Column width='10'>
                 <DepartmentList />
             </Grid.Column>
             <Grid.Column width='6'>
-                {selectedDepartment && !editMode &&
-                <DepartmentDetails />}
-                {editMode &&
-                <DepartmentForm />}
+                <h2>Department filters</h2>
             </Grid.Column>
         </Grid>
     )

@@ -1,7 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Department } from "../models/department";
-import {v4 as uuid} from 'uuid';
 
 export default class DepartmentStore {
     departmentRegistry = new Map<string, Department>();
@@ -19,11 +18,11 @@ export default class DepartmentStore {
     }
 
     loadDepartments = async () => {
+        this.loadingInitial = true;
         try {
             const departments = await agent.Departments.list();
                 departments.forEach(department => {
-                    // department.date = department.date.split('T')[0];
-                    this.departmentRegistry.set(department.id, department);
+                    this.setDepartment(department);
                 })
                 this.setLoadingInitial(false);
         } catch (error) {
@@ -32,30 +31,43 @@ export default class DepartmentStore {
         }
     }
 
+    loadDepartment = async (id: string) => {
+        let department = this.getDepartment(id);
+        if (department) {
+            this.selectedDepartment = department;
+            return department;
+        } else {
+            this.loadingInitial = true;
+            try {
+                department = await agent.Departments.details(id);
+                this.setDepartment(department);
+                runInAction(() => {
+                    this.selectedDepartment = department;
+                })
+                this.setLoadingInitial(false);
+                return department;
+            } catch (error) {
+                console.log(error);
+                this.setLoadingInitial(false);
+            }
+        }
+    }
+
+    private setDepartment = (department: Department) => {
+        // department.date = department.date.split('T')[0];
+        this.departmentRegistry.set(department.id, department);
+    }
+
+    private getDepartment = (id: string) => {
+        return this.departmentRegistry.get(id);
+    }
+
     setLoadingInitial = (state: boolean) => {
         this.loadingInitial = state;
     }
 
-    selectDepartment = (id: string) => {
-        this.selectedDepartment = this.departmentRegistry.get(id);
-    }
-
-    cancelSelectedDepartment = () => {
-        this.selectedDepartment = undefined;
-    }
-
-    openForm = (id?: string) => {
-        id ? this.selectDepartment(id) : this.cancelSelectedDepartment();
-        this.editMode = true;
-    }
-
-    closeForm = () => {
-        this.editMode = false;
-    }
-
     createDepartment = async (department: Department) => {
         this.loading = true;
-        department.id = uuid();
         try {
             await agent.Departments.create(department);
             runInAction(() => {
@@ -96,7 +108,6 @@ export default class DepartmentStore {
             await agent.Departments.delete(id);
             runInAction(() => {
                 this.departmentRegistry.delete(id);
-                if (this.selectedDepartment?.id === id) this.cancelSelectedDepartment();
                 this.loading = false;
             })
         } catch (error) {
