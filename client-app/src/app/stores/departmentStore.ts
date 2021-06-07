@@ -30,11 +30,6 @@ export default class DepartmentStore {
             this.setLoadingInitial(false);
         }
     }
-    
-    private setDepartment = (department: Department) => {
-        // department.date = department.date.split('T')[0];
-        this.departmentRegistry.set(department.id, department);
-    }
 
     loadDepartment = async (id: string) => {
         let department = this.getDepartment(id);
@@ -56,6 +51,11 @@ export default class DepartmentStore {
                 this.setLoadingInitial(false);
             }
         }
+    }
+        
+    private setDepartment = (department: Department) => {
+        // department.date = department.date.split('T')[0];
+        this.departmentRegistry.set(department.id, department);
     }
 
     private getDepartment = (id: string) => {

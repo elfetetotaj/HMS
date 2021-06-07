@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
+import DepartmentFilters from './DepartmentFilters';
 import DepartmentList from './DepartmentList';
 
 export default observer(function DepartmentDashboard() {
@@ -23,7 +24,7 @@ export default observer(function DepartmentDashboard() {
                 <DepartmentList />
             </Grid.Column>
             <Grid.Column width='6'>
-                <h2>Department filters</h2>
+                <DepartmentFilters />
             </Grid.Column>
         </Grid>
     )
