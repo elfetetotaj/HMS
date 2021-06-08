@@ -1,6 +1,8 @@
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -13,6 +15,16 @@ namespace Application.Nurses
             public Nurse Nurse { get; set; }
         }
 
+        public class CommandValidator : AbstractValidator<Nurse>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.emri).NotEmpty();
+               
+            }
+        }
+
+        
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
