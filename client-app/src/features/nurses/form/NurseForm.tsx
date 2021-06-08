@@ -48,7 +48,7 @@ export default observer(function NurseForm() {
         setNurse({...nurse, [name]: value})
     }
 
-    if(loadingInitial) return <LoadingComponent content='Loading receptionist ...' />
+    if(loadingInitial) return <LoadingComponent content='Loading nurse ...' />
 
     return (
         <Segment clearing>
