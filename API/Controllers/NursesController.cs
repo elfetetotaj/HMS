@@ -26,7 +26,8 @@ namespace API.Controllers
         [HttpGet("{id}")] //nurses/id
         public async Task<ActionResult<Nurse>> GetNurse(Guid id)
         {
-            return await _context.Nurses.FindAsync(id);
+          return  await _context.Nurses.FindAsync(id);
+
         }
           [HttpPost]
         public async Task<IActionResult> CreateNurse(Nurse nurse)

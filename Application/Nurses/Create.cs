@@ -15,14 +15,17 @@ namespace Application.Nurses
             public Nurse Nurse { get; set; }
         }
 
-        public class CommandValidator : AbstractValidator<Nurse>
+            public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.emri).NotEmpty();
+                RuleFor(x => x.Nurse).SetValidator(new NurseValidator());
+        
+
                
             }
         }
+    
 
         
         public class Handler : IRequestHandler<Command>

@@ -24,7 +24,11 @@ namespace Application.Nurses
 
             public async Task<Nurse> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Nurses.FindAsync(request.Id);
+                var nurse =  await _context.Nurses.FindAsync(request.Id);
+                
+          if(nurse==null) throw new Exception("Nurse not found!");
+
+          return nurse;
             }
         }
     }
