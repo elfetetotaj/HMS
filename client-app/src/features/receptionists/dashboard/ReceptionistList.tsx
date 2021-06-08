@@ -1,48 +1,31 @@
 import { observer } from 'mobx-react-lite';
-import React, { SyntheticEvent, useState } from 'react';
-import { Button, Item, Segment } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import { useStore } from '../../../app/stores/store';
+import React, { Fragment } from 'react';
+import { Header } from 'semantic-ui-react';
+import ReceptionistListItem from './ReceptionistListItem';
 
-export default observer (function ReceptionistList() {
-    const {receptionistStore} = useStore();
-    const {deleteReceptionist, receptionistsByDate, loading } = receptionistStore;
+export default observer(function ReceptionistList() {
 
-    const [target, setTarget] = useState('');
-
-    function handleReceptionistDelete(e: SyntheticEvent<HTMLButtonElement>, id: string){
-        setTarget(e.currentTarget.name);
-        deleteReceptionist(id);
-    }
+    const { receptionistStore } = useStore();
+    const { receptionistsByDate } = receptionistStore;
+    // const { groupedReceptionists } = receptionistStore;
 
     return (
-        <Segment>
-            <Item.Group divided>
-                {receptionistsByDate.map(receptionist => (
-                    <Item key={receptionist.id}>
-                        <Item.Content>
-                            <Item.Header as='a'>{receptionist.username}</Item.Header>
-                            <Item.Meta>{receptionist.dob}</Item.Meta>
-                            <Item.Description>
-                                <div>{receptionist.name}, {receptionist.lastName}</div>
-                                <div>{receptionist.city}, {receptionist.country} , {receptionist.department}</div>
-                                <div>{receptionist.email}, {receptionist.gender}, {receptionist.street_address}</div>
-                            </Item.Description>
-                            <Item.Extra>
-                            <Button as={Link} to={`/receptionists/${receptionist.id}`} floated='right' content='View' color='blue' />
-                                <Button 
-                                    name={receptionist.id}
-                                    loading={loading && target === receptionist.id} 
-                                    onClick={(e) => handleReceptionistDelete(e, receptionist.id)} 
-                                    floated='right' 
-                                    content='Delete'
-                                     color='red' 
-                                />
-                            </Item.Extra>
-                        </Item.Content>
-                    </Item>
+        <>
+            {/* {groupedReceptionists.map(([group, receptionists]) => (
+            <Fragment key={group}>
+                <Header sub color='teal'>
+                    {group}
+                </Header>
+                {receptionists.map(receptionist => (
+                    <ReceptionistListItem key={receptionist.id} receptionist={receptionist} />
                 ))}
-            </Item.Group>
-        </Segment>
+            </Fragment>
+        ))} */}
+
+            {receptionistsByDate.map(receptionist => (
+                <ReceptionistListItem key={receptionist.id} receptionist={receptionist} />
+            ))}
+        </>
     )
-} )
+})

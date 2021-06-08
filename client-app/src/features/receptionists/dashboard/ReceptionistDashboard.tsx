@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
+import ReceptionistFilters from './ReceptionistFilters';
 import ReceptionistList from './ReceptionistList';
 
 export default observer(function ReceptionistDashboard() {
@@ -26,7 +27,7 @@ export default observer(function ReceptionistDashboard() {
                 <ReceptionistList/>
             </Grid.Column>
             <Grid.Column width='6'>
-              <h2>Receptionist filters</h2>
+              <ReceptionistFilters/>
             </Grid.Column>
         </Grid>
     )

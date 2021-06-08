@@ -18,6 +18,16 @@ export default class ReceptionistStore {
             Date.parse(a.date) - Date.parse(b.date));*/
     }
 
+    // get groupedReceptionists() {
+    //     return Object.entries(
+    //         this.receptionistsByDate.reduce((receptionists, receptionist) => {
+    //             const date = receptionist.date;
+    //             receptionists[date] = receptionists[date] ? [...receptionists[date], receptionist] : [receptionist];
+    //             return receptionists;
+    //         }, {} as {[key: string]: Receptionist[]})
+    //     )
+    // }
+
     loadReceptionists = async () => {
         this.loadingInitial = true;
         try {

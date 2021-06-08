@@ -14,6 +14,9 @@ export default function HomePage() {
                 <Button as={Link} to='/departments' size='huge' inverted>
                     Go to Departments!
                 </Button>
+                <Button as={Link} to='/receptionists' size='huge' inverted>
+                    Go to Receptionists!
+                </Button>
             </Container>
         </Segment>
         // <Container style={{marginTop: '7em'}}>
