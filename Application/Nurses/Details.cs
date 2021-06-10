@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using Domain;
 using MediatR;
 using Persistence;
@@ -9,12 +10,12 @@ namespace Application.Nurses
 {
     public class Details
     {
-        public class Query : IRequest<Nurse>
+        public class Query : IRequest<Result<Nurse>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Nurse>
+        public class Handler : IRequestHandler<Query, Result<Nurse>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -22,13 +23,12 @@ namespace Application.Nurses
                 _context = context;
             }
 
-            public async Task<Nurse> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<Nurse>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var nurse =  await _context.Nurses.FindAsync(request.Id);
                 
-          if(nurse==null) throw new Exception("Nurse not found!");
-
-          return nurse;
+                return Result<Nurse>.Success(nurse);
+         
             }
         }
     }

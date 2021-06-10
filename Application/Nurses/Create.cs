@@ -1,6 +1,7 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using Domain;
 using FluentValidation;
 using MediatR;
@@ -10,7 +11,7 @@ namespace Application.Nurses
 {
     public class Create
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public Nurse Nurse { get; set; }
         }
@@ -20,15 +21,10 @@ namespace Application.Nurses
             public CommandValidator()
             {
                 RuleFor(x => x.Nurse).SetValidator(new NurseValidator());
-        
-
-               
+              
             }
-        }
-    
-
-        
-        public class Handler : IRequestHandler<Command>
+        }  
+        public class Handler : IRequestHandler<Command  , Result<Unit>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -36,13 +32,17 @@ namespace Application.Nurses
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 _context.Nurses.Add(request.Nurse);
 
-                await _context.SaveChangesAsync();
+              var result =  await _context.SaveChangesAsync() > 0;
 
-                return Unit.Value;
+              if(!result) return Result<Unit>.Failure("Faild to create nurse");
+
+              return Result<Unit>.Success(Unit.Value);
+
+                
             }
         }
     }
