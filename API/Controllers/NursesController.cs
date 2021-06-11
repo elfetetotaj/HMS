@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Application.Nurses;
+using MediatR;
 
 namespace API.Controllers
 {
@@ -18,34 +19,39 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Nurse>>> GetNursess()
+        public async Task<IActionResult> GetNursess()
         {
-           return await _context.Nurses.ToListAsync();
+           return HandleResult( await Mediator.Send(new List.Query()) );
         }
 
         [HttpGet("{id}")] //nurses/id
-        public async Task<ActionResult<Nurse>> GetNurse(Guid id)
+        public async Task<IActionResult> GetNurse(Guid id)
         {
-          return  await _context.Nurses.FindAsync(id);
+          var result =  await Mediator.Send(new Details.Query{Id = id });
+
+          return HandleResult(result);
+
+        
+         
 
         }
           [HttpPost]
         public async Task<IActionResult> CreateNurse(Nurse nurse)
         {
-            return Ok(await Mediator.Send(new Create.Command {Nurse = nurse}));
+            return HandleResult(await Mediator.Send(new Create.Command {Nurse = nurse}));
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> EditNurse(Guid id, Nurse nurse)
         {
             nurse.id=id;
-            return Ok(await Mediator.Send(new Edit.Command{Nurse = nurse}));
+            return HandleResult(await Mediator.Send(new Edit.Command{Nurse = nurse}));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteNurse(Guid id)
         {
-            return Ok(await Mediator.Send(new Delete.Command{Id = id}));
+            return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
         }
     }
 }

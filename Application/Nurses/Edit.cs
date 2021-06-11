@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using AutoMapper;
 using Domain;
 using FluentValidation;
@@ -10,7 +11,7 @@ namespace Application.Nurses
 {
     public class Edit
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public Nurse Nurse { get; set; }
         }
@@ -24,7 +25,7 @@ namespace Application.Nurses
                
             }
         }
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -34,15 +35,21 @@ namespace Application.Nurses
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var nurse = await _context.Nurses.FindAsync(request.Nurse.id);
 
+                if(nurse==null) return null;
+
                 _mapper.Map(request.Nurse, nurse);
 
-                await _context.SaveChangesAsync();
+              var result = await _context.SaveChangesAsync() > 0;
 
-                return Unit.Value;
+               if(!result) return Result<Unit>.Failure("Faild to update nurse!");
+
+                return Result<Unit>.Success( Unit.Value);
+
+                
             }
         }
     }
