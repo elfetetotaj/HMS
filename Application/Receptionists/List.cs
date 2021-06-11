@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +11,9 @@ namespace Application.Receptionists
 {
     public class List
     {
-        public class Query : IRequest<List<Receptionist>> { }
+        public class Query : IRequest<Result<List<Receptionist>>> { }
 
-        public class Handler : IRequestHandler<Query, List<Receptionist>>
+        public class Handler : IRequestHandler<Query, Result<List<Receptionist>>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -20,9 +21,9 @@ namespace Application.Receptionists
                 _context = context;
             }
 
-            public async Task<List<Receptionist>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<Receptionist>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Receptionists.ToListAsync();
+                return Result<List<Receptionist>>.Succsess(await _context.Receptionists.ToListAsync());
             }
         }
     }

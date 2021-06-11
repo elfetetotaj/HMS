@@ -8,7 +8,6 @@ import NurseDetailedChat from './NurseDetailedChat';
 import NurseDetailedHeader from './NurseDetailedHeader';
 import NurseDetailedInfo from './NurseDetailedInfo';
 import NurseDetailedSidebar from './NurseDetailedSidebar';
-import { Image } from 'semantic-ui-react';
 
 export default observer(function NurseDetails() {
     const {nurseStore} = useStore();

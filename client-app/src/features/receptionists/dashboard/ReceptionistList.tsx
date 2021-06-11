@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../../app/stores/store';
 import React, { Fragment } from 'react';
-import { Header } from 'semantic-ui-react';
 import ReceptionistListItem from './ReceptionistListItem';
 
 export default observer(function ReceptionistList() {
