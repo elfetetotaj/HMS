@@ -32,10 +32,10 @@ namespace Application.Receptionists
 
                var result = await _context.SaveChangesAsync() > 0;
 
-               if(!result) return Result<Unit>.Failture("Failed to delete the receptionist");
+               if(!result) return Result<Unit>.Failure("Failed to delete the receptionist");
             
 
-                return Result<Unit>.Succsess(Unit.Value);
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

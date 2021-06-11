@@ -27,7 +27,7 @@ namespace Application.Receptionists
             {
                 var receptionist = await _context.Receptionists.FindAsync(request.Id);
 
-                return Result<Receptionist>.Succsess(receptionist);
+                return Result<Receptionist>.Success(receptionist);
             }
         }
     }

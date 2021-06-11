@@ -23,7 +23,7 @@ namespace Application.Receptionists
 
             public async Task<Result<List<Receptionist>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return Result<List<Receptionist>>.Succsess(await _context.Receptionists.ToListAsync());
+                return Result<List<Receptionist>>.Success(await _context.Receptionists.ToListAsync());
             }
         }
     }
