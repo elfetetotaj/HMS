@@ -8,7 +8,7 @@ import './app/layout/styles.css';
 import reportWebVitals from './reportWebVitals';
 import { store, StoreContext } from './app/stores/store';
 import { Router } from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import { createBrowserHistory } from 'history';
 
 export const history = createBrowserHistory();
 

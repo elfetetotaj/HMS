@@ -23,11 +23,19 @@ export default function TestErrors() {
         axios.get(baseUrl + 'buggy/unauthorised').catch(err => console.log(err.response));
     }
 
-    function handleBadGuid() {
+    function handleBadGuidDepartment() {
+        axios.get(baseUrl + 'departments/notaguid').catch(err => console.log(err));
+    }
+
+    function handleValidationErrorDepartment() {
+        axios.post(baseUrl + 'departments', {}).catch(err => setErrors(err));
+    }
+
+    function handleBadGuidReceptionist() {
         axios.get(baseUrl + 'receptionists/notaguid').catch(err => console.log(err));
     }
 
-    function handleValidationError() {
+    function handleValidationErrorReceptionist() {
         axios.post(baseUrl + 'receptionists', {}).catch(err => setErrors(err));
     }
 
@@ -38,10 +46,12 @@ export default function TestErrors() {
                 <Button.Group widths='7'>
                     <Button onClick={handleNotFound} content='Not Found' basic primary />
                     <Button onClick={handleBadRequest} content='Bad Request' basic primary />
-                    <Button onClick={handleValidationError} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorDepartment} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorReceptionist} content='Validation Error' basic primary />
                     <Button onClick={handleServerError} content='Server Error' basic primary />
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
-                    <Button onClick={handleBadGuid} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidReceptionist} content='Bad Guid' basic primary />
                 </Button.Group>
             </Segment>
             {errors &&

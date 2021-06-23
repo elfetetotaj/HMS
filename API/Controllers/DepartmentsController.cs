@@ -10,34 +10,34 @@ namespace API.Controllers
     public class DepartmentsController : BaseApiController
     {
         [HttpGet]
-        public async Task<ActionResult<List<Department>>> GetDepartments()
+        public async Task<IActionResult> GetDepartments()
         {
-            return await Mediator.Send(new List.Query());
+            return HandleResult(await Mediator.Send(new List.Query()));
         }
 
         [HttpGet("{id}")] //departments/id
-        public async Task<ActionResult<Department>> GetDepartment(Guid id)
+        public async Task<IActionResult> GetDepartment(Guid id)
         {
-            return await Mediator.Send(new Details.Query{Id = id});
+            return HandleResult(await Mediator.Send(new Details.Query{Id = id}));
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateDepartment(Department department)
         {
-            return Ok(await Mediator.Send(new Create.Command {Department = department}));
+            return HandleResult(await Mediator.Send(new Create.Command {Department = department}));
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> EditDepartment(Guid id, Department department)
         {
             department.Id = id;
-            return Ok(await Mediator.Send(new Edit.Command{Department = department}));
+            return HandleResult(await Mediator.Send(new Edit.Command{Department = department}));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDepartment(Guid id)
         {
-            return Ok(await Mediator.Send(new Delete.Command{Id = id}));
+            return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
         }
     }
 }

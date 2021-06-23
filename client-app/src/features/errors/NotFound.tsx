@@ -10,6 +10,9 @@ export default function NotFound() {
                 Oops - we've looked everywhere and could not find this.
             </Header>
             <Segment.Inline>
+                <Button as={Link} to='/departments' primary>
+                    Return to departments page
+                </Button>
                 <Button as={Link} to='/receptionists' primary>
                     Return to receptionists page
                 </Button>

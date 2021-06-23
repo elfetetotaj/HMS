@@ -13,10 +13,10 @@ import ReceptionistForm from '../../features/receptionists/form/ReceptionistForm
 import NurseDashboard from '../../features/nurses/dashboard/NurseDashboard';
 import NurseDetails from '../../features/nurses/details/NurseDetails';
 import NurseForm from '../../features/nurses/form/NurseForm';
-import TestErrors from '../../features/errors/TestError';
 import { ToastContainer } from 'react-toastify';
-import NotFound from '../../features/NotFound';
+import TestErrors from '../../features/errors/TestError';
 import ServerError from '../../features/errors/ServerError';
+import NotFound from '../../features/errors/NotFound';
 
 function App() {
   const location = useLocation(); 
@@ -46,7 +46,7 @@ function App() {
               <Route path='/nurses/:id' component={NurseDetails} />
               <Route key={location.key} path={['/createNurse', '/managenurse/:id']} component={NurseForm} />
 
-              <Route path="/errors" component={TestErrors}/>
+              <Route path='/errors' component={TestErrors}/>
               <Route path="/server-error" component={ServerError}/>
               <Route component={NotFound} />
               </Switch>

@@ -14,7 +14,6 @@ export default observer(function ServerError() {
                     <Header as='h4' content='Stack trace' color='teal' />
                     <code style={{marginTop: '10px'}}>{commonStore.error.details}</code>
                 </Segment>
-
             }
         </Container>
     )
