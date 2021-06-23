@@ -3,7 +3,7 @@ export interface Nurse {
     emri: string
     mbiemri: string
     username: string
-    datelindja: string
+    datelindja: Date | null
     adresa: string
     qyteti: string
     email: string

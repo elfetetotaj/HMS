@@ -7,6 +7,11 @@ import { useStore } from '../../../app/stores/store';
 import {v4 as uuid} from 'uuid';
 import { Formik,Form,Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import MyTextInput from '../../../app/common/form/MyTextInput';
+import { genderOptions } from '../../../app/common/options/genderOptions';
+import MySelectInput from '../../../app/common/form/MySelectInput';
+import MyDateInput from '../../../app/common/form/MyDateInput';
+import { Nurse } from '../../../app/models/nurse';
 
 
 export default observer(function NurseForm() {
@@ -15,12 +20,12 @@ export default observer(function NurseForm() {
     const{createNurse, updateNurse, loading, loadNurse, loadingInitial} = nurseStore;
     const {id} = useParams<{id: string}>();
 
-    const [nurse, setNurse] = useState({
+    const [nurse, setNurse] = useState<Nurse>({
         id: '',
         emri: '',
         mbiemri: '',
         username: '',
-        datelindja: '',
+        datelindja: null,
         adresa: '',
         qyteti: '',
         email: '',
@@ -29,7 +34,16 @@ export default observer(function NurseForm() {
     });
 
     const validationSchema = Yup.object({
-        emri: Yup.string().required('The nurse name is required')
+        emri: Yup.string().required(),
+        mbiemri: Yup.string().required(),
+        username: Yup.string().required(),
+        datelindja: Yup.string().required(),
+        adresa: Yup.string().required(),
+        qyteti: Yup.string().required(),
+        email: Yup.string().required(),
+        gjinia: Yup.string().required(),
+        paga: Yup.string().required()
+
     })
 
     useEffect(() => {
@@ -61,21 +75,30 @@ export default observer(function NurseForm() {
             <Formik validationSchema={validationSchema} enableReinitialize initialValues={nurse} onSubmit={values => console.log(values)}>
                 {({values:nurse,handleChange,handleSubmit})=>(
                      <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
-                         <FormField>
+                         {/* <FormField>
                              <Field placeholder='Name' name='emri' />
                              <ErrorMessage name='emri'
                               render={error=><Label basic color='red' content={error}/>}/>
-                         </FormField>
+                         </FormField> */}
                    
+                     <MyTextInput name='emri' placeholder='Emri'/>
+
+                   
+                     <MyTextInput placeholder='Mbiemri'  name='mbiemri' />
+                     <MyTextInput placeholder='Username'  name='username' />
+                     <MyTextInput  placeholder='Email'  name='email' />
+                     <MyDateInput 
+                     placeholderText='Datelindja'  
+                     name='datelindja' 
+                   
+                     timeCaption='time'
+                     dateFormat='MMMM d, yyyy'
                      
-                     <Field placeholder='Last Name'  name='mbiemri' />
-                     <Field placeholder='Username'  name='username' />
-                     <Field type='email' placeholder='Email'  name='email' />
-                     <Field type='date' placeholder='Birthday'  name='datelindja' />
-                     <Field placeholder='Gender'  name='gjinia' />
-                     <Field placeholder='Addres'  name='adresa' />
-                     <Field placeholder='City'  name='qyteti'/>
-                     <Field placeholder='Paga'  name='paga'/>
+                     />
+                     <MySelectInput options={genderOptions} placeholder='Gjinia'  name='gjinia' />
+                     <MyTextInput placeholder='Adresa'  name='adresa' />
+                     <MyTextInput placeholder='Qyteti'  name='qyteti'/>
+                     <MyTextInput placeholder='Paga'  name='paga'/>
                      <Button loading={loading} floated='right' positive type='submit' content='Submit' />
                      <Button as={Link} to='/nurses' floated='right' type='button' content='Cancel' />
                     </Form>

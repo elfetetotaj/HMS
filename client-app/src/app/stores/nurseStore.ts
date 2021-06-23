@@ -14,7 +14,9 @@ export default class NurseStore {
     }
 
     get nursesByDate() {
-        return Array.from(this.nurseRegistry.values());
+        return Array.from(this.nurseRegistry.values()).sort((a,b)=>
+            a.datelindja!.getDay()-b.datelindja!.getDay());
+        
     }
 
     loadNurses = async () => {
@@ -32,7 +34,7 @@ export default class NurseStore {
     }
     
     private setNurse = (nurse: Nurse) => {
-        // department.date = department.date.split('T')[0];
+        nurse.datelindja = new Date(nurse.datelindja!);
         this.nurseRegistry.set(nurse.id, nurse);
     }
 
@@ -118,3 +120,11 @@ export default class NurseStore {
         }
     }
 }
+
+function b(a: any, b: any) {
+    throw new Error("Function not implemented.");
+}
+function a(a: any, b: (a: any, b: any) => void) {
+    throw new Error("Function not implemented.");
+}
+

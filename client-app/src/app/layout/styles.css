@@ -13,7 +13,9 @@ body {
 }
 
 /*home page styles*/
-
+ .react-datepicker-wrapper{
+   width:100%;
+ }
 .masthead {
   display: flex;
   align-items: center;
