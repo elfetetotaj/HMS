@@ -29,7 +29,7 @@ export default observer(function NurseForm() {
     });
 
     const validationSchema = Yup.object({
-        name: Yup.string().required('The nurse name is required')
+        emri: Yup.string().required('The nurse name is required')
     })
 
     useEffect(() => {
@@ -77,7 +77,7 @@ export default observer(function NurseForm() {
                      <Field placeholder='City'  name='qyteti'/>
                      <Field placeholder='Paga'  name='paga'/>
                      <Button loading={loading} floated='right' positive type='submit' content='Submit' />
-                     <Button as={Link} to='/receptionists' floated='right' type='button' content='Cancel' />
+                     <Button as={Link} to='/nurses' floated='right' type='button' content='Cancel' />
                     </Form>
                 )}
                 
