@@ -1,6 +1,7 @@
+import format from 'date-fns/format';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Item, Segment } from 'semantic-ui-react';
+import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { Nurse } from '../../../app/models/nurse';
 
 interface Props {
@@ -23,6 +24,11 @@ export default function NurseListItem({nurse}: Props) {
                        </Item.Content>
                    </Item>
                </Item.Group>
+           </Segment>
+           <Segment>
+               <span>
+                   <Icon name='calendar'/>{format(nurse.datelindja!, 'dd MMM yyyy')}
+               </span>
            </Segment>
            <Segment clearing>
                <Button 

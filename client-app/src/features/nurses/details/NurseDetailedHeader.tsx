@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Link } from 'react-router-dom';
@@ -36,6 +37,9 @@ export default observer (function NurseDetailedHeader({nurse}: Props) {
                                     content={nurse.emri}
                                     style={{color: 'white'}}
                                 />
+                                <p>
+                                    {format (nurse.datelindja!, 'dd MMM yyyy')}
+                                </p>
                                 <p>
                                     Informata per infermieren
                                 </p>
