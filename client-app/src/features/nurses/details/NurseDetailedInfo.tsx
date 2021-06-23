@@ -1,15 +1,15 @@
 import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
-import {Segment, Grid, Icon} from 'semantic-ui-react';
-import { Nurse}  from '../../../app/models/nurse';
+import { Segment, Grid, Icon } from 'semantic-ui-react'
+import { Nurse } from "../../../app/models/nurse";
 // import {Department} from "../../../app/models/department";
 
-// interface Props {
-//     department: Department
-// }
+ interface Props {
+     nurse: Nurse;
+ }
 
-export default observer(function NurseDetailedInfo(/*{department}: Props*/) {
+export default observer(function NurseDetailedInfo({nurse}: Props) {
     return (
         <Segment.Group>
             <Segment attached='top'>
@@ -19,9 +19,13 @@ export default observer(function NurseDetailedInfo(/*{department}: Props*/) {
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <p>Pershkrimi i infermierit/s</p>
-                        
+                        <p><Icon name='calendar'/>{format(nurse.datelindja!, 'dd MMM yyyy')}</p>
+                        <p> <Icon name='map marker' />{nurse.adresa}</p>
+
                         {/* <p>{department.description}</p> */}
                     </Grid.Column>
+                    
+             
                 </Grid>
             </Segment>
         </Segment.Group>

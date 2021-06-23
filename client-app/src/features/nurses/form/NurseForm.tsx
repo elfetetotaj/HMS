@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { Button, FormField, Label, Segment } from 'semantic-ui-react';
+import { Button, Header, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import {v4 as uuid} from 'uuid';
-import { Formik,Form,Field, ErrorMessage} from 'formik';
+import { Formik,Form} from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
 import { genderOptions } from '../../../app/common/options/genderOptions';
@@ -37,7 +37,7 @@ export default observer(function NurseForm() {
         emri: Yup.string().required(),
         mbiemri: Yup.string().required(),
         username: Yup.string().required(),
-        datelindja: Yup.string().required(),
+        datelindja: Yup.string().required('Date is required!').nullable(),
         adresa: Yup.string().required(),
         qyteti: Yup.string().required(),
         email: Yup.string().required(),
@@ -51,35 +51,32 @@ export default observer(function NurseForm() {
     },[id, loadNurse]);
 
 
-    // function handleSubmit() {
-    //    if(nurse.id.length === 0){
-    //        let newNurse = {
-    //            ...nurse,
-    //            id: uuid()
-    //        };
-    //        createNurse(newNurse).then(() => history.push(`/nurse/${newNurse.id}`))
-    //    }else{
-    //        updateNurse(nurse).then(() => history.push(`/nurses/${nurse.id}`))
-    //    }
-    // }
+    function handleFormSubmit(nurse:Nurse) {
+       if(nurse.id.length === 0){
+           let newNurse = {
+               ...nurse,
+               id: uuid()
+           };
+           createNurse(newNurse).then(() => history.push(`/nurse/${newNurse.id}`))
+       }else{
+           updateNurse(nurse).then(() => history.push(`/nurses/${nurse.id}`))
+       }
+    }
 
-    // function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    //     const {name, value} = event.target;
-    //     setNurse({...nurse, [name]: value})
-    // }
 
     if(loadingInitial) return <LoadingComponent content='Loading nurse ...' />
 
     return (
         <Segment clearing>
-            <Formik validationSchema={validationSchema} enableReinitialize initialValues={nurse} onSubmit={values => console.log(values)}>
-                {({values:nurse,handleChange,handleSubmit})=>(
+            <Header content='Nurse Details' sub color='teal' />
+            <Formik 
+            validationSchema={validationSchema}
+             enableReinitialize
+             initialValues={nurse} onSubmit={values => handleFormSubmit(values)}>
+            {({handleSubmit, isValid,isSubmitting,dirty})=>(
                      <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
-                         {/* <FormField>
-                             <Field placeholder='Name' name='emri' />
-                             <ErrorMessage name='emri'
-                              render={error=><Label basic color='red' content={error}/>}/>
-                         </FormField> */}
+                        
+
                    
                      <MyTextInput name='emri' placeholder='Emri'/>
 
@@ -96,10 +93,15 @@ export default observer(function NurseForm() {
                      
                      />
                      <MySelectInput options={genderOptions} placeholder='Gjinia'  name='gjinia' />
+                     <MyTextInput placeholder='Paga'  name='paga'/>
+
+            <Header content='Location Details' sub color='teal' />
+
                      <MyTextInput placeholder='Adresa'  name='adresa' />
                      <MyTextInput placeholder='Qyteti'  name='qyteti'/>
-                     <MyTextInput placeholder='Paga'  name='paga'/>
-                     <Button loading={loading} floated='right' positive type='submit' content='Submit' />
+                     <Button 
+                     disabled={isSubmitting || !dirty || !isValid}
+                     loading={loading} floated='right' positive type='submit' content='Submit' />
                      <Button as={Link} to='/nurses' floated='right' type='button' content='Cancel' />
                     </Form>
                 )}

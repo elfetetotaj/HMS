@@ -28,6 +28,8 @@ export default function NurseListItem({nurse}: Props) {
            <Segment>
                <span>
                    <Icon name='calendar'/>{format(nurse.datelindja!, 'dd MMM yyyy')}
+                   <br/>
+                   <Icon name='map marker' />{nurse.adresa}
                </span>
            </Segment>
            <Segment clearing>
