@@ -19,7 +19,7 @@ export default observer(function NurseDetailedInfo(/*{department}: Props*/) {
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <p>Pershkrimi i infermierit/s</p>
-                        <p> {format (nurse.datelindja!, 'dd MMM yyyy')}</p>
+                        
                         {/* <p>{department.description}</p> */}
                     </Grid.Column>
                 </Grid>
