@@ -16,6 +16,9 @@ export default function NotFound() {
                 <Button as={Link} to='/receptionists' primary>
                     Return to receptionists page
                 </Button>
+                <Button as={Link} to='/nurses' primary>
+                    Return to nurses page
+                </Button>
             </Segment.Inline>
         </Segment>
     )

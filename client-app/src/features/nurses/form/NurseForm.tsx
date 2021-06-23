@@ -1,10 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import { Button, FormField, Label, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import {v4 as uuid} from 'uuid';
+import { Formik,Form,Field, ErrorMessage} from 'formik';
+import * as Yup from 'yup';
 
 
 export default observer(function NurseForm() {
@@ -26,45 +28,62 @@ export default observer(function NurseForm() {
         paga:  0
     });
 
+    const validationSchema = Yup.object({
+        name: Yup.string().required('The nurse name is required')
+    })
+
     useEffect(() => {
         if(id) loadNurse(id).then(nurse => setNurse(nurse!))
     },[id, loadNurse]);
 
 
-    function handleSubmit() {
-       if(nurse.id.length === 0){
-           let newNurse = {
-               ...nurse,
-               id: uuid()
-           };
-           createNurse(newNurse).then(() => history.push(`/nurse/${newNurse.id}`))
-       }else{
-           updateNurse(nurse).then(() => history.push(`/nurses/${nurse.id}`))
-       }
-    }
+    // function handleSubmit() {
+    //    if(nurse.id.length === 0){
+    //        let newNurse = {
+    //            ...nurse,
+    //            id: uuid()
+    //        };
+    //        createNurse(newNurse).then(() => history.push(`/nurse/${newNurse.id}`))
+    //    }else{
+    //        updateNurse(nurse).then(() => history.push(`/nurses/${nurse.id}`))
+    //    }
+    // }
 
-    function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        const {name, value} = event.target;
-        setNurse({...nurse, [name]: value})
-    }
+    // function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    //     const {name, value} = event.target;
+    //     setNurse({...nurse, [name]: value})
+    // }
 
     if(loadingInitial) return <LoadingComponent content='Loading nurse ...' />
 
     return (
         <Segment clearing>
-            <Form onSubmit={handleSubmit} autoComplete='off'>
-                <Form.Input placeholder='Name' value={nurse.emri} name='emri' onChange={handleInputChange} />
-                <Form.Input placeholder='Last Name' value={nurse.mbiemri} name='mbiemri' onChange={handleInputChange} />
-                <Form.Input placeholder='Username' value={nurse.username} name='username' onChange={handleInputChange} />
-                <Form.Input type='email' placeholder='Email' value={nurse.email} name='email' onChange={handleInputChange} />
-                <Form.Input type='date' placeholder='Birthday' value={nurse.datelindja} name='datelindja' onChange={handleInputChange} />
-                <Form.Input placeholder='Gender' value={nurse.gjinia} name='gjinia' onChange={handleInputChange} />
-                <Form.Input placeholder='Addres' value={nurse.adresa} name='adresa' onChange={handleInputChange} />
-                <Form.Input placeholder='City' value={nurse.qyteti} name='qyteti' onChange={handleInputChange}/>
-                <Form.Input placeholder='Paga' value={nurse.paga} name='paga' onChange={handleInputChange}/>
-                <Button loading={loading} floated='right' positive type='submit' content='Submit' />
-                <Button as={Link} to='/receptionists' floated='right' type='button' content='Cancel' />
-            </Form>
+            <Formik validationSchema={validationSchema} enableReinitialize initialValues={nurse} onSubmit={values => console.log(values)}>
+                {({values:nurse,handleChange,handleSubmit})=>(
+                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
+                         <FormField>
+                             <Field placeholder='Name' name='emri' />
+                             <ErrorMessage name='emri'
+                              render={error=><Label basic color='red' content={error}/>}/>
+                         </FormField>
+                   
+                     
+                     <Field placeholder='Last Name'  name='mbiemri' />
+                     <Field placeholder='Username'  name='username' />
+                     <Field type='email' placeholder='Email'  name='email' />
+                     <Field type='date' placeholder='Birthday'  name='datelindja' />
+                     <Field placeholder='Gender'  name='gjinia' />
+                     <Field placeholder='Addres'  name='adresa' />
+                     <Field placeholder='City'  name='qyteti'/>
+                     <Field placeholder='Paga'  name='paga'/>
+                     <Button loading={loading} floated='right' positive type='submit' content='Submit' />
+                     <Button as={Link} to='/receptionists' floated='right' type='button' content='Cancel' />
+                    </Form>
+                )}
+                
+            </Formik>
+           
+            
         </Segment>
     )
 })
