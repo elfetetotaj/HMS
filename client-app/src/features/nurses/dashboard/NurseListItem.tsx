@@ -12,7 +12,9 @@ export default function NurseListItem({nurse}: Props) {
 
     return (
        <Segment.Group>
+           
            <Segment>
+           <p> {nurse.username}</p>
                <Item.Group>
                    <Item>
                        <Item.Image size='tiny' circular src='/assets/user.png' />
@@ -27,7 +29,7 @@ export default function NurseListItem({nurse}: Props) {
            </Segment>
            <Segment>
                <span>
-                   <Icon name='calendar'/>{format(nurse.datelindja!, 'dd MMM yyyy')}
+                   <Icon name='calendar'/> {format(nurse.datelindja!, 'dd MMM yyyy')}
                    <br/>
                    <Icon name='map marker' />{nurse.adresa}
                </span>
