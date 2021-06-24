@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import { Department } from '../../../app/models/department';
 
@@ -45,7 +46,7 @@ export default observer (function DepartmentDetailedHeader({department}: Props) 
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Activity</Button>
                 <Button>Cancel attendance</Button>
-                <Button color='orange' floated='right'>
+                <Button as={Link} to={`/managedepartment/${department.id}`} color='orange' floated='right'>
                     Manage Event
                 </Button>
             </Segment>

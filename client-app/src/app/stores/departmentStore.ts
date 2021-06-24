@@ -7,7 +7,7 @@ export default class DepartmentStore {
     selectedDepartment: Department | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial = true;
+    loadingInitial = false;
 
     constructor() {
         makeAutoObservable(this)
@@ -54,7 +54,7 @@ export default class DepartmentStore {
     }
         
     private setDepartment = (department: Department) => {
-        // department.date = department.date.split('T')[0];
+        // department.date = new Date(department.date!);
         this.departmentRegistry.set(department.id, department);
     }
 
