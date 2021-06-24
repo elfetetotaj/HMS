@@ -3,3 +3,8 @@ export const genderOptions=[
     {text: 'F', value:'femer'},
     {text: 'N', value:'neutral'},
 ]
+export const ndrrimi=[
+    {text: 'Paradite', value:'Paradite'},
+    {text: 'Pasdite', value:'Pasdite'}
+
+]

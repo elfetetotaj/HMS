@@ -9,6 +9,8 @@ import { Formik,Form} from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
 import { genderOptions } from '../../../app/common/options/genderOptions';
+import { ndrrimi } from '../../../app/common/options/genderOptions';
+
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Nurse } from '../../../app/models/nurse';
@@ -82,7 +84,7 @@ export default observer(function NurseForm() {
 
                    
                      <MyTextInput placeholder='Mbiemri'  name='mbiemri' />
-                     <MyTextInput placeholder='Username'  name='username' />
+                  
                      <MyTextInput  placeholder='Email'  name='email' />
                      <MyDateInput 
                      placeholderText='Datelindja'  
@@ -92,6 +94,8 @@ export default observer(function NurseForm() {
                      dateFormat='MMMM d, yyyy'
                      
                      />
+                     <MySelectInput options={ndrrimi} placeholder='Nderrimi'  name='username' />
+
                      <MySelectInput options={genderOptions} placeholder='Gjinia'  name='gjinia' />
                      <MyTextInput placeholder='Paga'  name='paga'/>
 
