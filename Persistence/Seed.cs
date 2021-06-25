@@ -3,12 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
 {
     public class Seed
     {
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
+        {
+            if (!userManager.Users.Any()) 
+            {
+                var users = new List<AppUser>
+                {
+                    new AppUser{DisplayName = "Bob", UserName = "bob", Email = "bob@test.com"},
+                    new AppUser{DisplayName = "Tom", UserName = "tom", Email = "tom@test.com"},
+                    new AppUser{DisplayName = "Jane", UserName = "jane", Email = "jane@test.com"},
+                };
 
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                }
+            }
+
+            if (context.Departments.Any()) return;
+
+            var departments = new List<Department>
+            {
+                new Department
+                {
+                    DepartmentName = "Otorinolaringologjia",
+                },
+                new Department
+                {
+                    DepartmentName = "Stomatologjia",
+                },
+            };
+
+            await context.Departments.AddRangeAsync(departments);
+            await context.SaveChangesAsync();
+        }
         public static async Task SeedDataBlood(DataContext context)
         {
             if (context.BloodTypes.Any()) return;
@@ -67,7 +101,7 @@ namespace Persistence
                     paga = 200
                 },
             };
-            
+
             await context.Nurses.AddRangeAsync(nurses);
             await context.SaveChangesAsync();
         }
@@ -375,26 +409,6 @@ namespace Persistence
         };
 
             await context.RoomInfo.AddRangeAsync(roominfo);
-            await context.SaveChangesAsync();
-        }
-
-        public static async Task SeedData(DataContext context)
-        {
-            if (context.Departments.Any()) return;
-
-            var departments = new List<Department>
-            {
-                new Department
-                {
-                    DepartmentName = "Otorinolaringologjia",
-                },
-                new Department
-                {
-                    DepartmentName = "Stomatologjia",
-                },
-            };
-
-            await context.Departments.AddRangeAsync(departments);
             await context.SaveChangesAsync();
         }
     }
