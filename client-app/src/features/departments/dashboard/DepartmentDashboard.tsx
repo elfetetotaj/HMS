@@ -16,7 +16,7 @@ export default observer(function DepartmentDashboard() {
         if (departmentRegistry.size <= 1) loadDepartments();
     }, [departmentRegistry.size, loadDepartments])
 
-    if (departmentStore.loadingInitial) return <LoadingComponent content='Loading app' />
+    if (departmentStore.loadingInitial) return <LoadingComponent content='Loading departments...' />
 
     return (
         <Grid>
