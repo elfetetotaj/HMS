@@ -5,7 +5,7 @@ export interface Receptionist {
     username: string
     password: string
     email: string
-    dob: string
+    dob: Date | null;
     gender: string
     street_address: string
     city: string

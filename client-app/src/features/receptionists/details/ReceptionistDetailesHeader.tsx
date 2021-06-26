@@ -1,7 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import {Receptionist} from "../../../app/models/receptionist";
+import {format} from 'date-fns';
 
 const receptionistImageStyle = {
     filter: 'brightness(30%)'
@@ -34,7 +36,8 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
                                     content={receptionist.name}
                                     style={{color: 'white'}}
                                 />
-                                {/* <p>{receptionist.date}</p> */}
+                                <p>{receptionist.dob}</p> 
+                                <p>{format(receptionist.dob!, 'dd MMM yyyy')}</p>
                                 <p>
                                     Hosted by <strong>Bob</strong>
                                 </p>
@@ -46,7 +49,7 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Activity</Button>
                 <Button>Cancel attendance</Button>
-                <Button color='orange' floated='right'>
+                <Button as={Link} to={`/manage/${receptionist.id}`} color='orange' floated='right'>
                     Manage Event
                 </Button>
             </Segment>
