@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
 import { Department } from '../models/department';
+import { Test } from '../models/test';
 import { Farmacist } from '../models/farmacist';
 import { Nurse } from '../models/nurse';
 import { Receptionist } from '../models/receptionist';
@@ -92,9 +93,16 @@ const Nurses = {
 const Farmacists = {
     list: () => requests.get<Farmacist[]>('/farmacists'),
     details: (id: string) => requests.get<Farmacist>(`/farmacists/${id}`),
-    create: (farmacists: Farmacist) => axios.post<void>('/farmacists', farmacists),
-    update: (farmacists: Farmacist) => axios.put<void>(`/farmacists/${farmacists.id}`, farmacists),
+    create: (farmacist: Farmacist) => axios.post<void>('/farmacists', farmacist),
+    update: (farmacist: Farmacist) => axios.put<void>(`/farmacists/${farmacist.id}`, farmacist),
     delete: (id: string) => axios.delete<void>(`/farmacists/${id}`)
+}
+const Tests = {
+    list: () => requests.get<Test[]>('/tests'),
+    details: (id: string) => requests.get<Test>(`/tests/${id}`),
+    create: (test: Test) => axios.post<void>('/tests', test),
+    update: (test: Test) => axios.put<void>(`/tests/${test.id}`, test),
+    delete: (id: string) => axios.delete<void>(`/tests/${id}`)
 }
 const Account = {
     current: () => requests.get<User>('/account'),
@@ -106,6 +114,7 @@ const agent = {
     Receptionists,
     Nurses,
     Farmacists,
+    Tests,
     Account
 }
 
