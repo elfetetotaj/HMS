@@ -13,6 +13,8 @@ namespace Application.Core
             CreateMap<City, City>();
             CreateMap<BloodType, BloodType>(); 
             CreateMap<Nurse, Nurse>(); 
+            CreateMap<Farmacist, Farmacist>(); 
+
 
 
         }

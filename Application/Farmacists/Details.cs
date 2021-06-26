@@ -6,16 +6,16 @@ using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.BloodTypes
+namespace Application.Farmacists
 {
     public class Details
     {
-        public class Query : IRequest<Result<BloodType>>
+        public class Query : IRequest<Result<Farmacist>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<BloodType>>
+        public class Handler : IRequestHandler<Query, Result<Farmacist>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -23,11 +23,11 @@ namespace Application.BloodTypes
                 _context = context;
             }
 
-            public async Task<Result<BloodType>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<Farmacist>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var bloodType =  await _context.BloodTypes.FindAsync(request.Id);
+                var farmacist =  await _context.Farmacists.FindAsync(request.Id);
                 
-                return Result<BloodType>.Success(bloodType);
+                return Result<Farmacist>.Success(farmacist);
          
             }
         }

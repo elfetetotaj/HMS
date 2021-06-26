@@ -7,20 +7,20 @@ using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.BloodTypes
+namespace Application.Farmacists
 {
     public class Create
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public BloodType BloodType { get; set; }
+            public Farmacist Farmacist { get; set; }
         }
 
             public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.BloodType).SetValidator(new BloodTypeValidator());
+                RuleFor(x => x.Farmacist).SetValidator(new FarmacistValidator());
               
             }
         }  
@@ -34,11 +34,11 @@ namespace Application.BloodTypes
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.BloodTypes.Add(request.BloodType);
+                _context.Farmacists.Add(request.Farmacist);
 
               var result =  await _context.SaveChangesAsync() > 0;
 
-              if(!result) return Result<Unit>.Failure("Faild to create BloodType");
+              if(!result) return Result<Unit>.Failure("Faild to create Farmacist");
 
               return Result<Unit>.Success(Unit.Value);
 
