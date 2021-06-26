@@ -50,7 +50,7 @@ export default function TestErrors() {
         <>
             <Header as='h1' content='Test Error component' />
             <Segment>
-                <Button.Group widths='7'>
+                <Button.Group widths='10'>
                     <Button onClick={handleNotFound} content='Not Found' basic primary />
                     <Button onClick={handleBadRequest} content='Bad Request' basic primary />
                     <Button onClick={handleValidationErrorDepartment} content='Validation Error' basic primary />

@@ -33,10 +33,12 @@ namespace Persistence
                 new Department
                 {
                     DepartmentName = "Otorinolaringologjia",
+                    DepartmentDescription = "Departamenti per Sy, Hunde dhe Vesh",
                 },
                 new Department
                 {
                     DepartmentName = "Stomatologjia",
+                    DepartmentDescription = "Departamenti per Dhembe",
                 },
             };
 

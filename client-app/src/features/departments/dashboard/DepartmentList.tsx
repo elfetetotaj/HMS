@@ -6,11 +6,11 @@ import DepartmentListItem from './DepartmentListItem';
 export default observer(function DepartmentList() {
 
     const {departmentStore} = useStore();
-    const {departmentsByDate} = departmentStore
+    const {departmentsByName} = departmentStore
 
     return ( //video 5.7
         <>
-            {departmentsByDate.map(department => (
+            {departmentsByName.map(department => (
                 <DepartmentListItem key={department.id} department={department} />
             ))}
         </>

@@ -14,12 +14,12 @@ export default function DepartmentListItem({department}: Props) {
            <Segment>
                <Item.Group>
                    <Item>
-                       <Item.Image size='tiny' circular src='/assets/user.png' />
+                       <Item.Image size='tiny' src={`/assets/departmentImages/${department.departmentName}.jpg`} />
                        <Item.Content>
                             <Item.Header as={Link} to={`/departments/${department.id}`}>
                                 {department.departmentName}
                             </Item.Header>
-                            <Item.Description>Pershkrim i departmentit</Item.Description>
+                            <Item.Description>{department.departmentDescription}</Item.Description>
                        </Item.Content>
                    </Item>
                </Item.Group>

@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import {Segment, Grid, Icon} from 'semantic-ui-react'
-// import {Department} from "../../../app/models/department";
+import {Department} from "../../../app/models/department";
 
-// interface Props {
-//     department: Department
-// }
+interface Props {
+    department: Department
+}
 
-export default observer(function DepartmentDetailedInfo(/*{department}: Props*/) {
+export default observer(function DepartmentDetailedInfo({department}: Props) {
     return (
         <Segment.Group>
             <Segment attached='top'>
@@ -16,8 +16,7 @@ export default observer(function DepartmentDetailedInfo(/*{department}: Props*/)
                         <Icon size='large' color='teal' name='info'/>
                     </Grid.Column>
                     <Grid.Column width={15}>
-                        <p>Pershkrimi i departamentit</p>
-                        {/* <p>{department.description}</p> */}
+                        <p>{department.departmentDescription}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>

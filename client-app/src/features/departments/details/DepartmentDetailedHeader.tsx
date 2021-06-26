@@ -11,7 +11,7 @@ const departmentImageStyle = {
 const departentImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
-    left: '5%',
+    left: '2%',
     width: '100%',
     height: 'auto',
     color: 'white'
@@ -35,8 +35,8 @@ export default observer (function DepartmentDetailedHeader({department}: Props) 
                                     content={department.departmentName}
                                     style={{color: 'white'}}
                                 />
-                                <p>
-                                    Pershkrim i departmentit
+                                <p style={{marginRight: 10}}>
+                                    {department.departmentDescription}
                                 </p>
                             </Item.Content>
                         </Item>

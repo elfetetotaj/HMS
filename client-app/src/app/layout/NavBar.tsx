@@ -5,25 +5,37 @@ import { Button, Container, Menu, Image, Dropdown } from 'semantic-ui-react';
 import { useStore } from '../stores/store';
 
 export default observer(function NavBar() {
-    const {userStore: {user, logout}} = useStore();
+    const { userStore: { user, logout } } = useStore();
     return (
         <Menu inverted fixed='top'>
             <Container>
                 <Menu.Item as={NavLink} exact to='/' header>
-                <img src='/assets/logo.png' alt='logo' style={{ marginRight: '10px' }}/>
+                    <img src='/assets/logo.png' alt='logo' style={{ marginRight: '10px' }} />
                     HMS
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/departments' name='Department' />
-                <Menu.Item>
-                    <Button as={NavLink} to='/createDepartment' positive content='Create Department' />
-                </Menu.Item>
                 <Menu.Item as={NavLink} to='/receptionists' name='Receptionist' />
-                <Menu.Item>
-                    <Button as={NavLink} to='/createReceptionist' positive content='Create Receptionist' />
-                </Menu.Item>
                 <Menu.Item as={NavLink} to='/nurses' name='Nurse' />
+                <Menu.Item as={NavLink} to='/errors' name='Errors' />
                 <Menu.Item>
-                    <Button as={NavLink} to='/createNurse' positive content='Create Nurse' />
+                    <Dropdown text='Create'>
+                        <Dropdown.Menu>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createDepartment' content='Create Department' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createReceptionist' content='Create Receptionist' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createNurse' content='Create Nurse' />
+                            </Dropdown.Item>
+                            {/* <Button.Group vertical>
+                                <Button fluid as={NavLink} to='/createDepartment' content='Create Department' />
+                                <Button fluid as={NavLink} to='/createReceptionist' content='Create Receptionist' />
+                                <Button fluid as={NavLink} to='/createNurse' content='Create Nurse' />
+                            </Button.Group> */}
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Menu.Item>
                 <Menu.Item position='right'>
                     <Image src={user?.image || '/assets/user.png'} avatar spaced='right' />
@@ -34,7 +46,6 @@ export default observer(function NavBar() {
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>
-                <Menu.Item as={NavLink} to='/errors' name='Errors' />
             </Container>
         </Menu>
     )

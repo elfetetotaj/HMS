@@ -8,7 +8,7 @@ namespace Application.Departments
         public DepartmentValidator()
         {
             RuleFor(x => x.DepartmentName).NotEmpty();
-            // RuleFor(x => x.DepartmentDepscription).NotEmpty().MinimumLength (not finished how u declare minlength)
+            RuleFor(x => x.DepartmentDescription).NotEmpty().MinimumLength(10); //?
         }
     }
 }

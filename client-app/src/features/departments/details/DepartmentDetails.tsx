@@ -24,8 +24,7 @@ export default observer(function DepartmentDetails() {
         <Grid>
             <Grid.Column width={10}>
                 <DepartmentDetailedHeader department={department} />
-                {/* <DepartmentDetailedInfo department={department} /> ----------Use it when u add department.description--------*/}
-                <DepartmentDetailedInfo />
+                <DepartmentDetailedInfo department={department} />
                 <DepartmentDetailedChat />
             </Grid.Column>
             <Grid.Column width={6}>

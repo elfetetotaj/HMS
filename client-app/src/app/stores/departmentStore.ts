@@ -13,8 +13,8 @@ export default class DepartmentStore {
         makeAutoObservable(this)
     }
 
-    get departmentsByDate() {
-        return Array.from(this.departmentRegistry.values());
+    get departmentsByName() {
+        return Array.from(this.departmentRegistry.values()).sort((a, b) => a.departmentName > b.departmentName ? 1:-1);
     }
 
     loadDepartments = async () => {

@@ -20,12 +20,13 @@ export default observer(function DepartmentForm() {
 
     const [department, setDepartment] = useState<Department>({
         id: '',
-        departmentName: ''
+        departmentName: '',
+        departmentDescription: ''
     });
 
     const validationSchema = Yup.object({
         departmentName: Yup.string().required('The department name is required'),
-        // departmentDescription: Yup.string().required('The department description is required')
+        departmentDescription: Yup.string().required('The department description is required')
     })
 
     useEffect(() => {
@@ -57,8 +58,7 @@ export default observer(function DepartmentForm() {
                 {({ handleSubmit, isValid, isSubmitting, dirty }) => (
                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
                         <MyTextInput name='departmentName' placeholder='Name' />
-                        {/* <MyTextArea rows={3} name='departmentDescription' placeholder='Description' />
-                        <Field placeholder='Description' value={department.?????????} name='??????' /> ***Will be added later in the Department crud*** dont write value */}
+                        <MyTextArea rows={3} name='departmentDescription' placeholder='Description' />
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}
                             loading={loading} 
