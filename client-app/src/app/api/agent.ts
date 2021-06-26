@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
 import { Department } from '../models/department';
+import { Farmacist } from '../models/farmacist';
 import { Nurse } from '../models/nurse';
 import { Receptionist } from '../models/receptionist';
 import { User, UserFormValues } from '../models/user';
@@ -88,6 +89,13 @@ const Nurses = {
     update: (nurse: Nurse) => axios.put<void>(`/nurses/${nurse.id}`, nurse),
     delete: (id: string) => axios.delete<void>(`/nurses/${id}`)
 }
+const Farmacists = {
+    list: () => requests.get<Farmacist[]>('/farmacists'),
+    details: (id: string) => requests.get<Farmacist>(`/farmacists/${id}`),
+    create: (farmacists: Farmacist) => axios.post<void>('/farmacists', farmacists),
+    update: (farmacists: Farmacist) => axios.put<void>(`/farmacists/${farmacists.id}`, farmacists),
+    delete: (id: string) => axios.delete<void>(`/farmacists/${id}`)
+}
 const Account = {
     current: () => requests.get<User>('/account'),
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
@@ -97,6 +105,7 @@ const agent = {
     Departments,
     Receptionists,
     Nurses,
+    Farmacists,
     Account
 }
 

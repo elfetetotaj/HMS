@@ -40,10 +40,14 @@ export default function TestErrors() {
     }
     function handleBadGuidNurse() {
         axios.get(baseUrl + 'nurses/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'farmacists/notaguid').catch(err => console.log(err));
+
     }
 
     function handleValidationErrorNurse() {
         axios.post(baseUrl + 'nurses', {}).catch(err => setErrors(err));
+        axios.post(baseUrl + 'farmacists', {}).catch(err => setErrors(err));
+
     }
 
     return (

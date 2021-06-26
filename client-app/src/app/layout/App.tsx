@@ -11,6 +11,7 @@ import ReceptionistDashboard from '../../features/receptionists/dashboard/Recept
 import ReceptionistDetails from '../../features/receptionists/details/ReceptionistDetails';
 import ReceptionistForm from '../../features/receptionists/form/ReceptionistForm';
 import NurseDashboard from '../../features/nurses/dashboard/NurseDashboard';
+import FarmacistDetails from '../../features/farmacist/details/FarmacistDetails';
 import NurseDetails from '../../features/nurses/details/NurseDetails';
 import NurseForm from '../../features/nurses/form/NurseForm';
 import { ToastContainer } from 'react-toastify';
@@ -21,6 +22,8 @@ import LoginForm from '../../features/users/LoginForm';
 import { useStore } from '../stores/store';
 import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
+import FarmacistDashboard from '../../features/farmacist/dashboard/FarmacistDashboard';
+import FarmacistForm from '../../features/farmacist/form/FarmacistForm';
 
 function App() {
   const location = useLocation(); 
@@ -60,6 +63,10 @@ function App() {
               <Route exact path='/nurses' component={NurseDashboard} />
               <Route path='/nurses/:id' component={NurseDetails} />
               <Route key={location.key} path={['/createNurse', '/managenurse/:id']} component={NurseForm} />
+              
+              <Route exact path='/farmacists' component={FarmacistDashboard} />
+              <Route path='/farmacists/:id' component={FarmacistDetails} />
+              <Route key={location.key} path={['/createFarmacist', '/managefarmacist/:id']} component={FarmacistForm} />
 
               <Route path='/errors' component={TestErrors}/>
               <Route path="/server-error" component={ServerError}/>

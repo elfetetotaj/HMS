@@ -10,6 +10,20 @@ namespace Persistence
     public class Seed
     {
 
+         public static async Task SeedDataTest(DataContext context){
+            
+            if(context.Tests.Any())return;
+            var tests = new List<Test>{
+                new Test{
+                    emri="Sars-Cov2",                    
+                    cmimi=35,
+                    pershkrimi="Merret mostra e gjakut"
+                }
+            };
+            await context.Tests.AddRangeAsync(tests);
+            await context.SaveChangesAsync();
+        }
+
         public static async Task SeedDataFarmacist(DataContext context){
             
             if(context.Farmacists.Any())return;

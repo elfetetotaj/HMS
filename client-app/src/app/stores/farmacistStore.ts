@@ -1,10 +1,10 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Nurse } from "../models/nurse";
+import { Farmacist } from "../models/farmacist";
 
-export default class NurseStore {
-    nurseRegistry = new Map<string, Nurse>();
-    selectedNurse: Nurse | undefined = undefined;
+export default class FarmacistStore {
+    farmacistRegistry = new Map<string, Farmacist>();
+    selectedFarmacist: Farmacist | undefined = undefined;
     editMode = false;
     loading = false;
     loadingInitial = false;
@@ -13,18 +13,18 @@ export default class NurseStore {
         makeAutoObservable(this)
     }
 
-    get nursesByDate() {
-        return Array.from(this.nurseRegistry.values()).sort((a,b)=>
-            a.datelindja!.getDay()-b.datelindja!.getDay());
+    get farmacistsByDate() {
+        return Array.from(this.farmacistRegistry.values()).sort((a,b)=>
+            a.dateOfJoining!.getDay()-b.dateOfJoining!.getDay());
         
     }
 
-    loadNurses = async () => {
+    loadFarmacists = async () => {
         this.loadingInitial = true;
         try {
-            const nurses = await agent.Nurses.list();
-                nurses.forEach(nurse => {
-                    this.setNurse(nurse);
+            const farmacists = await agent.Farmacists.list();
+                farmacists.forEach(farmacist => {
+                    this.setFarmacist(farmacist);
                 })
                 this.setLoadingInitial(false);
         } catch (error) {
@@ -33,26 +33,26 @@ export default class NurseStore {
         }
     }
     
-    private setNurse = (nurse: Nurse) => {
-        nurse.datelindja = new Date(nurse.datelindja!);
-        this.nurseRegistry.set(nurse.id, nurse);
+    private setFarmacist = (farmacist: Farmacist) => {
+        farmacist.dateOfJoining = new Date(farmacist.dateOfJoining!);
+        this.farmacistRegistry.set(farmacist.id, farmacist);
     }
 
-    loadNurse = async (id: string) => {
-        let nurse = this.getNurse(id);
-        if (nurse) {
-            this.selectedNurse = nurse;
-            return nurse;
+    loadFarmacist = async (id: string) => {
+        let farmacist = this.getFarmacist(id);
+        if (farmacist) {
+            this.selectedFarmacist = farmacist;
+            return farmacist;
         } else {
             this.loadingInitial = true;
             try {
-                nurse = await agent.Nurses.details(id);
-                this.setNurse(nurse);
+                farmacist = await agent.Farmacists.details(id);
+                this.setFarmacist(farmacist);
                 runInAction(() => {
-                    this.selectedNurse = nurse;
+                    this.selectedFarmacist = farmacist;
                 })
                 this.setLoadingInitial(false);
-                return nurse;
+                return farmacist;
             } catch (error) {
                 console.log(error);
                 this.setLoadingInitial(false);
@@ -60,21 +60,21 @@ export default class NurseStore {
         }
     }
 
-    private getNurse = (id: string) => {
-        return this.nurseRegistry.get(id);
+    private getFarmacist = (id: string) => {
+        return this.farmacistRegistry.get(id);
     }
 
     setLoadingInitial = (state: boolean) => {
         this.loadingInitial = state;
     }
 
-    createNurse = async (nurse: Nurse) => {
+    createFarmacist = async (farmacist: Farmacist) => {
         this.loading = true;
         try {
-            await agent.Nurses.create(nurse);
+            await agent.Farmacists.create(farmacist);
             runInAction(() => {
-                this.nurseRegistry.set(nurse.id, nurse);
-                this.selectedNurse = nurse;
+                this.farmacistRegistry.set(farmacist.id, farmacist);
+                this.selectedFarmacist = farmacist;
                 this.editMode = false;
                 this.loading = false;
             })
@@ -86,13 +86,13 @@ export default class NurseStore {
         }
     }
 
-    updateNurse = async (nurse: Nurse) => {
+    updateFarmacist = async (farmacist: Farmacist) => {
         this.loading = true;
         try {
-            await agent.Nurses.update(nurse);
+            await agent.Farmacists.update(farmacist);
             runInAction(() => {
-                this.nurseRegistry.set(nurse.id, nurse);
-                this.selectedNurse = nurse;
+                this.farmacistRegistry.set(farmacist.id, farmacist);
+                this.selectedFarmacist = farmacist;
                 this.editMode = false;
                 this.loading = false;
             })
@@ -104,12 +104,12 @@ export default class NurseStore {
         }
     }
 
-    deleteNurse = async (id: string) => {
+    deleteFarmacist = async (id: string) => {
         this.loading = true;
         try {
-            await agent.Nurses.delete(id);
+            await agent.Farmacists.delete(id);
             runInAction(() => {
-                this.nurseRegistry.delete(id);
+                this.farmacistRegistry.delete(id);
                 this.loading = false;
             })
         } catch (error) {
