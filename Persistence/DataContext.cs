@@ -18,5 +18,6 @@ namespace Persistence
         public DbSet<Receptionist> Receptionists { get; set; }
         public DbSet<Nurse> Nurses { get; set; }
         public DbSet<BloodType> BloodTypes { get; set; }
+        public DbSet<Farmacist> Farmacists { get; set; }
     }
 }

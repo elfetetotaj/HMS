@@ -1,41 +1,28 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Domain;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 using Application.Nurses;
-using MediatR;
+using Domain;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class NursesController : BaseApiController
     {
-        private readonly DataContext _context;
-        public NursesController(DataContext context)
-        {
-            _context = context;
-        }
-
         [HttpGet]
-        public async Task<IActionResult> GetNursess()
+        public async Task<IActionResult> GetNurses()
         {
-           return HandleResult( await Mediator.Send(new List.Query()) );
+            return HandleResult(await Mediator.Send(new List.Query()));
         }
 
-        [HttpGet("{id}")] //nurses/id
+        [HttpGet("{id}")] //Nurses/id
         public async Task<IActionResult> GetNurse(Guid id)
         {
-          var result =  await Mediator.Send(new Details.Query{Id = id });
-
-          return HandleResult(result);
-
-        
-         
-
+            return HandleResult(await Mediator.Send(new Details.Query{Id = id}));
         }
-          [HttpPost]
+
+        [HttpPost]
         public async Task<IActionResult> CreateNurse(Nurse nurse)
         {
             return HandleResult(await Mediator.Send(new Create.Command {Nurse = nurse}));
@@ -44,7 +31,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditNurse(Guid id, Nurse nurse)
         {
-            nurse.id=id;
+            nurse.id = id;
             return HandleResult(await Mediator.Send(new Edit.Command{Nurse = nurse}));
         }
 

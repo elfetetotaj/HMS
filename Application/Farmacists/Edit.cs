@@ -7,19 +7,19 @@ using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.BloodTypes
+namespace Application.Farmacists
 {
     public class Edit
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public BloodType BloodType { get; set; }
+            public Farmacist Farmacist { get; set; }
         }
                 public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.BloodType).SetValidator(new BloodTypeValidator());
+                RuleFor(x => x.Farmacist).SetValidator(new FarmacistValidator());
         
 
                
@@ -37,15 +37,15 @@ namespace Application.BloodTypes
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var bloodType = await _context.BloodTypes.FindAsync(request.BloodType.id);
+                var farmacist = await _context.Farmacists.FindAsync(request.Farmacist.Id);
 
-                if(bloodType==null) return null;
+                if(farmacist==null) return null;
 
-                _mapper.Map(request.BloodType, bloodType);
+                _mapper.Map(request.Farmacist, farmacist);
 
               var result = await _context.SaveChangesAsync() > 0;
 
-               if(!result) return Result<Unit>.Failure("Faild to update BloodType!");
+               if(!result) return Result<Unit>.Failure("Faild to update Farmacist!");
 
                 return Result<Unit>.Success( Unit.Value);
 

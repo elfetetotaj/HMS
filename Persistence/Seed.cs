@@ -9,6 +9,24 @@ namespace Persistence
 {
     public class Seed
     {
+
+        public static async Task SeedDataFarmacist(DataContext context){
+            
+            if(context.Farmacists.Any())return;
+            var farmacists = new List<Farmacist>{
+                new Farmacist{
+                    emri="Ibadete",
+                    mbiemri="Gashi",
+                    email="dete@gmail.com",
+                    dateOfJoining=DateTime.Parse("2005-09-01"),
+                    tel=044871508,
+                    degree="DPharm"
+                }
+            };
+            await context.Farmacists.AddRangeAsync(farmacists);
+            await context.SaveChangesAsync();
+        }
+        
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
             if (!userManager.Users.Any()) 
@@ -106,6 +124,7 @@ namespace Persistence
 
             await context.Nurses.AddRangeAsync(nurses);
             await context.SaveChangesAsync();
+
         }
 
         public static async Task SeedDataReceptionist(DataContext context)

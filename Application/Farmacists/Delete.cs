@@ -5,7 +5,7 @@ using Application.Core;
 using MediatR;
 using Persistence;
 
-namespace Application.BloodTypes
+namespace Application.Farmacists
 {
     public class Delete
     {
@@ -24,15 +24,15 @@ namespace Application.BloodTypes
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var bloodtype = await _context.Receptionists.FindAsync(request.Id);
+                var farmacist = await _context.Receptionists.FindAsync(request.Id);
 
                // if(nurse==null) return null;
 
-                _context.Remove(bloodtype);
+                _context.Remove(farmacist);
 
                var result = await _context.SaveChangesAsync() > 0 ;
 
-               if(!result) return Result<Unit>.Failure("Faild to delete the bloodtype");
+               if(!result) return Result<Unit>.Failure("Faild to delete the farmacist");
 
                 return Result<Unit>.Success( Unit.Value);
             }
