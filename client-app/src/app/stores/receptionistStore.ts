@@ -44,7 +44,7 @@ export default class ReceptionistStore {
     }
 
     private setReceptionist = (receptionist: Receptionist) => {
-        receptionist.dob = new Date(receptionist.dob!);
+        // receptionist.dob = new Date(receptionist.dob!);
         this.receptionistRegistry.set(receptionist.id, receptionist);
     }
 

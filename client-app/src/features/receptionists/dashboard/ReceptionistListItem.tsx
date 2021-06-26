@@ -28,7 +28,7 @@ export default function ReceptionistListItem({receptionist}: Props) {
            <Segment>
                 <span>
                     <Icon name='clock' /> {receptionist.dob}
-                    <Icon name='clock' /> {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')}
+                    {/* <Icon name='clock' /> {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')} */}
                     <Icon name='marker' /> {receptionist.department}
                 </span>
             </Segment>

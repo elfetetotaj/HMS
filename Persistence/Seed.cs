@@ -29,13 +29,283 @@ namespace Persistence
                 {
                     new Department
                     {
+                        DepartmentName = "Alergologjia",
+                        DepartmentDescription = "Alergologjia merret me parandalimin, diagnostikimin dhe trajtimin e sëmundjeve alergjike",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Anatomopatologjia",
+                        DepartmentDescription = "Anatomia patologjike (Anatomopatologjia) studion sëmundjet përmes ekzaminimit makroskopik të organeve apo mikroskopik të indeve dhe qelizave",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Anesteziologjia",
+                        DepartmentDescription = "Anesteziologjia merret me monitorimin dhe shërbime anesteziologjike për pacientet para dhe pas operacionit",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Dermatologjia",
+                        DepartmentDescription = "Dermatologjia bën diagnostikimin dhe trajtimin e sëmundjeve që prekin lëkurën",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Endokrinologjia",
+                        DepartmentDescription = "Endokrinologjia merret me diagnostikimin dhe trajtimin e sëmundjeve që lidhen me hormonet",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Gastroenterologjia",
+                        DepartmentDescription = "Gastroenterologjia merret me sëmundjet e ezofagut, stomakut, zorrëve të holla, zorrës së trashë dhe rektumit, pankreasit, fshikëzës së tëmthit, kanaleve biliare dhe mëlçisë",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Gjinekologjia",
+                        DepartmentDescription = "Gjinekologjia merret me monitorimin e shtatzënisë dhe trajtim të fertilitetit",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Hematologjia",
+                        DepartmentDescription = "Hematologjia trajton sëmundjet e gjakut dhe organeve që përbëjnë sistemin hematopoietik",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Kardiokirurgjia",
+                        DepartmentDescription = "Kardiokirurgjia merret me sëmundjet e zemrës dhe me çrregullimet e sistemit të çarkullimit të gjakut",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Neurologjia",
+                        DepartmentDescription = "Neurologjia kujdeset për anatominë dhe sistemin nervor të njeriut duke diagnostifikuar dhe trajtuar sëmundjet e sistemit nervor qëndror dhe periferik.",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Onkologjia",
+                        DepartmentDescription = "Onkologjia kujdeset për diagnostikimin dhe përpilimin e planit të trajtimit të pacientëve që vuajnë nga sëmundja e kancerit",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Ortopedia",
+                        DepartmentDescription = "Ortopedia bën diagnostikimin dhe trajtimin e problemeve si: vizitë ortopedike, infiltrim brenda artikulacioneve të gjurit, shpatullës, artocentesi dhe trajtim paravertebral",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
                         DepartmentName = "Otorinolaringologjia",
                         DepartmentDescription = "Otorinolaringologjia kujdeset për të gjithë ata pacientë që vuajnë nga problemet me veshin, hundën, kokën dhe qafën",
                         DepartmentAttendees = new List<DepartmentAttendee>
                         {
                             new DepartmentAttendee
                             {
-                                AppUser = users[2],
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Pediatria",
+                        DepartmentDescription = "Pediatria merret me zhvillimin, kujdesin dhe sëmundjet e foshnjeve dhe fëmijëve deri në 15 vjeç",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Pneumologjia",
+                        DepartmentDescription = "Pneumologjia trajton sëmundje të ndryshme të rrugëve të frymëmarrjes si: astma, sëmundje pulmonare obstruktike kronike si edhe sëmundje të ndryshme parenkimale dhe vaskulare të mushkërive",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Reumatologjia",
+                        DepartmentDescription = "Reumatologjia bën diagnostifikimin e terpisë për sëmundjet reumatike duke përfshirë rastet e thjeshta deri tek ato më të komplikuarat",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
                                 IsHost = true
                             },
                             new DepartmentAttendee
@@ -48,7 +318,25 @@ namespace Persistence
                     new Department
                     {
                         DepartmentName = "Stomatologjia",
-                        DepartmentDescription = "Stomatologjia kujdeset per probemet me dhembet dhe gojen",
+                        DepartmentDescription = "Stomatologjia kujdeset për çdo problem lidhur me dhëmbët, nofullat dhe gojën në përgjithësi",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Urologjia",
+                        DepartmentDescription = "Urologjia merret me funksionimin dhe problemet e sistemit urinar tek femrat dhe meshkujt dhe me organet reproduktive te meshkujt",
                         DepartmentAttendees = new List<DepartmentAttendee>
                         {
                             new DepartmentAttendee
