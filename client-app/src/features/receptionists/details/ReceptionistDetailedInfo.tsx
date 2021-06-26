@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Segment, Grid, Icon } from 'semantic-ui-react'
 import { Receptionist } from "../../../app/models/receptionist";
+import {format} from 'date-fns';
 
 interface Props {
     receptionist: Receptionist
@@ -28,6 +29,7 @@ export default observer(function ReceptionistDetailedInfo({ receptionist }: Prop
                     <Grid.Column width={15}>
                         <span>
                             {receptionist.dob}
+                            {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')}
                         </span>
                     </Grid.Column>
                 </Grid>

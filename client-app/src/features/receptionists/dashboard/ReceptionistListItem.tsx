@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { Receptionist } from '../../../app/models/receptionist';
+import {format} from 'date-fns';
 
 interface Props {
     receptionist: Receptionist
@@ -26,7 +27,8 @@ export default function ReceptionistListItem({receptionist}: Props) {
            </Segment>
            <Segment>
                 <span>
-                    {/* <Icon name='clock' /> {receptionist.date} */}
+                    <Icon name='clock' /> {receptionist.dob}
+                    <Icon name='clock' /> {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')}
                     <Icon name='marker' /> {receptionist.department}
                 </span>
             </Segment>

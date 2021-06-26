@@ -7,7 +7,7 @@ export default class ReceptionistStore {
     selectedReceptionist: Receptionist | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial = true;
+    loadingInitial = false;
 
     constructor() {
         makeAutoObservable(this)
@@ -15,13 +15,13 @@ export default class ReceptionistStore {
 
     get receptionistsByDate() {
         return Array.from(this.receptionistRegistry.values())/*.sort((a, b) => 
-            Date.parse(a.date) - Date.parse(b.date));*/
+            a.date!.getTime() - b.date!.getTime());*/
     }
 
     // get groupedReceptionists() {
     //     return Object.entries(
     //         this.receptionistsByDate.reduce((receptionists, receptionist) => {
-    //             const date = receptionist.date;
+    //             const date = format(activity.date!, 'dd MMM yyyy');
     //             receptionists[date] = receptionists[date] ? [...receptionists[date], receptionist] : [receptionist];
     //             return receptionists;
     //         }, {} as {[key: string]: Receptionist[]})
@@ -44,7 +44,7 @@ export default class ReceptionistStore {
     }
 
     private setReceptionist = (receptionist: Receptionist) => {
-        // receptionist.date = receptionist.date.split('T')[0];
+        receptionist.dob = new Date(receptionist.dob!);
         this.receptionistRegistry.set(receptionist.id, receptionist);
     }
 

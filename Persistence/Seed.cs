@@ -9,7 +9,6 @@ namespace Persistence
 {
     public class Seed
     {
-
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
             if (!userManager.Users.Any() && !context.Departments.Any())
@@ -437,6 +436,20 @@ namespace Persistence
         };
 
             await context.RoomInfo.AddRangeAsync(roominfo);
+            await context.SaveChangesAsync();
+        }
+        
+        public static async Task SeedDataTest(DataContext context){
+            
+            if(context.Tests.Any())return;
+            var tests = new List<Test>{
+                new Test{
+                    emri="Sars-Cov2",                    
+                    cmimi=35,
+                    pershkrimi="Merret mostra e gjakut"
+                }
+            };
+            await context.Tests.AddRangeAsync(tests);
             await context.SaveChangesAsync();
         }
 

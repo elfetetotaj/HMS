@@ -1,15 +1,15 @@
+import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
-import {Receptionist} from "../../../app/models/receptionist";
-import {format} from 'date-fns';
+import { Farmacist } from '../../../app/models/farmacist';
 
-const receptionistImageStyle = {
+const FarmacistImageStyle = {
     filter: 'brightness(30%)'
 };
 
-const receptionistImageTextStyle = {
+const FarmacistImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
     left: '5%',
@@ -19,28 +19,31 @@ const receptionistImageTextStyle = {
 };
 
 interface Props {
-    receptionist: Receptionist
+    farmacist: Farmacist
 }
 
-export default observer (function ReceptionistDetailedHeader({receptionist}: Props) {
+export default observer (function FarmacistDetailedHeader({farmacist}: Props) {
     return (
+        
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-                <Image src={`/assets/categoryImages/${receptionist.city}.jpg`} fluid style={receptionistImageStyle}/>
-                <Segment style={receptionistImageTextStyle} basic>
+            <Image src={`/assets/farmacistImages/${farmacist.emri}.jpg`} fluid style={FarmacistImageStyle } />
+                <Segment style={FarmacistImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
                                     size='huge'
-                                    content={receptionist.name}
+                                    content={farmacist.emri}
                                     style={{color: 'white'}}
                                 />
-                                <p>{receptionist.dob}</p> 
-                                <p>{format(receptionist.dob!, 'dd MMM yyyy')}</p>
-                                <p>
-                                    Hosted by <strong>Bob</strong>
+                                   <p>
+                                    Filloje punen me daten:
                                 </p>
+                                <p>
+                                    {format (farmacist.dateOfJoining!, 'dd MMM yyyy')}
+                                </p>
+                             
                             </Item.Content>
                         </Item>
                     </Item.Group>
@@ -49,10 +52,10 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Activity</Button>
                 <Button>Cancel attendance</Button>
-                <Button as={Link} to={`/manage/${receptionist.id}`} color='orange' floated='right'>
+                <Button as={Link} to={`/managefarmacist/${farmacist.id}`} color='orange' floated='right'>
                     Manage Event
                 </Button>
             </Segment>
         </Segment.Group>
     )
-}) 
+})
