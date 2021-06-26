@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210626155758_DepAttendee")]
+    partial class DepAttendee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -381,26 +383,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RoomInfo");
-                });
-
-            modelBuilder.Entity("Domain.Test", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("cmimi")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("emri")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("pershkrimi")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

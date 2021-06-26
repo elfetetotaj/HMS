@@ -11,6 +11,23 @@ namespace Persistence
         }
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<DepartmentAttendee> DepartmentAttendees { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<DepartmentAttendee>(x => x.HasKey(aa => new {aa.AppUserId, aa.DepartmentId}));
+
+            builder.Entity<DepartmentAttendee>()
+                .HasOne(u => u.AppUser)
+                .WithMany(a => a.Departments)
+                .HasForeignKey(aa => aa.AppUserId);
+
+            builder.Entity<DepartmentAttendee>()
+                .HasOne(u => u.Department)
+                .WithMany(a => a.DepartmentAttendees)
+                .HasForeignKey(aa => aa.DepartmentId);
+        }
         public DbSet<Patient> PatientInfo { get; set; }
         public DbSet<Doctor> DoctorInfo { get; set; }
         public DbSet<Room> RoomInfo { get; set; }

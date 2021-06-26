@@ -9,41 +9,9 @@ namespace Persistence
 {
     public class Seed
     {
-
-         public static async Task SeedDataTest(DataContext context){
-            
-            if(context.Tests.Any())return;
-            var tests = new List<Test>{
-                new Test{
-                    emri="Sars-Cov2",                    
-                    cmimi=35,
-                    pershkrimi="Merret mostra e gjakut"
-                }
-            };
-            await context.Tests.AddRangeAsync(tests);
-            await context.SaveChangesAsync();
-        }
-
-        public static async Task SeedDataFarmacist(DataContext context){
-            
-            if(context.Farmacists.Any())return;
-            var farmacists = new List<Farmacist>{
-                new Farmacist{
-                    emri="Ibadete",
-                    mbiemri="Gashi",
-                    email="dete@gmail.com",
-                    dateOfJoining=DateTime.Parse("2005-09-01"),
-                    tel=044871508,
-                    degree="DPharm"
-                }
-            };
-            await context.Farmacists.AddRangeAsync(farmacists);
-            await context.SaveChangesAsync();
-        }
-        
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
-            if (!userManager.Users.Any()) 
+            if (!userManager.Users.Any() && !context.Departments.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -56,26 +24,50 @@ namespace Persistence
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
+
+                var departments = new List<Department>
+                {
+                    new Department
+                    {
+                        DepartmentName = "Otorinolaringologjia",
+                        DepartmentDescription = "Otorinolaringologjia kujdeset për të gjithë ata pacientë që vuajnë nga problemet me veshin, hundën, kokën dhe qafën",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                    new Department
+                    {
+                        DepartmentName = "Stomatologjia",
+                        DepartmentDescription = "Stomatologjia kujdeset per probemet me dhembet dhe gojen",
+                        DepartmentAttendees = new List<DepartmentAttendee>
+                        {
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new DepartmentAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
+                    },
+                };
+
+                await context.Departments.AddRangeAsync(departments);
+                await context.SaveChangesAsync();
             }
-
-            if (context.Departments.Any()) return;
-
-            var departments = new List<Department>
-            {
-                new Department
-                {
-                    DepartmentName = "Otorinolaringologjia",
-                    DepartmentDescription = "Departamenti per Sy, Hunde dhe Vesh",
-                },
-                new Department
-                {
-                    DepartmentName = "Stomatologjia",
-                    DepartmentDescription = "Departamenti per Dhembe",
-                },
-            };
-
-            await context.Departments.AddRangeAsync(departments);
-            await context.SaveChangesAsync();
         }
         public static async Task SeedDataBlood(DataContext context)
         {
@@ -444,6 +436,37 @@ namespace Persistence
         };
 
             await context.RoomInfo.AddRangeAsync(roominfo);
+            await context.SaveChangesAsync();
+        }
+        
+        public static async Task SeedDataTest(DataContext context){
+            
+            if(context.Tests.Any())return;
+            var tests = new List<Test>{
+                new Test{
+                    emri="Sars-Cov2",                    
+                    cmimi=35,
+                    pershkrimi="Merret mostra e gjakut"
+                }
+            };
+            await context.Tests.AddRangeAsync(tests);
+            await context.SaveChangesAsync();
+        }
+
+        public static async Task SeedDataFarmacist(DataContext context){
+            
+            if(context.Farmacists.Any())return;
+            var farmacists = new List<Farmacist>{
+                new Farmacist{
+                    emri="Ibadete",
+                    mbiemri="Gashi",
+                    email="dete@gmail.com",
+                    dateOfJoining=DateTime.Parse("2005-09-01"),
+                    tel=044871508,
+                    degree="DPharm"
+                }
+            };
+            await context.Farmacists.AddRangeAsync(farmacists);
             await context.SaveChangesAsync();
         }
     }
