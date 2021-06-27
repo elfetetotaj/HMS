@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button, Icon, Item, Segment } from "semantic-ui-react";
-import { Patient } from "../../../app/models/Patient";
+import { Patient } from "../../../app/models/patient";
 import React from 'react';
 
 interface Props {

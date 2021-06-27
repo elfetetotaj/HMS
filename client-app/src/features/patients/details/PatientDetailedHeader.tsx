@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
-import { Patient } from '../../../app/models/Patient';
+import { Patient } from '../../../app/models/patient';
 
 const patientImageStyle = {
     filter: 'brightness(30%)'

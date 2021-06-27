@@ -8,7 +8,7 @@ import { Nurse } from '../models/nurse';
 import { Receptionist } from '../models/receptionist';
 import { User, UserFormValues } from '../models/user';
 import { store } from '../stores/store';
-import { Patient } from '../models/Patient';
+import { Patient } from '../models/patient';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {

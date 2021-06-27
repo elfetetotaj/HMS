@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Patient } from "../models/Patient";
+import { Patient } from "../models/patient";
 
 export default class PatientStore{
     patientRegistry = new Map<string, Patient>();

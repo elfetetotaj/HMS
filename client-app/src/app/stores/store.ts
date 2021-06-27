@@ -30,7 +30,7 @@ export const store: Store = {
     testStore: new TestStore(),
     commonStore: new CommonStore(),
     userStore: new UserStore(),
-    modalStore: new ModalStore()
+    modalStore: new ModalStore(),
     patientStore: new PatientStore(),
 }
 
