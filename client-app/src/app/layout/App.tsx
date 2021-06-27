@@ -27,6 +27,9 @@ import FarmacistForm from '../../features/farmacist/form/FarmacistForm';
 import PatientDashboard from '../../features/patients/dashboard/PatientDashboard';
 import PatientDetails from '../../features/patients/details/PatientDetails';
 import PatientForm from '../../features/patients/form/PatientForm';
+import CityDashboard from '../../features/cities/dashboard/CityDashboard';
+import CityForm from '../../features/cities/form/CityForm';
+import CityDetails from '../../features/cities/details/CityDetails';
 
 function App() {
   const location = useLocation(); 
@@ -61,7 +64,7 @@ function App() {
 
               <Route exact path='/receptionists' component={ReceptionistDashboard} />
               <Route path='/receptionists/:id' component={ReceptionistDetails} />
-              <Route key={location.key} path={['/createReceptionist', '/managereceptionist/:id']} component={ReceptionistForm} />
+              <Route key={location.key} path={['/createReceptionist', '/manageReceptionist/:id']} component={ReceptionistForm} />
 
               <Route exact path='/nurses' component={NurseDashboard} />
               <Route path='/nurses/:id' component={NurseDetails} />
@@ -74,6 +77,10 @@ function App() {
               <Route exact path='/patients' component={PatientDashboard} />
               <Route path='/patients/:id' component={PatientDetails} />
               <Route key={location.key} path={['/createPatients', '/manage/:id']} component={PatientForm} />
+
+              <Route exact path='/cities' component={CityDashboard} />
+              <Route path='/cities/:id' component={CityDetails} />
+              <Route key={location.key} path={['/createCity', '/manageCity/:id']} component={CityForm} />
 
               <Route path='/errors' component={TestErrors}/>
               <Route path="/server-error" component={ServerError}/>

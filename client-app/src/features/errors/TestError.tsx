@@ -31,6 +31,14 @@ export default function TestErrors() {
         axios.post(baseUrl + 'departments', {}).catch(err => setErrors(err));
     }
 
+   
+
+    function handleBadGuidNurse() {
+        axios.get(baseUrl + 'nurses/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'farmacists/notaguid').catch(err => console.log(err));
+
+    }
+
     function handleBadGuidReceptionist() {
         axios.get(baseUrl + 'receptionists/notaguid').catch(err => console.log(err));
     }
@@ -38,11 +46,15 @@ export default function TestErrors() {
     function handleValidationErrorReceptionist() {
         axios.post(baseUrl + 'receptionists', {}).catch(err => setErrors(err));
     }
-    function handleBadGuidNurse() {
-        axios.get(baseUrl + 'nurses/notaguid').catch(err => console.log(err));
-        axios.get(baseUrl + 'farmacists/notaguid').catch(err => console.log(err));
 
+    function handleBadGuidCity() {
+        axios.get(baseUrl + 'cities/notaguid').catch(err => console.log(err));
     }
+
+    function handleValidationErrorCity() {
+        axios.post(baseUrl + 'cities', {}).catch(err => setErrors(err));
+    }
+
 
     function handleValidationErrorNurse() {
         axios.post(baseUrl + 'nurses', {}).catch(err => setErrors(err));
@@ -68,12 +80,14 @@ export default function TestErrors() {
                     <Button onClick={handleValidationErrorReceptionist} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorNurse} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorPatient} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorCity} content='Validation Error' basic primary />
                     <Button onClick={handleServerError} content='Server Error' basic primary />
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
                     <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidReceptionist} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidNurse} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidPatient} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidCity} content='Bad Guid' basic primary />
                 </Button.Group>
             </Segment>
             {errors &&

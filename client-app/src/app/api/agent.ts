@@ -9,6 +9,7 @@ import { Receptionist } from '../models/receptionist';
 import { User, UserFormValues } from '../models/user';
 import { store } from '../stores/store';
 import { Patient } from '../models/patient';
+import { City } from '../models/city';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -117,6 +118,13 @@ const Account = {
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
     register: (user: UserFormValues) => requests.post<User>('/account/register', user)
 }
+const Cities = {
+    list: () => requests.get<City[]>('/cities'),
+    details: (id: string) => requests.get<City>(`/cities/${id}`),
+    create: (cities: City) => axios.post<void>('/cities', cities),
+    update: (cities: City) => axios.put<void>(`/cities/${cities.Id}`, cities),
+    delete: (id: string) => axios.delete<void>(`/cities/${id}`)
+}
 const agent = {
     Departments,
     Receptionists,
@@ -124,7 +132,8 @@ const agent = {
     Farmacists,
     Patients,
     Tests,
-    Account
+    Account,
+    Cities
 }
 
 export default agent;

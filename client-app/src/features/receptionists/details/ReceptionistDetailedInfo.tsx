@@ -29,7 +29,7 @@ export default observer(function ReceptionistDetailedInfo({ receptionist }: Prop
                     <Grid.Column width={15}>
                         <span>
                             {receptionist.dob}
-                            {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')}
+                            {/* {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')} */}
                         </span>
                     </Grid.Column>
                 </Grid>

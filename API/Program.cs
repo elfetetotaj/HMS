@@ -39,7 +39,6 @@ namespace API
                 await Seed.SeedDataBlood(context);
                 await Seed.SeedDataFarmacist(context);
                 await Seed.SeedDataTest(context);
-
             }
             catch (Exception ex)
             {

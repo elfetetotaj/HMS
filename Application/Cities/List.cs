@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,9 @@ namespace Application.Cities
 {
     public class List
     {
-        public class Query : IRequest<List<City>> { }
+        public class Query : IRequest<Result<List<City>>> { }
 
-        public class Handler : IRequestHandler<Query, List<City>>
+        public class Handler : IRequestHandler<Query, Result<List<City>>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -22,9 +23,9 @@ namespace Application.Cities
                 _context = context;
             }
 
-            public async Task<List<City>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<City>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Cities.ToListAsync(cancellationToken);
+                return Result<List<City>>.Success( await _context.Cities.ToListAsync(cancellationToken));
             }
         }
     }

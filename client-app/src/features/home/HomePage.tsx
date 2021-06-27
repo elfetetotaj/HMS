@@ -33,6 +33,9 @@ export default observer(function HomePage() {
                         <Button as={Link} to='/patients' size='huge' inverted>
                             Go to Patients!
                         </Button>
+                        <Button as={Link} to='/cities' size='huge' inverted>
+                            Go to Cities!
+                        </Button>
                     </>
                 ) : (
                     <>
