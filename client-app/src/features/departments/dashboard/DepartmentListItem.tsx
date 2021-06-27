@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Item, Segment } from 'semantic-ui-react';
 import { Department } from '../../../app/models/department';
+import DepartmentListItemAttendee from './DepartmentListItemAttendee';
 
 interface Props {
     department: Department
@@ -23,6 +24,9 @@ export default function DepartmentListItem({department}: Props) {
                        </Item.Content>
                    </Item>
                </Item.Group>
+           </Segment>
+           <Segment secondary>
+               <DepartmentListItemAttendee departmentAttendees={department.departmentAttendees!} />
            </Segment>
            <Segment clearing>
                <Button 

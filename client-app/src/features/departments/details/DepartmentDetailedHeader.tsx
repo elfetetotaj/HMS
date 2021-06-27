@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import { Department } from '../../../app/models/department';
+import { useStore } from '../../../app/stores/store';
 
 const departmentImageStyle = {
     filter: 'brightness(30%)'
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export default observer (function DepartmentDetailedHeader({department}: Props) {
+    const {departmentStore: {updateAttendance, loading}} = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
@@ -44,11 +46,15 @@ export default observer (function DepartmentDetailedHeader({department}: Props) 
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join Activity</Button>
-                <Button>Cancel attendance</Button>
-                <Button as={Link} to={`/managedepartment/${department.id}`} color='orange' floated='right'>
-                    Manage Event
-                </Button>
+                {department.isHost ? (
+                    <Button as={Link} to={`/managedepartment/${department.id}`} color='orange' floated='right'>
+                        Manage Event
+                    </Button>
+                ) : department.isDoctor ? (
+                    <Button loading={loading} onClick={updateAttendance}>Cancel attendance</Button>
+                ) : (
+                    <Button loading={loading} onClick={updateAttendance} color='teal'>Join Activity</Button>
+                )}
             </Segment>
         </Segment.Group>
     )

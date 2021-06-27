@@ -11,9 +11,17 @@ import ReceptionistDashboard from '../../features/receptionists/dashboard/Recept
 import ReceptionistDetails from '../../features/receptionists/details/ReceptionistDetails';
 import ReceptionistForm from '../../features/receptionists/form/ReceptionistForm';
 import NurseDashboard from '../../features/nurses/dashboard/NurseDashboard';
-import FarmacistDetails from '../../features/farmacist/details/FarmacistDetails';
 import NurseDetails from '../../features/nurses/details/NurseDetails';
 import NurseForm from '../../features/nurses/form/NurseForm';
+import FarmacistDashboard from '../../features/farmacist/dashboard/FarmacistDashboard';
+import FarmacistDetails from '../../features/farmacist/details/FarmacistDetails';
+import FarmacistForm from '../../features/farmacist/form/FarmacistForm';
+import PatientDashboard from '../../features/patients/dashboard/PatientDashboard';
+import PatientDetails from '../../features/patients/details/PatientDetails';
+import PatientForm from '../../features/patients/form/PatientForm';
+import CityDashboard from '../../features/cities/dashboard/CityDashboard';
+import CityDetails from '../../features/cities/details/CityDetails';
+import CityForm from '../../features/cities/form/CityForm';
 import { ToastContainer } from 'react-toastify';
 import TestErrors from '../../features/errors/TestError';
 import ServerError from '../../features/errors/ServerError';
@@ -22,14 +30,6 @@ import LoginForm from '../../features/users/LoginForm';
 import { useStore } from '../stores/store';
 import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
-import FarmacistDashboard from '../../features/farmacist/dashboard/FarmacistDashboard';
-import FarmacistForm from '../../features/farmacist/form/FarmacistForm';
-import PatientDashboard from '../../features/patients/dashboard/PatientDashboard';
-import PatientDetails from '../../features/patients/details/PatientDetails';
-import PatientForm from '../../features/patients/form/PatientForm';
-import CityDashboard from '../../features/cities/dashboard/CityDashboard';
-import CityForm from '../../features/cities/form/CityForm';
-import CityDetails from '../../features/cities/details/CityDetails';
 
 function App() {
   const location = useLocation(); 
@@ -64,7 +64,7 @@ function App() {
 
               <Route exact path='/receptionists' component={ReceptionistDashboard} />
               <Route path='/receptionists/:id' component={ReceptionistDetails} />
-              <Route key={location.key} path={['/createReceptionist', '/manageReceptionist/:id']} component={ReceptionistForm} />
+              <Route key={location.key} path={['/createReceptionist', '/managereceptionist/:id']} component={ReceptionistForm} />
 
               <Route exact path='/nurses' component={NurseDashboard} />
               <Route path='/nurses/:id' component={NurseDetails} />
@@ -76,11 +76,11 @@ function App() {
 
               <Route exact path='/patients' component={PatientDashboard} />
               <Route path='/patients/:id' component={PatientDetails} />
-              <Route key={location.key} path={['/createPatients', '/manage/:id']} component={PatientForm} />
+              <Route key={location.key} path={['/createPatient', '/managepatient/:id']} component={PatientForm} />
 
               <Route exact path='/cities' component={CityDashboard} />
               <Route path='/cities/:id' component={CityDetails} />
-              <Route key={location.key} path={['/createCity', '/manageCity/:id']} component={CityForm} />
+              <Route key={location.key} path={['/createCity', '/managecity/:id']} component={CityForm} />
 
               <Route path='/errors' component={TestErrors}/>
               <Route path="/server-error" component={ServerError}/>

@@ -41,14 +41,14 @@ namespace Application.Departments
                 var user = await _context.Users.FirstOrDefaultAsync(x => 
                     x.UserName == this.userAccessor.GetUsername());
 
-                var attendee = new DepartmentAttendee
+                var departmentAttendee = new DepartmentAttendee
                 {
                     AppUser = user,
                     Department = request.Department,
                     IsHost = true
                 };
 
-                request.Department.DepartmentAttendees.Add(attendee);
+                request.Department.DepartmentAttendees.Add(departmentAttendee);
 
                 _context.Departments.Add(request.Department);
 
