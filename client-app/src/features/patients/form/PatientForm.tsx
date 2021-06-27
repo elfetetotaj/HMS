@@ -59,7 +59,7 @@ export default observer(function PatientForm(){
         <Segment clearing>
             <Form onSubmit={handleSubmit} autoComplete='off' >
                 <Form.Input  placeholder ='name'       value={patient.name} name='name' onChange={handleInputChange} />
-                <Form.Input  placeholder ='surname'    value={patient.surname} name='surame' onChange={handleInputChange}/>
+                <Form.Input  placeholder ='surname'    value={patient.surname} name='surname' onChange={handleInputChange}/>
                 <Form.Input  type ='date' placeholder ='dateofbirth'value={patient.dateofbirth} name='dateofbirth' onChange={handleInputChange} />
                 <Form.Input  placeholder ='gender'     value={patient.gender} name='gender' onChange={handleInputChange} />
                 <Form.Input  placeholder ='street_address' value={patient.street_address} name='street_address' onChange={handleInputChange} />
