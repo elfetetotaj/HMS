@@ -757,5 +757,21 @@ namespace Persistence
             await context.Farmacists.AddRangeAsync(farmacists);
             await context.SaveChangesAsync();
         }
+
+        public static async Task SeedDataTherapy(DataContext context){
+            
+            if(context.Therapies.Any())return;
+            var therapies = new List<Therapy>{
+                new Therapy{
+                    Pershkrimi="Paracetamol"
+                },
+                new Therapy{
+                    Pershkrimi="Daleron"
+                }
+
+            };
+            await context.Therapies.AddRangeAsync(therapies);
+            await context.SaveChangesAsync();
+        }
     }
 }
