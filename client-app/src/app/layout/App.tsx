@@ -76,7 +76,7 @@ function App() {
 
               <Route exact path='/patients' component={PatientDashboard} />
               <Route path='/patients/:id' component={PatientDetails} />
-              <Route key={location.key} path={['/createPatients', '/manage/:id']} component={PatientForm} />
+              <Route key={location.key} path={['/createPatients', '/managepatient/:id']} component={PatientForm} />
 
               <Route exact path='/cities' component={CityDashboard} />
               <Route path='/cities/:id' component={CityDetails} />
