@@ -22,6 +22,11 @@ export default function NotFound() {
                 <Button as={Link} to='/farmacists' primary>
                     Return to Farmacists page
                 </Button>
+                <Button>
+                <Button as={Link} to='/patients' primary >
+                    Return to patients page 
+                </Button>
+                </Button>
             </Segment.Inline>
         </Segment>
     )

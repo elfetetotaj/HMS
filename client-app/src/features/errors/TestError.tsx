@@ -49,6 +49,13 @@ export default function TestErrors() {
         axios.post(baseUrl + 'farmacists', {}).catch(err => setErrors(err));
 
     }
+    function handleBadGuidPatient() {
+        axios.get(baseUrl + 'patients/notaguid').catch(err => console.log(err.response));
+    }
+
+    function handleValidationErrorPatient() {
+        axios.post(baseUrl + 'patients', {}).catch(err => setErrors(err));
+    }
 
     return (
         <>
@@ -60,11 +67,13 @@ export default function TestErrors() {
                     <Button onClick={handleValidationErrorDepartment} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorReceptionist} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorNurse} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorPatient} content='Validation Error' basic primary />
                     <Button onClick={handleServerError} content='Server Error' basic primary />
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
                     <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidReceptionist} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidNurse} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidPatient} content='Bad Guid' basic primary />
                 </Button.Group>
             </Segment>
             {errors &&

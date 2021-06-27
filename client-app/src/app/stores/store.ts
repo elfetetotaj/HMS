@@ -7,6 +7,7 @@ import UserStore from "./userStore";
 import ModalStore from "./modalStore";
 import FarmacistStore from "./farmacistStore";
 import TestStore from "./testStore";
+import PatientStore from "./patientStore";
 
 
 interface Store{
@@ -18,6 +19,7 @@ interface Store{
     commonStore: CommonStore;
     userStore: UserStore;
     modalStore: ModalStore;
+    patientStore : PatientStore
 }
 
 export const store: Store = {
@@ -29,6 +31,7 @@ export const store: Store = {
     commonStore: new CommonStore(),
     userStore: new UserStore(),
     modalStore: new ModalStore()
+    patientStore: new PatientStore(),
 }
 
 export const StoreContext = createContext(store);

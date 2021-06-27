@@ -24,6 +24,9 @@ import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
 import FarmacistDashboard from '../../features/farmacist/dashboard/FarmacistDashboard';
 import FarmacistForm from '../../features/farmacist/form/FarmacistForm';
+import PatientDashboard from '../../features/patients/dashboard/PatientDashboard';
+import PatientDetails from '../../features/patients/details/PatientDetails';
+import PatientForm from '../../features/patients/form/PatientForm';
 
 function App() {
   const location = useLocation(); 
@@ -67,6 +70,10 @@ function App() {
               <Route exact path='/farmacists' component={FarmacistDashboard} />
               <Route path='/farmacists/:id' component={FarmacistDetails} />
               <Route key={location.key} path={['/createFarmacist', '/managefarmacist/:id']} component={FarmacistForm} />
+
+              <Route exact path='/patients' component={PatientDashboard} />
+              <Route path='/patients/:id' component={PatientDetails} />
+              <Route key={location.key} path={['/createPatients', '/manage/:id']} component={PatientForm} />
 
               <Route path='/errors' component={TestErrors}/>
               <Route path="/server-error" component={ServerError}/>

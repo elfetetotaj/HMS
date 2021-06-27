@@ -5,18 +5,18 @@ namespace Domain
     public class Patient
     {
         public Guid Id { get; set; }
-        public string p_fname { get; set; }
-        public string p_lname { get; set; } 
-        public DateTime dob { get; set; }
-        public char p_gender { get; set; }
-        public string p_street_address { get; set; }
-        public string p_city { get; set; }
-        public string p_country { get; set; }
-        public string p_postal_code { get; set; }
-        public string p_phone { get; set; }
-        public int p_weight { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; } 
+        public DateTime dateofbirth { get; set; }
+        public char gender { get; set; }
+        public string street_address { get; set; }
+        public string city { get; set; }
+        public string country { get; set; }
+        public string postal_code { get; set; }
+        public string phone { get; set; }
+        public int weight { get; set; }
         public string other_det { get; set; }
-        public DateTime p_rdate { get; set; }
+        public DateTime register_date { get; set; }
 
     }
 }

@@ -28,9 +28,9 @@ namespace Persistence
                 .WithMany(a => a.DepartmentAttendees)
                 .HasForeignKey(aa => aa.DepartmentId);
         }
-        public DbSet<Patient> PatientInfo { get; set; }
-        public DbSet<Doctor> DoctorInfo { get; set; }
-        public DbSet<Room> RoomInfo { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Room> Rooms { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
         public DbSet<Nurse> Nurses { get; set; }
