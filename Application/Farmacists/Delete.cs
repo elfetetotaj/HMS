@@ -24,7 +24,7 @@ namespace Application.Farmacists
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var farmacist = await _context.Receptionists.FindAsync(request.Id);
+                var farmacist = await _context.Farmacists.FindAsync(request.Id);
 
                // if(nurse==null) return null;
 

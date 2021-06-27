@@ -31,15 +31,14 @@ namespace API
                 await context.Database.MigrateAsync();
                 await Seed.SeedData(context, userManager);
                 await Seed.SeedDataCity(context);
-                await Seed.SeedDataDoctorInfo(context);
-                await Seed.SeedDataPatientInfo(context);
+                await Seed.SeedDataDoctor(context);
+                await Seed.SeedDataPatient(context);
                 await Seed.SeedDataReceptionist(context);
                 await Seed.SeedDataRoom(context);
                 await Seed.SeedDataNurse(context);
                 await Seed.SeedDataBlood(context);
                 await Seed.SeedDataFarmacist(context);
                 await Seed.SeedDataTest(context);
-
             }
             catch (Exception ex)
             {

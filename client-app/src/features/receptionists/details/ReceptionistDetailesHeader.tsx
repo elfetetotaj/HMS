@@ -37,7 +37,7 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
                                     style={{color: 'white'}}
                                 />
                                 <p>{receptionist.dob}</p> 
-                                <p>{format(receptionist.dob!, 'dd MMM yyyy')}</p>
+                                {/* <p>{format(receptionist.dob!, 'dd MMM yyyy')}</p> */}
                                 <p>
                                     Hosted by <strong>Bob</strong>
                                 </p>
@@ -49,7 +49,7 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Activity</Button>
                 <Button>Cancel attendance</Button>
-                <Button as={Link} to={`/manage/${receptionist.id}`} color='orange' floated='right'>
+                <Button as={Link} to={`/manageReceptionist/${receptionist.id}`} color='orange' floated='right'>
                     Manage Event
                 </Button>
             </Segment>

@@ -8,6 +8,8 @@ import { Nurse } from '../models/nurse';
 import { Receptionist } from '../models/receptionist';
 import { User, UserFormValues } from '../models/user';
 import { store } from '../stores/store';
+import { Patient } from '../models/patient';
+import { City } from '../models/city';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -98,6 +100,13 @@ const Farmacists = {
     update: (farmacist: Farmacist) => axios.put<void>(`/farmacists/${farmacist.id}`, farmacist),
     delete: (id: string) => axios.delete<void>(`/farmacists/${id}`)
 }
+const Patients ={
+    list: () => requests.get<Patient[]>('/patients'),
+    details: (id:string) => requests.get<Patient>(`/patients/${id}`),
+    create: (patient: Patient) => axios.post<void>('/patients', patient),
+    update: (patient: Patient) => axios.put<void>(`/patients/${patient.id}`,patient),
+    delete: (id: string) => axios.delete<void>(`/patients/${id}`)
+}
 const Tests = {
     list: () => requests.get<Test[]>('/tests'),
     details: (id: string) => requests.get<Test>(`/tests/${id}`),
@@ -110,13 +119,22 @@ const Account = {
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
     register: (user: UserFormValues) => requests.post<User>('/account/register', user)
 }
+const Cities = {
+    list: () => requests.get<City[]>('/cities'),
+    details: (id: string) => requests.get<City>(`/cities/${id}`),
+    create: (cities: City) => axios.post<void>('/cities', cities),
+    update: (cities: City) => axios.put<void>(`/cities/${cities.Id}`, cities),
+    delete: (id: string) => axios.delete<void>(`/cities/${id}`)
+}
 const agent = {
     Departments,
     Receptionists,
     Nurses,
     Farmacists,
+    Patients,
     Tests,
-    Account
+    Account,
+    Cities
 }
 
 export default agent;

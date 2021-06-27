@@ -17,6 +17,8 @@ export default observer(function NavBar() {
                 <Menu.Item as={NavLink} to='/receptionists' name='Receptionist' />
                 <Menu.Item as={NavLink} to='/nurses' name='Nurse' />
                 <Menu.Item as={NavLink} to='/farmacists' name='Farmacist' />
+                <Menu.Item as={NavLink} to='/patients' name='Patients' />
+                <Menu.Item as={NavLink} to='/cities' name='City' />
 
                 <Menu.Item as={NavLink} to='/errors' name='Errors' />
                 <Menu.Item>
@@ -33,6 +35,12 @@ export default observer(function NavBar() {
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createFarmacist' content='Create Farmacist' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createPatient' content='Create Patient' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createCity' content='Create City' />
                             </Dropdown.Item>
                             {/* <Button.Group vertical>
                                 <Button fluid as={NavLink} to='/createDepartment' content='Create Department' />

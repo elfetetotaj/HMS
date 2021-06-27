@@ -158,39 +158,39 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("d_city")
+                    b.Property<string>("city")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("d_country")
+                    b.Property<string>("country")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("d_fname")
-                        .HasColumnType("TEXT");
-
-                    b.Property<char>("d_gender")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("d_lname")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("d_phone")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("d_postal_code")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("d_street_address")
+                    b.Property<DateTime>("dateofbirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("designation")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("dob")
+                    b.Property<char>("gender")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("phone")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("postal_code")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("street_address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("surname")
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
-                    b.ToTable("DoctorInfo");
+                    b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("Domain.Farmacist", b =>
@@ -266,45 +266,45 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("dob")
+                    b.Property<string>("city")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("country")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("dateofbirth")
+                        .HasColumnType("TEXT");
+
+                    b.Property<char>("gender")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("name")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("other_det")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("p_city")
+                    b.Property<string>("phone")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("p_country")
+                    b.Property<string>("postal_code")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("p_fname")
+                    b.Property<DateTime>("register_date")
                         .HasColumnType("TEXT");
 
-                    b.Property<char>("p_gender")
+                    b.Property<string>("street_address")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("p_lname")
+                    b.Property<string>("surname")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("p_phone")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("p_postal_code")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("p_rdate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("p_street_address")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("p_weight")
+                    b.Property<int>("weight")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PatientInfo");
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("Domain.Receptionist", b =>
@@ -366,21 +366,21 @@ namespace Persistence.Migrations
                     b.Property<int>("floor_no")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("r_type")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("stauts")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("tot_bed")
+                    b.Property<int>("total_bed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("tot_bed_occupied")
+                    b.Property<int>("total_bed_occupied")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("type")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoomInfo");
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Domain.Test", b =>
@@ -540,7 +540,7 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Department", "Department")
-                        .WithMany("Attendees")
+                        .WithMany("DepartmentAttendees")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -608,7 +608,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Department", b =>
                 {
-                    b.Navigation("Attendees");
+                    b.Navigation("DepartmentAttendees");
                 });
 #pragma warning restore 612, 618
         }
