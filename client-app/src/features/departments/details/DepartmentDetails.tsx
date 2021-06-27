@@ -28,7 +28,7 @@ export default observer(function DepartmentDetails() {
                 <DepartmentDetailedChat />
             </Grid.Column>
             <Grid.Column width={6}>
-                <DepartmentDetailedSidebar />
+                <DepartmentDetailedSidebar department={department} />
             </Grid.Column>
         </Grid>
     )

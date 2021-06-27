@@ -9,20 +9,15 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
 import MyTextArea from '../../../app/common/form/MyTextArea';
-import { Department } from '../../../app/models/department';
+import { DepartmentFormValues } from '../../../app/models/department';
 
 export default observer(function DepartmentForm() {
     const history = useHistory();
     const { departmentStore } = useStore();
-    const { createDepartment, updateDepartment, 
-        loading, loadDepartment, loadingInitial} = departmentStore;
-    const {id} = useParams<{id: string}>();
+    const { createDepartment, updateDepartment, loadDepartment, loadingInitial} = departmentStore;
+    const { id } = useParams<{ id: string }>();
 
-    const [department, setDepartment] = useState<Department>({
-        id: '',
-        departmentName: '',
-        departmentDescription: ''
-    });
+    const [department, setDepartment] = useState<DepartmentFormValues>(new DepartmentFormValues());
 
     const validationSchema = Yup.object({
         departmentName: Yup.string().required('The department name is required'),
@@ -30,11 +25,11 @@ export default observer(function DepartmentForm() {
     })
 
     useEffect(() => {
-        if (id) loadDepartment(id).then(department => setDepartment(department!))
+        if (id) loadDepartment(id).then(department => setDepartment(new DepartmentFormValues(department)))
     }, [id, loadDepartment]);
 
-    function handleFormSubmit(department: Department) {
-        if (department.id.length === 0) {
+    function handleFormSubmit(department: DepartmentFormValues) {
+        if (!department.id) {
             let newDepartment = {
                 ...department,
                 id: uuid()
@@ -61,7 +56,7 @@ export default observer(function DepartmentForm() {
                         <MyTextArea rows={3} name='departmentDescription' placeholder='Description' />
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}
-                            loading={loading} 
+                            loading={isSubmitting} 
                             floated='right' 
                             positive type='submit' 
                             content='Submit' />

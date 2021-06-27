@@ -1,6 +1,8 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Department } from "../models/department";
+import { Department, DepartmentFormValues } from "../models/department";
+import { Profile } from "../models/profile";
+import { store } from "./store";
 
 export default class DepartmentStore {
     departmentRegistry = new Map<string, Department>();
@@ -54,6 +56,14 @@ export default class DepartmentStore {
     }
         
     private setDepartment = (department: Department) => {
+        const user = store.userStore.user;
+        if (user) {
+            department.isDoctor = department.departmentAttendees!.some(
+                a => a.username === user.username
+            )
+            department.isHost = department.hostUsername === user.username;
+            department.host = department.departmentAttendees?.find(x => x.username === department.hostUsername);
+        }
         // department.date = new Date(department.date!);
         this.departmentRegistry.set(department.id, department);
     }
@@ -66,39 +76,35 @@ export default class DepartmentStore {
         this.loadingInitial = state;
     }
 
-    createDepartment = async (department: Department) => {
-        this.loading = true;
+    createDepartment = async (department: DepartmentFormValues) => {
+        const user = store.userStore.user;
+        const departmentAttendee = new Profile(user!);
         try {
             await agent.Departments.create(department);
+            const newDepartment = new Department(department);
+            newDepartment.hostUsername = user!.username;
+            newDepartment.departmentAttendees = [departmentAttendee];
+            this.setDepartment(newDepartment);
             runInAction(() => {
-                this.departmentRegistry.set(department.id, department);
-                this.selectedDepartment = department;
-                this.editMode = false;
-                this.loading = false;
+                this.selectedDepartment = newDepartment;
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 
-    updateDepartment = async (department: Department) => {
-        this.loading = true;
+    updateDepartment = async (department: DepartmentFormValues) => {
         try {
             await agent.Departments.update(department);
             runInAction(() => {
-                this.departmentRegistry.set(department.id, department);
-                this.selectedDepartment = department;
-                this.editMode = false;
-                this.loading = false;
+                if (department.id) {
+                    let updatedDepartment = {...this.getDepartment(department.id), ...department}
+                    this.departmentRegistry.set(department.id, updatedDepartment as Department);
+                    this.selectedDepartment = updatedDepartment as Department;
+                }
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 
@@ -117,4 +123,44 @@ export default class DepartmentStore {
             })
         }
     }
+
+    updateAttendance = async () => {
+        const user = store.userStore.user;
+        this.loading = true;
+        try {
+            await agent.Departments.attend(this.selectedDepartment!.id);
+            runInAction(() => {
+                if (this.selectedDepartment?.isDoctor) {
+                    this.selectedDepartment.departmentAttendees = 
+                        this.selectedDepartment.departmentAttendees?.filter(a => a.username !== user?.username);
+                    this.selectedDepartment.isDoctor = false;
+                } else {
+                    const departmentAttendee = new Profile(user!);
+                    this.selectedDepartment?.departmentAttendees?.push(departmentAttendee);
+                    this.selectedDepartment!.isDoctor = true;
+                }
+                this.departmentRegistry.set(this.selectedDepartment!.id, this.selectedDepartment!)
+            })
+        } catch (error) {
+            console.log(error);
+        } finally {
+            runInAction(() => this.loading = false);
+        }
+    }
+
+    // Use this method at Termin crud Video 15.7
+    // cancelDepartmentToggle = async () => {
+    //     this.loading = true;
+    //     try {
+    //         await agent.Departments.attend(this.selectedDepartment!.id);
+    //         runInAction(() => {
+    //             this.selectedDepartment!.isCancelled = !this.selectedDepartment?.isCancelled;
+    //             this.departmentRegistry.set(this.selectedDepartment!.id, this.selectedDepartment!);
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //     } finally {
+    //         runInAction(() => this.loading = false);
+    //     }
+    // }
 }

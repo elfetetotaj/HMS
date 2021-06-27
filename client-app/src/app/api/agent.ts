@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
-import { Department } from '../models/department';
+import { Department, DepartmentFormValues } from '../models/department';
 import { Test } from '../models/test';
 import { Farmacist } from '../models/farmacist';
 import { Nurse } from '../models/nurse';
@@ -72,9 +72,10 @@ const requests = {
 const Departments = {
     list: () => requests.get<Department[]>('/departments'),
     details: (id: string) => requests.get<Department>(`/departments/${id}`),
-    create: (department: Department) => axios.post<void>('/departments', department),
-    update: (department: Department) => axios.put<void>(`/departments/${department.id}`, department),
-    delete: (id: string) => axios.delete<void>(`/departments/${id}`)
+    create: (department: DepartmentFormValues) => requests.post<void>('/departments', department),
+    update: (department: DepartmentFormValues) => requests.put<void>(`/departments/${department.id}`, department),
+    delete: (id: string) => requests.del<void>(`/departments/${id}`),
+    attend: (id: string) => requests.post<void>(`/departments/${id}/attend`, {})
 }
 const Receptionists = {
     list: () => requests.get<Receptionist[]>('/receptionists'),

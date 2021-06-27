@@ -34,14 +34,14 @@ namespace Infrastructure.Security
             var departmentId = Guid.Parse(this.httpContextAccessor.HttpContext?.Request.RouteValues
                 .SingleOrDefault(x => x.Key == "id").Value?.ToString());
 
-            var attendee = this.dbContext.DepartmentAttendees
+            var departmentAttendee = this.dbContext.DepartmentAttendees
                 .AsNoTracking()
                 .SingleOrDefaultAsync(x => x.AppUserId == userId && x.DepartmentId == departmentId)
                 .Result;
 
-            if (attendee == null) return Task.CompletedTask;
+            if (departmentAttendee == null) return Task.CompletedTask;
 
-            if (attendee.IsHost) context.Succeed(requirement);
+            if (departmentAttendee.IsHost) context.Succeed(requirement);
 
             return Task.CompletedTask;
         }
