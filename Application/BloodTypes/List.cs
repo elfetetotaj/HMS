@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 
-namespace Application.Therapies
+namespace Application.BloodTypes
 {
     public class List
     {
-        public class Query : IRequest<Result<List<Therapy>>> { }
+        public class Query : IRequest<Result<List<BloodType>>> { }
 
-        public class Handler : IRequestHandler<Query, Result<List<Therapy>>>
+        public class Handler : IRequestHandler<Query, Result<List<BloodType>>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -22,9 +22,9 @@ namespace Application.Therapies
                 _context = context;
             }
 
-            public async Task<Result<List<Therapy>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<BloodType>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return Result<List<Therapy>>.Success( await _context.Therapies.ToListAsync(cancellationToken));
+                return Result<List<BloodType>>.Success( await _context.BloodTypes.ToListAsync(cancellationToken));
             }
         }
     }
