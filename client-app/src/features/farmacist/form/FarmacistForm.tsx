@@ -92,7 +92,7 @@ export default observer(function FarmacistForm() {
                      <Button 
                      disabled={isSubmitting || !dirty || !isValid}
                      loading={loading} floated='right' positive type='submit' content='Submit' />
-                     <Button as={Link} to='/Farmacists' floated='right' type='button' content='Cancel' />
+                     <Button as={Link} to='/farmacists' floated='right' type='button' content='Cancel' />
                     </Form>
                 )}
                 
