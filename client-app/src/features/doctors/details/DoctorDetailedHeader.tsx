@@ -1,15 +1,13 @@
-import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
-import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
-import { Patient } from '../../../app/models/patient';
+import { Doctor } from '../../../app/models/doctor';
 
-const patientImageStyle = {
+const doctorImageStyle = {
     filter: 'brightness(30%)'
 };
 
-const patientImageTextStyle = {
+const doctorImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
     left: '5%',
@@ -19,24 +17,24 @@ const patientImageTextStyle = {
 };
 
 interface Props {
-    patient: Patient
+    doctor: Doctor
 }
 
-export default observer (function PatientDetailedHeader({patient: Patient}: Props) {
+export default observer (function DoctorDetailedHeader({doctor: Doctor}: Props) {
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-                <Image src={`/assets/user.png`} fluid style={patientImageStyle}/>
-                <Segment style={patientImageTextStyle} basic>
+                <Image src={`/assets/user.png`} fluid style={doctorImageStyle}/>
+                <Segment style={doctorImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
                                     size='huge'
-                                    content={Patient.name}
+                                    content={Doctor.name}
                                     style={{color: 'white'}}
                                 />
-                                <p>{format(Patient.dateofbirth!, 'dd MMM yyyy')}</p>
+                                <p>{Doctor.dateofbirth}</p>
                                 <p>
                                     Hosted by <strong>Erza</strong>
                                 </p>
@@ -48,7 +46,7 @@ export default observer (function PatientDetailedHeader({patient: Patient}: Prop
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Activity</Button>
                 <Button>Cancel attendance</Button>
-                <Button as={Link} to={`/managepatient/${Patient.id}`} color='orange' floated='right'>
+                <Button color='orange' floated='right'>
                     Manage Event
                 </Button>
             </Segment>

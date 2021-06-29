@@ -20,6 +20,8 @@ export default observer(function NavBar() {
                 <Menu.Item as={NavLink} to='/patients' name='Patient' />
                 <Menu.Item as={NavLink} to='/cities' name='City' />
                 <Menu.Item as={NavLink} to='/therapies' name='Therapy' />
+                <Menu.Item as={NavLink} to='/doctors' name='Doctor' />
+                <Menu.Item as={NavLink} to='/techEmployees' name='TechEmployee' />
                 <Menu.Item as={NavLink} to='/surgeries' name='Surgery' />
 
                 <Menu.Item as={NavLink} to='/errors' name='Errors' />
@@ -46,6 +48,12 @@ export default observer(function NavBar() {
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createTherapy' content='Create Therapy' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createDoctor' content='Create Doctor' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createTechEmployee' content='Create TechEmployee' />
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createSurgery' content='Create Surgery' />

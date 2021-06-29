@@ -1,15 +1,13 @@
-export interface Patient {
+export interface Doctor {
     id: string;
     name: string;
     surname: string;
-    dateofbirth: Date | null ;
+    dateofbirth: string;
     gender: string;
     street_address: string;
     city: string;
     country: string;
     postal_code: string;
     phone: string;
-    weight: string;
-    other_det: string;
-    register_date: Date | null;
+    designation : string;
 }

@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import { Button, Icon, Item, Segment } from "semantic-ui-react";
-import { Patient } from "../../../app/models/patient";
 import React from 'react';
-import {format} from 'date-fns';
+import { Doctor } from "../../../app/models/doctor";
 
 interface Props {
-    patient : Patient
+    doctor : Doctor
 }
 
-export default function PatientListItem({patient}: Props){
+export default function DoctorListItem({doctor}: Props){
 
 
     return (
@@ -18,8 +17,8 @@ export default function PatientListItem({patient}: Props){
                     <Item>
                         <Item.Image size='tiny' circular src='/assets/user.png' />
                         <Item.Content>
-                            <Item.Header as={Link} to={`/patients/${patient.id}`} >
-                                {patient.name}
+                            <Item.Header as={Link} to={`/doctors/${doctor.id}`} >
+                                {doctor.name}
                             </Item.Header>
                             <Item.Description>Hosted By Erza</Item.Description>
                         </Item.Content>
@@ -28,18 +27,18 @@ export default function PatientListItem({patient}: Props){
             </Segment>
             <Segment>
                 <span>
-                    <Icon name='clock' /> {format(patient.register_date!, 'dd MMM yyyy h:mm aa')}
-                    <Icon  marker='marker'/>{patient.gender}
+                    <Icon name='clock' /> {doctor.dateofbirth}
+                    <Icon  marker='marker'/>{doctor.gender}
                 </span>
             </Segment>
             <Segment secondary>
                 Attendies go here
             </Segment>
             <Segment clearing>
-                <span>{patient.other_det}</span>
+                <span>{doctor.designation}</span>
                 <Button 
                     as={Link}
-                    to={`/patients/${patient.id}`}
+                    to={`/doctors/${doctor.id}`}
                     color='teal'
                     floated= 'right'
                     content= 'View'

@@ -31,8 +31,14 @@ import { useStore } from '../stores/store';
 import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
 import TherapyForm from '../../features/therapies/form/TherapyForm';
+
 import TherapyDetails from '../../features/therapies/details/TherapyDetails';
 import TherapyDashboard from '../../features/therapies/dashboard/TherapyDashboard';
+import DoctorDashboard from '../../features/doctors/dashboard/DoctorDashboard';
+import DoctorDetails from '../../features/doctors/details/DoctorDetails';
+import DoctorForm from '../../features/doctors/form/DoctorForm';
+import TechEmployeeDashboard from '../../features/techEmployees/dashboard/TechEmployeeDashboard';
+import TechEmployeeForm from '../../features/techEmployees/form/techEmployeeForm';
 import SurgeryDashboard from '../../features/surgeries/dashboard/SurgeryDashboard';
 import SurgeryDetails from '../../features/surgeries/details/SurgeryDetails';
 import SurgeryForm from '../../features/surgeries/form/SurgeryForm';
@@ -80,6 +86,11 @@ function App() {
               <Route path='/farmacists/:id' component={FarmacistDetails} />
               <Route key={location.key} path={['/createFarmacist', '/managefarmacist/:id']} component={FarmacistForm} />
 
+              <Route exact path='/techEmployees' component={TechEmployeeDashboard} />
+              <Route path='/farmacists/:id' component={FarmacistDetails} />
+              <Route key={location.key} path={['/createTechEmployee', '/managetechEmployee/:id']} component={TechEmployeeForm} />
+
+
               <Route exact path='/patients' component={PatientDashboard} />
               <Route path='/patients/:id' component={PatientDetails} />
               <Route key={location.key} path={['/createPatient', '/managepatient/:id']} component={PatientForm} />
@@ -91,6 +102,10 @@ function App() {
               <Route exact path='/therapies' component={TherapyDashboard} />
               <Route path='/therapies/:id' component={TherapyDetails} />
               <Route key={location.key} path={['/createTherapy', '/managetherapy/:id']} component={TherapyForm} />
+
+              <Route exact path='/doctors' component={DoctorDashboard} />
+              <Route path='/doctors/:id' component={DoctorDetails} />
+              <Route key={location.key} path={['/createDoctor', '/managedoctor/:id']} component={DoctorForm} />
 
               <Route exact path='/surgeries' component={SurgeryDashboard} />
               <Route path='/surgeries/:id' component={SurgeryDetails} />

@@ -7,7 +7,7 @@ export default class PatientStore{
     selectedPatient: Patient | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial =true;
+    loadingInitial = false;
 
 
     constructor () {
@@ -17,7 +17,7 @@ export default class PatientStore{
 
     get patientsByDate(){
         return Array.from(this.patientRegistry.values()).sort((a, b) => 
-               Date.parse(a.dateofbirth) - Date.parse(b.dateofbirth));
+               a.dateofbirth!.getTime() - b.dateofbirth!.getTime());
     }
 
    /**  get groupedPatients() {
@@ -67,8 +67,8 @@ export default class PatientStore{
     }
 
     private setPatient = (patient: Patient) => {
-        patient.dateofbirth= patient.dateofbirth.split('T')[0];
-        patient.register_date= patient.register_date.split('T')[0];
+        patient.dateofbirth= new Date(patient.dateofbirth!);
+        patient.register_date= new Date(patient.register_date!);
         this.patientRegistry.set(patient.id, patient);
     }
 

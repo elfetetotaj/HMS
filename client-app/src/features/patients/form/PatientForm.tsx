@@ -1,11 +1,21 @@
 import { observer } from 'mobx-react-lite';
-import React, { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import { Button, Header, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import {v4 as uuid} from 'uuid';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import MyTextInput from '../../../app/common/form/MyTextInput';
+import MyTextArea from '../../../app/common/form/MyTextArea';
+import MySelectInput from '../../../app/common/form/MySelectInput';
+import { cityOptions } from '../../../app/common/options/cityOptions';
+import { genderOptions } from '../../../app/common/options/genderOptions';
+import { countryOptions } from '../../../app/common/options/countryOptions';
+import MyDateInput from '../../../app/common/form/MyDateInput';
+import { Patient } from '../../../app/models/patient';
 
 
 export default observer(function PatientForm(){
@@ -15,11 +25,11 @@ export default observer(function PatientForm(){
             loading, loadPatient, loadingInitial} = patientStore;
     const {id} = useParams<{id: string}>();
 
-    const [patient, setPatient] =useState({
+    const [patient, setPatient] =useState<Patient>({
         id: '',
         name: '',
         surname: '',
-        dateofbirth: '',
+        dateofbirth: null,
         gender: '',
         street_address: '',
         city: '',
@@ -28,14 +38,29 @@ export default observer(function PatientForm(){
         phone: '',
         weight: '',
         other_det: '',
-        register_date: '',
+        register_date: null,
     });
+
+    const validationSchema = Yup.object({
+        name: Yup.string().required('The patient name is required'),
+        surname: Yup.string().required('The patient surname is required'),
+        dateofbirth: Yup.string().required("The Date of Birth is required").nullable(),
+        gender: Yup.string().required(),
+        street_address: Yup.string().required(),
+        city: Yup.string().required(),
+        country: Yup.string().required(),
+        postal_code: Yup.string().required(),
+        phone: Yup.string().required(),
+        weight: Yup.string().required(),
+        other_det: Yup.string().required(),
+        register_date: Yup.string().required('The Register Date is required').nullable(),
+    })
 
     useEffect(() => {
         if (id) loadPatient(id).then(patient => setPatient(patient!))
     }, [id, loadPatient]);
 
-    function handleSubmit(){
+      function handleFormSubmit(patient: Patient){
        if (patient.id.length === 0 ) {
            let newPatient ={
                ...patient,
@@ -47,32 +72,47 @@ export default observer(function PatientForm(){
        }
     }
 
-    function handleInputChange (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        const {name, value} = event.target;
-        setPatient({...patient, [name]:value})
-     
-    }
-
     if(loadingInitial) return <LoadingComponent content='Loading patient...' />
 
     return(
         <Segment clearing>
-            <Form onSubmit={handleSubmit} autoComplete='off' >
-                <Form.Input  placeholder ='name'       value={patient.name} name='name' onChange={handleInputChange} />
-                <Form.Input  placeholder ='surname'    value={patient.surname} name='surname' onChange={handleInputChange}/>
-                <Form.Input  type ='date' placeholder ='dateofbirth'value={patient.dateofbirth} name='dateofbirth' onChange={handleInputChange} />
-                <Form.Input  placeholder ='gender'     value={patient.gender} name='gender' onChange={handleInputChange} />
-                <Form.Input  placeholder ='street_address' value={patient.street_address} name='street_address' onChange={handleInputChange} />
-                <Form.Input  placeholder ='city'        value={patient.city} name='city' onChange={handleInputChange} />
-                <Form.Input  placeholder ='country'     value={patient.country} name='country' onChange={handleInputChange} />
-                <Form.Input  placeholder ='postal_code' value={patient.postal_code} name='postal_code' onChange={handleInputChange} />
-                <Form.Input  placeholder ='phone'       value={patient.phone} name='phone' onChange={handleInputChange}/>
-                <Form.Input  placeholder ='weight'      value={patient.weight} name='weight' onChange={handleInputChange}/>
-                <Form.TextArea  placeholder ='other_det' value={patient.other_det} name='other_det' onChange={handleInputChange} />
-                <Form.Input  type ='date' placeholder ='register_date' value={patient.register_date} name='register_date' onChange={handleInputChange}/>
-                <Button loading={loading} floated = 'right' positive type='submit' content='Submit' />
-                <Button as={Link} to='/patients' floated = 'right'  type='button' content='Cancel' />
-            </Form>
+            <Header content='Patient Details' sub color='teal' />
+            <Formik 
+            validationSchema ={validationSchema}
+            enableReinitialize 
+            initialValues={patient} 
+            onSubmit={values => handleFormSubmit(values)} >
+                {({ handleSubmit, isValid, isSubmitting, dirty }) => (
+                <Form className='ui form' onSubmit={handleSubmit} autoComplete='off' >
+                    <MyTextInput name='name' placeholder='Name' />
+                    <MyTextInput placeholder ='surname'   name='surname' />
+                    <MyDateInput
+                        placeholderText ='dateofbirth' 
+                        name='dateofbirth'
+                    />
+                    <MySelectInput options={genderOptions} placeholder ='gender'    name='gender'  />
+                    <MyTextInput placeholder ='street_address' name='street_address'  />
+                    <MySelectInput options={cityOptions} placeholder ='city'    name='city'  />
+                    <MySelectInput options={countryOptions} placeholder ='country'  name='country'  />
+                    <MyTextInput placeholder ='postal_code' name='postal_code'  />
+                    <MyTextInput placeholder ='phone'   name='phone' />
+                    <MyTextInput placeholder ='weight'   name='weight' />
+                    <MyTextArea rows={5}  placeholder ='other_det'  name='other_det'  />
+                    <MyDateInput
+                    placeholderText ='register_date' 
+                    name='register_date'
+                    showTimeSelect
+                    timeCaption='time'
+                    dateFormat='MMMM d, yyyy h:mm aa'
+                    />
+                    <Button 
+                        disabled={isSubmitting || !dirty || !isValid}
+                        loading={loading} floated = 'right'
+                        positive type='submit' content='Submit' />
+                    <Button as={Link} to='/patients' floated = 'right'  type='button' content='Cancel' />  
+                </Form>                 
+                )}
+            </Formik>
         </Segment>
     )
 })

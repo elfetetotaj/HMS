@@ -1,14 +1,13 @@
-import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import {Segment, Grid, Icon} from 'semantic-ui-react'
-import { Patient } from '../../../app/models/patient';
+import { Doctor } from '../../../app/models/doctor';
 
 interface Props {
-    patient: Patient
+    doctor: Doctor
 }
 
-export default observer(function PatientDetailedInfo({patient}: Props) {
+export default observer(function DoctorDetailedInfo({doctor}: Props) {
     return (
         <Segment.Group>
             <Segment attached='top'>
@@ -17,7 +16,7 @@ export default observer(function PatientDetailedInfo({patient}: Props) {
                         <Icon size='large' color='teal' name='info'/>
                     </Grid.Column>
                     <Grid.Column width={15}>
-                        <p>{patient.other_det}</p>
+                        <p>{doctor.designation}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>
@@ -28,7 +27,7 @@ export default observer(function PatientDetailedInfo({patient}: Props) {
                     </Grid.Column>
                     <Grid.Column width={15}>
             <span>
-              {format(patient.register_date!, 'dd MMM yyyy h:mm aa')}
+              {doctor.dateofbirth}
             </span>
                     </Grid.Column>
                 </Grid>
@@ -39,7 +38,7 @@ export default observer(function PatientDetailedInfo({patient}: Props) {
                         <Icon name='marker' size='large' color='teal'/>
                     </Grid.Column>
                     <Grid.Column width={11}>
-                        <span>{patient.street_address}, {patient.city}</span>
+                        <span>{doctor.street_address}, {doctor.city}</span>
                     </Grid.Column>
                 </Grid>
             </Segment>
