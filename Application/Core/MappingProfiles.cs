@@ -19,6 +19,7 @@ namespace Application.Core
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
             CreateMap<Receptionist, Receptionist>();
             CreateMap<Patient, Patient>();
+            CreateMap<Doctor, Doctor>();
             CreateMap<City, City>();
             CreateMap<BloodType, BloodType>(); 
             CreateMap<Nurse, Nurse>(); 

@@ -10,6 +10,7 @@ import TestStore from "./testStore";
 import PatientStore from "./patientStore";
 import CityStore from "./cityStore";
 import TherapyStore from "./therapyStore";
+import DoctorStore from "./doctorStore";
 
 
 interface Store{
@@ -24,6 +25,7 @@ interface Store{
     patientStore : PatientStore;
     cityStore : CityStore;
     therapyStore : TherapyStore;
+    doctorStore : DoctorStore;
 }
 
 export const store: Store = {
@@ -38,6 +40,7 @@ export const store: Store = {
     patientStore: new PatientStore(),
     cityStore: new CityStore(),
     therapyStore: new TherapyStore(),
+    doctorStore: new DoctorStore(),
 }
 
 export const StoreContext = createContext(store);
