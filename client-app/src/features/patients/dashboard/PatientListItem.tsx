@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button, Icon, Item, Segment } from "semantic-ui-react";
 import { Patient } from "../../../app/models/patient";
 import React from 'react';
+import {format} from 'date-fns';
 
 interface Props {
     patient : Patient
@@ -27,7 +28,7 @@ export default function PatientListItem({patient}: Props){
             </Segment>
             <Segment>
                 <span>
-                    <Icon name='clock' /> {patient.register_date}
+                    <Icon name='clock' /> {format(patient.register_date!, 'dd MMM yyyy h:mm aa')}
                     <Icon  marker='marker'/>{patient.gender}
                 </span>
             </Segment>

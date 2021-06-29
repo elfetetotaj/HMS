@@ -1,36 +1,43 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Patients;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace API.Controllers
 {
-    public class DoctorsController
+    public class DoctorsController : BaseApiController
     {
-       private readonly DataContext _context;
-
-        public DoctorsController(DataContext context)
-        {
-            _context = context;
-
-         }
-
         [HttpGet]
-        public async Task<ActionResult<List<Doctor>>> GetDoctors()
+        public async Task<IActionResult> GetDoctors()
         {
-            return await _context.Doctors.ToListAsync();
-
+            return HandleResult(await Mediator.Send(new List.Query()));
         }
-        [HttpGet("{id}")]
 
-        public async Task<ActionResult<Doctor>> GetDoctor(Guid id)
+        [HttpGet("{id}")] //Doctors/id
+        public async Task<IActionResult> GetDoctor(Guid id)
         {
-            return await _context.Doctors.FindAsync(id);
+            return HandleResult(await Mediator.Send(new Details.Query{Id = id}));
         }
-       
-        
+
+        [HttpPost]
+        public async Task<IActionResult> CreateDoctor(Doctor doctor)
+        {
+            return HandleResult(await Mediator.Send(new Create.Command {Doctor = doctor}));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditDoctor(Guid id, Doctor doctor)
+        {
+            doctor.id = id;
+            return HandleResult(await Mediator.Send(new Edit.Command {Doctor = doctor}));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteDoctor(Guid id)
+        {
+            return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
+        }
     }
 }
