@@ -45,8 +45,7 @@ export const store: Store = {
     cityStore: new CityStore(),
     therapyStore: new TherapyStore(),
     doctorStore: new DoctorStore(),
-    techEmployeeStore : new TechEmployeeStore()
-
+    techEmployeeStore : new TechEmployeeStore(),
     surgeryStore: new SurgeryStore(),
 }
 

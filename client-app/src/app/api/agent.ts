@@ -169,8 +169,7 @@ const agent = {
     Cities,
     Therapies,
     Doctors,
-    TechEmployees
-    Therapies,
+    TechEmployees,
     Surgeries
 }
 
