@@ -51,7 +51,7 @@ export default observer(function DoctorForm(){
      
     }
 
-    if(loadingInitial) return <LoadingComponent content='Loading patient...' />
+    if(loadingInitial) return <LoadingComponent content='Loading doctor...' /> 
 
     return(
         <Segment clearing>
@@ -65,7 +65,7 @@ export default observer(function DoctorForm(){
                 <Form.Input  placeholder ='country'     value={doctor.country} name='country' onChange={handleInputChange} />
                 <Form.Input  placeholder ='postal_code' value={doctor.postal_code} name='postal_code' onChange={handleInputChange} />
                 <Form.Input  placeholder ='phone'       value={doctor.phone} name='phone' onChange={handleInputChange}/>
-                <Form.Input  placeholder ='designation'      value={doctor.designation} name='weight' onChange={handleInputChange}/>
+                <Form.Input  placeholder ='designation'      value={doctor.designation} name='designation' onChange={handleInputChange}/>
                 <Button loading={loading} floated = 'right' positive type='submit' content='Submit' />
                 <Button as={Link} to='/doctors' floated = 'right'  type='button' content='Cancel' />
             </Form>

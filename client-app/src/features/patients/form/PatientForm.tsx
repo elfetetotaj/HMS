@@ -107,8 +107,10 @@ export default observer(function PatientForm(){
                     />
                     <Button 
                         disabled={isSubmitting || !dirty || !isValid}
-                        loading={loading} floated = 'right'
-                        positive type='submit' content='Submit' />
+                        loading={loading} 
+                        floated = 'right'
+                        positive type='submit' 
+                        content='Submit' />
                     <Button as={Link} to='/patients' floated = 'right'  type='button' content='Cancel' />  
                 </Form>                 
                 )}
