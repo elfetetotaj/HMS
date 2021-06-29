@@ -27,6 +27,7 @@ namespace Application.Core
             CreateMap<Test, Test>(); 
             CreateMap<Therapy, Therapy>(); 
             CreateMap<Surgery, Surgery>(); 
+            CreateMap<TechEmployee, TechEmployee>(); 
 
 
 
