@@ -21,6 +21,7 @@ namespace Application.Core
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.UserName));
             CreateMap<Receptionist, Receptionist>();
             CreateMap<Patient, Patient>();
+            CreateMap<Doctor, Doctor>();
             CreateMap<City, City>();
             CreateMap<BloodType, BloodType>(); 
             CreateMap<Nurse, Nurse>(); 
@@ -28,6 +29,7 @@ namespace Application.Core
             CreateMap<Test, Test>(); 
             CreateMap<Therapy, Therapy>(); 
             CreateMap<Surgery, Surgery>(); 
+            CreateMap<TechEmployee, TechEmployee>(); 
 
 
 

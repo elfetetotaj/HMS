@@ -409,6 +409,47 @@ namespace Persistence.Migrations
                     b.ToTable("Surgeries");
                 });
 
+            modelBuilder.Entity("Domain.TechEmployee", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("adresa")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("datelindja")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("department")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("emri")
+                        .HasColumnType("TEXT");
+
+                    b.Property<char>("gjinia")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("mbiemri")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("paga")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("qyteti")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("username")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TechEmployees");
+                });
+
             modelBuilder.Entity("Domain.Test", b =>
                 {
                     b.Property<Guid>("id")

@@ -2,7 +2,7 @@ export interface Patient {
     id: string;
     name: string;
     surname: string;
-    dateofbirth: string;
+    dateofbirth: Date | null ;
     gender: string;
     street_address: string;
     city: string;
@@ -11,5 +11,5 @@ export interface Patient {
     phone: string;
     weight: string;
     other_det: string;
-    register_date: string;
+    register_date: Date | null;
 }

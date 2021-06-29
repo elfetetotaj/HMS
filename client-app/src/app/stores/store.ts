@@ -11,6 +11,9 @@ import PatientStore from "./patientStore";
 import CityStore from "./cityStore";
 import TherapyStore from "./therapyStore";
 import ProfileStore from "./profileStore";
+import DoctorStore from "./doctorStore";
+import TechEmployeeStore from "./techEmployeeStore";
+import SurgeryStore from "./surgeryStore";
 
 
 interface Store{
@@ -26,6 +29,9 @@ interface Store{
     patientStore : PatientStore;
     cityStore : CityStore;
     therapyStore : TherapyStore;
+    doctorStore : DoctorStore;
+    techEmployeeStore : TechEmployeeStore;
+    surgeryStore : SurgeryStore;
 }
 
 export const store: Store = {
@@ -41,6 +47,9 @@ export const store: Store = {
     patientStore: new PatientStore(),
     cityStore: new CityStore(),
     therapyStore: new TherapyStore(),
+    doctorStore: new DoctorStore(),
+    techEmployeeStore : new TechEmployeeStore(),
+    surgeryStore: new SurgeryStore(),
 }
 
 export const StoreContext = createContext(store);

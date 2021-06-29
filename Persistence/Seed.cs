@@ -791,5 +791,30 @@ namespace Persistence
             await context.Surgeries.AddRangeAsync(surgeries);
             await context.SaveChangesAsync();
         }
+               
+               public static async Task SeedDataTech(DataContext context){
+            
+            if(context.TechEmployees.Any())return;
+            var t = new List<TechEmployee>{
+                new TechEmployee{
+                    emri = "Zoja",
+                    mbiemri = "Gjeraj",
+                    username = "Zogi",
+                    datelindja =DateTime.Parse( "2000-04-01"),
+                    adresa ="Te kullat",
+                    qyteti = "Prizren",
+                    email="zoja@gmail.com",
+                    gjinia =  'F',
+                    paga = 200,
+                    department="dep"
+                    
+                    
+                }
+
+            };
+            await context.TechEmployees.AddRangeAsync(t);
+            await context.SaveChangesAsync();
+        }
+               
     }
 }

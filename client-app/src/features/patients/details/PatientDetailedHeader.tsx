@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Link } from 'react-router-dom';
@@ -35,7 +36,7 @@ export default observer (function PatientDetailedHeader({patient: Patient}: Prop
                                     content={Patient.name}
                                     style={{color: 'white'}}
                                 />
-                                <p>{Patient.dateofbirth}</p>
+                                <p>{format(Patient.dateofbirth!, 'dd MMM yyyy')}</p>
                                 <p>
                                     Hosted by <strong>Erza</strong>
                                 </p>

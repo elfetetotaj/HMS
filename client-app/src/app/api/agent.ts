@@ -12,6 +12,9 @@ import { Patient } from '../models/patient';
 import { City } from '../models/city';
 import { Therapy } from '../models/therapy';
 import { Profile } from '../models/profile';
+import { Doctor } from '../models/doctor';
+import { TechEmployee } from '../models/techEmployee';
+import { Surgery } from '../models/surgery';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -116,6 +119,13 @@ const Tests = {
     update: (test: Test) => axios.put<void>(`/tests/${test.id}`, test),
     delete: (id: string) => axios.delete<void>(`/tests/${id}`)
 }
+const TechEmployees = {
+    list: () => requests.get<TechEmployee[]>('/techEmployees'),
+    details: (id: string) => requests.get<TechEmployee>(`/techEmployees/${id}`),
+    create: (techEmployee: TechEmployee) => axios.post<void>('/techEmployees', techEmployee),
+    update: (techEmployee: TechEmployee) => axios.put<void>(`/techEmployees/${techEmployee.id}`, techEmployee),
+    delete: (id: string) => axios.delete<void>(`/techEmployees/${id}`)
+}
 const Account = {
     current: () => requests.get<User>('/account'),
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
@@ -138,6 +148,20 @@ const Therapies = {
     update: (therapies: Therapy) => axios.put<void>(`/therapies/${therapies.id}`, therapies),
     delete: (id: string) => axios.delete<void>(`/therapies/${id}`)
 }
+const Doctors ={
+    list: () => requests.get<Doctor[]>('/doctors'),
+    details: (id:string) => requests.get<Doctor>(`/doctors/${id}`),
+    create: (doctor: Doctor) => axios.post<void>('/doctors', doctor),
+    update: (doctor: Doctor) => axios.put<void>(`/doctors/${doctor.id}`,doctor),
+    delete: (id: string) => axios.delete<void>(`/doctors/${id}`)
+}
+const Surgeries = {
+    list: () => requests.get<Surgery[]>('/surgeries'),
+    details: (id: string) => requests.get<Surgery>(`/surgeries/${id}`),
+    create: (surgeries: Surgery) => axios.post<void>('/surgeries', surgeries),
+    update: (surgeries: Surgery) => axios.put<void>(`/surgeries/${surgeries.Id}`, surgeries),
+    delete: (id: string) => axios.delete<void>(`/surgeries/${id}`)
+}
 const agent = {
     Departments,
     Receptionists,
@@ -148,7 +172,10 @@ const agent = {
     Account,
     Profiles,
     Cities,
-    Therapies
+    Therapies,
+    Doctors,
+    TechEmployees,
+    Surgeries
 }
 
 export default agent;
