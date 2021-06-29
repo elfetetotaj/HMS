@@ -10,8 +10,10 @@ import TestStore from "./testStore";
 import PatientStore from "./patientStore";
 import CityStore from "./cityStore";
 import TherapyStore from "./therapyStore";
+import ProfileStore from "./profileStore";
 import DoctorStore from "./doctorStore";
 import TechEmployeeStore from "./techEmployeeStore";
+import SurgeryStore from "./surgeryStore";
 
 
 interface Store{
@@ -23,11 +25,13 @@ interface Store{
     commonStore: CommonStore;
     userStore: UserStore;
     modalStore: ModalStore;
+    profileStore: ProfileStore;
     patientStore : PatientStore;
     cityStore : CityStore;
     therapyStore : TherapyStore;
     doctorStore : DoctorStore;
     techEmployeeStore : TechEmployeeStore;
+    surgeryStore : SurgeryStore;
 }
 
 export const store: Store = {
@@ -39,12 +43,13 @@ export const store: Store = {
     commonStore: new CommonStore(),
     userStore: new UserStore(),
     modalStore: new ModalStore(),
+    profileStore: new ProfileStore(),
     patientStore: new PatientStore(),
     cityStore: new CityStore(),
     therapyStore: new TherapyStore(),
     doctorStore: new DoctorStore(),
-    techEmployeeStore : new TechEmployeeStore()
-
+    techEmployeeStore : new TechEmployeeStore(),
+    surgeryStore: new SurgeryStore(),
 }
 
 export const StoreContext = createContext(store);

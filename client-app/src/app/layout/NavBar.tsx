@@ -22,6 +22,7 @@ export default observer(function NavBar() {
                 <Menu.Item as={NavLink} to='/therapies' name='Therapy' />
                 <Menu.Item as={NavLink} to='/doctors' name='Doctor' />
                 <Menu.Item as={NavLink} to='/techEmployees' name='TechEmployee' />
+                <Menu.Item as={NavLink} to='/surgeries' name='Surgery' />
 
                 <Menu.Item as={NavLink} to='/errors' name='Errors' />
                 <Menu.Item>
@@ -54,6 +55,9 @@ export default observer(function NavBar() {
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createTechEmployee' content='Create TechEmployee' />
                             </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createSurgery' content='Create Surgery' />
+                            </Dropdown.Item>
                             {/* <Button.Group vertical>
                                 <Button fluid as={NavLink} to='/createDepartment' content='Create Department' />
                                 <Button fluid as={NavLink} to='/createReceptionist' content='Create Receptionist' />
@@ -66,7 +70,7 @@ export default observer(function NavBar() {
                     <Image src={user?.image || '/assets/user.png'} avatar spaced='right' />
                     <Dropdown pointing='top left' text={user?.displayName}>
                         <Dropdown.Menu>
-                            <Dropdown.Item as={Link} to={`/profile/${user?.username}`} text='My Profile' icon='user' />
+                            <Dropdown.Item as={Link} to={`/profiles/${user?.username}`} text='My Profile' icon='user' />
                             <Dropdown.Item onClick={logout} text='Logout' icon='power' />
                         </Dropdown.Menu>
                     </Dropdown>

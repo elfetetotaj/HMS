@@ -26,8 +26,10 @@ export default observer(function DepartmentListItemAttendee({ departmentAttendee
                         <ProfileCard profile={departmentAttendee} />
                     </Popup.Content>
                 </Popup>
-                
             ))}
+            <List.Item>
+                {departmentAttendees.length} {departmentAttendees.length === 1 ? 'Doctor' : 'Doctors'} in this Department
+            </List.Item>
         </List>
     )
 })

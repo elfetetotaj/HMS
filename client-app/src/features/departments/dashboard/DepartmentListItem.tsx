@@ -5,7 +5,7 @@ import { Department } from '../../../app/models/department';
 import DepartmentListItemAttendee from './DepartmentListItemAttendee';
 
 interface Props {
-    department: Department
+    department: Department;
 }
 
 export default function DepartmentListItem({department}: Props) {
