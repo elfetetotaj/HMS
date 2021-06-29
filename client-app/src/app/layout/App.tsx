@@ -30,6 +30,9 @@ import LoginForm from '../../features/users/LoginForm';
 import { useStore } from '../stores/store';
 import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
+import TherapyForm from '../../features/therapies/form/TherapyForm';
+import TherapyDetails from '../../features/therapies/details/TherapyDetails';
+import TherapyDashboard from '../../features/therapies/dashboard/TherapyDashboard';
 
 function App() {
   const location = useLocation(); 
@@ -81,6 +84,10 @@ function App() {
               <Route exact path='/cities' component={CityDashboard} />
               <Route path='/cities/:id' component={CityDetails} />
               <Route key={location.key} path={['/createCity', '/managecity/:id']} component={CityForm} />
+
+              <Route exact path='/therapies' component={TherapyDashboard} />
+              <Route path='/therapies/:id' component={TherapyDetails} />
+              <Route key={location.key} path={['/createTherapy', '/managetherapy/:id']} component={TherapyForm} />
 
               <Route path='/errors' component={TestErrors}/>
               <Route path="/server-error" component={ServerError}/>
