@@ -33,6 +33,7 @@ import ModalContainer from '../common/modals/ModalContainer';
 import TherapyForm from '../../features/therapies/form/TherapyForm';
 import TherapyDetails from '../../features/therapies/details/TherapyDetails';
 import TherapyDashboard from '../../features/therapies/dashboard/TherapyDashboard';
+import ProfilePage from '../../features/profiles/ProfilePage';
 
 function App() {
   const location = useLocation(); 
@@ -89,9 +90,10 @@ function App() {
               <Route path='/therapies/:id' component={TherapyDetails} />
               <Route key={location.key} path={['/createTherapy', '/managetherapy/:id']} component={TherapyForm} />
 
+              <Route path='/profiles/:username' component={ProfilePage}/>
               <Route path='/errors' component={TestErrors}/>
-              <Route path="/server-error" component={ServerError}/>
-              <Route path="/login" component={LoginForm}/>
+              <Route path='/server-error' component={ServerError}/>
+              <Route path='/login' component={LoginForm}/>
               <Route component={NotFound} />
               </Switch>
             </Container>

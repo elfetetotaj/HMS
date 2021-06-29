@@ -15,7 +15,5 @@ namespace Domain
         public string email {get; set;}
         public char gjinia {get; set;}
         public int paga {get; set;}
-
- 
     }
 }

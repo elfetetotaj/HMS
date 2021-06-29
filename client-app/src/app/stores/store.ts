@@ -10,6 +10,7 @@ import TestStore from "./testStore";
 import PatientStore from "./patientStore";
 import CityStore from "./cityStore";
 import TherapyStore from "./therapyStore";
+import ProfileStore from "./profileStore";
 
 
 interface Store{
@@ -21,6 +22,7 @@ interface Store{
     commonStore: CommonStore;
     userStore: UserStore;
     modalStore: ModalStore;
+    profileStore: ProfileStore;
     patientStore : PatientStore;
     cityStore : CityStore;
     therapyStore : TherapyStore;
@@ -35,6 +37,7 @@ export const store: Store = {
     commonStore: new CommonStore(),
     userStore: new UserStore(),
     modalStore: new ModalStore(),
+    profileStore: new ProfileStore(),
     patientStore: new PatientStore(),
     cityStore: new CityStore(),
     therapyStore: new TherapyStore(),

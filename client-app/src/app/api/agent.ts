@@ -11,6 +11,7 @@ import { store } from '../stores/store';
 import { Patient } from '../models/patient';
 import { City } from '../models/city';
 import { Therapy } from '../models/therapy';
+import { Profile } from '../models/profile';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -120,6 +121,9 @@ const Account = {
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
     register: (user: UserFormValues) => requests.post<User>('/account/register', user)
 }
+const Profiles = {
+    get: (username: string) => requests.get<Profile>(`/profiles/${username}`),
+}
 const Cities = {
     list: () => requests.get<City[]>('/cities'),
     details: (id: string) => requests.get<City>(`/cities/${id}`),
@@ -142,6 +146,7 @@ const agent = {
     Patients,
     Tests,
     Account,
+    Profiles,
     Cities,
     Therapies
 }

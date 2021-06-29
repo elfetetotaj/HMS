@@ -8,10 +8,10 @@ import {v4 as uuid} from 'uuid';
 import { Formik,Form} from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
-import { degreeOptions } from '../../../app/common/options/degreeOptions';
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Farmacist } from '../../../app/models/farmacist';
+import { degreeOptions } from '../../../app/common/options/degreeOptions';
 
 
 export default observer(function FarmacistForm() {

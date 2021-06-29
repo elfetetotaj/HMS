@@ -12,6 +12,7 @@ namespace Persistence
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<DepartmentAttendee> DepartmentAttendees { get; set; }
+        public DbSet<Nurse> Nurses { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -33,7 +34,6 @@ namespace Persistence
         public DbSet<Room> Rooms { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
-        public DbSet<Nurse> Nurses { get; set; }
         public DbSet<BloodType> BloodTypes { get; set; }
         public DbSet<Farmacist> Farmacists { get; set; }
         public DbSet<Test> Tests { get; set; }
