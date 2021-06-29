@@ -33,6 +33,9 @@ import ModalContainer from '../common/modals/ModalContainer';
 import TherapyForm from '../../features/therapies/form/TherapyForm';
 import TherapyDetails from '../../features/therapies/details/TherapyDetails';
 import TherapyDashboard from '../../features/therapies/dashboard/TherapyDashboard';
+import DoctorDashboard from '../../features/doctors/dashboard/DoctorDashboard';
+import DoctorDetails from '../../features/doctors/details/DoctorDetails';
+import DoctorForm from '../../features/doctors/form/DoctorForm';
 
 function App() {
   const location = useLocation(); 
@@ -88,6 +91,10 @@ function App() {
               <Route exact path='/therapies' component={TherapyDashboard} />
               <Route path='/therapies/:id' component={TherapyDetails} />
               <Route key={location.key} path={['/createTherapy', '/managetherapy/:id']} component={TherapyForm} />
+
+              <Route exact path='/doctors' component={DoctorDashboard} />
+              <Route path='/doctors/:id' component={DoctorDetails} />
+              <Route key={location.key} path={['/createDoctor', '/manage/:id']} component={DoctorForm} />
 
               <Route path='/errors' component={TestErrors}/>
               <Route path="/server-error" component={ServerError}/>
