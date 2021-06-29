@@ -11,6 +11,7 @@ import { store } from '../stores/store';
 import { Patient } from '../models/patient';
 import { City } from '../models/city';
 import { Therapy } from '../models/therapy';
+import { Surgery } from '../models/surgery';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -134,6 +135,13 @@ const Therapies = {
     update: (therapies: Therapy) => axios.put<void>(`/therapies/${therapies.id}`, therapies),
     delete: (id: string) => axios.delete<void>(`/therapies/${id}`)
 }
+const Surgeries = {
+    list: () => requests.get<Surgery[]>('/surgeries'),
+    details: (id: string) => requests.get<Surgery>(`/surgeries/${id}`),
+    create: (surgeries: Surgery) => axios.post<void>('/surgeries', surgeries),
+    update: (surgeries: Surgery) => axios.put<void>(`/surgeries/${surgeries.Id}`, surgeries),
+    delete: (id: string) => axios.delete<void>(`/surgeries/${id}`)
+}
 const agent = {
     Departments,
     Receptionists,
@@ -143,7 +151,8 @@ const agent = {
     Tests,
     Account,
     Cities,
-    Therapies
+    Therapies,
+    Surgeries
 }
 
 export default agent;
