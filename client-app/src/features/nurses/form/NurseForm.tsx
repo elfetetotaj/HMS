@@ -77,7 +77,7 @@ export default observer(function NurseForm() {
              enableReinitialize
              initialValues={nurse} onSubmit={values => handleFormSubmit(values)}>
             {({handleSubmit, isValid,isSubmitting,dirty})=>(
-                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
+                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='on'>
                         
 
                    
