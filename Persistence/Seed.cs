@@ -407,7 +407,7 @@ namespace Persistence
                     emri = "Zoja",
                     mbiemri = "Gjeraj",
                     username = "Zogi",
-                    datelindja = "2000-04-01",
+                    datelindja =DateTime.Parse( "2000-04-01"),
                     adresa ="Te kullat",
                     qyteti = "Prizren",
                     email="zoja@gmail.com",

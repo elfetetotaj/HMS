@@ -32,7 +32,8 @@ export default observer(function NurseForm() {
         qyteti: '',
         email: '',
         gjinia: '',
-        paga:  0
+        paga:  0,
+        department:''
     });
 
     const validationSchema = Yup.object({
@@ -59,7 +60,7 @@ export default observer(function NurseForm() {
                ...nurse,
                id: uuid()
            };
-           createNurse(newNurse).then(() => history.push(`/nurse/${newNurse.id}`))
+           createNurse(newNurse).then(() => history.push(`/nurses/${newNurse.id}`))
        }else{
            updateNurse(nurse).then(() => history.push(`/nurses/${nurse.id}`))
        }
