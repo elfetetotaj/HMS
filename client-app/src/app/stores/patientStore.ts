@@ -9,10 +9,8 @@ export default class PatientStore{
     loading = false;
     loadingInitial = false;
 
-
     constructor () {
         makeAutoObservable(this)
-
     }
 
     get patientsByDate(){
@@ -43,6 +41,8 @@ export default class PatientStore{
                   this.setLoadingInitial(false);   
         }
     }
+
+    
     
     loadPatient = async (id:string) => {
         let patient = this.getPatient(id);
@@ -88,7 +88,7 @@ export default class PatientStore{
                 this.patientRegistry.set(patient.id, patient);
                 this.selectedPatient = patient;
                 this.editMode = false;
-                this.loading = false;
+                this.loading = false;//
             })
         }catch(error){
             console.log(error);

@@ -25,6 +25,6 @@ namespace Application.Doctors
             {
                 return Result<List<Doctor>>.Success(await _context.Doctors.ToListAsync(cancellationToken));
             }
-        }
+        }//
     }
 }

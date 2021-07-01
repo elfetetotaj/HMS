@@ -25,7 +25,7 @@ export default observer(function PatientForm(){
             loading, loadPatient, loadingInitial} = patientStore;
     const {id} = useParams<{id: string}>();
 
-    const [patient, setPatient] =useState<Patient>({
+    const [patient, setPatient] =useState<Patient>({ //
         id: '',
         name: '',
         surname: '',
@@ -66,9 +66,9 @@ export default observer(function PatientForm(){
                ...patient,
                id:uuid()
            };
-           createPatient(newPatient).then(() => history.push(`/patients/${newPatient.id}`))
+           createPatient(newPatient).then(() => history.push(`/patient/${newPatient.id}`))
        }else{
-           updatePatient(patient).then(() => history.push(`/patient/${patient.id}`))
+           updatePatient(patient).then(() => history.push(`/patients/${patient.id}`))
        }
     }
 

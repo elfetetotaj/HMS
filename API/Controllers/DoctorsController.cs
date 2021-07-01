@@ -2,10 +2,12 @@ using System;
 using System.Threading.Tasks;
 using Application.Doctors;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class DoctorsController : BaseApiController
     {
         [HttpGet]
@@ -38,5 +40,5 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
         }
-    }
+    }//
 }
