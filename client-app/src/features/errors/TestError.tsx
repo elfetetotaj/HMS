@@ -77,6 +77,22 @@ export default function TestErrors() {
         axios.post(baseUrl + 'doctors', {}).catch(err => setErrors(err));
     }
 
+    function handleBadGuidTherapy() {
+        axios.get(baseUrl + 'therapies/notaguid').catch(err => console.log(err));
+    }
+
+    function handleValidationErrorTherapy() {
+        axios.post(baseUrl + 'therapies', {}).catch(err => setErrors(err));
+    }
+
+    function handleBadGuidCountry() {
+        axios.get(baseUrl + 'countries/notaguid').catch(err => console.log(err));
+    }
+
+    function handleValidationErrorCountry() {
+        axios.post(baseUrl + 'countries', {}).catch(err => setErrors(err));
+    }
+
     return (
         <>
             <Header as='h1' content='Test Error component' />
@@ -90,6 +106,8 @@ export default function TestErrors() {
                     <Button onClick={handleValidationErrorPatient} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorCity} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorDoctor} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorTherapy} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorCountry} content='Validation Error' basic primary />
                     <Button onClick={handleServerError} content='Server Error' basic primary />
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
                     <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
@@ -98,6 +116,8 @@ export default function TestErrors() {
                     <Button onClick={handleBadGuidPatient} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidCity} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidDoctor} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidTherapy} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidCountry} content='Bad Guid' basic primary />
                 </Button.Group>
             </Segment>
             {errors &&

@@ -15,6 +15,7 @@ import { Profile } from '../models/profile';
 import { Doctor } from '../models/doctor';
 import { TechEmployee } from '../models/techEmployee';
 import { Surgery } from '../models/surgery';
+import { Country } from '../models/country';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -163,6 +164,13 @@ const Surgeries = {
     update: (surgeries: Surgery) => axios.put<void>(`/surgeries/${surgeries.Id}`, surgeries),
     delete: (id: string) => axios.delete<void>(`/surgeries/${id}`)
 }
+const Countries = {
+    list: () => requests.get<Country[]>('/countries'),
+    details: (id: string) => requests.get<Country>(`/countries/${id}`),
+    create: (countries: Country) => axios.post<void>('/countries', countries),
+    update: (countries: Country) => axios.put<void>(`/countries/${countries.Id}`, countries),
+    delete: (id: string) => axios.delete<void>(`/countries/${id}`)
+}
 const agent = {
     Departments,
     Receptionists,
@@ -173,6 +181,7 @@ const agent = {
     Account,
     Profiles,
     Cities,
+    Countries,
     Therapies,
     Doctors,
     TechEmployees,

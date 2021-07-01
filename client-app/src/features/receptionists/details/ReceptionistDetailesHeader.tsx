@@ -26,7 +26,7 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-                <Image src={`/assets/categoryImages/${receptionist.city}.jpg`} fluid style={receptionistImageStyle}/>
+                <Image src={`/assets/receptionistImages/receptionist.png`} fluid style={receptionistImageStyle}/>
                 <Segment style={receptionistImageTextStyle} basic>
                     <Item.Group>
                         <Item>

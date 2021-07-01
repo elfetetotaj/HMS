@@ -42,6 +42,9 @@ import SurgeryDashboard from '../../features/surgeries/dashboard/SurgeryDashboar
 import SurgeryDetails from '../../features/surgeries/details/SurgeryDetails';
 import SurgeryForm from '../../features/surgeries/form/SurgeryForm';
 import ProfilePage from '../../features/profiles/ProfilePage';
+import CountryDashboard from '../../features/countries/dashboard/CountryDashboard';
+import CountryDetails from '../../features/countries/details/CountryDetails';
+import CountryForm from '../../features/countries/form/CountryForm';
 
 function App() {
   const location = useLocation(); 
@@ -109,6 +112,10 @@ function App() {
               <Route exact path='/surgeries' component={SurgeryDashboard} />
               <Route path='/surgeries/:id' component={SurgeryDetails} />
               <Route key={location.key} path={['/createSurgery', '/managesurgery/:id']} component={SurgeryForm} />
+
+              <Route exact path='/countries' component={CountryDashboard} />
+              <Route path='/countries/:id' component={CountryDetails} />
+              <Route key={location.key} path={['/createCountry', '/managecountry/:id']} component={CountryForm} />
 
               <Route path='/profiles/:username' component={ProfilePage}/>
               <Route path='/errors' component={TestErrors}/>

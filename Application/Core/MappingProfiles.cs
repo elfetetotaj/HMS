@@ -34,6 +34,7 @@ namespace Application.Core
             CreateMap<Therapy, Therapy>(); 
             CreateMap<Surgery, Surgery>(); 
             CreateMap<TechEmployee, TechEmployee>(); 
+            CreateMap<Country, Country>(); 
 
 
 
