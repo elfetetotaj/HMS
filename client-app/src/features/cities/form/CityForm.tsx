@@ -61,13 +61,13 @@ export default observer(function CityForm() {
             {({handleSubmit, isValid,isSubmitting,dirty})=>(
                      <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
 
-                     <MyTextInput name='emri' placeholder='CityName'/>
+                     <MyTextInput name='cityName' placeholder='CityName'/>
 
                      <MyTextInput placeholder='ZipCode'  name='Zip Code' />
 
                      <Button 
                      disabled={isSubmitting || !dirty || !isValid}
-                     loading={loading} 
+                     loading={isSubmitting} 
                      floated='right' 
                      positive type='submit' 
                      content='Submit' />

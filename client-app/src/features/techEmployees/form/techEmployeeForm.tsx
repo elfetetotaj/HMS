@@ -11,7 +11,6 @@ import MyTextInput from '../../../app/common/form/MyTextInput';
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { TechEmployee } from '../../../app/models/techEmployee';
-import { genderOptions, ndrrimi } from '../../../app/common/options/genderOptions';
 
 
 export default observer(function TechEmployeeForm() {
@@ -91,8 +90,8 @@ export default observer(function TechEmployeeForm() {
                         timeCaption='time'
                         dateFormat='MMMM d, yyyy'                   
                         />
-                        <MySelectInput options={ndrrimi} placeholder='Nderrimi'  name='username' />
-                        <MySelectInput options={genderOptions} placeholder='Gjinia'  name='gjinia' />
+                        <MyTextInput placeholder='Nderrimi'  name='username' />
+                        <MyTextInput placeholder='Gjinia'  name='gjinia' />
                         <MyTextInput placeholder='Paga'  name='paga'/>
                         <MyTextInput placeholder='Department'  name='department'/>
                         <Header content='Location Details' sub color='teal' />

@@ -74,7 +74,7 @@ export default observer(function SurgeryForm() {
 
                         <MyDateInput
                             placeholderText='Date'
-                            name='datelindja'
+                            name='Date'
 
                             timeCaption='time'
                             dateFormat='MMMM d, yyyy'
