@@ -97,6 +97,7 @@ export default observer(function ReceptionistForm() {
                         <MySelectInput options={ndrrimi} placeholder='Nderrimi' name='username' />
 
                         <MySelectInput options={genderOptions} placeholder='Gjinia' name='gender' />
+                        <MySelectInput options={genderOptions} placeholder='Gjinia' name='gender' />
 
                         <Header content='Location Details' sub color='teal' />
                         <MyTextInput placeholder='Addres' name='addres' />

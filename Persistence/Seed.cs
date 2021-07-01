@@ -469,7 +469,7 @@ namespace Persistence
         {
 
             if (context.Doctors.Any()) return;
-            
+
             var doctors = new List<Doctor>
             {
                 new Doctor
@@ -526,15 +526,15 @@ namespace Persistence
                 }
 
         };
-             await context.Doctors.AddRangeAsync(doctors);
-             await context.SaveChangesAsync();
-        
+            await context.Doctors.AddRangeAsync(doctors);
+            await context.SaveChangesAsync();
+
         }
 
         public static async Task SeedDataPatient(DataContext context)
         {
-                      if (context.Patients.Any()) return;
-            
+            if (context.Patients.Any()) return;
+
             var patients = new List<Patient>
             {
                 new Patient
@@ -642,7 +642,7 @@ namespace Persistence
                     other_det = "High Blook Pressure",
                     register_date = DateTime.Now.AddMonths(-3),
                 },
-               
+
             };
 
             await context.Patients.AddRangeAsync(patients);
@@ -682,13 +682,13 @@ namespace Persistence
         }
         public static async Task SeedDataRoom(DataContext context)
         {
-              if (context.Rooms.Any()) return;
-            
+            if (context.Rooms.Any()) return;
+
             var rooms = new List<Room>
             {
                 new Room
                 {
-                    
+
                     type = "Single",
                     total_bed = 1,
                     total_bed_occupied = 1,
@@ -697,7 +697,7 @@ namespace Persistence
                 },
                 new Room
                 {
-                    
+
                     type = "Duplex",
                     total_bed = 2,
                     total_bed_occupied = 1,
@@ -706,7 +706,7 @@ namespace Persistence
                 },
                 new Room
                 {
-                    
+
                     type = "Triplex",
                     total_bed = 3,
                     total_bed_occupied = 1,
@@ -715,7 +715,7 @@ namespace Persistence
                 },
                 new Room
                 {
-                   
+
                     type = "Common",
                     total_bed = 5,
                     total_bed_occupied = 5,
@@ -723,16 +723,17 @@ namespace Persistence
                     floor_no = 4,
                 },
         };
-          await context.Rooms.AddRangeAsync(rooms);
-          await context.SaveChangesAsync();
+            await context.Rooms.AddRangeAsync(rooms);
+            await context.SaveChangesAsync();
         }
-        
-        public static async Task SeedDataTest(DataContext context){
-            
-            if(context.Tests.Any())return;
+
+        public static async Task SeedDataTest(DataContext context)
+        {
+
+            if (context.Tests.Any()) return;
             var tests = new List<Test>{
                 new Test{
-                    emri="Sars-Cov2",                    
+                    emri="Sars-Cov2",
                     cmimi=35,
                     pershkrimi="Merret mostra e gjakut"
                 }
@@ -741,9 +742,10 @@ namespace Persistence
             await context.SaveChangesAsync();
         }
 
-        public static async Task SeedDataFarmacist(DataContext context){
-            
-            if(context.Farmacists.Any())return;
+        public static async Task SeedDataFarmacist(DataContext context)
+        {
+
+            if (context.Farmacists.Any()) return;
             var farmacists = new List<Farmacist>{
                 new Farmacist{
                     emri="Ibadete",
@@ -758,9 +760,10 @@ namespace Persistence
             await context.SaveChangesAsync();
         }
 
-        public static async Task SeedDataTherapy(DataContext context){
-            
-            if(context.Therapies.Any())return;
+        public static async Task SeedDataTherapy(DataContext context)
+        {
+
+            if (context.Therapies.Any()) return;
             var therapies = new List<Therapy>{
                 new Therapy{
                     Pershkrimi="Paracetamol"
@@ -774,9 +777,10 @@ namespace Persistence
             await context.SaveChangesAsync();
         }
 
-        public static async Task SeedDataSurgery(DataContext context){
-            
-            if(context.Surgeries.Any())return;
+        public static async Task SeedDataSurgery(DataContext context)
+        {
+
+            if (context.Surgeries.Any()) return;
             var surgeries = new List<Surgery>{
                 new Surgery{
                     SurgeryName="Operacion zemre",
@@ -784,17 +788,18 @@ namespace Persistence
                     Description="Nderhyrje te lehte ne zemer per qarkullim me te lehte te gjakut.",
                     Pagesa= 100.00,
                     Terapia= "Paracet 2x1 dite pas buke"
-                    
+
                 }
 
             };
             await context.Surgeries.AddRangeAsync(surgeries);
             await context.SaveChangesAsync();
         }
-               
-               public static async Task SeedDataTech(DataContext context){
-            
-            if(context.TechEmployees.Any())return;
+
+        public static async Task SeedDataTech(DataContext context)
+        {
+
+            if (context.TechEmployees.Any()) return;
             var t = new List<TechEmployee>{
                 new TechEmployee{
                     emri = "Zoja",
@@ -807,14 +812,29 @@ namespace Persistence
                     gjinia =  'F',
                     paga = 200,
                     department="dep"
-                    
-                    
+
+
                 }
 
             };
             await context.TechEmployees.AddRangeAsync(t);
             await context.SaveChangesAsync();
         }
-               
+
+         public static async Task SeedDataCountry(DataContext context)
+        {
+
+            if (context.Countries.Any()) return;
+            var countries = new List<Country>{
+                new Country{
+                    CountryName="Kosova",
+                    Population=1256234,
+                }
+
+            };
+            await context.Countries.AddRangeAsync(countries);
+            await context.SaveChangesAsync();
+        }
+
     }
 }

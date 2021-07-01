@@ -22,7 +22,6 @@ export default function NotFound() {
                 <Button as={Link} to='/farmacists' primary>
                     Return to Farmacists page
                 </Button>
-                <Button>
                 <Button as={Link} to='/patients' primary >
                     Return to patients page 
                 </Button>
@@ -32,7 +31,10 @@ export default function NotFound() {
                 <Button as={Link} to='/doctors' primary >
                     Return to doctors page 
                 </Button>
+                <Button as={Link} to='/therapies' primary >
+                    Return to therapies page 
                 </Button>
+                
             </Segment.Inline>
         </Segment>
     )
