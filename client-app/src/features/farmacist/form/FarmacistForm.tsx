@@ -11,7 +11,6 @@ import MyTextInput from '../../../app/common/form/MyTextInput';
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Farmacist } from '../../../app/models/farmacist';
-import { degreeOptions } from '../../../app/common/options/degreeOptions';
 
 
 export default observer(function FarmacistForm() {
@@ -87,7 +86,7 @@ export default observer(function FarmacistForm() {
                      dateFormat='MMMM d, yyyy'
                      
                      />
-                     <MySelectInput options={degreeOptions} placeholder='Degree'  name='degree' />
+                     <MyTextInput placeholder='Degree'  name='degree' />
                      <MyTextInput placeholder='Tel'  name='tel'/>
                      <Button 
                      disabled={isSubmitting || !dirty || !isValid}
