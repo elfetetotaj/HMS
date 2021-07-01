@@ -12,6 +12,8 @@ namespace Persistence
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<DepartmentAttendee> DepartmentAttendees { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -27,7 +29,13 @@ namespace Persistence
                 .HasOne(u => u.Department)
                 .WithMany(a => a.DepartmentAttendees)
                 .HasForeignKey(aa => aa.DepartmentId);
+
+            builder.Entity<Comment>()
+                .HasOne(a => a.Department)
+                .WithMany(c => c.Comments)
+                .OnDelete(DeleteBehavior.Cascade);
         }
+        
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Room> Rooms { get; set; }

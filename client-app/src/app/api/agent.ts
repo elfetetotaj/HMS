@@ -133,6 +133,7 @@ const Account = {
 }
 const Profiles = {
     get: (username: string) => requests.get<Profile>(`/profiles/${username}`),
+    updateProfile: (profile: Partial<Profile>) => requests.put(`/profiles`, profile)
 }
 const Cities = {
     list: () => requests.get<City[]>('/cities'),

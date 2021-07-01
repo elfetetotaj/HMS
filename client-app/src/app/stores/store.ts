@@ -14,6 +14,7 @@ import ProfileStore from "./profileStore";
 import DoctorStore from "./doctorStore";
 import TechEmployeeStore from "./techEmployeeStore";
 import SurgeryStore from "./surgeryStore";
+import CommentStore from "./commentStore";
 
 
 interface Store{
@@ -26,6 +27,7 @@ interface Store{
     userStore: UserStore;
     modalStore: ModalStore;
     profileStore: ProfileStore;
+    commentStore: CommentStore;
     patientStore : PatientStore;
     cityStore : CityStore;
     therapyStore : TherapyStore;
@@ -44,6 +46,7 @@ export const store: Store = {
     userStore: new UserStore(),
     modalStore: new ModalStore(),
     profileStore: new ProfileStore(),
+    commentStore: new CommentStore(),
     patientStore: new PatientStore(),
     cityStore: new CityStore(),
     therapyStore: new TherapyStore(),
