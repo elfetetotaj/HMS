@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210630181548_NurseU")]
+    partial class NurseU
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,59 +117,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("Domain.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Body")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("DepartmentId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("Domain.Country", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CountryName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Goverment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nation")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Population")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("Domain.Department", b =>
@@ -668,22 +617,6 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Domain.Comment", b =>
-                {
-                    b.HasOne("Domain.AppUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("Domain.Department", "Department")
-                        .WithMany("Comments")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Department");
-                });
-
             modelBuilder.Entity("Domain.DepartmentAttendee", b =>
                 {
                     b.HasOne("Domain.AppUser", "AppUser")
@@ -761,8 +694,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Department", b =>
                 {
-                    b.Navigation("Comments");
-
                     b.Navigation("DepartmentAttendees");
                 });
 #pragma warning restore 612, 618

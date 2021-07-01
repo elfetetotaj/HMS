@@ -8,8 +8,6 @@ import {v4 as uuid} from 'uuid';
 import { Formik,Form} from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
-import { genderOptions } from '../../../app/common/options/genderOptions';
-import { ndrrimi } from '../../../app/common/options/genderOptions';
 
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import MyDateInput from '../../../app/common/form/MyDateInput';
@@ -32,7 +30,8 @@ export default observer(function NurseForm() {
         qyteti: '',
         email: '',
         gjinia: '',
-        paga:  0
+        paga:  0,
+        department:''
     });
 
     const validationSchema = Yup.object({
@@ -59,7 +58,7 @@ export default observer(function NurseForm() {
                ...nurse,
                id: uuid()
            };
-           createNurse(newNurse).then(() => history.push(`/nurse/${newNurse.id}`))
+           createNurse(newNurse).then(() => history.push(`/nurses/${newNurse.id}`))
        }else{
            updateNurse(nurse).then(() => history.push(`/nurses/${nurse.id}`))
        }
@@ -76,7 +75,7 @@ export default observer(function NurseForm() {
              enableReinitialize
              initialValues={nurse} onSubmit={values => handleFormSubmit(values)}>
             {({handleSubmit, isValid,isSubmitting,dirty})=>(
-                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
+                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='on'>
                         
 
                    
@@ -94,9 +93,9 @@ export default observer(function NurseForm() {
                      dateFormat='MMMM d, yyyy'
                      
                      />
-                     <MySelectInput options={ndrrimi} placeholder='Nderrimi'  name='username' />
+                     <MyTextInput placeholder='Nderrimi'  name='username' />
 
-                     <MySelectInput options={genderOptions} placeholder='Gjinia'  name='gjinia' />
+                     <MyTextInput placeholder='Gjinia'  name='gjinia' />
                      <MyTextInput placeholder='Paga'  name='paga'/>
 
             <Header content='Location Details' sub color='teal' />

@@ -11,7 +11,6 @@ import MyTextInput from '../../../app/common/form/MyTextInput';
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Farmacist } from '../../../app/models/farmacist';
-import { degreeOptions } from '../../../app/common/options/degreeOptions';
 
 
 export default observer(function FarmacistForm() {
@@ -20,7 +19,7 @@ export default observer(function FarmacistForm() {
     const{createFarmacist, updateFarmacist, loading, loadFarmacist, loadingInitial} = farmacistStore;
     const {id} = useParams<{id: string}>();
 
-    const [Farmacist, setFarmacist] = useState<Farmacist>({
+    const [farmacist, setFarmacist] = useState<Farmacist>({
         id: '',
         emri: '',
         mbiemri: '',
@@ -43,19 +42,19 @@ export default observer(function FarmacistForm() {
     })
 
     useEffect(() => {
-        if(id) loadFarmacist(id).then(Farmacist => setFarmacist(Farmacist!))
+        if(id) loadFarmacist(id).then(farmacist => setFarmacist(farmacist!))
     },[id, loadFarmacist]);
 
 
-    function handleFormSubmit(Farmacist:Farmacist) {
-       if(Farmacist.id.length === 0){
+    function handleFormSubmit(farmacist:Farmacist) {
+       if(farmacist.id.length === 0){
            let newFarmacist = {
-               ...Farmacist,
+               ...farmacist,
                id: uuid()
            };
-           createFarmacist(newFarmacist).then(() => history.push(`/Farmacist/${newFarmacist.id}`))
+           createFarmacist(newFarmacist).then(() => history.push(`/farmacists/${newFarmacist.id}`))
        }else{
-           updateFarmacist(Farmacist).then(() => history.push(`/Farmacists/${Farmacist.id}`))
+           updateFarmacist(farmacist).then(() => history.push(`/farmacists/${farmacist.id}`))
        }
     }
 
@@ -68,9 +67,9 @@ export default observer(function FarmacistForm() {
             <Formik 
             validationSchema={validationSchema}
              enableReinitialize
-             initialValues={Farmacist} onSubmit={values => handleFormSubmit(values)}>
+             initialValues={farmacist} onSubmit={values => handleFormSubmit(values)}>
             {({handleSubmit, isValid,isSubmitting,dirty})=>(
-                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
+                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='on'>
                         
 
                    
@@ -87,7 +86,7 @@ export default observer(function FarmacistForm() {
                      dateFormat='MMMM d, yyyy'
                      
                      />
-                     <MySelectInput options={degreeOptions} placeholder='Degree'  name='degree' />
+                     <MyTextInput placeholder='Degree'  name='degree' />
                      <MyTextInput placeholder='Tel'  name='tel'/>
                      <Button 
                      disabled={isSubmitting || !dirty || !isValid}

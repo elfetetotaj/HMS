@@ -9,5 +9,6 @@ namespace Domain
         public string DepartmentName { get; set; }
         public string DepartmentDescription { get; set; }
         public ICollection<DepartmentAttendee> DepartmentAttendees { get; set; } = new List<DepartmentAttendee>();
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

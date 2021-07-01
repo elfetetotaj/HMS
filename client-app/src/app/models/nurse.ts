@@ -9,5 +9,6 @@ export interface Nurse {
     email: string
     gjinia: string
     paga: number
+    department: string
   }
   

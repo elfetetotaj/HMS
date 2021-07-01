@@ -46,10 +46,10 @@ export default observer (function PatientDetailedHeader({patient: Patient}: Prop
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join Activity</Button>
+                <Button color='teal'>Join Case</Button>
                 <Button>Cancel attendance</Button>
                 <Button as={Link} to={`/managepatient/${Patient.id}`} color='orange' floated='right'>
-                    Manage Event
+                    Manage Patient
                 </Button>
             </Segment>
         </Segment.Group>

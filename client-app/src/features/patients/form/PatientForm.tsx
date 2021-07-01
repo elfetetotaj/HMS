@@ -11,9 +11,6 @@ import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
 import MyTextArea from '../../../app/common/form/MyTextArea';
 import MySelectInput from '../../../app/common/form/MySelectInput';
-import { cityOptions } from '../../../app/common/options/cityOptions';
-import { genderOptions } from '../../../app/common/options/genderOptions';
-import { countryOptions } from '../../../app/common/options/countryOptions';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Patient } from '../../../app/models/patient';
 
@@ -25,7 +22,7 @@ export default observer(function PatientForm(){
             loading, loadPatient, loadingInitial} = patientStore;
     const {id} = useParams<{id: string}>();
 
-    const [patient, setPatient] =useState<Patient>({
+    const [patient, setPatient] =useState<Patient>({ //
         id: '',
         name: '',
         surname: '',
@@ -66,9 +63,9 @@ export default observer(function PatientForm(){
                ...patient,
                id:uuid()
            };
-           createPatient(newPatient).then(() => history.push(`/patients/${newPatient.id}`))
+           createPatient(newPatient).then(() => history.push(`/patient/${newPatient.id}`))
        }else{
-           updatePatient(patient).then(() => history.push(`/patient/${patient.id}`))
+           updatePatient(patient).then(() => history.push(`/patients/${patient.id}`))
        }
     }
 
@@ -90,10 +87,10 @@ export default observer(function PatientForm(){
                         placeholderText ='dateofbirth' 
                         name='dateofbirth'
                     />
-                    <MySelectInput options={genderOptions} placeholder ='gender'    name='gender'  />
+                    <MyTextInput placeholder ='gender'    name='gender'  />
                     <MyTextInput placeholder ='street_address' name='street_address'  />
-                    <MySelectInput options={cityOptions} placeholder ='city'    name='city'  />
-                    <MySelectInput options={countryOptions} placeholder ='country'  name='country'  />
+                    <MyTextInput placeholder ='city'    name='city'  />
+                    <MyTextInput placeholder ='country'  name='country'  />
                     <MyTextInput placeholder ='postal_code' name='postal_code'  />
                     <MyTextInput placeholder ='phone'   name='phone' />
                     <MyTextInput placeholder ='weight'   name='weight' />
@@ -107,7 +104,7 @@ export default observer(function PatientForm(){
                     />
                     <Button 
                         disabled={isSubmitting || !dirty || !isValid}
-                        loading={loading} 
+                        loading={isSubmitting} 
                         floated = 'right'
                         positive type='submit' 
                         content='Submit' />

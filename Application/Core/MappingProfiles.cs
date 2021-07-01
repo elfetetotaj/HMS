@@ -1,4 +1,5 @@
 using System.Linq;
+using Application.Comments;
 using Application.Departments;
 using AutoMapper;
 using Domain;
@@ -19,6 +20,9 @@ namespace Application.Core
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
             CreateMap<AppUser, Profiles.Profile>()
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.UserName));
+            CreateMap<Comment, CommentDto>()
+                .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.Author.DisplayName))
+                .ForMember(d => d.Username, o => o.MapFrom(s => s.Author.UserName));
             CreateMap<Receptionist, Receptionist>();
             CreateMap<Patient, Patient>();
             CreateMap<Doctor, Doctor>();

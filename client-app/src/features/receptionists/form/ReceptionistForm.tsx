@@ -11,8 +11,6 @@ import MyTextInput from '../../../app/common/form/MyTextInput';
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Receptionist } from '../../../app/models/receptionist';
-import { genderOptions } from '../../../app/common/options/genderOptions';
-import { ndrrimi } from '../../../app/common/options/genderOptions';
 
 
 export default observer(function ReceptionistForm() {
@@ -84,32 +82,27 @@ export default observer(function ReceptionistForm() {
                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
                         <MyTextInput name='name' placeholder='Name' />
                         <MyTextInput name='lastname' placeholder='Lastname' />
+                        <MyTextInput name='username' placeholder='Username' />
                         <MyTextInput name='password' placeholder='Password' />
                         <MyTextInput name='email' placeholder='Email' />
-
                         <MyDateInput
-                            placeholderText='Date od birth'
-                            name='date'
+                            placeholderText='Date of birth'
+                            name='dob'
                             showTimeSelect
                             timeCaption='time'
                             dateFormat='MMMM d, yyyy h:mm aa'
                         />
-                        <MySelectInput options={ndrrimi} placeholder='Nderrimi' name='username' />
-
-                        <MySelectInput options={genderOptions} placeholder='Gjinia' name='gender' />
-                        <MySelectInput options={genderOptions} placeholder='Gjinia' name='gender' />
-
+                        <MyTextInput placeholder='Gender' name='gender' />
                         <Header content='Location Details' sub color='teal' />
-                        <MyTextInput placeholder='Addres' name='addres' />
+                        <MyTextInput placeholder='Addres' name='street_address' />
                         <MyTextInput placeholder='City' name='city' />
                         <MyTextInput placeholder='Country' name='country' />
                         <MyTextInput placeholder='PostalCode' name='postal_code' />
                         <MyTextInput placeholder='Phone' name='phone' />
                         <MyTextInput placeholder='Department' name='department' />
-
                         <Button
                             disabled={isSubmitting || !dirty || !isValid}
-                            loading={loading} floated='right'
+                            loading={isSubmitting} floated='right'
                             positive type='submit' content='Submit' />
                         <Button as={Link} to='/receptionists' floated='right' type='button' content='Cancel' />
                     </Form>

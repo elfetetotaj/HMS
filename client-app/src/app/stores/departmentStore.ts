@@ -148,6 +148,10 @@ export default class DepartmentStore {
         }
     }
 
+    clearSelectedDepartment = () => {
+        this.selectedDepartment = undefined;
+    }
+
     // Use this method at Termin crud Video 15.7
     // cancelDepartmentToggle = async () => {
     //     this.loading = true;
