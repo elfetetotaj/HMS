@@ -11,12 +11,13 @@ import DepartmentDetailedSidebar from './DepartmentDetailedSidebar';
 
 export default observer(function DepartmentDetails() {
     const {departmentStore} = useStore();
-    const {selectedDepartment: department, loadDepartment, loadingInitial} = departmentStore;
+    const {selectedDepartment: department, loadDepartment, loadingInitial, clearSelectedDepartment} = departmentStore;
     const {id} = useParams<{id: string}>();
 
     useEffect(() => {
         if (id) loadDepartment(id);
-    }, [id, loadDepartment]);
+        return () => clearSelectedDepartment();
+    }, [id, loadDepartment, clearSelectedDepartment]);
 
     if (loadingInitial || !department) return <LoadingComponent />;
 
@@ -25,7 +26,7 @@ export default observer(function DepartmentDetails() {
             <Grid.Column width={10}>
                 <DepartmentDetailedHeader department={department} />
                 <DepartmentDetailedInfo department={department} />
-                <DepartmentDetailedChat />
+                <DepartmentDetailedChat departmentId={department.id}/>
             </Grid.Column>
             <Grid.Column width={6}>
                 <DepartmentDetailedSidebar department={department} />
