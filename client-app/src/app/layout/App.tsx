@@ -38,6 +38,7 @@ import DoctorDetails from '../../features/doctors/details/DoctorDetails';
 import DoctorForm from '../../features/doctors/form/DoctorForm';
 import TechEmployeeDashboard from '../../features/techEmployees/dashboard/TechEmployeeDashboard';
 import TechEmployeeForm from '../../features/techEmployees/form/techEmployeeForm';
+
 import SurgeryDashboard from '../../features/surgeries/dashboard/SurgeryDashboard';
 import SurgeryDetails from '../../features/surgeries/details/SurgeryDetails';
 import SurgeryForm from '../../features/surgeries/form/SurgeryForm';
@@ -45,6 +46,9 @@ import ProfilePage from '../../features/profiles/ProfilePage';
 import CountryDashboard from '../../features/countries/dashboard/CountryDashboard';
 import CountryDetails from '../../features/countries/details/CountryDetails';
 import CountryForm from '../../features/countries/form/CountryForm';
+
+import TestDashboard from '../../features/tests/dashboard/TestDashboard';
+import TestForm from '../../features/tests/form/TestForm';
 
 function App() {
   const location = useLocation(); 
@@ -90,7 +94,7 @@ function App() {
               <Route key={location.key} path={['/createFarmacist', '/managefarmacist/:id']} component={FarmacistForm} />
 
               <Route exact path='/techEmployees' component={TechEmployeeDashboard} />
-              <Route path='/farmacists/:id' component={FarmacistDetails} />
+              {/* <Route path='/farmacists/:id' component={FarmacistDetails} /> */}
               <Route key={location.key} path={['/createTechEmployee', '/managetechEmployee/:id']} component={TechEmployeeForm} />
 
               <Route exact path='/patients' component={PatientDashboard} />
@@ -116,6 +120,10 @@ function App() {
               <Route exact path='/countries' component={CountryDashboard} />
               <Route path='/countries/:id' component={CountryDetails} />
               <Route key={location.key} path={['/createCountry', '/managecountry/:id']} component={CountryForm} />
+              
+              <Route exact path='/tests' component={TestDashboard} />
+              {/* <Route path='/farmacists/:id' component={FarmacistDetails} /> */}
+              <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} />
 
               <Route path='/profiles/:username' component={ProfilePage}/>
               <Route path='/errors' component={TestErrors}/>

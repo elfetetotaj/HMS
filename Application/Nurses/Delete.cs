@@ -14,7 +14,7 @@ namespace Application.Nurses
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command , Result<Unit>>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -24,17 +24,17 @@ namespace Application.Nurses
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var nurse = await _context.Receptionists.FindAsync(request.Id);
-
-               // if(nurse==null) return null;
+                var nurse = await _context.Nurses.FindAsync(request.Id);
+                
+               // if(patient == null) return null;
 
                 _context.Remove(nurse);
 
-               var result = await _context.SaveChangesAsync() > 0 ;
+                var result =await _context.SaveChangesAsync() > 0;
 
-               if(!result) return Result<Unit>.Failure("Faild to delete the nurse");
+                if(!result) return Result<Unit>.Failure("Failed to delete the Nurse");
 
-                return Result<Unit>.Success( Unit.Value);
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }
