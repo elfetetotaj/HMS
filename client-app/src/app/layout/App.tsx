@@ -123,7 +123,7 @@ function App() {
               
               <Route exact path='/tests' component={TestDashboard} />
               {/* <Route path='/farmacists/:id' component={FarmacistDetails} /> */}
-              <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} />
+              {/* <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} /> */}
 
               <Route path='/profiles/:username' component={ProfilePage}/>
               <Route path='/errors' component={TestErrors}/>
