@@ -2,7 +2,7 @@ export interface Doctor {
     id: string;
     name: string;
     surname: string;
-    dateofbirth: string;
+    dateofbirth: Date | null;
     gender: string;
     street_address: string;
     city: string;

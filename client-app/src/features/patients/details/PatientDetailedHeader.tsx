@@ -38,7 +38,7 @@ export default observer (function PatientDetailedHeader({patient: Patient}: Prop
                                 />
                                 <p>{format(Patient.dateofbirth!, 'dd MMM yyyy')}</p>
                                 <p>
-                                    Hosted by <strong>Erza</strong>
+                                    Hosted by <strong>HMS</strong>
                                 </p>
                             </Item.Content>
                         </Item>
@@ -47,7 +47,9 @@ export default observer (function PatientDetailedHeader({patient: Patient}: Prop
             </Segment>
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Case</Button>
-                <Button>Cancel attendance</Button>
+                <Button as={Link} to='/patients' color='orange' floated='right'>
+                    Cancel
+                </Button>
                 <Button as={Link} to={`/managepatient/${Patient.id}`} color='orange' floated='right'>
                     Manage Patient
                 </Button>

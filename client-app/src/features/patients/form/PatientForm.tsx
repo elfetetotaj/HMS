@@ -9,20 +9,19 @@ import {v4 as uuid} from 'uuid';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
-import MyTextArea from '../../../app/common/form/MyTextArea';
-import MySelectInput from '../../../app/common/form/MySelectInput';
+import MyTextArea from '../../../app/common/form/MyTextArea'; 
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Patient } from '../../../app/models/patient';
 
 
 export default observer(function PatientForm(){
     const history = useHistory();
-    const {patientStore} = useStore();
-    const {createPatient, updatePatient, 
-            loading, loadPatient, loadingInitial} = patientStore;
-    const {id} = useParams<{id: string}>();
+    const { patientStore } = useStore();
+    const { createPatient, updatePatient, 
+            loading, loadPatient, loadingInitial } = patientStore;
+    const {id} = useParams<{ id: string }>();
 
-    const [patient, setPatient] =useState<Patient>({ //
+    const [patient, setPatient] = useState<Patient>({ //
         id: '',
         name: '',
         surname: '',
@@ -35,7 +34,7 @@ export default observer(function PatientForm(){
         phone: '',
         weight: '',
         other_det: '',
-        register_date: null,
+        register_date: null
     });
 
     const validationSchema = Yup.object({
@@ -63,7 +62,7 @@ export default observer(function PatientForm(){
                ...patient,
                id:uuid()
            };
-           createPatient(newPatient).then(() => history.push(`/patient/${newPatient.id}`))
+           createPatient(newPatient).then(() => history.push(`/patients/${newPatient.id}`))
        }else{
            updatePatient(patient).then(() => history.push(`/patients/${patient.id}`))
        }
