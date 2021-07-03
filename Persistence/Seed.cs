@@ -357,6 +357,25 @@ namespace Persistence
                 await context.SaveChangesAsync();
             }
         }
+
+        public static async Task SeedDataTermin(DataContext context)
+        {
+            if (context.Termins.Any()) return;
+
+            var types = new List<Termin>
+            {
+                new Termin
+                {
+                    TerminTime = DateTime.Now.AddMonths(1),
+                    TerminDescription = "Kontrollë tek dentisti",
+                    TerminDepartment = "Stomatologjia",
+                    TerminDoctor = "Bob"
+                },
+            };
+
+            await context.Termins.AddRangeAsync(types);
+            await context.SaveChangesAsync();
+        }
         public static async Task SeedDataBlood(DataContext context)
         {
             if (context.BloodTypes.Any()) return;

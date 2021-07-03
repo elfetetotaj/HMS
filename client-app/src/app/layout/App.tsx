@@ -45,6 +45,9 @@ import ProfilePage from '../../features/profiles/ProfilePage';
 import CountryDashboard from '../../features/countries/dashboard/CountryDashboard';
 import CountryDetails from '../../features/countries/details/CountryDetails';
 import CountryForm from '../../features/countries/form/CountryForm';
+import TerminDashboard from '../../features/termins/dashboard/TerminDashboard';
+import TerminDetails from '../../features/termins/details/TerminDetails';
+import TerminForm from '../../features/termins/form/TerminForm';
 
 function App() {
   const location = useLocation(); 
@@ -76,6 +79,10 @@ function App() {
               <Route exact path='/departments' component={DepartmentDashboard} />
               <Route path='/departments/:id' component={DepartmentDetails} />
               <Route path={['/createDepartment', '/managedepartment/:id']} component={DepartmentForm} />
+
+              <Route exact path='/termins' component={TerminDashboard} />
+              <Route path='/termins/:id' component={TerminDetails} />
+              <Route path={['/createTermin', '/managetermin/:id']} component={TerminForm} />
 
               <Route exact path='/receptionists' component={ReceptionistDashboard} />
               <Route path='/receptionists/:id' component={ReceptionistDetails} />

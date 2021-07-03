@@ -144,7 +144,7 @@ namespace Persistence.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Domain.Country", b =>
+            modelBuilder.Entity("Domain.cdy", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -504,6 +504,29 @@ namespace Persistence.Migrations
                     b.HasKey("id");
 
                     b.ToTable("TechEmployees");
+                });
+
+            modelBuilder.Entity("Domain.Termin", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDepartment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDoctor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("TerminTime")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Termins");
                 });
 
             modelBuilder.Entity("Domain.Test", b =>

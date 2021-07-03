@@ -16,11 +16,13 @@ import TechEmployeeStore from "./techEmployeeStore";
 import SurgeryStore from "./surgeryStore";
 import CommentStore from "./commentStore";
 import CountryStore from "./countryStore";
+import TerminStore from "./terminStore";
 
 
 interface Store{
     receptionistStore: ReceptionistStore;
     departmentStore: DepartmentStore;
+    terminStore: TerminStore;
     nurseStore: NurseStore;
     farmacistStore: FarmacistStore;
     testStore: TestStore;
@@ -41,6 +43,7 @@ interface Store{
 export const store: Store = {
     receptionistStore: new ReceptionistStore(),
     departmentStore: new DepartmentStore(),
+    terminStore: new TerminStore(),
     nurseStore: new NurseStore(),
     farmacistStore: new FarmacistStore(),
     testStore: new TestStore(),

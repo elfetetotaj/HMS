@@ -9,8 +9,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210701170808_Country")]
-    partial class Country
+    [Migration("20210703163239_TerminAdded")]
+    partial class TerminAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,33 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("Domain.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("DepartmentId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Domain.Country", b =>
@@ -259,7 +286,10 @@ namespace Persistence.Migrations
                     b.Property<string>("adresa")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("datelindja")
+                    b.Property<DateTime>("datelindja")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("department")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("email")
@@ -478,6 +508,29 @@ namespace Persistence.Migrations
                     b.ToTable("TechEmployees");
                 });
 
+            modelBuilder.Entity("Domain.Termin", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDepartment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDoctor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("TerminTime")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Termins");
+                });
+
             modelBuilder.Entity("Domain.Test", b =>
                 {
                     b.Property<Guid>("id")
@@ -640,6 +693,22 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Domain.Comment", b =>
+                {
+                    b.HasOne("Domain.AppUser", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("Domain.Department", "Department")
+                        .WithMany("Comments")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Department");
+                });
+
             modelBuilder.Entity("Domain.DepartmentAttendee", b =>
                 {
                     b.HasOne("Domain.AppUser", "AppUser")
@@ -717,6 +786,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Department", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("DepartmentAttendees");
                 });
 #pragma warning restore 612, 618

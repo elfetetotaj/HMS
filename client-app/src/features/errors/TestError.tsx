@@ -31,6 +31,14 @@ export default function TestErrors() {
         axios.post(baseUrl + 'departments', {}).catch(err => setErrors(err));
     }
 
+    function handleBadGuidTermin() {
+        axios.get(baseUrl + 'termins/notaguid').catch(err => console.log(err));
+    }
+
+    function handleValidationErrorTermin() {
+        axios.post(baseUrl + 'termins', {}).catch(err => setErrors(err));
+    }
+
    
 
     function handleBadGuidNurse() {
@@ -101,6 +109,7 @@ export default function TestErrors() {
                     <Button onClick={handleNotFound} content='Not Found' basic primary />
                     <Button onClick={handleBadRequest} content='Bad Request' basic primary />
                     <Button onClick={handleValidationErrorDepartment} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorTermin} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorReceptionist} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorNurse} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorPatient} content='Validation Error' basic primary />
@@ -111,6 +120,7 @@ export default function TestErrors() {
                     <Button onClick={handleServerError} content='Server Error' basic primary />
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
                     <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidTermin} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidReceptionist} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidNurse} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidPatient} content='Bad Guid' basic primary />

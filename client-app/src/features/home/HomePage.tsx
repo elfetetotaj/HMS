@@ -21,6 +21,9 @@ export default observer(function HomePage() {
                         <Button as={Link} to='/departments' size='huge' inverted>
                             Go to Departments!
                         </Button>
+                        <Button as={Link} to='/termins' size='huge' inverted>
+                            Go to Appointments!
+                        </Button>
                         <Button as={Link} to='/receptionists' size='huge' inverted>
                             Go to Receptionists!
                         </Button>
