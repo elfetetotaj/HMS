@@ -24,6 +24,9 @@ export default observer(function HomePage() {
                         <Button as={Link} to='/termins' size='huge' inverted>
                             Go to Appointments!
                         </Button>
+                        <Button as={Link} to='/medicines' size='huge' inverted>
+                            Go to Medicines!
+                        </Button>
                         <Button as={Link} to='/receptionists' size='huge' inverted>
                             Go to Receptionists!
                         </Button>

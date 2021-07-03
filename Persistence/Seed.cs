@@ -376,6 +376,25 @@ namespace Persistence
             await context.Termins.AddRangeAsync(types);
             await context.SaveChangesAsync();
         }
+
+        public static async Task SeedDataMedicine(DataContext context)
+        {
+            if (context.Medicines.Any()) return;
+
+            var types = new List<Medicine>
+            {
+                new Medicine
+                {
+                    MedicineName = "Paracetamoll",
+                    MedicineDescription = "Shëron dhimbjen",
+                    MedicineDepartment = "General",
+                    MedicinePrice = 4
+                },
+            };
+
+            await context.Medicines.AddRangeAsync(types);
+            await context.SaveChangesAsync();
+        }
         public static async Task SeedDataBlood(DataContext context)
         {
             if (context.BloodTypes.Any()) return;

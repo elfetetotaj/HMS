@@ -59,11 +59,13 @@ import BloodTypeDashboard from '../../features/bloodtypes/dashboard/BloodTypeDas
 import EmergencyDriverDashboard from '../../features/emergencyDrivers/dashboard/EmergencyDriverDashboard';
 import EmergencyDriverDetails from '../../features/emergencyDrivers/details/EmergencyDriverDetails';
 import EmergencyDriverForm from '../../features/emergencyDrivers/form/EmergencyDriverForm';
+import MedicineDashboard from '../../features/medicines/dashboard/MedicineDashboard';
+import MedicineDetails from '../../features/medicines/details/MedicineDetails';
+import MedicineForm from '../../features/medicines/form/MedicineForm';
 
 function App() {
   const location = useLocation(); 
   const {commonStore, userStore} = useStore();
-  // temporary fix, location.key removed te <Route path={['/createDepartment',
 
   useEffect(() => {
     if (commonStore.token) {
@@ -94,6 +96,10 @@ function App() {
               <Route exact path='/termins' component={TerminDashboard} />
               <Route path='/termins/:id' component={TerminDetails} />
               <Route path={['/createTermin', '/managetermin/:id']} component={TerminForm} />
+
+              <Route exact path='/medicines' component={MedicineDashboard} />
+              <Route path='/medicines/:id' component={MedicineDetails} />
+              <Route path={['/createMedicine', '/managemedicine/:id']} component={MedicineForm} />
 
               <Route exact path='/receptionists' component={ReceptionistDashboard} />
               <Route path='/receptionists/:id' component={ReceptionistDetails} />

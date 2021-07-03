@@ -12,6 +12,7 @@ namespace Application.Core
         {
             CreateMap<Department, Department>();
             CreateMap<Termin, Termin>();
+            CreateMap<Medicine, Medicine>();
             CreateMap<Department, DepartmentDto>()
                 .ForMember(d => d.HostUsername, o => o.MapFrom(s => s.DepartmentAttendees
                     .FirstOrDefault(x => x.IsHost).AppUser.UserName));

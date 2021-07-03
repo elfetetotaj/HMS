@@ -69,15 +69,15 @@ export default observer(function TerminForm() {
                             dateFormat='MMMM d, yyyy h:mm aa'
                         />
                         <MyTextArea rows={3} name='terminDescription' placeholder='Description' />
-                        <MyTextInput name='terminDepartment' placeholder='Name' />
-                        <MyTextInput name='terminDoctor' placeholder='Name' />
+                        <MyTextInput name='terminDepartment' placeholder='Department' />
+                        <MyTextInput name='terminDoctor' placeholder='Doctor' />
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}
                             loading={isSubmitting} 
                             floated='right' 
                             positive type='submit' 
                             content='Submit' />
-                        <Button as={Link} to='/departments' floated='right' type='submit' content='Cancel' />
+                        <Button as={Link} to='/termins' floated='right' type='submit' content='Cancel' />
                     </Form>
                 )}
             </Formik>

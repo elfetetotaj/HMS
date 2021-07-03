@@ -16,6 +16,9 @@ export default function NotFound() {
                 <Button as={Link} to='/termins' primary>
                     Return to appointments page
                 </Button>
+                <Button as={Link} to='/medicines' primary>
+                    Return to medicines page
+                </Button>
                 <Button as={Link} to='/receptionists' primary>
                     Return to receptionists page
                 </Button>

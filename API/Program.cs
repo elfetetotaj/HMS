@@ -31,6 +31,7 @@ namespace API
                 await context.Database.MigrateAsync();
                 await Seed.SeedData(context, userManager);
                 await Seed.SeedDataTermin(context);
+                await Seed.SeedDataMedicine(context);
                 await Seed.SeedDataCity(context);
                 await Seed.SeedDataDoctor(context);
                 await Seed.SeedDataPatient(context);

@@ -32,7 +32,10 @@ export default observer(function NavBar() {
                                 <Button fluid as={NavLink} to='/departments' name='Department' content='Department' />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                                <Button fluid as={NavLink} to='/termins' name='Termin' content='Termin' />
+                                <Button fluid as={NavLink} to='/termins' name='Termin' content='Appointment' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/medicines' name='Medicine' content='Medicine' />
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/receptionists' name='Receptionist' content='Receptionist' />
@@ -76,8 +79,8 @@ export default observer(function NavBar() {
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>
-                <Menu.Item as={NavLink} to='/rooms' name='Room' />
-                <Menu.Item as={NavLink} to='/countries' name='Country' />
+                {/* <Menu.Item as={NavLink} to='/rooms' name='Room' />
+                <Menu.Item as={NavLink} to='/countries' name='Country' /> */}
 
                 <Menu.Item>
                     <Dropdown text='Create'>
@@ -87,6 +90,9 @@ export default observer(function NavBar() {
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createTermin' content='Create Appointment' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createMedicine' content='Create Medicine' />
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createReceptionist' content='Create Receptionist' />
