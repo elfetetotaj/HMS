@@ -13,7 +13,7 @@ export default observer(function NavBar() {
                     <img src='/assets/logo.png' alt='logo' style={{ marginRight: '10px' }} />
                     HMS
                 </Menu.Item>
-                <Menu.Item as={NavLink} to='/departments' name='Department' />
+                {/* <Menu.Item as={NavLink} to='/departments' name='Department' />
                 <Menu.Item as={NavLink} to='/receptionists' name='Receptionist' />
                 <Menu.Item as={NavLink} to='/nurses' name='Nurse' />
                 <Menu.Item as={NavLink} to='/farmacists' name='Farmacist' />
@@ -23,9 +23,48 @@ export default observer(function NavBar() {
                 <Menu.Item as={NavLink} to='/doctors' name='Doctor' />
                 <Menu.Item as={NavLink} to='/techEmployees' name='TechEmployee' />
                 <Menu.Item as={NavLink} to='/surgeries' name='Surgery' />
-                <Menu.Item as={NavLink} to='/countries' name='Country' />
-
+                <Menu.Item as={NavLink} to='/countries' name='Country' /> */}
                 <Menu.Item as={NavLink} to='/errors' name='Errors' />
+                <Menu.Item>
+                    <Dropdown text='Cruds'>
+                        <Dropdown.Menu>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/departments' name='Department' content='Department' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/receptionists' name='Receptionist' content='Receptionist' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/nurses' name='Nurse' content='Nurse' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink}  to='/farmacists' name='Farmacist' content='Farmacist' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink}  to='/patients' name='Patient' content='Patients' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink}to='/cities' name='City' content='City' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/therapies' name='Therapy' content='Therapy' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/doctors' name='Doctor' content='Doctor' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/techEmployees' name='TechEmployee' content='TechEmployee' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink}  to='/surgeries' name='Surgery' content='Surgery' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink}to='/countries' name='Country' content='Country' />
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Menu.Item>
+
                 <Menu.Item>
                     <Dropdown text='Create'>
                         <Dropdown.Menu>

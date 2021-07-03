@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class CountriesController : BaseApiController
     {
         [HttpGet]
@@ -27,7 +28,6 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Create.Command {Country = country}));
         }
 
-        [Authorize(Policy = "IsCountryHost")]
         [HttpPut("{id}")]
         public async Task<IActionResult> EditCountry(Guid id, Country country)
         {
@@ -35,17 +35,10 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Edit.Command{Country = country}));
         }
 
-        [Authorize(Policy = "IsCountryHost")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCountry(Guid id)
         {
             return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
         }
-
-        // [HttpPost("{id}/attend")]
-        // public async Task<IActionResult> Attend(Guid id)
-        // {
-        //     return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
-        // }
     }
 }

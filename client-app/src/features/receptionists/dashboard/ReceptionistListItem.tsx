@@ -20,7 +20,8 @@ export default function ReceptionistListItem({receptionist}: Props) {
                             <Item.Header as={Link} to={`/receptionists/${receptionist.id}`}>
                                 {receptionist.username}
                             </Item.Header>
-                            <Item.Description>Pershkrim i departmentit</Item.Description>
+                            <Item.Description>Recepcionisti
+                            </Item.Description>
                        </Item.Content>
                    </Item>
                </Item.Group>

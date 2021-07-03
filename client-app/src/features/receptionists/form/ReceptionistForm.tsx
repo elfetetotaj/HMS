@@ -58,7 +58,7 @@ export default observer(function ReceptionistForm() {
 
 
     function handleFormSubmit(receptionist: Receptionist) {
-        if (receptionist.id.length === 0) {
+        if (!receptionist.id) {
             let newReceptionist = {
                 ...receptionist,
                 id: uuid()
@@ -102,8 +102,10 @@ export default observer(function ReceptionistForm() {
                         <MyTextInput placeholder='Department' name='department' />
                         <Button
                             disabled={isSubmitting || !dirty || !isValid}
-                            loading={isSubmitting} floated='right'
-                            positive type='submit' content='Submit' />
+                            loading={isSubmitting} 
+                            floated='right'
+                            positive type='submit' 
+                            content='Submit' />
                         <Button as={Link} to='/receptionists' floated='right' type='button' content='Cancel' />
                     </Form>
                 )}
