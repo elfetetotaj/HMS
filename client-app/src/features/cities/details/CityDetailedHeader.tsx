@@ -26,14 +26,14 @@ export default observer (function CityDetailedHeader({city}: Props) {
 
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-            <Image src={`/assets/cities/${city.cityName}.png`} fluid style={CityImageStyle } />
+            <Image src={`/assets/cities/${city.CityName}.png`} fluid style={CityImageStyle } />
                 <Segment style={CityImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
                                     size='huge'
-                                    content={city.cityName}
+                                    content={city.CityName}
                                     style={{color: 'white'}}
                                 />
 
@@ -44,9 +44,9 @@ export default observer (function CityDetailedHeader({city}: Props) {
             </Segment>
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join</Button>
-                <Button>Cancel attendance</Button>
+                <Button>Cancel </Button>
                 <Button as={Link} to={`/managecity/${city.Id}`} color='orange' floated='right'>
-                    Manage Event
+                    Manage City
                 </Button>
             </Segment>
         </Segment.Group>

@@ -23,7 +23,6 @@ interface Props {
 }
 
 export default observer(function CountryDetailedHeader({ country }: Props) {
-    // const {countryStore: {updateAttendance, loading}} = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{ padding: '0' }}>
@@ -49,7 +48,7 @@ export default observer(function CountryDetailedHeader({ country }: Props) {
                 <Button color='teal'>Join </Button>
                 <Button>Cancel attendance</Button>
                 <Button as={Link} to={`/managecountry/${country.Id}`} color='orange' floated='right'>
-                    Manage Event
+                    Manage Country
                 </Button>
             </Segment>
         </Segment.Group>

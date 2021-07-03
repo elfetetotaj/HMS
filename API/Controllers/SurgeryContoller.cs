@@ -12,7 +12,7 @@ namespace API.Controllers
     public class SurgeriesController : BaseApiController
     {
         [HttpGet]
-        public async Task<IActionResult> GetSurgery()
+        public async Task<IActionResult> GetSurgeries()
         {
             return HandleResult(await Mediator.Send(new List.Query()));
         }

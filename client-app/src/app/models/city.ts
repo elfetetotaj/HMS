@@ -1,5 +1,5 @@
 export interface City {
   Id: string
-  cityName: string
-  zipCode: string
+  CityName: string
+  ZipCode: string
 }

@@ -19,14 +19,14 @@ export default observer(function CityForm() {
 
     const [city, setCity] = useState<City>({
         Id: '',
-        cityName: '',
-        zipCode: '',
+        CityName: '',
+        ZipCode: '',
         
     });
 
     const validationSchema = Yup.object({
-        cityName: Yup.string().required('CityName is required!'),
-        zipCode: Yup.string().required('Zip Code is required!')
+        CityName: Yup.string().required('CityName is required!'),
+        ZipCode: Yup.string().required('Zip Code is required!')
 
     })
 
@@ -36,7 +36,7 @@ export default observer(function CityForm() {
 
 
     function handleFormSubmit(city:City) {
-       if(city.Id.length === 0){
+       if(!city.Id){
            let newCity = {
                ...city,
                id: uuid()
@@ -61,7 +61,7 @@ export default observer(function CityForm() {
             {({handleSubmit, isValid,isSubmitting,dirty})=>(
                      <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
 
-                     <MyTextInput name='cityName' placeholder='CityName'/>
+                     <MyTextInput name='CityName' placeholder='CityName'/>
 
                      <MyTextInput placeholder='ZipCode'  name='Zip Code' />
 

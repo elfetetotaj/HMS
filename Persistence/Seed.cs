@@ -855,10 +855,28 @@ namespace Persistence
                     Department="Surgeon"
                 }
 
-        };
+            };
             await context.EmergencyDrivers.AddRangeAsync(emergencyDrivers);
             await context.SaveChangesAsync();
 
+        }
+
+        public static async Task SeedDataCountry(DataContext context)
+        {
+
+            if (context.Countries.Any()) return;
+            var countries = new List<Country>{
+                new Country{
+                    CountryName="Kosova",
+                    Population=1256234,
+                    Location="sdsdwsedw",
+                    Nation="Shqiptar",
+                    Goverment="Demokraci"
+                }
+
+            };
+            await context.Countries.AddRangeAsync(countries);
+            await context.SaveChangesAsync();
         }
 
     }

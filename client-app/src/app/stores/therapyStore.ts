@@ -17,6 +17,10 @@ export default class TherapyStore {
         return Array.from(this.therapyRegistry.values())
         
     }
+    get therapiesByName() {
+        return Array.from(this.therapyRegistry.values())
+        
+    }
 
     loadTherapies = async () => {
         this.loadingInitial = true;

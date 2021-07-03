@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Button, Grid } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import SurgeryFilters from './SurgeryFilters';
@@ -20,6 +21,20 @@ export default observer(function SurgeryDashboard() {
 
     return (
         <Grid>
+            <Grid.Row columns={2}>
+                <Grid.Column>
+                    <h2>Surgeries</h2>
+                </Grid.Column>
+                <Grid.Column>
+                    <Button
+                        as={Link}
+                        to={`/createSurgery`}
+                        color='blue'
+                        floated='right'
+                        content='Add'
+                    />
+                </Grid.Column>
+            </Grid.Row>
             <Grid.Column width='10'>
                 <SurgeryList />
             </Grid.Column>
