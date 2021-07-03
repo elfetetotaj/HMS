@@ -70,7 +70,7 @@ export default function TestErrors() {
     }
 
     function handleBadGuidDoctor() {
-        axios.get(baseUrl + 'doctorss/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'doctors/notaguid').catch(err => console.log(err));
     }
 
     function handleValidationErrorDoctor() {
@@ -93,6 +93,14 @@ export default function TestErrors() {
         axios.post(baseUrl + 'countries', {}).catch(err => setErrors(err));
     }
 
+    function handleBadGuidEmergencyDriver() {
+        axios.get(baseUrl + 'emergencyDrivers/notaguid').catch(err => console.log(err));
+    }
+
+    function handleValidationErrorEmergencyDriver() {
+        axios.post(baseUrl + 'emergencyDrivers', {}).catch(err => setErrors(err));
+    }
+
     return (
         <>
             <Header as='h1' content='Test Error component' />
@@ -108,6 +116,7 @@ export default function TestErrors() {
                     <Button onClick={handleValidationErrorDoctor} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorTherapy} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorCountry} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorEmergencyDriver} content='Validation Error' basic primary />
                     <Button onClick={handleServerError} content='Server Error' basic primary />
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
                     <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
@@ -118,6 +127,7 @@ export default function TestErrors() {
                     <Button onClick={handleBadGuidDoctor} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidTherapy} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidCountry} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidEmergencyDriver} content='Bad Guid' basic primary />
                 </Button.Group>
             </Segment>
             {errors &&

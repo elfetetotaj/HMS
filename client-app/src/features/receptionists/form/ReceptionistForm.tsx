@@ -16,7 +16,7 @@ import { Receptionist } from '../../../app/models/receptionist';
 export default observer(function ReceptionistForm() {
     const history = useHistory();
     const { receptionistStore } = useStore();
-    const { createReceptionist, updateReceptionist, loading, loadReceptionist, loadingInitial } = receptionistStore;
+    const { createReceptionist, updateReceptionist, loadReceptionist, loadingInitial } = receptionistStore;
     const { id } = useParams<{ id: string }>();
 
     const [receptionist, setReceptionist] = useState<Receptionist>({

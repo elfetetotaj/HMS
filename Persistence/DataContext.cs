@@ -40,7 +40,6 @@ namespace Persistence
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<City> Cities { get; set; }
-        public DbSet<Country> Countries { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
         public DbSet<BloodType> BloodTypes { get; set; }
         public DbSet<Farmacist> Farmacists { get; set; }
@@ -49,6 +48,7 @@ namespace Persistence
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<Nurse> Nurses { get; set; }
         public DbSet<Surgery> Surgeries { get; set; }
+        public DbSet<EmergencyDriver> EmergencyDrivers { get; set; }
 
     }
 }

@@ -9,8 +9,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210701170808_Country")]
-    partial class Country
+    [Migration("20210703122023_EmergencyDrivers")]
+    partial class EmergencyDrivers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -119,30 +119,31 @@ namespace Persistence.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("Domain.Country", b =>
+            modelBuilder.Entity("Domain.Comment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CountryName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Goverment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nation")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Population")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("DepartmentId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries");
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Domain.Department", b =>
@@ -221,6 +222,53 @@ namespace Persistence.Migrations
                     b.ToTable("Doctors");
                 });
 
+            modelBuilder.Entity("Domain.EmergencyDriver", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Dateofbirth")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Postal_code")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Street_address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmergencyDrivers");
+                });
+
             modelBuilder.Entity("Domain.Farmacist", b =>
                 {
                     b.Property<Guid>("Id")
@@ -259,7 +307,10 @@ namespace Persistence.Migrations
                     b.Property<string>("adresa")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("datelindja")
+                    b.Property<DateTime>("datelindja")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("department")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("email")
@@ -640,6 +691,22 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Domain.Comment", b =>
+                {
+                    b.HasOne("Domain.AppUser", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("Domain.Department", "Department")
+                        .WithMany("Comments")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Department");
+                });
+
             modelBuilder.Entity("Domain.DepartmentAttendee", b =>
                 {
                     b.HasOne("Domain.AppUser", "AppUser")
@@ -717,6 +784,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Department", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("DepartmentAttendees");
                 });
 #pragma warning restore 612, 618

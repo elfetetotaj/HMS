@@ -49,6 +49,9 @@ import CountryForm from '../../features/countries/form/CountryForm';
 
 import TestDashboard from '../../features/tests/dashboard/TestDashboard';
 import TestForm from '../../features/tests/form/TestForm';
+import EmergencyDriverDashboard from '../../features/emergencyDrivers/dashboard/EmergencyDriverDashboard';
+import EmergencyDriverDetails from '../../features/emergencyDrivers/details/EmergencyDriverDetails';
+import EmergencyDriverForm from '../../features/emergencyDrivers/form/EmergencyDriverForm';
 
 function App() {
   const location = useLocation(); 
@@ -120,6 +123,10 @@ function App() {
               <Route exact path='/countries' component={CountryDashboard} />
               <Route path='/countries/:id' component={CountryDetails} />
               <Route key={location.key} path={['/createCountry', '/managecountry/:id']} component={CountryForm} />
+
+              <Route exact path='/emergencyDrivers' component={EmergencyDriverDashboard} />
+              <Route path='/emergencyDrivers/:id' component={EmergencyDriverDetails} />
+              <Route key={location.key} path={['/createEmergencyDriver', '/manageemergencyDriver/:id']} component={EmergencyDriverForm} />
               
               <Route exact path='/tests' component={TestDashboard} />
               {/* <Route path='/farmacists/:id' component={FarmacistDetails} /> */}
