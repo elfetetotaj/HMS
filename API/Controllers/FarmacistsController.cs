@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
- 
+    [AllowAnonymous]
     public class FarmacistsController : BaseApiController
     {
         [HttpGet]

@@ -17,6 +17,8 @@ import { TechEmployee } from '../models/techEmployee';
 import { Surgery } from '../models/surgery';
 import { Country } from '../models/country';
 import { Termin } from '../models/termin';
+import { BloodType } from '../models/bloodTypes';
+import { EmergencyDriver } from '../models/emergencyDriver';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -147,15 +149,15 @@ const Profiles = {
 const Cities = {
     list: () => requests.get<City[]>('/cities'),
     details: (id: string) => requests.get<City>(`/cities/${id}`),
-    create: (cities: City) => axios.post<void>('/cities', cities),
-    update: (cities: City) => axios.put<void>(`/cities/${cities.Id}`, cities),
+    create: (city: City) => axios.post<void>('/cities', city),
+    update: (city: City) => axios.put<void>(`/cities/${city.Id}`, city),
     delete: (id: string) => axios.delete<void>(`/cities/${id}`)
 }
 const Therapies = {
     list: () => requests.get<Therapy[]>('/therapies'),
     details: (id: string) => requests.get<Therapy>(`/therapies/${id}`),
-    create: (therapies: Therapy) => axios.post<void>('/therapies', therapies),
-    update: (therapies: Therapy) => axios.put<void>(`/therapies/${therapies.id}`, therapies),
+    create: (therapy: Therapy) => axios.post<void>('/therapies', therapy),
+    update: (therapy: Therapy) => axios.put<void>(`/therapies/${therapy.id}`, therapy),
     delete: (id: string) => axios.delete<void>(`/therapies/${id}`)
 }
 const Doctors ={
@@ -168,16 +170,27 @@ const Doctors ={
 const Surgeries = {
     list: () => requests.get<Surgery[]>('/surgeries'),
     details: (id: string) => requests.get<Surgery>(`/surgeries/${id}`),
-    create: (surgeries: Surgery) => axios.post<void>('/surgeries', surgeries),
-    update: (surgeries: Surgery) => axios.put<void>(`/surgeries/${surgeries.Id}`, surgeries),
+    create: (surgery: Surgery) => axios.post<void>('/surgeries', surgery),
+    update: (surgery: Surgery) => axios.put<void>(`/surgeries/${surgery.Id}`, surgery),
     delete: (id: string) => axios.delete<void>(`/surgeries/${id}`)
 }
 const Countries = {
     list: () => requests.get<Country[]>('/countries'),
     details: (id: string) => requests.get<Country>(`/countries/${id}`),
-    create: (countries: Country) => axios.post<void>('/countries', countries),
-    update: (countries: Country) => axios.put<void>(`/countries/${countries.Id}`, countries),
+    create: (country: Country) => axios.post<void>('/countries', country),
+    update: (country: Country) => axios.put<void>(`/countries/${country.Id}`, country),
     delete: (id: string) => axios.delete<void>(`/countries/${id}`)
+}
+const BloodTypes = {
+    list: () => requests.get<BloodType[]>('/bloodTypes'),
+
+}
+const EmergencyDrivers = {
+    list: () => requests.get<EmergencyDriver[]>('/emergencyDrivers'),
+    details: (id: string) => requests.get<EmergencyDriver>(`/emergencyDrivers/${id}`),
+    create: (emergencyDriver: EmergencyDriver) => axios.post<void>('/emergencyDrivers', emergencyDriver),
+    update: (emergencyDriver: EmergencyDriver) => axios.put<void>(`/emergencyDrivers/${emergencyDriver.Id}`, emergencyDriver),
+    delete: (id: string) => axios.delete<void>(`/emergencyDrivers/${id}`)
 }
 const agent = {
     Departments,
@@ -194,7 +207,9 @@ const agent = {
     Therapies,
     Doctors,
     TechEmployees,
-    Surgeries
+    Surgeries,
+    BloodTypes,
+    EmergencyDrivers
 }
 
 export default agent;

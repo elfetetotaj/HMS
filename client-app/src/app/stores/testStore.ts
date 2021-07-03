@@ -12,7 +12,10 @@ export default class TestStore {
     constructor() {
         makeAutoObservable(this)
     }
-
+    get testsByName() {
+        return Array.from(this.testRegistry.values()).sort((a, b) => a.cmimi < b.cmimi ? 1:-1);
+        
+    }
     loadTests = async () => {
         this.loadingInitial = true;
         try {

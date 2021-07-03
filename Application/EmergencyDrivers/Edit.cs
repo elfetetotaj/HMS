@@ -7,20 +7,20 @@ using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Countries
+namespace Application.EmergencyDrivers
 {
     public class Edit
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Country Country { get; set; }
+            public EmergencyDriver EmergencyDriver { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Country).SetValidator(new CountryValidator());
+                RuleFor(x => x.EmergencyDriver).SetValidator(new EmergencyDriverValidator());
             }
         }
 
@@ -36,15 +36,13 @@ namespace Application.Countries
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var country = await _context.Countries.FindAsync(request.Country.Id);
+                var emergencyDriver = await _context.EmergencyDrivers.FindAsync(request.EmergencyDriver.Id);
 
-                if (country == null) return null;
+                _mapper.Map(request.EmergencyDriver, emergencyDriver);
 
-                _mapper.Map(request.Country, country);
-
-                var result = await _context.SaveChangesAsync() > 0;
-
-                if (!result) return Result<Unit>.Failure("Failed to update country");
+                var result = await _context.SaveChangesAsync()> 0 ;
+                
+                if(!result) return Result<Unit>.Failure("Failed to update emergencyDriver");
 
                 return Result<Unit>.Success(Unit.Value);
             }

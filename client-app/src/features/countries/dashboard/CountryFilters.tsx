@@ -2,7 +2,7 @@ import React from 'react';
 import Calendar from 'react-calendar';
 import { Header, Menu } from 'semantic-ui-react';
 
-export default function DepartmentFilters() {
+export default function CountryFilters() {
     return (
         <>
             <Menu vertical size='large' style={{ width: '100%' }}>

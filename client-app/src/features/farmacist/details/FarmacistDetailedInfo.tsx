@@ -17,10 +17,12 @@ export default observer(function FarmacistDetailedInfo({farmacist}: Props) {
                     <Grid.Column width={1}>
                         <Icon size='large' color='teal' name='info'/>
                     </Grid.Column>
-                    <Grid.Column width={15}>
-                        <p>Pershkrimi i farmacistit</p>
+                    <Grid.Column width={10}>
+                        <p>Informata</p>
                         <p><Icon name='calendar'/>{format(farmacist.dateOfJoining!, 'dd MMM yyyy')}</p>
-                        <p> <Icon  />{farmacist.degree}</p>
+                        <p> Shkollimi:{farmacist.degree}</p>
+                        <p> Email:{farmacist.email}</p>
+                        <p> Tel:{farmacist.tel}</p>
 
                         {/* <p>{department.description}</p> */}
                     </Grid.Column>

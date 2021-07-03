@@ -14,7 +14,7 @@ namespace Application.TechEmployees
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command , Result<Unit>>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -24,17 +24,17 @@ namespace Application.TechEmployees
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var TechEmployee = await _context.Receptionists.FindAsync(request.Id);
+                var techEmployee = await _context.TechEmployees.FindAsync(request.Id);
+                
+               // if(patient == null) return null;
 
-               // if(nurse==null) return null;
+                _context.Remove(techEmployee);
 
-                _context.Remove(TechEmployee);
+                var result =await _context.SaveChangesAsync() > 0;
 
-               var result = await _context.SaveChangesAsync() > 0 ;
+                if(!result) return Result<Unit>.Failure("Failed to delete the TechEmployee");
 
-               if(!result) return Result<Unit>.Failure("Faild to delete the TechEmployee");
-
-                return Result<Unit>.Success( Unit.Value);
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

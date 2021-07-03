@@ -425,13 +425,26 @@ namespace Persistence
                 new Nurse{
                     emri = "Zoja",
                     mbiemri = "Gjeraj",
-                    username = "Zogi",
+                    username = "Paradite",
                     datelindja =DateTime.Parse( "2000-04-01"),
                     adresa ="Te kullat",
                     qyteti = "Prizren",
                     email="zoja@gmail.com",
                     gjinia =  'F',
-                    paga = 200
+                    paga = 200,
+                    department="Pediatria"
+                },
+                  new Nurse{
+                    emri = "Faton",
+                    mbiemri = "Kabashi",
+                    username = "Pasdite",
+                    datelindja =DateTime.Parse( "1986-04-27"),
+                    adresa ="Janina",
+                    qyteti = "Prizren",
+                    email="faton@gmail.com",
+                    gjinia =  'M',
+                    paga = 200,
+                    department="Neurologjia"
                 },
             };
 
@@ -839,20 +852,44 @@ namespace Persistence
             await context.TechEmployees.AddRangeAsync(t);
             await context.SaveChangesAsync();
         }
-
-         public static async Task SeedDataCountry(DataContext context)
+        public static async Task SeedDataEmergencyDriver(DataContext context)
         {
 
-            if (context.Countries.Any()) return;
-            var countries = new List<Country>{
-                new Country{
-                    CountryName="Kosova",
-                    Population=1256234,
+            if (context.EmergencyDrivers.Any()) return;
+
+            var emergencyDrivers = new List<EmergencyDriver>
+            {
+                new EmergencyDriver
+                {
+                    Name = "Erza",
+                    Surname = "Shatri",
+                    Dateofbirth = DateTime.Now.AddMonths(-1),
+                    Gender = "F",
+                    Street_address = "C6 Thorne Street",
+                    City = "London",
+                    Country = "UK",
+                    Postal_code = "SE2",
+                    Phone = "9876345612",
+                    Department="Stomatologji"
+                },
+                new EmergencyDriver
+                {
+                    Name = "Hamza",
+                    Surname = "Pejton",
+                    Dateofbirth = DateTime.Now.AddMonths(-1),
+                    Gender = "M",
+                    Street_address = "C6 Thorne Street",
+                    City = "London",
+                    Country = "UK",
+                    Postal_code = "SE2",
+                    Phone = "9876345612",
+                    Department="Surgeon"
                 }
 
-            };
-            await context.Countries.AddRangeAsync(countries);
+        };
+            await context.EmergencyDrivers.AddRangeAsync(emergencyDrivers);
             await context.SaveChangesAsync();
+
         }
 
     }

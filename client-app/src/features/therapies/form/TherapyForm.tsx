@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { Button, Header, Segment } from 'semantic-ui-react';
+import { Button, Header, List, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import {v4 as uuid} from 'uuid';
@@ -10,6 +10,8 @@ import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
 import MyTextArea from '../../../app/common/form/MyTextArea';
 import { Therapy } from '../../../app/models/therapy';
+import CityDetailedSidebar from '../../cities/details/CityDetailedSidebar';
+import { City } from '../../../app/models/city';
 
 export default observer(function TherapyForm() {
     const history = useHistory();
@@ -56,6 +58,13 @@ export default observer(function TherapyForm() {
                 {({ handleSubmit, isValid, isSubmitting, dirty }) => (
                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
                         <MyTextArea rows={3} name='Pershkrimi' placeholder='Pershkrimi' />
+                        {/* <List horizontal>
+                            {cities.map(city =>(
+                                <List.Item key={city.CityName}>
+                                </List.Item>
+                            ))}
+
+                        </List> */}
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}
                             loading={isSubmitting} 

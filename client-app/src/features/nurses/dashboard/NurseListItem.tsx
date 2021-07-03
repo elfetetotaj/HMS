@@ -3,12 +3,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { Nurse } from '../../../app/models/nurse';
+import { useStore } from '../../../app/stores/store';
+
 
 interface Props {
     nurse: Nurse
 }
 
 export default function NurseListItem({nurse}: Props) {
+    const {nurseStore} = useStore();
+    const{deleteNurse,  loading,} = nurseStore;
 
     return (
        <Segment.Group>
@@ -17,12 +21,14 @@ export default function NurseListItem({nurse}: Props) {
            <p> {nurse.username}</p>
                <Item.Group>
                    <Item>
-                       <Item.Image size='tiny' circular src='/assets/user.png' />
+                   <Item.Image src={`/assets/${nurse.gjinia}.png`} />
+
                        <Item.Content>
                             <Item.Header as={Link} to={`/nurses/${nurse.id}`}>
-                                {nurse.emri}
+                              <h1 >  {nurse.emri}   {nurse.mbiemri}</h1>
+                              <h2>  {nurse.department}</h2>
                             </Item.Header>
-                            <Item.Description>Pershkrim i infermierit/es</Item.Description>
+                        
                        </Item.Content>
                    </Item>
                </Item.Group>
@@ -42,6 +48,7 @@ export default function NurseListItem({nurse}: Props) {
                     floated='right'
                     content='View'
                />
+                   <Button  onClick={() => deleteNurse(nurse.id)} type='submit'  color='red' disabled={loading} content='Delete'/>
            </Segment>
        </Segment.Group>
     )

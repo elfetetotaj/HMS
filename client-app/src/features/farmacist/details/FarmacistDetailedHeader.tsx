@@ -34,9 +34,13 @@ export default observer (function FarmacistDetailedHeader({farmacist}: Props) {
                             <Item.Content>
                                 <Header
                                     size='huge'
-                                    content={farmacist.emri}
+                                   
+
+                                      
                                     style={{color: 'white'}}
-                                />
+                                >{farmacist.emri} {farmacist.mbiemri}</Header>
+                                
+                               
                                    <p>
                                     Filloje punen me daten:
                                 </p>
@@ -50,10 +54,10 @@ export default observer (function FarmacistDetailedHeader({farmacist}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join Activity</Button>
-                <Button>Cancel attendance</Button>
+                {/* <Button color='teal'>Join Activity</Button>
+                <Button>Cancel attendance</Button> */}
                 <Button as={Link} to={`/managefarmacist/${farmacist.id}`} color='orange' floated='right'>
-                    Manage Event
+                    Edit farmacist
                 </Button>
             </Segment>
         </Segment.Group>
