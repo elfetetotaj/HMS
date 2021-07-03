@@ -11,6 +11,7 @@ namespace Persistence
         }
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Termin> Termins { get; set; }
         public DbSet<DepartmentAttendee> DepartmentAttendees { get; set; }
         public DbSet<Comment> Comments { get; set; }
 

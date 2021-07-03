@@ -16,8 +16,10 @@ import { Doctor } from '../models/doctor';
 import { TechEmployee } from '../models/techEmployee';
 import { Surgery } from '../models/surgery';
 import { Country } from '../models/country';
+import { Termin } from '../models/termin';
 import { BloodType } from '../models/bloodTypes';
 import { EmergencyDriver } from '../models/emergencyDriver';
+import { Room } from '../models/room';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -86,6 +88,13 @@ const Departments = {
     update: (department: DepartmentFormValues) => requests.put<void>(`/departments/${department.id}`, department),
     delete: (id: string) => requests.del<void>(`/departments/${id}`),
     attend: (id: string) => requests.post<void>(`/departments/${id}/attend`, {})
+}
+const Termins = {
+    list: () => requests.get<Termin[]>('/termins'),
+    details: (id: string) => requests.get<Termin>(`/termins/${id}`),
+    create: (termin: Termin) => requests.post<void>('/termins', termin),
+    update: (termin: Termin) => requests.put<void>(`/termins/${termin.id}`, termin),
+    delete: (id: string) => requests.del<void>(`/termins/${id}`),
 }
 const Receptionists = {
     list: () => requests.get<Receptionist[]>('/receptionists'),
@@ -166,6 +175,13 @@ const Surgeries = {
     update: (surgery: Surgery) => axios.put<void>(`/surgeries/${surgery.Id}`, surgery),
     delete: (id: string) => axios.delete<void>(`/surgeries/${id}`)
 }
+const Rooms ={
+    list: () => requests.get<Room[]>('/rooms'),
+    details: (id:string) => requests.get<Room>(`/rooms/${id}`),
+    create: (room: Room) => axios.post<void>('/rooms', room),
+    update: (room: Room) => axios.put<void>(`/rooms/${room.id}`,room),
+    delete: (id: string) => axios.delete<void>(`/rooms/${id}`)
+}
 const Countries = {
     list: () => requests.get<Country[]>('/countries'),
     details: (id: string) => requests.get<Country>(`/countries/${id}`),
@@ -186,6 +202,7 @@ const EmergencyDrivers = {
 }
 const agent = {
     Departments,
+    Termins,
     Receptionists,
     Nurses,
     Farmacists,
@@ -200,7 +217,8 @@ const agent = {
     TechEmployees,
     Surgeries,
     BloodTypes,
-    EmergencyDrivers
+    EmergencyDrivers,
+    Rooms,
 }
 
 export default agent;

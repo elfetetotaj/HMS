@@ -3,6 +3,6 @@ export interface Surgery {
     SurgeryName: string
     Date: Date | null
     Description: string
-    Pagesa: string
+    Pagesa: number
     Terapia: string
 }

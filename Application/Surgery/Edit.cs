@@ -39,7 +39,7 @@ namespace Application.Surgeries
             {
                 var Surgery = await _context.Surgeries.FindAsync(request.Surgery.Id);
 
-                if(Surgery==null) return null;
+              //  if(Surgery==null) return null;
 
                 _mapper.Map(request.Surgery, Surgery);
 

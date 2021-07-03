@@ -24,7 +24,7 @@ export default observer(function SurgeryForm() {
         SurgeryName: '',
         Date: null,
         Description: '',
-        Pagesa: '',
+        Pagesa: 0,
         Terapia: '',
 
     });
@@ -90,7 +90,7 @@ export default observer(function SurgeryForm() {
 
                         <Button
                             disabled={isSubmitting || !dirty || !isValid}
-                            loading={isSubmitting}
+                            loading={loading}
                             floated='right' 
                             positive type='submit' 
                             content='Submit' />

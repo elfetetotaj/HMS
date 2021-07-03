@@ -11,6 +11,7 @@ namespace Application.Core
         public MappingProfiles()
         {
             CreateMap<Department, Department>();
+            CreateMap<Termin, Termin>();
             CreateMap<Department, DepartmentDto>()
                 .ForMember(d => d.HostUsername, o => o.MapFrom(s => s.DepartmentAttendees
                     .FirstOrDefault(x => x.IsHost).AppUser.UserName));
@@ -26,6 +27,7 @@ namespace Application.Core
             CreateMap<Receptionist, Receptionist>();
             CreateMap<Patient, Patient>();
             CreateMap<Doctor, Doctor>();
+            CreateMap<Room, Room>();
             CreateMap<City, City>();
             CreateMap<Country, Country>();
             CreateMap<BloodType, BloodType>(); 

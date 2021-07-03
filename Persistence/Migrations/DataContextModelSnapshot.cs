@@ -144,6 +144,32 @@ namespace Persistence.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("Domain.cdy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CountryName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Goverment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Population")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
             modelBuilder.Entity("Domain.Country", b =>
                 {
                     b.Property<Guid>("Id")
@@ -551,6 +577,29 @@ namespace Persistence.Migrations
                     b.HasKey("id");
 
                     b.ToTable("TechEmployees");
+                });
+
+            modelBuilder.Entity("Domain.Termin", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDepartment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TerminDoctor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("TerminTime")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Termins");
                 });
 
             modelBuilder.Entity("Domain.Test", b =>

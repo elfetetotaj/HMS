@@ -31,6 +31,14 @@ export default function TestErrors() {
         axios.post(baseUrl + 'departments', {}).catch(err => setErrors(err));
     }
 
+    function handleBadGuidTermin() {
+        axios.get(baseUrl + 'termins/notaguid').catch(err => console.log(err));
+    }
+
+    function handleValidationErrorTermin() {
+        axios.post(baseUrl + 'termins', {}).catch(err => setErrors(err));
+    }
+
    
 
     function handleBadGuidNurse() {
@@ -77,10 +85,19 @@ export default function TestErrors() {
 
     function handleBadGuidDoctor() {
         axios.get(baseUrl + 'doctors/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'doctors/notaguid').catch(err => console.log(err.response));
     }
 
     function handleValidationErrorDoctor() {
         axios.post(baseUrl + 'doctors', {}).catch(err => setErrors(err));
+    }
+
+    function handleBadGuidRoom() {
+        axios.get(baseUrl + 'rooms/notaguid').catch(err => console.log(err.response));
+    }
+
+    function handleValidationErrorRoom() {
+        axios.post(baseUrl + 'rooms', {}).catch(err => setErrors(err));
     }
 
     function handleBadGuidTherapy() {
@@ -115,22 +132,26 @@ export default function TestErrors() {
                     <Button onClick={handleNotFound} content='Not Found' basic primary />
                     <Button onClick={handleBadRequest} content='Bad Request' basic primary />
                     <Button onClick={handleValidationErrorDepartment} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorTermin} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorReceptionist} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorNurse} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorPatient} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorCity} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorDoctor} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorRoom} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorTherapy} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorCountry} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorEmergencyDriver} content='Validation Error' basic primary />
                     <Button onClick={handleServerError} content='Server Error' basic primary />
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
                     <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidTermin} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidReceptionist} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidNurse} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidPatient} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidCity} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidDoctor} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidRoom} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidTherapy} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidCountry} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidEmergencyDriver} content='Bad Guid' basic primary />

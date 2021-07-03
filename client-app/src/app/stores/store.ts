@@ -16,13 +16,16 @@ import TechEmployeeStore from "./techEmployeeStore";
 import SurgeryStore from "./surgeryStore";
 import CommentStore from "./commentStore";
 import CountryStore from "./countryStore";
+import TerminStore from "./terminStore";
 import BloodTypeStore from "./bloodTypeStore";
 import EmergencyDriverStore from "./emergencyDriverStore";
+import RoomStore from "./roomStore";
 
 
 interface Store{
     receptionistStore: ReceptionistStore;
     departmentStore: DepartmentStore;
+    terminStore: TerminStore;
     nurseStore: NurseStore;
     farmacistStore: FarmacistStore;
     testStore: TestStore;
@@ -37,6 +40,7 @@ interface Store{
     doctorStore : DoctorStore;
     techEmployeeStore : TechEmployeeStore;
     surgeryStore : SurgeryStore;
+    roomStore : RoomStore;
     countryStore : CountryStore;
     bloodTypeStore : BloodTypeStore;
     emergencyDriverStore : EmergencyDriverStore;
@@ -45,6 +49,7 @@ interface Store{
 export const store: Store = {
     receptionistStore: new ReceptionistStore(),
     departmentStore: new DepartmentStore(),
+    terminStore: new TerminStore(),
     nurseStore: new NurseStore(),
     farmacistStore: new FarmacistStore(),
     testStore: new TestStore(),
@@ -59,6 +64,7 @@ export const store: Store = {
     doctorStore: new DoctorStore(),
     techEmployeeStore : new TechEmployeeStore(),
     surgeryStore: new SurgeryStore(),
+    roomStore: new RoomStore(),
     countryStore: new CountryStore(),
     bloodTypeStore: new BloodTypeStore(),
     emergencyDriverStore: new EmergencyDriverStore(),

@@ -29,7 +29,7 @@ export default class SurgeryStore {
         } catch (error) {
             console.log(error);
             this.setLoadingInitial(false);
-        }
+       }
     }
 
     private setSurgery = (surgery: Surgery) => {

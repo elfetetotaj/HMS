@@ -46,6 +46,12 @@ import ProfilePage from '../../features/profiles/ProfilePage';
 import CountryDashboard from '../../features/countries/dashboard/CountryDashboard';
 import CountryDetails from '../../features/countries/details/CountryDetails';
 import CountryForm from '../../features/countries/form/CountryForm';
+import TerminDashboard from '../../features/termins/dashboard/TerminDashboard';
+import TerminDetails from '../../features/termins/details/TerminDetails';
+import TerminForm from '../../features/termins/form/TerminForm';
+import RoomDashboard from '../../features/rooms/dashboard/RoomDashboard';
+import RoomDetails from '../../features/rooms/details/RoomDetails';
+import RoomForm from '../../features/rooms/form/RoomForm';
 
 import TestDashboard from '../../features/tests/dashboard/TestDashboard';
 import TestForm from '../../features/tests/form/TestForm';
@@ -85,6 +91,10 @@ function App() {
               <Route path='/departments/:id' component={DepartmentDetails} />
               <Route path={['/createDepartment', '/managedepartment/:id']} component={DepartmentForm} />
 
+              <Route exact path='/termins' component={TerminDashboard} />
+              <Route path='/termins/:id' component={TerminDetails} />
+              <Route path={['/createTermin', '/managetermin/:id']} component={TerminForm} />
+
               <Route exact path='/receptionists' component={ReceptionistDashboard} />
               <Route path='/receptionists/:id' component={ReceptionistDetails} />
               <Route key={location.key} path={['/createReceptionist', '/managereceptionist/:id']} component={ReceptionistForm} />
@@ -121,6 +131,10 @@ function App() {
               <Route path='/surgeries/:id' component={SurgeryDetails} />
               <Route key={location.key} path={['/createSurgery', '/managesurgery/:id']} component={SurgeryForm} />
 
+              <Route exact path='/rooms' component={RoomDashboard} />
+              <Route path='/rooms/:id' component={RoomDetails} />
+              <Route key={location.key} path={['/createRoom', '/manageroom/:id']} component={RoomForm} />
+
               <Route exact path='/countries' component={CountryDashboard} />
               <Route path='/countries/:id' component={CountryDetails} />
               <Route key={location.key} path={['/createCountry', '/managecountry/:id']} component={CountryForm} />
@@ -131,7 +145,7 @@ function App() {
               
               <Route exact path='/tests' component={TestDashboard} />
               {/* <Route path='/farmacists/:id' component={FarmacistDetails} /> */}
-              {/* <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} /> */}
+              <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} />
 
               <Route exact path='/bloodTypes' component={BloodTypeDashboard} />
 

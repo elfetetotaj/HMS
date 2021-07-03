@@ -9,7 +9,7 @@ const departmentImageStyle = {
     filter: 'brightness(30%)'
 };
 
-const departentImageTextStyle = {
+const departmentImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
     left: '2%',
@@ -28,7 +28,7 @@ export default observer (function DepartmentDetailedHeader({department}: Props) 
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
                 <Image src={`/assets/departmentImages/${department.departmentName}.jpg`} fluid style={departmentImageStyle}/>
-                <Segment style={departentImageTextStyle} basic>
+                <Segment style={departmentImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>

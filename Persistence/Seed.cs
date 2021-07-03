@@ -357,6 +357,25 @@ namespace Persistence
                 await context.SaveChangesAsync();
             }
         }
+
+        public static async Task SeedDataTermin(DataContext context)
+        {
+            if (context.Termins.Any()) return;
+
+            var types = new List<Termin>
+            {
+                new Termin
+                {
+                    TerminTime = DateTime.Now.AddMonths(1),
+                    TerminDescription = "Kontrollë tek dentisti",
+                    TerminDepartment = "Stomatologjia",
+                    TerminDoctor = "Bob"
+                },
+            };
+
+            await context.Termins.AddRangeAsync(types);
+            await context.SaveChangesAsync();
+        }
         public static async Task SeedDataBlood(DataContext context)
         {
             if (context.BloodTypes.Any()) return;
@@ -406,14 +425,26 @@ namespace Persistence
                 new Nurse{
                     emri = "Zoja",
                     mbiemri = "Gjeraj",
-                    username = "Zogi",
+                    username = "Paradite",
                     datelindja =DateTime.Parse( "2000-04-01"),
                     adresa ="Te kullat",
                     qyteti = "Prizren",
                     email="zoja@gmail.com",
                     gjinia =  'F',
                     paga = 200,
-                    department="Dep"
+                    department="Pediatria"
+                },
+                  new Nurse{
+                    emri = "Faton",
+                    mbiemri = "Kabashi",
+                    username = "Pasdite",
+                    datelindja =DateTime.Parse( "1986-04-27"),
+                    adresa ="Janina",
+                    qyteti = "Prizren",
+                    email="faton@gmail.com",
+                    gjinia =  'M',
+                    paga = 200,
+                    department="Neurologjia"
                 },
             };
 

@@ -6,7 +6,7 @@ import SurgeryListItem from './SurgeryListItem';
 export default observer(function SurgeryList() {
 
     const {surgeryStore} = useStore();
-    const {surgeriesByDate} = surgeryStore
+    const {surgeriesByDate} = surgeryStore;
 
     return ( //video 5.7
         <>

@@ -41,7 +41,7 @@ export default function TechEmployeeListItem({techEmployee}: Props) {
                </span>
            </Segment>
            <Segment clearing>
-           <Button as={Link} to={`/managetechEmployee/${techEmployee.id}`} color='blue' floated='right'>
+           <Button as={Link} to={`/managetechEmployee/${techEmployee.id}`} color='teal' floated='right'>
                 Edit
            </Button>
            {/* <Button
