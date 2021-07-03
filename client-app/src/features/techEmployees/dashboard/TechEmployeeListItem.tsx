@@ -1,14 +1,19 @@
 import format from 'date-fns/format';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { TechEmployee } from '../../../app/models/techEmployee';
+import { useStore } from '../../../app/stores/store';
 
 interface Props {
     techEmployee: TechEmployee
 }
 
 export default function TechEmployeeListItem({techEmployee}: Props) {
+    const history = useHistory();
+    const {techEmployeeStore} = useStore();
+    const{deleteTechEmployee, updateTechEmployee, loading, loadTechEmployee, loadingInitial} = techEmployeeStore;
+    const {id} = useParams<{id: string}>();
 
     return (
        <Segment.Group>
@@ -35,14 +40,26 @@ export default function TechEmployeeListItem({techEmployee}: Props) {
                </span>
            </Segment>
            <Segment clearing>
-               <Button 
-                    as={Link}
-                    to={`/techEmployees/${techEmployee.id}`}
-                    color='teal'
-                    floated='right'
-                    content='View'
-               />
+           <Button as={Link} to={`/managetechEmployee/${techEmployee.id}`} color='orange' floated='right'>
+                Edit
+           </Button>
+           {/* <Button
+										onClick={(e) => {
+											deleteTechEmployee(e, techEmployee.id!);
+											history.push('/techEmployees');
+										}}
+										
+										name={techEmployee.id}
+										floated='right'
+										negative
+										type='submit'
+										content='Delete'
+										disabled={loading}
+									/> */}
+                                    <Button onClick={() => deleteTechEmployee(techEmployee.id)} type='submit' color='red' disabled={loading} >Delete</Button>
+
            </Segment>
        </Segment.Group>
     )
 }
+

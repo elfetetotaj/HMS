@@ -21,7 +21,7 @@ export default function PatientListItem({patient}: Props){
                             <Item.Header as={Link} to={`/patients/${patient.id}`} >
                                 {patient.name}
                             </Item.Header>
-                            <Item.Description>Hosted By Erza</Item.Description>
+                            <Item.Description>Hosted By HMS</Item.Description>
                         </Item.Content>
                     </Item>
                 </Item.Group>
@@ -33,7 +33,7 @@ export default function PatientListItem({patient}: Props){
                 </span>
             </Segment>
             <Segment secondary>
-                Attendies go here
+                Attendies go here/Doctors in the case
             </Segment>
             <Segment clearing>
                 <span>{patient.other_det}</span>

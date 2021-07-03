@@ -60,10 +60,11 @@ export default observer(function TechEmployeeForm() {
                ...techEmployee,
                id: uuid()
            };
-           createTechEmployee(newTechEmployee).then(() => history.push(`/techEmployees/${newTechEmployee.id}`))
+           createTechEmployee(newTechEmployee).then(() => history.push(`/techEmployees`))
        }else{
-           updateTechEmployee(techEmployee).then(() => history.push(`/techEmployees/${techEmployee.id}`))
+           updateTechEmployee(techEmployee).then(() => history.push(`/techEmployees`))
        }
+       
     }
 
 
@@ -100,7 +101,7 @@ export default observer(function TechEmployeeForm() {
                      <Button 
                      disabled={isSubmitting || !dirty || !isValid}
                      loading={loading} floated='right' positive type='submit' content='Submit' />
-                     <Button as={Link} to='/TechEmployees' floated='right' type='button' content='Cancel' />
+                     <Button as={Link} to='/techEmployees' floated='right' type='button' content='Cancel' />
                     </Form>
                 )}
                 

@@ -12,7 +12,9 @@ export default class TestStore {
     constructor() {
         makeAutoObservable(this)
     }
-
+    get testsByName() {
+        return Array.from(this.testRegistry.values());
+    }
     loadTests = async () => {
         this.loadingInitial = true;
         try {

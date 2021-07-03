@@ -7,7 +7,7 @@ export default class DoctorStore{
     selectedDoctor: Doctor | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial =true;
+    loadingInitial =false;
 
 
     constructor () {
@@ -17,7 +17,7 @@ export default class DoctorStore{
 
     get doctorsByDate(){
         return Array.from(this.doctorRegistry.values()).sort((a, b) => 
-               Date.parse(a.dateofbirth) - Date.parse(b.dateofbirth));
+             a.dateofbirth!.getTime() - b.dateofbirth!.getTime());   
     }
 
 
@@ -59,7 +59,7 @@ export default class DoctorStore{
     }
 
     private setDoctor = (doctor: Doctor) => {
-        doctor.dateofbirth= doctor.dateofbirth.split('T')[0];
+        doctor.dateofbirth= new Date(doctor.dateofbirth!);
         this.doctorRegistry.set(doctor.id, doctor);
     }
 

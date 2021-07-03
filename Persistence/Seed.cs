@@ -412,7 +412,8 @@ namespace Persistence
                     qyteti = "Prizren",
                     email="zoja@gmail.com",
                     gjinia =  'F',
-                    paga = 200
+                    paga = 200,
+                    department="Dep"
                 },
             };
 
