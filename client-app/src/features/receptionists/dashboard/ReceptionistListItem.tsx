@@ -18,7 +18,7 @@ export default function ReceptionistListItem({ receptionist }: Props) {
             <Segment>
                 <Item.Group>
                     <Item>
-                        <Item.Image size='tiny' circular src='/assets/user.png' />
+                        <Item.Image size='tiny' circular src='/assets/receptionistImages/receptionist.png' />
                         <Item.Content>
                             <Item.Header as={Link} to={`/receptionists/${receptionist.id}`}>
                                 {receptionist.username}
@@ -31,16 +31,18 @@ export default function ReceptionistListItem({ receptionist }: Props) {
             </Segment>
             <Segment>
                 <span>
-                    <Icon name='clock' /> {receptionist.dob}
+                    <Icon name='clock' /> {receptionist.dob} <br />
                     {/* <Icon name='clock' /> {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')} */}
                     <Icon name='marker' /> {receptionist.department}
                 </span>
             </Segment>
-            <Segment secondary>
-                Attendees go here
+            <Segment>
+                <Icon name='phone' /> {receptionist.phone}
+            </Segment>
+            <Segment>
+                <span>{receptionist.department}</span>
             </Segment>
             <Segment clearing>
-                <span>{receptionist.department}</span>
                 <Button
                     as={Link}
                     to={`#`}

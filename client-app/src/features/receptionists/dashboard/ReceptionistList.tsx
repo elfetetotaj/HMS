@@ -23,7 +23,8 @@ export default observer(function ReceptionistList() {
         ))} */}
 
             {receptionistsByDate.map(receptionist => (
-                <ReceptionistListItem key={receptionist.id} receptionist={receptionist} />
+                <ReceptionistListItem key={receptionist.id}
+                 receptionist={receptionist} />
             ))}
         </>
     )

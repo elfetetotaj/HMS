@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210703175341_Country")]
+    partial class Country
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,32 +144,6 @@ namespace Persistence.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("Domain.cdy", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CountryName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Goverment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nation")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Population")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("Domain.Country", b =>
@@ -346,29 +322,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Farmacists");
-                });
-
-            modelBuilder.Entity("Domain.Medicine", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MedicineDepartment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MedicineDescription")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MedicineName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("MedicinePrice")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Medicines");
                 });
 
             modelBuilder.Entity("Domain.Nurse", b =>
@@ -600,29 +553,6 @@ namespace Persistence.Migrations
                     b.HasKey("id");
 
                     b.ToTable("TechEmployees");
-                });
-
-            modelBuilder.Entity("Domain.Termin", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TerminDepartment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TerminDescription")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TerminDoctor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("TerminTime")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Termins");
                 });
 
             modelBuilder.Entity("Domain.Test", b =>

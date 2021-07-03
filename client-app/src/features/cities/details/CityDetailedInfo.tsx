@@ -17,8 +17,9 @@ export default observer(function CityDetailedInfo({city}: Props) {
                         <Icon size='large' color='teal' name='info'/>
                     </Grid.Column>
                     <Grid.Column width={15}>
+                        {city.CityName}
                         <p>Pershkrimi i qytetit</p>
-                        <p> <Icon  />{city.zipCode}</p>
+                        <p> <Icon  />{city.ZipCode}</p>
                     </Grid.Column>
 
 

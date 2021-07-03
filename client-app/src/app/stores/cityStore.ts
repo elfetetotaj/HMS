@@ -16,7 +16,9 @@ export default class CityStore {
     get citiesByDate() {
         return Array.from(this.cityRegistry.values())
     }
-
+    get citiesByName() {
+        return Array.from(this.cityRegistry.values()).sort((a, b) => a.CityName > b.CityName ? 1:-1);
+    }
     loadCities = async () => {
         this.loadingInitial = true;
         try {

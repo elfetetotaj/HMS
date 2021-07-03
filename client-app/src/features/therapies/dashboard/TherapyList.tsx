@@ -6,11 +6,11 @@ import TherapyListItem from './TherapyListItem';
 export default observer(function TherapyList() {
 
     const {therapyStore} = useStore();
-    const {therapiesByDate} = therapyStore
+    const {therapiesByName} = therapyStore
 
     return ( 
         <>
-            {therapiesByDate.map(therapy => (
+            {therapiesByName.map(therapy => (
                 <TherapyListItem key={therapy.id} therapy={therapy} />
             ))}
         </>

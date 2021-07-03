@@ -26,16 +26,16 @@ export default observer(function ReceptionistDashboard() {
     <Grid>
       <Grid.Row columns={2}>
         <Grid.Column>
-        <h2>Receptionists</h2>
+          <h2>Receptionists</h2>
         </Grid.Column>
         <Grid.Column>
-        <Button
-          as={Link}
-          to={`/createReceptionist`}
-          color='blue'
-          floated='right'
-          content='Add'
-        />
+          <Button
+            as={Link}
+            to={`/createReceptionist`}
+            color='blue'
+            floated='right'
+            content='Add'
+          />
         </Grid.Column>
       </Grid.Row>
       <Grid.Column width='10'>

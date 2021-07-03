@@ -1,8 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Country } from "../models/country";
-import { Profile } from "../models/profile";
-import { store } from "./store";
 
 export default class CountryStore {
     countryRegistry = new Map<string, Country>();
@@ -16,7 +14,7 @@ export default class CountryStore {
     }
 
     get countriesByName() {
-        return Array.from(this.countryRegistry.values()).sort((a, b) => a.CountryName > b.CountryName ? 1:-1);
+        return Array.from(this.countryRegistry.values())
     }
 
     loadCountries = async () => {

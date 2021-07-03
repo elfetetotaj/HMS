@@ -33,6 +33,7 @@ namespace API
                 await Seed.SeedDataTermin(context);
                 await Seed.SeedDataMedicine(context);
                 await Seed.SeedDataCity(context);
+                await Seed.SeedDataCountry(context);
                 await Seed.SeedDataDoctor(context);
                 await Seed.SeedDataPatient(context);
                 await Seed.SeedDataReceptionist(context);

@@ -37,7 +37,6 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
                                     style={{color: 'white'}}
                                 />
                                 <p>{receptionist.dob}</p> 
-                                {/* <p>{format(receptionist.dob!, 'dd MMM yyyy')}</p> */}
                                 <p>
                                     Hosted by <strong>Bob</strong>
                                 </p>

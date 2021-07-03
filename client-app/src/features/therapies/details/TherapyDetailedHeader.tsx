@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import { Therapy } from '../../../app/models/therapy';
-import { useStore } from '../../../app/stores/store';
 
 const therapyImageStyle = {
     filter: 'brightness(30%)'
