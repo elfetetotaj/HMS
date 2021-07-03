@@ -49,6 +49,7 @@ import CountryForm from '../../features/countries/form/CountryForm';
 
 import TestDashboard from '../../features/tests/dashboard/TestDashboard';
 import TestForm from '../../features/tests/form/TestForm';
+import BloodTypeDashboard from '../../features/bloodtypes/dashboard/BloodTypeDashboard';
 import EmergencyDriverDashboard from '../../features/emergencyDrivers/dashboard/EmergencyDriverDashboard';
 import EmergencyDriverDetails from '../../features/emergencyDrivers/details/EmergencyDriverDetails';
 import EmergencyDriverForm from '../../features/emergencyDrivers/form/EmergencyDriverForm';
@@ -131,6 +132,8 @@ function App() {
               <Route exact path='/tests' component={TestDashboard} />
               {/* <Route path='/farmacists/:id' component={FarmacistDetails} /> */}
               {/* <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} /> */}
+
+              <Route exact path='/bloodTypes' component={BloodTypeDashboard} />
 
               <Route path='/profiles/:username' component={ProfilePage}/>
               <Route path='/errors' component={TestErrors}/>

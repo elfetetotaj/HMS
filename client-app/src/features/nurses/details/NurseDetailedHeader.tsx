@@ -13,7 +13,7 @@ const nurseImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
     left: '5%',
-    width: '100%',
+    width: '50%',
     height: 'auto',
     color: 'white'
 };
@@ -49,10 +49,10 @@ export default observer (function NurseDetailedHeader({nurse}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join Activity</Button>
-                <Button>Cancel attendance</Button>
+                {/* <Button color='teal'>Join Activity</Button>
+                <Button>Cancel attendance</Button> */}
                 <Button as={Link} to={`/managenurse/${nurse.id}`} color='orange' floated='right'>
-                    Manage Event
+                    Edit nurse
                 </Button>
             </Segment>
         </Segment.Group>

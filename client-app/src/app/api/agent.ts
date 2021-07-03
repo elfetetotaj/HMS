@@ -16,6 +16,7 @@ import { Doctor } from '../models/doctor';
 import { TechEmployee } from '../models/techEmployee';
 import { Surgery } from '../models/surgery';
 import { Country } from '../models/country';
+import { BloodType } from '../models/bloodTypes';
 import { EmergencyDriver } from '../models/emergencyDriver';
 
 const sleep = (delay: number) => {
@@ -172,6 +173,10 @@ const Countries = {
     update: (country: Country) => axios.put<void>(`/countries/${country.Id}`, country),
     delete: (id: string) => axios.delete<void>(`/countries/${id}`)
 }
+const BloodTypes = {
+    list: () => requests.get<BloodType[]>('/bloodTypes'),
+
+}
 const EmergencyDrivers = {
     list: () => requests.get<EmergencyDriver[]>('/emergencyDrivers'),
     details: (id: string) => requests.get<EmergencyDriver>(`/emergencyDrivers/${id}`),
@@ -193,6 +198,8 @@ const agent = {
     Therapies,
     Doctors,
     TechEmployees,
+    Surgeries,
+    BloodTypes,
     Surgeries,
     EmergencyDrivers
 }
