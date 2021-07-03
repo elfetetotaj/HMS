@@ -1,15 +1,16 @@
+import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
-import { Department } from '../../../app/models/department';
+import { Termin } from '../../../app/models/termin';
 import { useStore } from '../../../app/stores/store';
 
-const departmentImageStyle = {
+const terminImageStyle = {
     filter: 'brightness(30%)'
 };
 
-const departmentImageTextStyle = {
+const terminImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
     left: '2%',
@@ -19,33 +20,42 @@ const departmentImageTextStyle = {
 };
 
 interface Props {
-    department: Department
+    termin: Termin
 }
 
-export default observer (function DepartmentDetailedHeader({department}: Props) {
-    const {departmentStore: {updateAttendance, loading}} = useStore();
+export default observer (function TerminDetailedHeader({termin}: Props) {
+    const {terminStore: {loading}} = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-                <Image src={`/assets/departmentImages/${department.departmentName}.jpg`} fluid style={departmentImageStyle}/>
-                <Segment style={departmentImageTextStyle} basic>
+                <Image src={`/assets/departmentImages/${termin.terminDepartment}.jpg`} fluid style={terminImageStyle}/>
+                <Segment style={terminImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
                                     size='huge'
-                                    content={department.departmentName}
+                                    content={termin.terminDepartment}
                                     style={{color: 'white'}}
                                 />
                                 <p style={{marginRight: 10}}>
-                                    {department.departmentDescription}
+                                    {termin.terminDescription}
                                 </p>
+                                <p>{format(termin.terminTime!, 'dd MMM yyyy')}</p>
                             </Item.Content>
                         </Item>
                     </Item.Group>
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
+                <Button as={Link} to='/termins' color='orange' floated='right'>
+                    Cancel
+                </Button>
+                <Button as={Link} to={`/managetermin/${termin.id}`} color='orange' floated='right'>
+                    Manage Appointment
+                </Button>
+            </Segment>
+            {/* <Segment clearing attached='bottom'>
                 {department.isHost ? (
                     <Button as={Link} to={`/managedepartment/${department.id}`} color='orange' floated='right'>
                         Manage Event
@@ -55,7 +65,7 @@ export default observer (function DepartmentDetailedHeader({department}: Props) 
                 ) : (
                     <Button loading={loading} onClick={updateAttendance} color='teal'>Join Activity</Button>
                 )}
-            </Segment>
+            </Segment> */}
         </Segment.Group>
     )
 })

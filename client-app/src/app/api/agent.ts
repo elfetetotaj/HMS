@@ -16,6 +16,7 @@ import { Doctor } from '../models/doctor';
 import { TechEmployee } from '../models/techEmployee';
 import { Surgery } from '../models/surgery';
 import { Country } from '../models/country';
+import { Termin } from '../models/termin';
 import { BloodType } from '../models/bloodTypes';
 import { EmergencyDriver } from '../models/emergencyDriver';
 import { Room } from '../models/room';
@@ -87,6 +88,13 @@ const Departments = {
     update: (department: DepartmentFormValues) => requests.put<void>(`/departments/${department.id}`, department),
     delete: (id: string) => requests.del<void>(`/departments/${id}`),
     attend: (id: string) => requests.post<void>(`/departments/${id}/attend`, {})
+}
+const Termins = {
+    list: () => requests.get<Termin[]>('/termins'),
+    details: (id: string) => requests.get<Termin>(`/termins/${id}`),
+    create: (termin: Termin) => requests.post<void>('/termins', termin),
+    update: (termin: Termin) => requests.put<void>(`/termins/${termin.id}`, termin),
+    delete: (id: string) => requests.del<void>(`/termins/${id}`),
 }
 const Receptionists = {
     list: () => requests.get<Receptionist[]>('/receptionists'),
@@ -194,6 +202,7 @@ const EmergencyDrivers = {
 }
 const agent = {
     Departments,
+    Termins,
     Receptionists,
     Nurses,
     Farmacists,

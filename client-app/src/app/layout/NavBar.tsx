@@ -32,6 +32,9 @@ export default observer(function NavBar() {
                                 <Button fluid as={NavLink} to='/departments' name='Department' content='Department' />
                             </Dropdown.Item>
                             <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/termins' name='Termin' content='Termin' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/receptionists' name='Receptionist' content='Receptionist' />
                             </Dropdown.Item>
                             <Dropdown.Item>
@@ -81,6 +84,9 @@ export default observer(function NavBar() {
                         <Dropdown.Menu>
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createDepartment' content='Create Department' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/createTermin' content='Create Appointment' />
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createReceptionist' content='Create Receptionist' />
