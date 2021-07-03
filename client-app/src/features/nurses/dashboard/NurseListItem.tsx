@@ -25,9 +25,10 @@ export default function NurseListItem({nurse}: Props) {
 
                        <Item.Content>
                             <Item.Header as={Link} to={`/nurses/${nurse.id}`}>
-                                {nurse.emri}
+                              <h1 >  {nurse.emri}   {nurse.mbiemri}</h1>
+                              <h2>  {nurse.department}</h2>
                             </Item.Header>
-                            <Item.Description>Pershkrim i infermierit/es</Item.Description>
+                        
                        </Item.Content>
                    </Item>
                </Item.Group>
@@ -43,11 +44,11 @@ export default function NurseListItem({nurse}: Props) {
                <Button 
                     as={Link}
                     to={`/nurses/${nurse.id}`}
-                    color='blue'
+                    color='teal'
                     floated='right'
                     content='View'
                />
-                   <Button onClick={() => deleteNurse(nurse.id)} type='submit' color='red' disabled={loading} >Delete</Button>
+                   <Button  onClick={() => deleteNurse(nurse.id)} type='submit'  color='red' disabled={loading} content='Delete'/>
            </Segment>
        </Segment.Group>
     )

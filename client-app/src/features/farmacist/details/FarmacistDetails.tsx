@@ -7,7 +7,6 @@ import { useStore } from '../../../app/stores/store';
 import FarmacistDetailedChat from './FarmacistDetailedChat';
 import FarmacistDetailedHeader from './FarmacistDetailedHeader';
 import FarmacistDetailedInfo from './FarmacistDetailedInfo';
-import FarmacistDetailedSidebar from './FarmacistDetailedSidebar';
 
 export default observer(function FarmacistDetails() {
     const {farmacistStore} = useStore();
@@ -23,16 +22,16 @@ export default observer(function FarmacistDetails() {
     return (
         <Grid>
     
-            <Grid.Column width={10}>
+            <Grid.Column width={15}>
                 
                 <FarmacistDetailedHeader farmacist={farmacist} />
             
                 <FarmacistDetailedInfo farmacist={farmacist} />
                 <FarmacistDetailedChat />
             </Grid.Column>
-            <Grid.Column width={6}>
+            {/* <Grid.Column width={6}>
                 <FarmacistDetailedSidebar />
-            </Grid.Column>
+            </Grid.Column> */}
         </Grid>
     )
 })

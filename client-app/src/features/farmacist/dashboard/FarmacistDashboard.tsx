@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Button, Grid } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import FarmacistFilters from './FarmacistFilters';
@@ -20,11 +21,20 @@ export default observer(function FarmacistDashboard() {
 
     return (
         <Grid>
+    
+            
             <Grid.Column width='10'>
                 <FarmacistList />
             </Grid.Column>
             <Grid.Column width='5'>
               <FarmacistFilters/>
+              <Button
+          as={Link}
+          to={`/createNurses`}
+          color='blue'
+           floated='right'
+          content='Add'
+        />
             </Grid.Column>
           
         </Grid>

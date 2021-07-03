@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Button, Grid, Header, Menu } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import Add from './Add';
@@ -21,14 +22,55 @@ export default observer(function TestDashboard() {
 
     return (
         
-        <Grid>
-            <Grid.Column width='13' >
-                <TestList />
-            </Grid.Column>
-            <Add />
+    //     <Grid>
+            
+    //         <Grid.Row columns={1}>
+    //     <Grid.Column>
+    //     <h2 >Tests</h2>
+    //     </Grid.Column>
+     
+    //   </Grid.Row>
+    //         <Grid.Column width='13' >
+    //             <TestList />
+    //         </Grid.Column>
+            
+    //         <Grid.Column width='5'>
+    //         <Menu vertical size='large' style={{ width: '100%' }}>
+    //             <Header icon='filter' attached color='teal' content='Filters' />
+    //             <Menu.Item content='All Tests in Hospital' />
+
+    //         </Menu>
+    //         </Grid.Column>
+    //         <Header />
+           
+       
+    //         <Grid.Column/>
+    //         <Grid.Column><Add/></Grid.Column>
         
           
-        </Grid>
-        
+    //     </Grid>
+    <Grid>
+    <Grid.Column width='10'>
+        <TestList />
+    </Grid.Column>
+    <Grid.Column width='5'>
+    <>
+            <Menu vertical size='large' style={{ width: '100%' }}>
+                <Header icon='lab' attached color='teal' content='Tests' />
+                
+            </Menu>
+            <Header />
+           
+        </>
+      <Button
+  as={Link}
+  to={`/createNurses`}
+  color='blue'
+   floated='right'
+  content='Add'
+/>
+    </Grid.Column>
+  
+</Grid>
     )
 })

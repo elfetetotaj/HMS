@@ -406,14 +406,26 @@ namespace Persistence
                 new Nurse{
                     emri = "Zoja",
                     mbiemri = "Gjeraj",
-                    username = "Zogi",
+                    username = "Paradite",
                     datelindja =DateTime.Parse( "2000-04-01"),
                     adresa ="Te kullat",
                     qyteti = "Prizren",
                     email="zoja@gmail.com",
                     gjinia =  'F',
                     paga = 200,
-                    department="Dep"
+                    department="Pediatria"
+                },
+                  new Nurse{
+                    emri = "Faton",
+                    mbiemri = "Kabashi",
+                    username = "Pasdite",
+                    datelindja =DateTime.Parse( "1986-04-27"),
+                    adresa ="Janina",
+                    qyteti = "Prizren",
+                    email="faton@gmail.com",
+                    gjinia =  'M',
+                    paga = 200,
+                    department="Neurologjia"
                 },
             };
 

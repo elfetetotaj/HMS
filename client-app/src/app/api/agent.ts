@@ -200,7 +200,6 @@ const agent = {
     TechEmployees,
     Surgeries,
     BloodTypes,
-    Surgeries,
     EmergencyDrivers
 }
 
