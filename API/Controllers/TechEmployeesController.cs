@@ -23,16 +23,16 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTechEmployee(TechEmployee TechEmployee)
+        public async Task<IActionResult> CreateTechEmployee(TechEmployee techEmployee)
         {
-            return HandleResult(await Mediator.Send(new Create.Command {TechEmployee = TechEmployee}));
+            return HandleResult(await Mediator.Send(new Create.Command { TechEmployee = techEmployee}));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditTechEmployee(Guid id, TechEmployee TechEmployee)
+        public async Task<IActionResult> EditTechEmployee(Guid id, TechEmployee techEmployee)
         {
-            TechEmployee.id = id;
-            return HandleResult(await Mediator.Send(new Edit.Command{TechEmployee = TechEmployee}));
+            techEmployee.id = id;
+            return HandleResult(await Mediator.Send(new Edit.Command { TechEmployee = techEmployee}));
         }
 
         [HttpDelete("{id}")]
@@ -40,5 +40,5 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
         }
-    }
+    }//
 }

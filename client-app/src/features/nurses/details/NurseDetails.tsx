@@ -23,7 +23,7 @@ export default observer(function NurseDetails() {
     return (
         <Grid>
     
-            <Grid.Column width={10}>
+            <Grid.Column width={12}>
                 
                 <NurseDetailedHeader nurse={nurse} />
             
@@ -31,7 +31,7 @@ export default observer(function NurseDetails() {
                 <NurseDetailedChat />
             </Grid.Column>
             <Grid.Column width={6}>
-                <NurseDetailedSidebar />
+                {/* <NurseDetailedSidebar /> */}
             </Grid.Column>
         </Grid>
     )

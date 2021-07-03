@@ -16,6 +16,8 @@ import TechEmployeeStore from "./techEmployeeStore";
 import SurgeryStore from "./surgeryStore";
 import CommentStore from "./commentStore";
 import CountryStore from "./countryStore";
+import BloodTypeStore from "./bloodTypeStore";
+import EmergencyDriverStore from "./emergencyDriverStore";
 import RoomStore from "./roomStore";
 
 
@@ -38,6 +40,8 @@ interface Store{
     surgeryStore : SurgeryStore;
     roomStore : RoomStore;
     countryStore : CountryStore;
+    bloodTypeStore : BloodTypeStore;
+    emergencyDriverStore : EmergencyDriverStore;
 }
 
 export const store: Store = {
@@ -59,6 +63,8 @@ export const store: Store = {
     surgeryStore: new SurgeryStore(),
     roomStore: new RoomStore(),
     countryStore: new CountryStore(),
+    bloodTypeStore: new BloodTypeStore(),
+    emergencyDriverStore: new EmergencyDriverStore(),
 }
 
 export const StoreContext = createContext(store);

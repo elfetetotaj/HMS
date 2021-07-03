@@ -18,6 +18,8 @@ namespace Application.Nurses
                 RuleFor(x => x.qyteti).NotEmpty();
                 RuleFor(x => x.username).NotEmpty();
                 RuleFor(x => x.gjinia).NotEmpty();
+                RuleFor(x => x.department).NotEmpty();
+                
 
                
             }

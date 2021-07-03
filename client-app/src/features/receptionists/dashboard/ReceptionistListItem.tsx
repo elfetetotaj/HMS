@@ -2,30 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { Receptionist } from '../../../app/models/receptionist';
+import { useStore } from '../../../app/stores/store';
 // import {format} from 'date-fns';
 
 interface Props {
     receptionist: Receptionist
 }
 
-export default function ReceptionistListItem({receptionist}: Props) {
+export default function ReceptionistListItem({ receptionist }: Props) {
 
+    const { receptionistStore } = useStore();
+    const { deleteReceptionist, loading } = receptionistStore;
     return (
-       <Segment.Group>
-           <Segment>
-               <Item.Group>
-                   <Item>
-                       <Item.Image size='tiny' circular src='/assets/user.png' />
-                       <Item.Content>
+        <Segment.Group>
+            <Segment>
+                <Item.Group>
+                    <Item>
+                        <Item.Image size='tiny' circular src='/assets/user.png' />
+                        <Item.Content>
                             <Item.Header as={Link} to={`/receptionists/${receptionist.id}`}>
                                 {receptionist.username}
                             </Item.Header>
-                            <Item.Description>Pershkrim i departmentit</Item.Description>
-                       </Item.Content>
-                   </Item>
-               </Item.Group>
-           </Segment>
-           <Segment>
+                            <Item.Description>Recepcionisti
+                            </Item.Description>
+                        </Item.Content>
+                    </Item>
+                </Item.Group>
+            </Segment>
+            <Segment>
                 <span>
                     <Icon name='clock' /> {receptionist.dob}
                     {/* <Icon name='clock' /> {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')} */}
@@ -35,16 +39,27 @@ export default function ReceptionistListItem({receptionist}: Props) {
             <Segment secondary>
                 Attendees go here
             </Segment>
-           <Segment clearing>
-           <span>{receptionist.department}</span>
-               <Button 
+            <Segment clearing>
+                <span>{receptionist.department}</span>
+                <Button
+                    as={Link}
+                    to={`#`}
+                    color='red'
+                    floated='right'
+                    content='Delete'
+                    onClick={() => deleteReceptionist(receptionist.id)}
+                    type='submit'
+                    disabled={loading}
+                />
+                <Button
                     as={Link}
                     to={`/receptionists/${receptionist.id}`}
                     color='teal'
                     floated='right'
                     content='View'
-               />
-           </Segment>
-       </Segment.Group>
+                />
+
+            </Segment>
+        </Segment.Group>
     )
 }

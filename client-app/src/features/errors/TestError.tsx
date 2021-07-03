@@ -36,6 +36,9 @@ export default function TestErrors() {
     function handleBadGuidNurse() {
         axios.get(baseUrl + 'nurses/notaguid').catch(err => console.log(err));
         axios.get(baseUrl + 'farmacists/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'bloodtypes/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'techEmployees/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'tests/notaguid').catch(err => console.log(err));
 
     }
 
@@ -59,6 +62,9 @@ export default function TestErrors() {
     function handleValidationErrorNurse() {
         axios.post(baseUrl + 'nurses', {}).catch(err => setErrors(err));
         axios.post(baseUrl + 'farmacists', {}).catch(err => setErrors(err));
+        axios.post(baseUrl + 'bloodtypes', {}).catch(err => setErrors(err));
+        axios.post(baseUrl + 'techEmployees', {}).catch(err => setErrors(err));
+        axios.post(baseUrl + 'tests', {}).catch(err => setErrors(err));
 
     }
     function handleBadGuidPatient() {
@@ -70,6 +76,7 @@ export default function TestErrors() {
     }
 
     function handleBadGuidDoctor() {
+        axios.get(baseUrl + 'doctors/notaguid').catch(err => console.log(err));
         axios.get(baseUrl + 'doctors/notaguid').catch(err => console.log(err.response));
     }
 
@@ -101,6 +108,14 @@ export default function TestErrors() {
         axios.post(baseUrl + 'countries', {}).catch(err => setErrors(err));
     }
 
+    function handleBadGuidEmergencyDriver() {
+        axios.get(baseUrl + 'emergencyDrivers/notaguid').catch(err => console.log(err));
+    }
+
+    function handleValidationErrorEmergencyDriver() {
+        axios.post(baseUrl + 'emergencyDrivers', {}).catch(err => setErrors(err));
+    }
+
     return (
         <>
             <Header as='h1' content='Test Error component' />
@@ -117,6 +132,7 @@ export default function TestErrors() {
                     <Button onClick={handleValidationErrorRoom} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorTherapy} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorCountry} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorEmergencyDriver} content='Validation Error' basic primary />
                     <Button onClick={handleServerError} content='Server Error' basic primary />
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
                     <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
@@ -128,6 +144,7 @@ export default function TestErrors() {
                     <Button onClick={handleBadGuidRoom} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidTherapy} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidCountry} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidEmergencyDriver} content='Bad Guid' basic primary />
                 </Button.Group>
             </Segment>
             {errors &&

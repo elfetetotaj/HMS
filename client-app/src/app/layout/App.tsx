@@ -38,6 +38,7 @@ import DoctorDetails from '../../features/doctors/details/DoctorDetails';
 import DoctorForm from '../../features/doctors/form/DoctorForm';
 import TechEmployeeDashboard from '../../features/techEmployees/dashboard/TechEmployeeDashboard';
 import TechEmployeeForm from '../../features/techEmployees/form/techEmployeeForm';
+
 import SurgeryDashboard from '../../features/surgeries/dashboard/SurgeryDashboard';
 import SurgeryDetails from '../../features/surgeries/details/SurgeryDetails';
 import SurgeryForm from '../../features/surgeries/form/SurgeryForm';
@@ -48,6 +49,13 @@ import CountryForm from '../../features/countries/form/CountryForm';
 import RoomDashboard from '../../features/rooms/dashboard/RoomDashboard';
 import RoomDetails from '../../features/rooms/details/RoomDetails';
 import RoomForm from '../../features/rooms/form/RoomForm';
+
+import TestDashboard from '../../features/tests/dashboard/TestDashboard';
+import TestForm from '../../features/tests/form/TestForm';
+import BloodTypeDashboard from '../../features/bloodtypes/dashboard/BloodTypeDashboard';
+import EmergencyDriverDashboard from '../../features/emergencyDrivers/dashboard/EmergencyDriverDashboard';
+import EmergencyDriverDetails from '../../features/emergencyDrivers/details/EmergencyDriverDetails';
+import EmergencyDriverForm from '../../features/emergencyDrivers/form/EmergencyDriverForm';
 
 function App() {
   const location = useLocation(); 
@@ -93,7 +101,7 @@ function App() {
               <Route key={location.key} path={['/createFarmacist', '/managefarmacist/:id']} component={FarmacistForm} />
 
               <Route exact path='/techEmployees' component={TechEmployeeDashboard} />
-              <Route path='/farmacists/:id' component={FarmacistDetails} />
+              {/* <Route path='/farmacists/:id' component={FarmacistDetails} /> */}
               <Route key={location.key} path={['/createTechEmployee', '/managetechEmployee/:id']} component={TechEmployeeForm} />
 
               <Route exact path='/patients' component={PatientDashboard} />
@@ -123,6 +131,16 @@ function App() {
               <Route exact path='/countries' component={CountryDashboard} />
               <Route path='/countries/:id' component={CountryDetails} />
               <Route key={location.key} path={['/createCountry', '/managecountry/:id']} component={CountryForm} />
+
+              <Route exact path='/emergencyDrivers' component={EmergencyDriverDashboard} />
+              <Route path='/emergencyDrivers/:id' component={EmergencyDriverDetails} />
+              <Route key={location.key} path={['/createEmergencyDriver', '/manageemergencyDriver/:id']} component={EmergencyDriverForm} />
+              
+              <Route exact path='/tests' component={TestDashboard} />
+              {/* <Route path='/farmacists/:id' component={FarmacistDetails} /> */}
+              {/* <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} /> */}
+
+              <Route exact path='/bloodTypes' component={BloodTypeDashboard} />
 
               <Route path='/profiles/:username' component={ProfilePage}/>
               <Route path='/errors' component={TestErrors}/>
