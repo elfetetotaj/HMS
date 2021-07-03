@@ -30,7 +30,7 @@ export default observer(function FarmacistDashboard() {
               <FarmacistFilters/>
               <Button
           as={Link}
-          to={`/createNurses`}
+          to={`/createFarmacist`}
           color='blue'
            floated='right'
           content='Add'

@@ -217,9 +217,8 @@ const agent = {
     TechEmployees,
     Surgeries,
     BloodTypes,
-    EmergencyDrivers
-    Surgeries,
-    Rooms
+    EmergencyDrivers,
+    Rooms,
 }
 
 export default agent;

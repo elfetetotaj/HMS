@@ -29,7 +29,7 @@ export default observer(function NurseDashboard() {
               <NurseFilters/>
               <Button
           as={Link}
-          to={`/createNurses`}
+          to={`/createNurse`}
           color='blue'
            floated='right'
           content='Add'

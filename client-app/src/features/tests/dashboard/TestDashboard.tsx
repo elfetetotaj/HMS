@@ -64,7 +64,7 @@ export default observer(function TestDashboard() {
         </>
       <Button
   as={Link}
-  to={`/createNurses`}
+  to={`/createTest`}
   color='blue'
    floated='right'
   content='Add'
