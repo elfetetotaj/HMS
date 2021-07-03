@@ -18,9 +18,14 @@ export default observer(function NurseDetailedInfo({nurse}: Props) {
                         <Icon size='large' color='teal' name='info'/>
                     </Grid.Column>
                     <Grid.Column width={15}>
-                        <p>Pershkrimi i infermierit/s</p>
+                        <p>Informata</p>
                         <p><Icon name='calendar'/>{format(nurse.datelindja!, 'dd MMM yyyy')}</p>
                         <p> <Icon name='map marker' />{nurse.adresa}</p>
+                        <p>Departamenti: {nurse.department}</p>
+                        <p>Qyteti: {nurse.qyteti}</p>
+                        <p>Email: {nurse.email}</p>
+                        <p>Paga {nurse.paga}</p>
+
 
                         {/* <p>{department.description}</p> */}
                     </Grid.Column>

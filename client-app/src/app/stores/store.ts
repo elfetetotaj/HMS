@@ -16,6 +16,7 @@ import TechEmployeeStore from "./techEmployeeStore";
 import SurgeryStore from "./surgeryStore";
 import CommentStore from "./commentStore";
 import CountryStore from "./countryStore";
+import BloodTypeStore from "./bloodTypeStore";
 
 
 interface Store{
@@ -36,6 +37,7 @@ interface Store{
     techEmployeeStore : TechEmployeeStore;
     surgeryStore : SurgeryStore;
     countryStore : CountryStore;
+    bloodTypeStore : BloodTypeStore;
 }
 
 export const store: Store = {
@@ -56,6 +58,7 @@ export const store: Store = {
     techEmployeeStore : new TechEmployeeStore(),
     surgeryStore: new SurgeryStore(),
     countryStore: new CountryStore(),
+    bloodTypeStore: new BloodTypeStore(),
 }
 
 export const StoreContext = createContext(store);

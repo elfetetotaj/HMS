@@ -17,7 +17,8 @@ export default function NurseListItem({nurse}: Props) {
            <p> {nurse.username}</p>
                <Item.Group>
                    <Item>
-                       <Item.Image size='tiny' circular src='/assets/nurse.png' />
+                   <Item.Image src={`/assets/${nurse.gjinia}.png`} />
+
                        <Item.Content>
                             <Item.Header as={Link} to={`/nurses/${nurse.id}`}>
                                 {nurse.emri}

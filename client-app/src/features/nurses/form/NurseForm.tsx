@@ -43,7 +43,8 @@ export default observer(function NurseForm() {
         qyteti: Yup.string().required(),
         email: Yup.string().required(),
         gjinia: Yup.string().required(),
-        paga: Yup.string().required()
+        paga: Yup.string().required(),
+        department: Yup.string().required()
 
     })
 
@@ -97,6 +98,7 @@ export default observer(function NurseForm() {
 
                      <MyTextInput placeholder='Gjinia'  name='gjinia' />
                      <MyTextInput placeholder='Paga'  name='paga'/>
+                     <MyTextInput placeholder='Department'  name='department'/>
 
             <Header content='Location Details' sub color='teal' />
 

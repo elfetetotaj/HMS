@@ -16,6 +16,7 @@ import { Doctor } from '../models/doctor';
 import { TechEmployee } from '../models/techEmployee';
 import { Surgery } from '../models/surgery';
 import { Country } from '../models/country';
+import { BloodType } from '../models/bloodTypes';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -171,6 +172,10 @@ const Countries = {
     update: (country: Country) => axios.put<void>(`/countries/${country.Id}`, country),
     delete: (id: string) => axios.delete<void>(`/countries/${id}`)
 }
+const BloodTypes = {
+    list: () => requests.get<BloodType[]>('/bloodTypes'),
+
+}
 const agent = {
     Departments,
     Receptionists,
@@ -185,7 +190,8 @@ const agent = {
     Therapies,
     Doctors,
     TechEmployees,
-    Surgeries
+    Surgeries,
+    BloodTypes
 }
 
 export default agent;

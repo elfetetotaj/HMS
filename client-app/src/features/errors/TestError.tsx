@@ -36,6 +36,9 @@ export default function TestErrors() {
     function handleBadGuidNurse() {
         axios.get(baseUrl + 'nurses/notaguid').catch(err => console.log(err));
         axios.get(baseUrl + 'farmacists/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'bloodtypes/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'techEmployees/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'tests/notaguid').catch(err => console.log(err));
 
     }
 
@@ -59,6 +62,9 @@ export default function TestErrors() {
     function handleValidationErrorNurse() {
         axios.post(baseUrl + 'nurses', {}).catch(err => setErrors(err));
         axios.post(baseUrl + 'farmacists', {}).catch(err => setErrors(err));
+        axios.post(baseUrl + 'bloodtypes', {}).catch(err => setErrors(err));
+        axios.post(baseUrl + 'techEmployees', {}).catch(err => setErrors(err));
+        axios.post(baseUrl + 'tests', {}).catch(err => setErrors(err));
 
     }
     function handleBadGuidPatient() {
