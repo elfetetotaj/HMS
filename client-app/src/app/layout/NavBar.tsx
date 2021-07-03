@@ -64,6 +64,9 @@ export default observer(function NavBar() {
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/tests' name='Test' content='Test' />
                             </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/bloodTypes' name='Blood Types' content='BloodType' />
+                            </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>

@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Grid } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import Add from './Add';
 
 import BloodTypeList from './BloodTypeList';
+import Image2 from './image2';
 
 export default observer(function BloodTypeDashboard() {
 
@@ -29,12 +29,11 @@ export default observer(function BloodTypeDashboard() {
                 <BloodTypeList />
             </Grid.Column>
             <Grid.Column width='5'>
-              <Add/>
-            </Grid.Column>
-            
-
-        
-          
+              <Add/><br /><br />
+              
+              <Image2/>
+            </Grid.Column>     
+               
         </Grid>
     )
 })

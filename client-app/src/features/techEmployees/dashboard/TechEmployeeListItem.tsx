@@ -1,6 +1,6 @@
 import format from 'date-fns/format';
 import React from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link,  } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { TechEmployee } from '../../../app/models/techEmployee';
 import { useStore } from '../../../app/stores/store';
@@ -10,24 +10,25 @@ interface Props {
 }
 
 export default function TechEmployeeListItem({techEmployee}: Props) {
-    const history = useHistory();
     const {techEmployeeStore} = useStore();
-    const{deleteTechEmployee, updateTechEmployee, loading, loadTechEmployee, loadingInitial} = techEmployeeStore;
-    const {id} = useParams<{id: string}>();
+    const{deleteTechEmployee,  loading,} = techEmployeeStore;
+
 
     return (
+ 
        <Segment.Group>
-           
            <Segment>
-           <p> {techEmployee.username}</p>
                <Item.Group>
                    <Item>
-                       <Item.Image size='tiny' circular src='/assets/user.png' />
+                   <Item.Image src={`/assets/nursesImages/${techEmployee.gjinia}.png`} />
+                 
                        <Item.Content>
                             <Item.Header as={Link} to={`/techEmployees/${techEmployee.id}`}>
-                                {techEmployee.emri}
+                             <h1>   {techEmployee.emri} {techEmployee.mbiemri}</h1>
+                            <h3>    {techEmployee.department}</h3>
+
                             </Item.Header>
-                            <Item.Description>Pershkrim i infermierit/es</Item.Description>
+                            {/* <Item.Description>Pershkrim i infermierit/es</Item.Description> */}
                        </Item.Content>
                    </Item>
                </Item.Group>
@@ -40,7 +41,7 @@ export default function TechEmployeeListItem({techEmployee}: Props) {
                </span>
            </Segment>
            <Segment clearing>
-           <Button as={Link} to={`/managetechEmployee/${techEmployee.id}`} color='orange' floated='right'>
+           <Button as={Link} to={`/managetechEmployee/${techEmployee.id}`} color='blue' floated='right'>
                 Edit
            </Button>
            {/* <Button

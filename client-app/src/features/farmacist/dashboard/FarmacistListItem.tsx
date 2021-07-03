@@ -3,12 +3,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { Farmacist } from '../../../app/models/farmacist';
+import { useStore } from '../../../app/stores/store';
 
 interface Props {
     farmacist: Farmacist
 }
 
 export default function FarmacistListItem({farmacist}: Props) {
+    const {farmacistStore} = useStore();
+    const{deleteFarmacist,  loading,} = farmacistStore;
 
     return (
        <Segment.Group>
@@ -40,7 +43,11 @@ export default function FarmacistListItem({farmacist}: Props) {
                     floated='right'
                     content='View'
                />
+                   <Button onClick={() => deleteFarmacist(farmacist.id)} type='submit' color='red' disabled={loading} >Delete</Button>
+
            </Segment>
        </Segment.Group>
     )
 }
+
+
