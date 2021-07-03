@@ -45,6 +45,9 @@ import ProfilePage from '../../features/profiles/ProfilePage';
 import CountryDashboard from '../../features/countries/dashboard/CountryDashboard';
 import CountryDetails from '../../features/countries/details/CountryDetails';
 import CountryForm from '../../features/countries/form/CountryForm';
+import RoomDashboard from '../../features/rooms/dashboard/RoomDashboard';
+import RoomDetails from '../../features/rooms/details/RoomDetails';
+import RoomForm from '../../features/rooms/form/RoomForm';
 
 function App() {
   const location = useLocation(); 
@@ -112,6 +115,10 @@ function App() {
               <Route exact path='/surgeries' component={SurgeryDashboard} />
               <Route path='/surgeries/:id' component={SurgeryDetails} />
               <Route key={location.key} path={['/createSurgery', '/managesurgery/:id']} component={SurgeryForm} />
+
+              <Route exact path='/rooms' component={RoomDashboard} />
+              <Route path='/rooms/:id' component={RoomDetails} />
+              <Route key={location.key} path={['/createRoom', '/manageroom/:id']} component={RoomForm} />
 
               <Route exact path='/countries' component={CountryDashboard} />
               <Route path='/countries/:id' component={CountryDetails} />

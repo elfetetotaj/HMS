@@ -70,11 +70,19 @@ export default function TestErrors() {
     }
 
     function handleBadGuidDoctor() {
-        axios.get(baseUrl + 'doctorss/notaguid').catch(err => console.log(err));
+        axios.get(baseUrl + 'doctors/notaguid').catch(err => console.log(err.response));
     }
 
     function handleValidationErrorDoctor() {
         axios.post(baseUrl + 'doctors', {}).catch(err => setErrors(err));
+    }
+
+    function handleBadGuidRoom() {
+        axios.get(baseUrl + 'rooms/notaguid').catch(err => console.log(err.response));
+    }
+
+    function handleValidationErrorRoom() {
+        axios.post(baseUrl + 'rooms', {}).catch(err => setErrors(err));
     }
 
     function handleBadGuidTherapy() {
@@ -106,6 +114,7 @@ export default function TestErrors() {
                     <Button onClick={handleValidationErrorPatient} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorCity} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorDoctor} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorRoom} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorTherapy} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorCountry} content='Validation Error' basic primary />
                     <Button onClick={handleServerError} content='Server Error' basic primary />
@@ -116,6 +125,7 @@ export default function TestErrors() {
                     <Button onClick={handleBadGuidPatient} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidCity} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidDoctor} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidRoom} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidTherapy} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidCountry} content='Bad Guid' basic primary />
                 </Button.Group>

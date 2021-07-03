@@ -31,6 +31,9 @@ export default function NotFound() {
                 <Button as={Link} to='/doctors' primary >
                     Return to doctors page 
                 </Button>
+                <Button as={Link} to='/rooms' primary >
+                    Return to rooms page 
+                </Button>
                 <Button as={Link} to='/therapies' primary >
                     Return to therapies page 
                 </Button>

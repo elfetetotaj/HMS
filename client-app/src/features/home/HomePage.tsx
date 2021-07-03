@@ -45,6 +45,9 @@ export default observer(function HomePage() {
                         <Button as={Link} to='/surgeries' size='huge' inverted>
                             Go to Surgeries!
                         </Button>
+                        <Button as={Link} to='/rooms' size='huge' inverted>
+                            Go to Rooms!
+                        </Button>
                         <Button as={Link} to='/countries' size='huge' inverted>
                             Go to Countries!
                         </Button>
