@@ -20,7 +20,7 @@ export default function FarmacistListItem({farmacist}: Props) {
           
                <Item.Group>
                    <Item>
-                       <Item.Image size='tiny' circular src='/assets/M.png' />
+                       <Item.Image size='tiny' circular src='/assets/farmacistImages/F.png' />
                        <Item.Content>
                             <Item.Header as={Link} to={`/farmacists/${farmacist.id}`}>
                                 {farmacist.emri}

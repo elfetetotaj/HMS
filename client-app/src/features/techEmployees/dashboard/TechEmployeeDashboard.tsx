@@ -52,7 +52,7 @@ export default observer(function TechEmployeeDashboard() {
 <Grid.Column width='5'>
 <>
         <Menu vertical size='large' style={{ width: '100%' }}>
-            <Header icon='lab' attached color='teal' content='Tech Employee' />
+            <Header icon='filter' attached color='teal' content='Tech Employees' />
             
         </Menu>
         <Header />

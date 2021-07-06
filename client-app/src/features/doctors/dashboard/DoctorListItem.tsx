@@ -3,20 +3,22 @@ import { Button, Icon, Item, Segment } from "semantic-ui-react";
 import React from 'react';
 import { Doctor } from "../../../app/models/doctor";
 import { format } from "date-fns";
+import { useStore } from "../../../app/stores/store";
 
 interface Props {
     doctor : Doctor
 }
 
 export default function DoctorListItem({doctor}: Props){
-
+    const {doctorStore} = useStore();
+    const{deleteDoctor,  loading} = doctorStore;
 
     return (
         <Segment.Group>
             <Segment>
                 <Item.Group>
                     <Item>
-                        <Item.Image size='tiny' circular src='/assets/user.png' />
+                        <Item.Image size='tiny' circular src='/assets/doctor.png' />
                         <Item.Content>
                             <Item.Header as={Link} to={`/doctors/${doctor.id}`} >
                                 {doctor.name}
@@ -36,7 +38,7 @@ export default function DoctorListItem({doctor}: Props){
                 Interns/Residents under your supervision
             </Segment>
             <Segment clearing>
-                <span>{doctor.designation}</span>
+              
                 <Button 
                     as={Link}
                     to={`/doctors/${doctor.id}`}
@@ -44,6 +46,8 @@ export default function DoctorListItem({doctor}: Props){
                     floated= 'right'
                     content= 'View'
                 />
+                   <Button  onClick={() => deleteDoctor(doctor.id)} type='submit'  color='red' disabled={loading} content='Delete'/>
+
             </Segment>
         </Segment.Group>
     )
