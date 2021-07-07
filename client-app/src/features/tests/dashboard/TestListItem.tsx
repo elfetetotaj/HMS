@@ -51,7 +51,7 @@ export default function TestListItem({test}: Props) {
 										content='Delete'
 										disabled={loading}
 									/> */}
-                                    <Button onClick={() => deleteTest(test.id)} type='submit' content='Delete' disabled={loading} color='red'  ></Button>
+                                    <Button onClick={() => {if(window.confirm('Delete the Test?')){deleteTest(test.id)};}}  type='submit' content='Delete' disabled={loading} color='red'  ></Button>
 
            </Segment>
 

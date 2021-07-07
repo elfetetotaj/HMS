@@ -57,7 +57,7 @@ export default function TechEmployeeListItem({techEmployee}: Props) {
 										content='Delete'
 										disabled={loading}
 									/> */}
-                                    <Button onClick={() => deleteTechEmployee(techEmployee.id)} type='submit' color='red' disabled={loading} >Delete</Button>
+                                    <Button onClick={() => {if(window.confirm('Delete the TechEmployee?')){deleteTechEmployee(techEmployee.id)};}}  type='submit' color='red' disabled={loading} >Delete</Button>
 
            </Segment>
        </Segment.Group>

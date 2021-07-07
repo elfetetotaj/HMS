@@ -46,7 +46,10 @@ export default function DoctorListItem({doctor}: Props){
                     floated= 'right'
                     content= 'View'
                 />
-                   <Button  onClick={() => deleteDoctor(doctor.id)} type='submit'  color='red' disabled={loading} content='Delete'/>
+                   <Button  onClick={() => {if(window.confirm('Delete the Doctor?')){deleteDoctor(doctor.id)};}} type='submit'  color='red' disabled={loading} content='Delete'/>
+                  
+     
+
 
             </Segment>
         </Segment.Group>

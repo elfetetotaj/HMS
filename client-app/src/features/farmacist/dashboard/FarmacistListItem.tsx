@@ -43,7 +43,7 @@ export default function FarmacistListItem({farmacist}: Props) {
                     floated='right'
                     content='View'
                />
-                   <Button onClick={() => deleteFarmacist(farmacist.id)} type='submit' color='red' disabled={loading} >Delete</Button>
+                   <Button onClick={() => {if(window.confirm('Delete the Farmacist?')){deleteFarmacist(farmacist.id)};}}  type='submit' color='red' disabled={loading} >Delete</Button>
 
            </Segment>
        </Segment.Group>
