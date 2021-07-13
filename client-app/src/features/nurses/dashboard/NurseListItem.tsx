@@ -13,12 +13,14 @@ interface Props {
 export default function NurseListItem({nurse}: Props) {
     const {nurseStore} = useStore();
     const{deleteNurse,  loading,} = nurseStore;
+  
 
     return (
        <Segment.Group>
            
            <Segment>
-           <p> {nurse.username}</p>
+             
+          
                <Item.Group>
                    <Item>
                    <Item.Image src={`/assets/${nurse.gjinia}.png`} />

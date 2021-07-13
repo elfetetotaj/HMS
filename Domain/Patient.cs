@@ -17,6 +17,8 @@ namespace Domain
         public int weight { get; set; }
         public string other_det { get; set; }
         public DateTime register_date { get; set; }
+        
+       
 
     }
 }
