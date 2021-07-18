@@ -76,6 +76,12 @@ export default observer(function NavBar() {
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/emergencyDrivers' name='EmergencyDriver' content='EmergencyDriver' />
                             </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/emergencyDrivers' name='EmergencyDriver' content='EmergencyDriver' />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Button fluid as={NavLink} to='/emergencyDrivers' name='EmergencyDriver' content='EmergencyDriver' />
+                            </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>

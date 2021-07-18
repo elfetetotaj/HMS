@@ -27,7 +27,7 @@ export default observer (function FarmacistDetailedHeader({farmacist}: Props) {
         
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-            <Image src={`/assets/farmacistImages/${farmacist.emri}.jpg`} fluid style={FarmacistImageStyle } />
+            <Image src={`/assets/farmacistImages/${farmacist.emri}.png`} fluid style={FarmacistImageStyle } />
                 <Segment style={FarmacistImageTextStyle} basic>
                     <Item.Group>
                         <Item>

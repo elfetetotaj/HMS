@@ -13,12 +13,14 @@ interface Props {
 export default function NurseListItem({nurse}: Props) {
     const {nurseStore} = useStore();
     const{deleteNurse,  loading,} = nurseStore;
+  
 
     return (
        <Segment.Group>
            
            <Segment>
-           <p> {nurse.username}</p>
+             
+          
                <Item.Group>
                    <Item>
                    <Item.Image src={`/assets/${nurse.gjinia}.png`} />
@@ -48,7 +50,7 @@ export default function NurseListItem({nurse}: Props) {
                     floated='right'
                     content='View'
                />
-                   <Button  onClick={() => deleteNurse(nurse.id)} type='submit'  color='red' disabled={loading} content='Delete'/>
+                   <Button  onClick={() => {if(window.confirm('Delete the Nurse?')){deleteNurse(nurse.id)};}}  type='submit'  color='red' disabled={loading} content='Delete'/>
            </Segment>
        </Segment.Group>
     )

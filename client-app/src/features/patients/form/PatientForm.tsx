@@ -6,20 +6,22 @@ import { Button, Header, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import {v4 as uuid} from 'uuid';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
-import MyTextArea from '../../../app/common/form/MyTextArea'; 
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Patient } from '../../../app/models/patient';
 
 
 export default observer(function PatientForm(){
     const history = useHistory();
-    const { patientStore } = useStore();
+    const { patientStore, bloodTypeStore } = useStore();
     const { createPatient, updatePatient, 
             loading, loadPatient, loadingInitial } = patientStore;
     const {id} = useParams<{ id: string }>();
+
+    const{bloodTypeRegistry, loadBloodTypes}=bloodTypeStore;
+    let bloodtypes=[...bloodTypeRegistry.values()];
 
     const [patient, setPatient] = useState<Patient>({ //
         id: '',
@@ -54,7 +56,8 @@ export default observer(function PatientForm(){
 
     useEffect(() => {
         if (id) loadPatient(id).then(patient => setPatient(patient!))
-    }, [id, loadPatient]);
+        if(bloodTypeRegistry.size<=1) loadBloodTypes();
+    }, [id, loadPatient, bloodTypeRegistry.size,loadBloodTypes]);
 
       function handleFormSubmit(patient: Patient){
        if (patient.id.length === 0 ) {
@@ -93,7 +96,12 @@ export default observer(function PatientForm(){
                     <MyTextInput placeholder ='postal_code' name='postal_code'  />
                     <MyTextInput placeholder ='phone'   name='phone' />
                     <MyTextInput placeholder ='weight'   name='weight' />
-                    <MyTextArea rows={5}  placeholder ='other_det'  name='other_det'  />
+                    <Field as="select" name="other_det">
+                         {bloodtypes.map(type=>
+                            <option key={type.id} value={type.type}>{type.type}</option>
+                            )};
+                     </Field>
+                     <br />
                     <MyDateInput
                     placeholderText ='register_date' 
                     name='register_date'

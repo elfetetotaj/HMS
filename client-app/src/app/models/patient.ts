@@ -12,4 +12,6 @@ export interface Patient {
     weight: string;
     other_det: string;
     register_date: Date | null;
+    
+
 }

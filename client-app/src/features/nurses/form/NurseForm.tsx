@@ -5,19 +5,25 @@ import { Button, Header, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import {v4 as uuid} from 'uuid';
-import { Formik,Form} from 'formik';
+import { Formik,Form, Field} from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
 
-import MySelectInput from '../../../app/common/form/MySelectInput';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Nurse } from '../../../app/models/nurse';
 
 
 export default observer(function NurseForm() {
     const history = useHistory();
-    const {nurseStore} = useStore();
+    const {nurseStore,departmentStore,cityStore} = useStore();
     const{createNurse, updateNurse, loading, loadNurse, loadingInitial} = nurseStore;
+ 
+    const{departmentRegistry, loadDepartments}=departmentStore;
+    let departments=[...departmentRegistry.values()];
+
+    const{cityRegistry}=cityStore;
+    let cities=[...cityRegistry.values()];
+    
     const {id} = useParams<{id: string}>();
 
     const [nurse, setNurse] = useState<Nurse>({
@@ -50,7 +56,8 @@ export default observer(function NurseForm() {
 
     useEffect(() => {
         if(id) loadNurse(id).then(nurse => setNurse(nurse!))
-    },[id, loadNurse]);
+        if(departmentRegistry.size<=1) loadDepartments();
+    },[id, loadNurse, departmentRegistry.size,loadDepartments]);
 
 
     function handleFormSubmit(nurse:Nurse) {
@@ -67,6 +74,7 @@ export default observer(function NurseForm() {
 
 
     if(loadingInitial) return <LoadingComponent content='Loading nurse ...' />
+   
 
     return (
         <Segment clearing>
@@ -76,13 +84,14 @@ export default observer(function NurseForm() {
              enableReinitialize
              initialValues={nurse} onSubmit={values => handleFormSubmit(values)}>
             {({handleSubmit, isValid,isSubmitting,dirty})=>(
+                
                      <Form className='ui form' onSubmit={handleSubmit} autoComplete='on'>
                         
 
                    
                      <MyTextInput name='emri' placeholder='Emri'/>
-
-                   
+                    
+              
                      <MyTextInput placeholder='Mbiemri'  name='mbiemri' />
                   
                      <MyTextInput  placeholder='Email'  name='email' />
@@ -98,12 +107,21 @@ export default observer(function NurseForm() {
 
                      <MyTextInput placeholder='Gjinia'  name='gjinia' />
                      <MyTextInput placeholder='Paga'  name='paga'/>
-                     <MyTextInput placeholder='Department'  name='department'/>
+                     <Field as="select" name="department">
+                         {departments.map(dep=>
+                            <option key={dep.id} value={dep.departmentName}>{dep.departmentName}</option>
+                            )};
+                     </Field>
+                        
 
             <Header content='Location Details' sub color='teal' />
 
                      <MyTextInput placeholder='Adresa'  name='adresa' />
-                     <MyTextInput placeholder='Qyteti'  name='qyteti'/>
+                     <Field as="select" name="qyteti">
+                         {cities.map(city=>
+                            <option key={city.Id} value={city.CityName}>{city.CityName}</option>
+                            )};
+                     </Field>
                      <Button 
                      disabled={isSubmitting || !dirty || !isValid}
                      loading={loading} floated='right' positive type='submit' content='Submit' />

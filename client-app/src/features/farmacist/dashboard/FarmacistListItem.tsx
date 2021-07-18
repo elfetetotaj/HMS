@@ -20,7 +20,7 @@ export default function FarmacistListItem({farmacist}: Props) {
           
                <Item.Group>
                    <Item>
-                       <Item.Image size='tiny' circular src='/assets/M.png' />
+                       <Item.Image size='tiny' circular src='/assets/farmacistImages/F.png' />
                        <Item.Content>
                             <Item.Header as={Link} to={`/farmacists/${farmacist.id}`}>
                                 {farmacist.emri}
@@ -43,7 +43,7 @@ export default function FarmacistListItem({farmacist}: Props) {
                     floated='right'
                     content='View'
                />
-                   <Button onClick={() => deleteFarmacist(farmacist.id)} type='submit' color='red' disabled={loading} >Delete</Button>
+                   <Button onClick={() => {if(window.confirm('Delete the Farmacist?')){deleteFarmacist(farmacist.id)};}}  type='submit' color='red' disabled={loading} >Delete</Button>
 
            </Segment>
        </Segment.Group>

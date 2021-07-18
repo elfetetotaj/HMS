@@ -7,13 +7,12 @@ export default function DoctorFilters() {
     return(
         <>
                 <Menu vertical size='large' style={{width: '100%' }} >
-            <Header icon='filter' attached color='teal' content='Filters' />
+            <Header icon='filter' attached color='teal' content='Doctors' />
             <Menu.Item content='All Doctors' />
-            <Menu.Item content="Doctor" />
-            <Menu.Item content="Patient" />
+            
         </Menu>
         <Header />
-        <Calendar />
+      
         </>
 
     )

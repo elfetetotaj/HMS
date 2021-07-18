@@ -7,6 +7,7 @@ import { store } from "./store";
 export default class DepartmentStore {
     departmentRegistry = new Map<string, Department>();
     selectedDepartment: Department | undefined = undefined;
+    selectedRegistry= this.departmentRegistry;
     editMode = false;
     loading = false;
     loadingInitial = false;
