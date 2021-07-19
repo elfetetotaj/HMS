@@ -81,7 +81,7 @@ export default observer(function NavBar() {
                             <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createMedicine' content='Create Medicine' />
                             </Dropdown.Item>
-  
+                            <Dropdown.Item>
                                 <Button fluid as={NavLink} to='/createNurse' content='Create Nurse' />
                             </Dropdown.Item>
                             <Dropdown.Item>
