@@ -423,6 +423,62 @@ namespace Persistence
             await context.SaveChangesAsync();
         }
 
+        public static async Task SeedDataMedicine(DataContext context)
+        {
+            if (context.Medicines.Any()) return;
+
+            var types = new List<Medicine>
+            {
+                new Medicine
+                {
+                    MedicineName = "Paracetamoll",
+                    MedicineDescription = "Shëron dhimbjen",
+                    MedicineDepartment = "General",
+                    MedicinePrice = 4
+                },
+            };
+
+            await context.Medicines.AddRangeAsync(types);
+            await context.SaveChangesAsync();
+        }
+        public static async Task SeedDataBlood(DataContext context)
+        {
+            if (context.BloodTypes.Any()) return;
+
+            var types = new List<BloodType>
+            {
+                new BloodType
+                {
+                    type = "A",
+                },
+                new BloodType
+                {
+                    type = "A",
+                },
+                new BloodType
+                {
+                    type = "AB",
+                },
+                new BloodType
+                {
+                    type = "0",
+                },
+                  new BloodType
+                {
+                    type = "A-",
+                },
+                  new BloodType
+                {
+                    type = "B-",
+                },  new BloodType
+                {
+                    type = "AB-",
+                },  new BloodType
+                {
+                    type = "0-",
+                },
+            };
+
         public static async Task SeedDataNurse(DataContext context)
         {
             if (context.Nurses.Any()) return;

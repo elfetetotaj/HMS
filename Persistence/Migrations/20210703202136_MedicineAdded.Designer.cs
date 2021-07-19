@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210703202136_MedicineAdded")]
+    partial class MedicineAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,17 +104,17 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.City", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("cityName")
+                    b.Property<string>("CityName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("zipCode")
+                    b.Property<int>("ZipCode")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Cities");
                 });
@@ -142,44 +144,6 @@ namespace Persistence.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("Domain.Country", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Area")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CallingCode")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Capital")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Continent")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CountryName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Currency")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LatLong")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Population")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TimeZone")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("Domain.Department", b =>
@@ -478,9 +442,6 @@ namespace Persistence.Migrations
                     b.Property<string>("password")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("patient")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("phone")
                         .HasColumnType("TEXT");
 
@@ -536,14 +497,8 @@ namespace Persistence.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Doctor")
-                        .HasColumnType("TEXT");
-
                     b.Property<double>("Pagesa")
                         .HasColumnType("REAL");
-
-                    b.Property<string>("Patient")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("SurgeryName")
                         .HasColumnType("TEXT");
@@ -646,16 +601,7 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Doctor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Patient")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Pershkrimi")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TherapyName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");

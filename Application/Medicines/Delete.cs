@@ -5,7 +5,7 @@ using Application.Core;
 using MediatR;
 using Persistence;
 
-namespace Application.Termins
+namespace Application.Medicines
 {
     public class Delete
     {
@@ -24,15 +24,15 @@ namespace Application.Termins
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var termin = await _context.Termins.FindAsync(request.Id);
+                var medicine = await _context.Medicines.FindAsync(request.Id);
 
-                // if (termin == null) return null;
+                // if (medicine == null) return null;
 
-                _context.Remove(termin);
+                _context.Remove(medicine);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to delete the appointment");
+                if (!result) return Result<Unit>.Failure("Failed to delete the medicine");
 
                 return Result<Unit>.Success(Unit.Value);
             }

@@ -20,6 +20,7 @@ import { Termin } from '../models/termin';
 import { BloodType } from '../models/bloodTypes';
 import { EmergencyDriver } from '../models/emergencyDriver';
 import { Room } from '../models/room';
+import { Medicine } from '../models/medicine';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -95,6 +96,13 @@ const Termins = {
     create: (termin: Termin) => requests.post<void>('/termins', termin),
     update: (termin: Termin) => requests.put<void>(`/termins/${termin.id}`, termin),
     delete: (id: string) => requests.del<void>(`/termins/${id}`),
+}
+const Medicines = {
+    list: () => requests.get<Medicine[]>('/medicines'),
+    details: (id: string) => requests.get<Medicine>(`/medicines/${id}`),
+    create: (medicine: Medicine) => requests.post<void>('/medicines', medicine),
+    update: (medicine: Medicine) => requests.put<void>(`/medicines/${medicine.id}`, medicine),
+    delete: (id: string) => requests.del<void>(`/medicines/${id}`),
 }
 const Receptionists = {
     list: () => requests.get<Receptionist[]>('/receptionists'),
@@ -203,6 +211,7 @@ const EmergencyDrivers = {
 const agent = {
     Departments,
     Termins,
+    Medicines,
     Receptionists,
     Nurses,
     Farmacists,

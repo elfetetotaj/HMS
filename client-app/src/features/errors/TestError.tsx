@@ -39,6 +39,14 @@ export default function TestErrors() {
         axios.post(baseUrl + 'termins', {}).catch(err => setErrors(err));
     }
 
+    function handleBadGuidMedicine() {
+        axios.get(baseUrl + 'medicines/notaguid').catch(err => console.log(err));
+    }
+
+    function handleValidationErrorMedicine() {
+        axios.post(baseUrl + 'medicines', {}).catch(err => setErrors(err));
+    }
+
    
 
     function handleBadGuidNurse() {
@@ -128,11 +136,12 @@ export default function TestErrors() {
         <>
             <Header as='h1' content='Test Error component' />
             <Segment>
-                <Button.Group widths='10'>
+                <Button.Group widths='16'>
                     <Button onClick={handleNotFound} content='Not Found' basic primary />
                     <Button onClick={handleBadRequest} content='Bad Request' basic primary />
                     <Button onClick={handleValidationErrorDepartment} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorTermin} content='Validation Error' basic primary />
+                    <Button onClick={handleValidationErrorMedicine} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorReceptionist} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorNurse} content='Validation Error' basic primary />
                     <Button onClick={handleValidationErrorPatient} content='Validation Error' basic primary />
@@ -146,6 +155,7 @@ export default function TestErrors() {
                     <Button onClick={handleUnauthorised} content='Unauthorised' basic primary />
                     <Button onClick={handleBadGuidDepartment} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidTermin} content='Bad Guid' basic primary />
+                    <Button onClick={handleBadGuidMedicine} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidReceptionist} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidNurse} content='Bad Guid' basic primary />
                     <Button onClick={handleBadGuidPatient} content='Bad Guid' basic primary />
