@@ -18,6 +18,10 @@ export default observer(function ReceptionistDetailedInfo({ receptionist }: Prop
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <p>{receptionist.name}</p>
+                        <p>Gjinia: {receptionist.gender}</p>
+                        <p>Numri i telefonit: {receptionist.phone}</p>
+                        <p>Adresa :{receptionist.street_address}</p>
+                        <p>{receptionist.postal_code}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>
@@ -29,7 +33,6 @@ export default observer(function ReceptionistDetailedInfo({ receptionist }: Prop
                     <Grid.Column width={15}>
                         <span>
                             {receptionist.dob}
-                            {/* {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')} */}
                         </span>
                     </Grid.Column>
                 </Grid>

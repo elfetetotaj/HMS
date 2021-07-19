@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
+import { Button, Header, Item, Segment, Image } from 'semantic-ui-react'
 import { Therapy } from '../../../app/models/therapy';
 
 const therapyImageStyle = {
@@ -21,23 +21,23 @@ interface Props {
     therapy: Therapy
 }
 
-export default observer (function TherapyDetailedHeader({therapy}: Props) {
+export default observer(function TherapyDetailedHeader({ therapy }: Props) {
 
     return (
         <Segment.Group>
-            <Segment basic attached='top' style={{padding: '0'}}>
-                <Image src={`/assets/therapyImages/therapy.png`} fluid style={therapyImageStyle}/>
+            <Segment basic attached='top' style={{ padding: '0' }}>
+                <Image src={`/assets/therapyImages/therapy1.png`} fluid style={therapyImageStyle} />
                 <Segment style={therapyImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
                                     size='huge'
-                                    // content={therapy.Pershkrimi}
-                                    style={{color: 'white'}}
+                                    content={therapy.therapyName}
+                                    style={{ color: 'white' }}
                                 />
-                                <p style={{marginRight: 10}}>
-                                    {therapy.Pershkrimi}
+                                <p style={{ marginRight: 10 }}>
+                                    {therapy.pershkrimi}
                                 </p>
                             </Item.Content>
                         </Item>
@@ -45,10 +45,11 @@ export default observer (function TherapyDetailedHeader({therapy}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join</Button>
-                <Button>Cancel attendance</Button>
+                <Button as={Link} to='/therapies' color='orange' floated='right'>
+                    Cancel
+                </Button>
                 <Button as={Link} to={`/managetherapy/${therapy.id}`} color='orange' floated='right'>
-                    Manage Event
+                    Manage Therapy
                 </Button>
             </Segment>
         </Segment.Group>

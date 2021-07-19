@@ -14,7 +14,7 @@ namespace Application.Cities
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command , Result<Unit>>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -26,16 +26,16 @@ namespace Application.Cities
             {
                 var city = await _context.Cities.FindAsync(request.Id);
 
-               // if(nurse==null) return null;
+                // if (city == null) return null;
 
                 _context.Remove(city);
 
-               var result = await _context.SaveChangesAsync() > 0 ;
+                var result = await _context.SaveChangesAsync() > 0;
 
-               if(!result) return Result<Unit>.Failure("Faild to delete city");
+                if (!result) return Result<Unit>.Failure("Failed to delete the city");
 
-                return Result<Unit>.Success( Unit.Value);
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }
-}
+} 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Icon, Item, Segment } from 'semantic-ui-react';
+import { Button, Icon, Item, Modal, Segment } from 'semantic-ui-react';
 import { Receptionist } from '../../../app/models/receptionist';
 import { useStore } from '../../../app/stores/store';
 // import {format} from 'date-fns';
@@ -18,12 +18,12 @@ export default function ReceptionistListItem({ receptionist }: Props) {
             <Segment>
                 <Item.Group>
                     <Item>
-                        <Item.Image size='tiny' circular src='/assets/receptionistImages/receptionist.png' />
+                        <Item.Image size='tiny' circular src={`/assets/receptionistImages/${receptionist.name}.png`} />
                         <Item.Content>
                             <Item.Header as={Link} to={`/receptionists/${receptionist.id}`}>
-                                {receptionist.username}
+                                {receptionist.name}__{receptionist.lastName}
                             </Item.Header>
-                            <Item.Description>Recepcionisti
+                            <Item.Description>Recepcionist
                             </Item.Description>
                         </Item.Content>
                     </Item>
@@ -32,7 +32,10 @@ export default function ReceptionistListItem({ receptionist }: Props) {
             <Segment>
                 <span>
                     <Icon name='clock' /> {receptionist.dob} <br />
-                    {/* <Icon name='clock' /> {format(receptionist.dob!, 'dd MMM yyyy h:mm aa')} */}
+                </span>
+            </Segment>
+            <Segment>
+                <span>
                     <Icon name='marker' /> {receptionist.department}
                 </span>
             </Segment>
@@ -40,16 +43,16 @@ export default function ReceptionistListItem({ receptionist }: Props) {
                 <Icon name='phone' /> {receptionist.phone}
             </Segment>
             <Segment>
-                <span>{receptionist.department}</span>
+                <span>Departamenti: {receptionist.department}</span>
             </Segment>
             <Segment clearing>
-                <Button
+            <Button
                     as={Link}
                     to={`#`}
                     color='red'
                     floated='right'
                     content='Delete'
-                    onClick={() => deleteReceptionist(receptionist.id)}
+                    onClick={() => {if(window.confirm('Are you sure?')){deleteReceptionist(receptionist.id)};}} 
                     type='submit'
                     disabled={loading}
                 />
@@ -62,6 +65,6 @@ export default function ReceptionistListItem({ receptionist }: Props) {
                 />
 
             </Segment>
-        </Segment.Group>
+        </Segment.Group >
     )
 }

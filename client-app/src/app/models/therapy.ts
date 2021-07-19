@@ -1,4 +1,7 @@
 export interface Therapy {
     id: string
-    Pershkrimi: string
+    pershkrimi: string
+    therapyName: string;
+    doctor: string;
+    patient: string;
 }

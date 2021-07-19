@@ -18,50 +18,8 @@ export default observer(function HomePage() {
                 {userStore.isLoggedIn ? (
                     <>
                         <Header as='h2' inverted content='Welcome to our Hospital!' />
-                        <Button as={Link} to='/departments' size='huge' inverted>
-                            Go to Departments!
-                        </Button>
-                        <Button as={Link} to='/termins' size='huge' inverted>
-                            Go to Appointments!
-                        </Button>
-                        <Button as={Link} to='/receptionists' size='huge' inverted>
-                            Go to Receptionists!
-                        </Button>
-                        <Button as={Link} to='/nurses' size='huge' inverted>
-                            Go to Nurses!
-                        </Button>
-                        <Button as={Link} to='/farmacists' size='huge' inverted>
-                            Go to Farmacists!
-                        </Button>
-                        <Button as={Link} to='/patients' size='huge' inverted>
-                            Go to Patients!
-                        </Button>
-                        <Button as={Link} to='/cities' size='huge' inverted>
-                            Go to Cities!
-                        </Button>
-                        <Button as={Link} to='/doctors' size='huge' inverted>
-                            Go to Doctors!
-                        </Button>
-                        <Button as={Link} to='/therapies' size='huge' inverted>
-                            Go to Therapies!
-                        </Button>
-                        <Button as={Link} to='/surgeries' size='huge' inverted>
-                            Go to Surgeries!
-                        </Button>
-                        <Button as={Link} to='/rooms' size='huge' inverted>
-                            Go to Rooms!
-                        </Button>
-                        <Button as={Link} to='/countries' size='huge' inverted>
-                            Go to Countries!
-                        </Button> <Button as={Link} to='/farmacists' size='huge' inverted>
-                            Go to Farmacists!
-                        </Button>
-                        <Button as={Link} to='/techEmployees' size='huge' inverted>
-                            Go to Tech Employees!
-                        </Button>
-                        
-                        <Button as={Link} to='/tests' size='huge' inverted>
-                            Go to Tests!
+                        <Button as={Link} to='/home' size='huge' inverted>
+                            Go to HMS!
                         </Button>
                     </>
                 ) : (

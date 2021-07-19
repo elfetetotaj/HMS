@@ -59,6 +59,7 @@ import BloodTypeDashboard from '../../features/bloodtypes/dashboard/BloodTypeDas
 import EmergencyDriverDashboard from '../../features/emergencyDrivers/dashboard/EmergencyDriverDashboard';
 import EmergencyDriverDetails from '../../features/emergencyDrivers/details/EmergencyDriverDetails';
 import EmergencyDriverForm from '../../features/emergencyDrivers/form/EmergencyDriverForm';
+import Home from '../../features/home/Home';
 
 function App() {
   const location = useLocation(); 
@@ -148,7 +149,7 @@ function App() {
               <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} />
 
               <Route exact path='/bloodTypes' component={BloodTypeDashboard} />
-
+              <Route path='/home' component={Home}/>
               <Route path='/profiles/:username' component={ProfilePage}/>
               <Route path='/errors' component={TestErrors}/>
               <Route path='/server-error' component={ServerError}/>

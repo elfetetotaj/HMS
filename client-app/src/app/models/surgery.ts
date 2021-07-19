@@ -1,8 +1,10 @@
 export interface Surgery {
-    Id: string
-    SurgeryName: string
-    Date: Date | null
-    Description: string
-    Pagesa: number
-    Terapia: string
+    id: string
+    surgeryName: string
+    date: Date | null
+    description: string
+    pagesa: string
+    terapia: string
+    doctor: string
+    patient: string
 }

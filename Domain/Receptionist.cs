@@ -18,5 +18,6 @@ namespace Domain
         public string postal_code { get; set; }
         public string phone { get; set; }
         public string Department { get; set; }
+        public string patient { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace Domain
         public string Description { get; set; }
         public double Pagesa { get; set; }
         public string Terapia { get; set; }
+        public string Doctor { get; set; }
+        public string Patient { get; set; }
     }
 }

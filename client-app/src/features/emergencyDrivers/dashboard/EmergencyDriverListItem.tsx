@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import { Button, Icon, Item, Segment } from "semantic-ui-react";
+import { format } from 'date-fns';
 import React from 'react';
-import { EmergencyDriver } from "../../../app/models/emergencyDriver";
-import { format } from "date-fns";
-import { useStore } from "../../../app/stores/store";
+import { Link } from 'react-router-dom';
+import { Button, Icon, Item, Segment } from 'semantic-ui-react';
+import { EmergencyDriver } from '../../../app/models/emergencyDriver';
+import { useStore } from '../../../app/stores/store';
 
 interface Props {
-    emergencyDriver : EmergencyDriver
+    emergencyDriver: EmergencyDriver;
 }
 
-export default function EmergencyDriverListItem({emergencyDriver}: Props){
+export default function EmergencyDriverListItem({ emergencyDriver }: Props) {
     const { emergencyDriverStore } = useStore();
     const { deleteEmergencyDriver, loading } = emergencyDriverStore;
     return (
@@ -17,10 +17,10 @@ export default function EmergencyDriverListItem({emergencyDriver}: Props){
             <Segment>
                 <Item.Group>
                     <Item>
-                        <Item.Image size='tiny' circular src='/assets/emergencyDriverImages/emergencyDrivers.png' />
+                        <Item.Image size='tiny' src={`/assets/emergencyDriverImages/EmergencyDriver.png`} />
                         <Item.Content>
-                            <Item.Header as={Link} to={`/emergencyDrivers/${emergencyDriver.Id}`} >
-                                {emergencyDriver.Name} Xhastin
+                            <Item.Header as={Link} to={`/emergencyDrivers/${emergencyDriver.id}`}>
+                                {emergencyDriver.name}__{emergencyDriver.surname}
                             </Item.Header>
                             <Item.Description>EmergencyDriver in HMS</Item.Description>
                         </Item.Content>
@@ -28,36 +28,28 @@ export default function EmergencyDriverListItem({emergencyDriver}: Props){
                 </Item.Group>
             </Segment>
             <Segment>
-                <span>
-                {/* <Icon name='clock' /> {format(emergencyDriver.Dateofbirth!, 'dd MMM yyyy h:mm aa')} */}
-                    <Icon  marker='marker'/>{emergencyDriver.Gender} M
-                </span>
-            </Segment>
-            <Segment secondary>
-                Interns/Residents under your supervision
+                <Icon name="info"/>{emergencyDriver.department}
             </Segment>
             <Segment >
-                {emergencyDriver.Phone}
-                <Icon name="phone" />044569874
+                <Icon name="phone" />{emergencyDriver.phone}
             </Segment>
             <Segment clearing>
-                <span>{emergencyDriver.Department}</span>
                 <Button
                     as={Link}
                     to={`#`}
                     color='red'
                     floated='right'
                     content='Delete'
-                    onClick={() => deleteEmergencyDriver(emergencyDriver.Id)}
+                    onClick={() => {if(window.confirm('Are you sure?')){deleteEmergencyDriver(emergencyDriver.id)};}} 
                     type='submit'
                     disabled={loading}
                 />
-                <Button 
+                <Button
                     as={Link}
-                    to={`/emergencyDrivers/${emergencyDriver.Id}`}
+                    to={`/emergencyDrivers/${emergencyDriver.id}`}
                     color='teal'
-                    floated= 'right'
-                    content= 'View'
+                    floated='right'
+                    content='View'
                 />
             </Segment>
         </Segment.Group>

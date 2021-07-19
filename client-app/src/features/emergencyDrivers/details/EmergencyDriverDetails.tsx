@@ -10,26 +10,28 @@ import EmergencyDriverDetailedSidebar from './EmergencyDriverDetailedSidebar';
 
 
 
-export default observer( function EmergencyDriverDetails(){
-   const{emergencyDriverStore} = useStore();
-   const {selectedEmergencyDriver: emergencyDriver,loadEmergencyDriver, loadingInitial} = emergencyDriverStore;
-   const {id} = useParams<{id:string}>();
+export default observer(function EmergencyDriverDetails() {
+  const { emergencyDriverStore } = useStore();
+  const { selectedEmergencyDriver: emergencyDriver, loadEmergencyDriver, loadingInitial, clearSelectedEmergencyDriver } = emergencyDriverStore;
+  const { id } = useParams<{ id: string }>();
 
-   useEffect(() => {
-     if (id) loadEmergencyDriver(id);
-   }, [id, loadEmergencyDriver]);
+  useEffect(() => {
+    if (id) loadEmergencyDriver(id);
+    return () => clearSelectedEmergencyDriver();
+  }, [id, loadEmergencyDriver, clearSelectedEmergencyDriver]);
 
-   if(loadingInitial || !emergencyDriver) return <LoadingComponent />;
+  if (loadingInitial || !emergencyDriver) return <LoadingComponent />;
 
-    return(
-          <Grid>
-            <Grid.Column width={10}>
-              <EmergencyDriverDetailedHeader emergencyDriver={emergencyDriver} />
-              <EmergencyDriverDetailedInfo emergencyDriver={emergencyDriver} />
-            </Grid.Column>
-            <Grid.Column width={6} >
-              <EmergencyDriverDetailedSidebar />
-            </Grid.Column>
-          </Grid>
-    )
+  return (
+    <Grid>
+      <Grid.Column width={16}>
+        <EmergencyDriverDetailedHeader emergencyDriver={emergencyDriver} />
+        <EmergencyDriverDetailedInfo emergencyDriver={emergencyDriver} />
+        {/* <DepartmentDetailedChat departmentId={department.id}/> */}
+      </Grid.Column>
+      <Grid.Column width={6} >
+        {/* <EmergencyDriverDetailedSidebar /> */}
+      </Grid.Column>
+    </Grid>
+  )
 })

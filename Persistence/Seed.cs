@@ -695,24 +695,15 @@ namespace Persistence
             {
                 new City
                 {
-                    CityName="Prizren",
-                    ZipCode=20000,
+                    cityName="Prizren",
+                    zipCode=20000,
                 },
                 new City
                 {
-                    CityName="Prishtine",
-                    ZipCode=50000,
+                    cityName="Prishtina",
+                    zipCode=50000,
                 },
-                new City
-                {
-                    CityName="Gjakove",
-                    ZipCode=80000,
-                },
-                new City
-                {
-                    CityName="Mitrovic",
-                    ZipCode=40000,
-                },
+                
             };
 
             await context.Cities.AddRangeAsync(cities);
@@ -804,10 +795,16 @@ namespace Persistence
             if (context.Therapies.Any()) return;
             var therapies = new List<Therapy>{
                 new Therapy{
-                    Pershkrimi="Paracetamol"
+                    Pershkrimi="Paracetamol",
+                    TherapyName="Kokedhimbje",
+                    Doctor="Elfete Totaj",
+                    Patient="Erza Shatri"
                 },
                 new Therapy{
-                    Pershkrimi="Daleron"
+                    Pershkrimi="Daleron",
+                    TherapyName="Kokedhimbje",
+                    Doctor="Ibadete Gashi",
+                    Patient="Xhastin Bojaxhiu"
                 }
 
             };
@@ -905,10 +902,14 @@ namespace Persistence
             var countries = new List<Country>{
                 new Country{
                     CountryName="Kosova",
+                    LatLong = "42.6000° N, 20.8500° E",
                     Population=1256234,
-                    Location="sdsdwsedw",
-                    Nation="Shqiptar",
-                    Goverment="Demokraci"
+                    Area="10,908 km2",
+                    TimeZone="CET (UTC+1) Summer (DST) CEST (UTC+2)",
+                    CallingCode="+383",
+                    Capital = "Prishtina",
+                    Continent = "Europe",
+                    Currency = "Euro (€)c (EUR)"
                 }
 
             };

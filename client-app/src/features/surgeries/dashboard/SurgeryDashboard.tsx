@@ -17,7 +17,7 @@ export default observer(function SurgeryDashboard() {
         if (surgeryRegistry.size <= 1) loadSurgeries();
     }, [surgeryRegistry.size, loadSurgeries])
 
-    if (surgeryStore.loadingInitial) return <LoadingComponent content='Loading app' />
+    if (surgeryStore.loadingInitial) return <LoadingComponent content='Loading surgeries...' />
 
     return (
         <Grid>
@@ -38,10 +38,9 @@ export default observer(function SurgeryDashboard() {
             <Grid.Column width='10'>
                 <SurgeryList />
             </Grid.Column>
-            <Grid.Column width='5'>
-              <SurgeryFilters/>
+            <Grid.Column width='6'>
+                <SurgeryFilters />
             </Grid.Column>
-          
         </Grid>
     )
 })

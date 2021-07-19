@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
-import {Receptionist} from "../../../app/models/receptionist";
-import {format} from 'date-fns';
+import { Button, Header, Item, Segment, Image } from 'semantic-ui-react'
+import { Receptionist } from "../../../app/models/receptionist";
+import { format } from 'date-fns';
 
 const receptionistImageStyle = {
     filter: 'brightness(30%)'
@@ -22,11 +22,11 @@ interface Props {
     receptionist: Receptionist
 }
 
-export default observer (function ReceptionistDetailedHeader({receptionist}: Props) {
+export default observer(function ReceptionistDetailedHeader({ receptionist }: Props) {
     return (
         <Segment.Group>
-            <Segment basic attached='top' style={{padding: '0'}}>
-                <Image src={`/assets/receptionistImages/receptionist.png`} fluid style={receptionistImageStyle}/>
+            <Segment basic attached='top' style={{ padding: '0' }}>
+                <Image src={`/assets/receptionistImages/${receptionist.name}.png`} fluid style={receptionistImageStyle} />
                 <Segment style={receptionistImageTextStyle} basic>
                     <Item.Group>
                         <Item>
@@ -34,9 +34,9 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
                                 <Header
                                     size='huge'
                                     content={receptionist.name}
-                                    style={{color: 'white'}}
+                                    style={{ color: 'white' }}
                                 />
-                                <p>{receptionist.dob}</p> 
+                                <p>{receptionist.dob}</p>
                                 <p>
                                     Hosted by <strong>Bob</strong>
                                 </p>
@@ -46,12 +46,13 @@ export default observer (function ReceptionistDetailedHeader({receptionist}: Pro
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join Activity</Button>
-                <Button>Cancel attendance</Button>
+                <Button as={Link} to='/receptionists' color='orange' floated='right'>
+                    Cancel
+                </Button>
                 <Button as={Link} to={`/managereceptionist/${receptionist.id}`} color='orange' floated='right'>
-                    Manage Event
+                    Manage Receptionist
                 </Button>
             </Segment>
         </Segment.Group>
     )
-}) 
+})

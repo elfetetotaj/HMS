@@ -13,5 +13,6 @@ export interface Receptionist {
     postal_code: string
     phone: string
     department: string
+    patient: string
   }
   

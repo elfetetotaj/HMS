@@ -10,8 +10,8 @@ import CityList from './CityList';
 
 export default observer(function CityDashboard() {
 
-    const { cityStore } = useStore();
-    const { loadCities, cityRegistry } = cityStore;
+    const {cityStore} = useStore();
+    const {loadCities, cityRegistry} = cityStore;
 
     useEffect(() => {
         if (cityRegistry.size <= 1) loadCities();
@@ -41,7 +41,6 @@ export default observer(function CityDashboard() {
             <Grid.Column width='6'>
                 <CityFilters />
             </Grid.Column>
-
         </Grid>
     )
 })
