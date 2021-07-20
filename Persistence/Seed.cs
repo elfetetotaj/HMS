@@ -10,51 +10,51 @@ namespace Persistence
     public class Seed
     {
 
-                public static async Task SeedDataBlood1(DataContext context)
-        {
-            if (context.BloodTypes.Any()) return;
+        //         public static async Task SeedDataBlood1(DataContext context)
+        // {
+        //     if (context.BloodTypes.Any()) return;
 
-            var types = new List<BloodType>
-            {
+        //     var types = new List<BloodType>
+        //     {
             
-                new BloodType
-                {
-                    type = "A",
-                },
-                new BloodType
-                {
-                    type = "AB",
-                },
-                new BloodType
-                {
-                    type = "0",
-                },
-                  new BloodType
-                {
-                    type = "A-",
-                },
-                  new BloodType
-                {
-                    type = "B-",
-                },  new BloodType
-                {
-                    type = "AB-",
-                }, 
-                 new BloodType
-                {
-                    type = "0-",
-                },
-                    new BloodType
-                {
-                    type = "B",
-                },
+        //         new BloodType
+        //         {
+        //             type = "A",
+        //         },
+        //         new BloodType
+        //         {
+        //             type = "AB",
+        //         },
+        //         new BloodType
+        //         {
+        //             type = "0",
+        //         },
+        //           new BloodType
+        //         {
+        //             type = "A-",
+        //         },
+        //           new BloodType
+        //         {
+        //             type = "B-",
+        //         },  new BloodType
+        //         {
+        //             type = "AB-",
+        //         }, 
+        //          new BloodType
+        //         {
+        //             type = "0-",
+        //         },
+        //             new BloodType
+        //         {
+        //             type = "B",
+        //         },
                 
                 
-            };
+        //     };
 
-            await context.BloodTypes.AddRangeAsync(types);
-            await context.SaveChangesAsync();
-        }
+        //     await context.BloodTypes.AddRangeAsync(types);
+        //     await context.SaveChangesAsync();
+        // }
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
             if (!userManager.Users.Any() && !context.Departments.Any())
@@ -453,7 +453,7 @@ namespace Persistence
                 },
                 new BloodType
                 {
-                    type = "A",
+                    type = "B",
                 },
                 new BloodType
                 {
@@ -478,6 +478,7 @@ namespace Persistence
                     type = "0-",
                 },
             };
+        }
 
         public static async Task SeedDataNurse(DataContext context)
         {
