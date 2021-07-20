@@ -11,6 +11,9 @@ import MyTextInput from '../../../app/common/form/MyTextInput';
 
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { Nurse } from '../../../app/models/nurse';
+import { genderNurseChar } from '../../../app/common/options/genderNurseChar';
+
+import MySelectInput from '../../../app/common/form/MySelectInput';
 
 
 export default observer(function NurseForm() {
@@ -21,7 +24,7 @@ export default observer(function NurseForm() {
     const{departmentRegistry, loadDepartments}=departmentStore;
     let departments=[...departmentRegistry.values()];
 
-    const{cityRegistry}=cityStore;
+    const{cityRegistry, loadCities}=cityStore;
     let cities=[...cityRegistry.values()];
     
     const {id} = useParams<{id: string}>();
@@ -57,7 +60,8 @@ export default observer(function NurseForm() {
     useEffect(() => {
         if(id) loadNurse(id).then(nurse => setNurse(nurse!))
         if(departmentRegistry.size<=1) loadDepartments();
-    },[id, loadNurse, departmentRegistry.size,loadDepartments]);
+        if(cityRegistry.size<=1) loadCities();
+    },[id, loadNurse, departmentRegistry.size,loadDepartments, cityRegistry,loadCities]);
 
 
     function handleFormSubmit(nurse:Nurse) {
@@ -104,8 +108,10 @@ export default observer(function NurseForm() {
                      
                      />
                      <MyTextInput placeholder='Nderrimi'  name='username' />
+{/* 
+                     <MyTextInput placeholder='Gjinia'  name='gjinia' /> */}
+                        <MySelectInput options={genderNurseChar} placeholder='Gjinia' name='gjinia' />
 
-                     <MyTextInput placeholder='Gjinia'  name='gjinia' />
                      <MyTextInput placeholder='Paga'  name='paga'/>
                      <Field as="select" name="department">
                          {departments.map(dep=>

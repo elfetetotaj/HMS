@@ -95,6 +95,7 @@ export default function NurseListItem({nurse}: Props) {
         }
       })}  type='submit'   color='red' disabled={loading} content='Delete'/>
     */}
+                       <Button onClick={() => {if(window.confirm('Delete the Nurse?')){deleteNurse(nurse.id)};}}  type='submit' color='red' disabled={loading} >Delete</Button>
            </Segment>
        </Segment.Group>
     )
