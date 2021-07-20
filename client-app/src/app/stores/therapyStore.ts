@@ -15,18 +15,17 @@ export default class TherapyStore {
 
     get therapiesByDate() {
         return Array.from(this.therapyRegistry.values())
-        
     }
-    get therapiesByName() {
-        return Array.from(this.therapyRegistry.values())
-        
-    }
+
+    // get therapiesByName() {
+    //     return Array.from(this.therapyRegistry.values()).sort((a, b) => a.therapyName > b.therapyName ? 1:-1);
+    // }
 
     loadTherapies = async () => {
         this.loadingInitial = true;
         try {
             const therapies = await agent.Therapies.list();
-                therapies.forEach(therapy => {
+            therapies.forEach(therapy => {
                     this.setTherapy(therapy);
                 })
                 this.setLoadingInitial(false);
@@ -34,10 +33,6 @@ export default class TherapyStore {
             console.log(error);
             this.setLoadingInitial(false);
         }
-    }
-    
-    private setTherapy = (therapy: Therapy) => {
-        this.therapyRegistry.set(therapy.id, therapy);
     }
 
     loadTherapy = async (id: string) => {
@@ -60,6 +55,10 @@ export default class TherapyStore {
                 this.setLoadingInitial(false);
             }
         }
+    }
+
+    private setTherapy = (therapy: Therapy) => {
+        this.therapyRegistry.set(therapy.id, therapy);
     }
 
     private getTherapy = (id: string) => {
@@ -89,20 +88,17 @@ export default class TherapyStore {
     }
 
     updateTherapy = async (therapy: Therapy) => {
-        this.loading = true;
         try {
             await agent.Therapies.update(therapy);
             runInAction(() => {
-                this.therapyRegistry.set(therapy.id, therapy);
-                this.selectedTherapy = therapy;
-                this.editMode = false;
-                this.loading = false;
+                if (therapy.id) {
+                    let updatedTherapy = {...this.getTherapy(therapy.id), ...therapy}
+                    this.therapyRegistry.set(therapy.id, updatedTherapy as Therapy);
+                    this.selectedTherapy = updatedTherapy as Therapy;
+                }
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 
@@ -121,4 +117,9 @@ export default class TherapyStore {
             })
         }
     }
-}
+    
+    clearSelectedTherapy = () => {
+        this.selectedTherapy = undefined;
+    }
+
+} 

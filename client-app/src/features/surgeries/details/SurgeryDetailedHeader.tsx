@@ -6,7 +6,6 @@ import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import { Surgery } from '../../../app/models/surgery';
 import { useStore } from '../../../app/stores/store';
 
-
 const surgeryImageStyle = {
     filter: 'brightness(30%)'
 };
@@ -14,7 +13,7 @@ const surgeryImageStyle = {
 const surgeryImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
-    left: '5%',
+    left: '2%',
     width: '100%',
     height: 'auto',
     color: 'white'
@@ -25,25 +24,22 @@ interface Props {
 }
 
 export default observer (function SurgeryDetailedHeader({surgery}: Props) {
+    const {surgeryStore: {loading}} = useStore();
     return (
-        
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-            <Image src={`/assets/surgeryImages/${surgery.Description}.jpg`} fluid style={surgeryImageStyle } />
+                <Image src={`/assets/surgeryImages/surgeryImg.png`} fluid style={surgeryImageStyle}/>
                 <Segment style={surgeryImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
                                     size='huge'
-                                    content={surgery.SurgeryName}
+                                    content={surgery.surgeryName}
                                     style={{color: 'white'}}
                                 />
-                                <p>
-                                    {format (surgery.Date!, 'dd MMM yyyy')}
-                                </p>
-                                <p>
-                                    Informata per operacionin
+                                <p style={{marginRight: 10}}>
+                                    {surgery.terapia}
                                 </p>
                             </Item.Content>
                         </Item>
@@ -51,10 +47,11 @@ export default observer (function SurgeryDetailedHeader({surgery}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join </Button>
-                <Button>Cancel attendance</Button>
-                <Button as={Link} to={`/managesurgery/${surgery.Id}`} color='orange' floated='right'>
-                    Manage Event
+                <Button as={Link} to='/surgeries' color='orange' floated='right'>
+                    Cancel
+                </Button>
+                <Button as={Link} to={`/managesurgery/${surgery.id}`} color='orange' floated='right'>
+                    Manage Surgery
                 </Button>
             </Segment>
         </Segment.Group>

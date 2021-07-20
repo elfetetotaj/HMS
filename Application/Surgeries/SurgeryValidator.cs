@@ -14,6 +14,8 @@ namespace Application.Surgeries
                 RuleFor(x => x.Description).NotEmpty();
                 RuleFor(x => x.Pagesa).NotEmpty();
                 RuleFor(x => x.Terapia).NotEmpty();
+                RuleFor(x => x.Patient).NotEmpty();
+                RuleFor(x => x.Doctor).NotEmpty();
             }
         }
         

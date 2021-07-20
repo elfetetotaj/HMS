@@ -25,13 +25,13 @@ export default observer (function ReceptionistDetails() {
 
     return (
         <Grid>
-            <Grid.Column width={10}>
+            <Grid.Column width={16}>
                 <ReceptionistDetailedHeader receptionist={receptionist} />
                 <ReceptionistDetailedInfo receptionist={receptionist} />
-                <ReceptionistDetailedChat />
+                {/* <ReceptionistDetailedChat /> */}
             </Grid.Column>
             <Grid.Column width={6}>
-                <ReceptionistDetailedSidebar />
+                {/* <ReceptionistDetailedSidebar /> */}
             </Grid.Column>
         </Grid>
     )

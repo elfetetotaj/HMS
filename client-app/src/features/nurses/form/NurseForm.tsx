@@ -119,7 +119,7 @@ export default observer(function NurseForm() {
                      <MyTextInput placeholder='Adresa'  name='adresa' />
                      <Field as="select" name="qyteti">
                          {cities.map(city=>
-                            <option key={city.Id} value={city.CityName}>{city.CityName}</option>
+                            <option key={city.id} value={city.cityName}>{city.cityName}</option>
                             )};
                      </Field>
                      <Button 

@@ -6,12 +6,12 @@ import SurgeryListItem from './SurgeryListItem';
 export default observer(function SurgeryList() {
 
     const {surgeryStore} = useStore();
-    const {surgeriesByDate} = surgeryStore;
+    const {surgeriesByDate} = surgeryStore
 
-    return ( //video 5.7
+    return (
         <>
             {surgeriesByDate.map(surgery => (
-                <SurgeryListItem key={surgery.Id} surgery={surgery} />
+                <SurgeryListItem key={surgery.id} surgery={surgery} />
             ))}
         </>
     )

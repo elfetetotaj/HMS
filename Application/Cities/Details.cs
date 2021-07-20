@@ -2,8 +2,11 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Cities
@@ -25,11 +28,10 @@ namespace Application.Cities
 
             public async Task<Result<City>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var city =  await _context.Cities.FindAsync(request.Id);
-                
+                var city = await _context.Cities.FindAsync(request.Id);
+
                 return Result<City>.Success(city);
-         
             }
         }
     }
-}
+} 

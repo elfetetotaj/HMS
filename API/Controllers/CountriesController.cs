@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Countries;
 using Domain;
@@ -11,28 +12,28 @@ namespace API.Controllers
     public class CountriesController : BaseApiController
     {
         [HttpGet]
-        public async Task<IActionResult> GetCountries()
+        public async Task<IActionResult> GetCountry()
         {
             return HandleResult(await Mediator.Send(new List.Query()));
         }
 
-        [HttpGet("{id}")] //Countries/id
+        [HttpGet("{id}")] //countries/id
         public async Task<IActionResult> GetCountry(Guid id)
         {
             return HandleResult(await Mediator.Send(new Details.Query{Id = id}));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCountry(Country countries)
+        public async Task<IActionResult> CreateCountry(Country country)
         {
-            return HandleResult(await Mediator.Send(new Create.Command { Country = countries}));
+            return HandleResult(await Mediator.Send(new Create.Command {Country = country}));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditCountry(Guid id, Country countries)
+        public async Task<IActionResult> EditCountry(Guid id, Country country)
         {
-            countries.Id = id;
-            return HandleResult(await Mediator.Send(new Edit.Command { Country = countries}));
+            country.Id = id;
+            return HandleResult(await Mediator.Send(new Edit.Command { Country = country }));
         }
 
         [HttpDelete("{id}")]
@@ -40,5 +41,6 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
         }
-    }//
+    }
+       
 }

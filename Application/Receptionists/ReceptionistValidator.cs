@@ -17,6 +17,7 @@ namespace Application.Receptionists
             RuleFor(x => x.phone).NotEmpty();
             RuleFor(x => x.street_address).NotEmpty();
             RuleFor(x => x.postal_code).NotEmpty();
+            RuleFor(x => x.patient).NotEmpty();
         }
     }
 }

@@ -10,6 +10,9 @@ namespace Application.Therapies
             public CommandValidator()
             {
                 RuleFor(x => x.Pershkrimi).NotEmpty();
+                RuleFor(x => x.TherapyName).NotEmpty();
+                RuleFor(x => x.Doctor).NotEmpty();
+                RuleFor(x => x.Patient).NotEmpty();
                
             }
         }
