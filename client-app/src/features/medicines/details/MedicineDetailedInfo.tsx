@@ -34,7 +34,7 @@ export default observer(function MedicineDetailedInfo({medicine}: Props) {
             <Segment attached>
                 <Grid verticalAlign='middle'>
                     <Grid.Column width={1}>
-                        <Icon name='marker' size='large' color='teal' />
+                        <Icon name='dollar' size='large' color='teal' />
                     </Grid.Column>
                     <Grid.Column width={11}>
                         <span>{medicine.medicineName}, {medicine.medicinePrice}€</span>

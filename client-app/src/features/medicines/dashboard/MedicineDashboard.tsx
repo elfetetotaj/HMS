@@ -20,12 +20,12 @@ export default observer(function MedicineDashboard() {
 
     return (
         <Grid>
-            <Grid.Column width='10'>
+            <Grid.Column width='16'>
                 <MedicineList />
             </Grid.Column>
-            <Grid.Column width='6'>
+            {/* <Grid.Column width='6'>
                 <MedicineFilters />
-            </Grid.Column>
+            </Grid.Column> */}
         </Grid>
     )
 })

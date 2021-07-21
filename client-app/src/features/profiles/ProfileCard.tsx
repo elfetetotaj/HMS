@@ -23,10 +23,10 @@ export default observer(function ProfileCard({ profile }: Props) {
                 <Card.Header>{profile.displayName}</Card.Header>
                 <Card.Description>{truncate(profile.bio)}</Card.Description>
             </Card.Content>
-            <Card.Content extra>
+            {/* <Card.Content extra>
                 <Icon name='user' />
                 20 followers
-            </Card.Content>
+            </Card.Content> */}
         </Card>
     )
 })

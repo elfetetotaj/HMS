@@ -20,12 +20,12 @@ export default observer(function TerminDashboard() {
 
     return (
         <Grid>
-            <Grid.Column width='10'>
+            <Grid.Column width='16'>
                 <TerminList />
             </Grid.Column>
-            <Grid.Column width='6'>
+            {/* <Grid.Column width='6'>
                 <TerminFilters />
-            </Grid.Column>
+            </Grid.Column> */}
         </Grid>
     )
 })

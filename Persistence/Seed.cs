@@ -441,43 +441,6 @@ namespace Persistence
             await context.Medicines.AddRangeAsync(types);
             await context.SaveChangesAsync();
         }
-        public static async Task SeedDataBlood(DataContext context)
-        {
-            if (context.BloodTypes.Any()) return;
-
-            var types = new List<BloodType>
-            {
-                new BloodType
-                {
-                    type = "A",
-                },
-                new BloodType
-                {
-                    type = "A",
-                },
-                new BloodType
-                {
-                    type = "AB",
-                },
-                new BloodType
-                {
-                    type = "0",
-                },
-                  new BloodType
-                {
-                    type = "A-",
-                },
-                  new BloodType
-                {
-                    type = "B-",
-                },  new BloodType
-                {
-                    type = "AB-",
-                },  new BloodType
-                {
-                    type = "0-",
-                },
-            };
 
         public static async Task SeedDataNurse(DataContext context)
         {

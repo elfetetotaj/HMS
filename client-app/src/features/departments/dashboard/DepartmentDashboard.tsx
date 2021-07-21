@@ -20,12 +20,12 @@ export default observer(function DepartmentDashboard() {
 
     return (
         <Grid>
-            <Grid.Column width='10'>
+            <Grid.Column width='16'>
                 <DepartmentList />
             </Grid.Column>
-            <Grid.Column width='6'>
+            {/* <Grid.Column width='6'>
                 <DepartmentFilters />
-            </Grid.Column>
+            </Grid.Column> */}
         </Grid>
     )
 })

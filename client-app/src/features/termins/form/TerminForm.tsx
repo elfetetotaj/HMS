@@ -11,12 +11,24 @@ import MyTextInput from '../../../app/common/form/MyTextInput';
 import MyTextArea from '../../../app/common/form/MyTextArea';
 import { Termin } from '../../../app/models/termin';
 import MyDateInput from '../../../app/common/form/MyDateInput';
+import MySelectInput from '../../../app/common/form/MySelectInput';
 
 export default observer(function TerminForm() {
     const history = useHistory();
-    const { terminStore } = useStore();
+    const { terminStore, departmentStore } = useStore();
     const { createTermin, updateTermin, loadTermin, loadingInitial} = terminStore;
     const { id } = useParams<{ id: string }>();
+
+    const { departmentsByName, loadDepartments } = departmentStore;
+
+    const options = new Array();
+
+    const departments = departmentStore.departmentsByName;
+    {
+        departments.map(dep => (
+            options.push({ "key": dep.departmentName, "value": dep.departmentName, "text": dep.departmentName })
+        ))
+    }
 
     const [termin, setTermin] = useState<Termin>({ //
         id: '',
@@ -35,7 +47,8 @@ export default observer(function TerminForm() {
 
     useEffect(() => {
         if (id) loadTermin(id).then(termin => setTermin(termin!))
-    }, [id, loadTermin]);
+        loadDepartments();
+    }, [id, loadTermin, loadDepartments]);
 
     function handleFormSubmit(termin: Termin) {
         if (!termin.id) {
@@ -69,7 +82,8 @@ export default observer(function TerminForm() {
                             dateFormat='MMMM d, yyyy h:mm aa'
                         />
                         <MyTextArea rows={3} name='terminDescription' placeholder='Description' />
-                        <MyTextInput name='terminDepartment' placeholder='Department' />
+                        {/* <MyTextInput name='terminDepartment' placeholder='Department' /> */}
+                        <MySelectInput name='terminDepartment' placeholder='Department' options={options} ></MySelectInput>
                         <MyTextInput name='terminDoctor' placeholder='Doctor' />
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}

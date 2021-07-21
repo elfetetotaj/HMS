@@ -5,18 +5,31 @@ import { Button, Header, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import {v4 as uuid} from 'uuid';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
 import MyTextArea from '../../../app/common/form/MyTextArea';
 import { Medicine } from '../../../app/models/medicine';
 import MyDateInput from '../../../app/common/form/MyDateInput';
+import MySelectInput from '../../../app/common/form/MySelectInput';
 
 export default observer(function MedicineForm() {
     const history = useHistory();
-    const { medicineStore } = useStore();
+    const { medicineStore, departmentStore } = useStore();
     const { createMedicine, updateMedicine, loadMedicine, loadingInitial} = medicineStore;
     const { id } = useParams<{ id: string }>();
+
+    const { departmentsByName, loadDepartments } = departmentStore;
+    // let departments=[...departmentRegistry.values()];
+
+    const options = new Array();
+
+    const departments = departmentStore.departmentsByName;
+    {
+        departments.map(dep => (
+            options.push({ "key": dep.departmentName, "value": dep.departmentName, "text": dep.departmentName })
+        ))
+    }
 
     const [medicine, setMedicine] = useState<Medicine>({ //
         id: '',
@@ -35,7 +48,8 @@ export default observer(function MedicineForm() {
 
     useEffect(() => {
         if (id) loadMedicine(id).then(medicine => setMedicine(medicine!))
-    }, [id, loadMedicine]);
+        loadDepartments();
+    }, [id, loadMedicine, loadDepartments]);
 
     function handleFormSubmit(medicine: Medicine) {
         if (!medicine.id) {
@@ -63,7 +77,14 @@ export default observer(function MedicineForm() {
                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
                         <MyTextInput name='medicineName' placeholder='Name' />
                         <MyTextArea rows={3} name='medicineDescription' placeholder='Description' />
-                        <MyTextInput name='medicineDepartment' placeholder='Department' />
+                        {/* <MyTextInput name='medicineDepartment' placeholder='Department' /> */}
+                        {/* <Field as="select" name="medicineDepartment">
+                        <option value="" disabled selected hidden style={{color: "gray"}}>Department</option>
+                         {departments.map(dep=>
+                            <option key={dep.departmentName} value={dep.departmentName}>{dep.departmentName}</option>
+                            )};
+                        </Field> */}
+                        <MySelectInput name='medicineDepartment' placeholder='Department' options={options} ></MySelectInput>
                         <MyTextInput name='medicinePrice' placeholder='Price' />
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}
