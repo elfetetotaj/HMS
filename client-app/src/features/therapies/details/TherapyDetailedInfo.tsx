@@ -16,7 +16,9 @@ export default observer(function TherapyDetailedInfo({therapy}: Props) {
                         <Icon size='large' color='teal' name='info'/>
                     </Grid.Column>
                     <Grid.Column width={15}>
-                        <p>{therapy.Pershkrimi}</p>
+                        <p>{therapy.pershkrimi}</p>
+                        <p>Doktori: {therapy.doctor}</p>
+                        <p>Pacienti: {therapy.patient}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>

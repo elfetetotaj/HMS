@@ -15,25 +15,24 @@ export default class SurgeryStore {
 
     get surgeriesByDate() {
         return Array.from(this.surgeryRegistry.values())
+    }
 
+    get surgeriesByName() {
+        return Array.from(this.surgeryRegistry.values()).sort((a, b) => a.surgeryName > b.surgeryName ? 1:-1);
     }
 
     loadSurgeries = async () => {
         this.loadingInitial = true;
         try {
-            const surgeries = await agent.Surgeries.list();
-                surgeries.forEach(surgery => {
+            const counties = await agent.Surgeries.list();
+            counties.forEach(surgery => {
                     this.setSurgery(surgery);
                 })
                 this.setLoadingInitial(false);
         } catch (error) {
             console.log(error);
             this.setLoadingInitial(false);
-       }
-    }
-
-    private setSurgery = (surgery: Surgery) => {
-        this.surgeryRegistry.set(surgery.Id, surgery);
+        }
     }
 
     loadSurgery = async (id: string) => {
@@ -58,6 +57,10 @@ export default class SurgeryStore {
         }
     }
 
+    private setSurgery = (surgery: Surgery) => {
+        this.surgeryRegistry.set(surgery.id, surgery);
+    }
+
     private getSurgery = (id: string) => {
         return this.surgeryRegistry.get(id);
     }
@@ -71,7 +74,7 @@ export default class SurgeryStore {
         try {
             await agent.Surgeries.create(surgery);
             runInAction(() => {
-                this.surgeryRegistry.set(surgery.Id, surgery);
+                this.surgeryRegistry.set(surgery.id, surgery);
                 this.selectedSurgery = surgery;
                 this.editMode = false;
                 this.loading = false;
@@ -85,20 +88,17 @@ export default class SurgeryStore {
     }
 
     updateSurgery = async (surgery: Surgery) => {
-        this.loading = true;
         try {
             await agent.Surgeries.update(surgery);
             runInAction(() => {
-                this.surgeryRegistry.set(surgery.Id, surgery);
-                this.selectedSurgery = surgery;
-                this.editMode = false;
-                this.loading = false;
+                if (surgery.id) {
+                    let updatedSurgery = {...this.getSurgery(surgery.id), ...surgery}
+                    this.surgeryRegistry.set(surgery.id, updatedSurgery as Surgery);
+                    this.selectedSurgery = updatedSurgery as Surgery;
+                }
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 
@@ -117,4 +117,9 @@ export default class SurgeryStore {
             })
         }
     }
-}
+    
+    clearSelectedSurgery = () => {
+        this.selectedSurgery = undefined;
+    }
+
+} 

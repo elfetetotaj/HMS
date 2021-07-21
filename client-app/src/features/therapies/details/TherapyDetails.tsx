@@ -11,12 +11,13 @@ import TherapyDetailedSidebar from './TherapyDetailedSidebar';
 
 export default observer(function TherapyDetails() {
     const {therapyStore} = useStore();
-    const {selectedTherapy: therapy, loadTherapy, loadingInitial} = therapyStore;
+    const {selectedTherapy: therapy, loadTherapy, loadingInitial, clearSelectedTherapy} = therapyStore;
     const {id} = useParams<{id: string}>();
 
     useEffect(() => {
         if (id) loadTherapy(id);
-    }, [id, loadTherapy]);
+        return () => clearSelectedTherapy();
+    }, [id, loadTherapy, clearSelectedTherapy]);
 
     if (loadingInitial || !therapy) return <LoadingComponent />;
 

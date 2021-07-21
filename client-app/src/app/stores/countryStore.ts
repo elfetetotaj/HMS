@@ -13,15 +13,19 @@ export default class CountryStore {
         makeAutoObservable(this)
     }
 
-    get countriesByName() {
+    get countiesByDate() {
         return Array.from(this.countryRegistry.values())
+    }
+
+    get countiesByName() {
+        return Array.from(this.countryRegistry.values()).sort((a, b) => a.countryName > b.countryName ? 1:-1);
     }
 
     loadCountries = async () => {
         this.loadingInitial = true;
         try {
-            const countries = await agent.Countries.list();
-                countries.forEach(country => {
+            const counties = await agent.Countries.list();
+            counties.forEach(country => {
                     this.setCountry(country);
                 })
                 this.setLoadingInitial(false);
@@ -29,10 +33,6 @@ export default class CountryStore {
             console.log(error);
             this.setLoadingInitial(false);
         }
-    }
-
-    private setCountry = (country: Country) => {
-        this.countryRegistry.set(country.Id, country);
     }
 
     loadCountry = async (id: string) => {
@@ -57,6 +57,10 @@ export default class CountryStore {
         }
     }
 
+    private setCountry = (country: Country) => {
+        this.countryRegistry.set(country.id, country);
+    }
+
     private getCountry = (id: string) => {
         return this.countryRegistry.get(id);
     }
@@ -70,7 +74,7 @@ export default class CountryStore {
         try {
             await agent.Countries.create(country);
             runInAction(() => {
-                this.countryRegistry.set(country.Id, country);
+                this.countryRegistry.set(country.id, country);
                 this.selectedCountry = country;
                 this.editMode = false;
                 this.loading = false;
@@ -84,20 +88,17 @@ export default class CountryStore {
     }
 
     updateCountry = async (country: Country) => {
-        this.loading = true;
         try {
             await agent.Countries.update(country);
             runInAction(() => {
-                this.countryRegistry.set(country.Id, country);
-                this.selectedCountry = country;
-                this.editMode = false;
-                this.loading = false;
+                if (country.id) {
+                    let updatedCountry = {...this.getCountry(country.id), ...country}
+                    this.countryRegistry.set(country.id, updatedCountry as Country);
+                    this.selectedCountry = updatedCountry as Country;
+                }
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 
@@ -116,4 +117,9 @@ export default class CountryStore {
             })
         }
     }
+    
+    clearSelectedCountry = () => {
+        this.selectedCountry = undefined;
     }
+
+} 

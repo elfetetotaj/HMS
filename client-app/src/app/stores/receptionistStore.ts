@@ -129,4 +129,8 @@ export default class ReceptionistStore {
             })
         }
     }
+
+    clearSelectedReceptionist = () => {
+        this.selectedReceptionist = undefined;
+    }
 }

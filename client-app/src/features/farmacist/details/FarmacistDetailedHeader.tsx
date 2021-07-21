@@ -27,7 +27,7 @@ export default observer (function FarmacistDetailedHeader({farmacist}: Props) {
         
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-            <Image src={`/assets/farmacistImages/${farmacist.emri}.png`} fluid style={FarmacistImageStyle } />
+            <Image src={`/assets/farmacistImages/${farmacist.emri}.jpg`} fluid style={FarmacistImageStyle } />
                 <Segment style={FarmacistImageTextStyle} basic>
                     <Item.Group>
                         <Item>
@@ -56,6 +56,9 @@ export default observer (function FarmacistDetailedHeader({farmacist}: Props) {
             <Segment clearing attached='bottom'>
                 {/* <Button color='teal'>Join Activity</Button>
                 <Button>Cancel attendance</Button> */}
+                    <Button as={Link} to='/farmacists' color='orange' floated='right'>
+                    Cancel
+                </Button>
                 <Button as={Link} to={`/managefarmacist/${farmacist.id}`} color='orange' floated='right'>
                     Edit farmacist
                 </Button>

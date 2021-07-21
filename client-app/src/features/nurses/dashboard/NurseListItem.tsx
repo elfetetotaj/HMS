@@ -1,7 +1,10 @@
 import format from 'date-fns/format';
+import { ru } from 'date-fns/locale';
+import { runInAction } from 'mobx';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
+// import Swal from 'sweetalert2';
 import { Nurse } from '../../../app/models/nurse';
 import { useStore } from '../../../app/stores/store';
 
@@ -13,6 +16,18 @@ interface Props {
 export default function NurseListItem({nurse}: Props) {
     const {nurseStore} = useStore();
     const{deleteNurse,  loading,} = nurseStore;
+
+    // const swalWithBootstrapButtons = Swal.mixin({
+    //     customClass: {
+    //       confirmButton: 'btn btn-success',
+    //       cancelButton: 'btn btn-danger',
+    //     },
+    //      buttonsStyling: false
+    //   });
+   
+    
+    
+      
   
 
     return (
@@ -50,7 +65,37 @@ export default function NurseListItem({nurse}: Props) {
                     floated='right'
                     content='View'
                />
-                   <Button  onClick={() => {if(window.confirm('Delete the Nurse?')){deleteNurse(nurse.id)};}}  type='submit'  color='red' disabled={loading} content='Delete'/>
+     {/* <Button  onClick={()=> swalWithBootstrapButtons.fire ({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true,
+        
+        
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success',
+            
+        
+          )
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            'Your nurse is safe :)',
+            'error'
+          )
+        }
+      })}  type='submit'   color='red' disabled={loading} content='Delete'/>
+    */}
+                       <Button onClick={() => {if(window.confirm('Delete the Nurse?')){deleteNurse(nurse.id)};}}  type='submit' color='red' disabled={loading} >Delete</Button>
            </Segment>
        </Segment.Group>
     )

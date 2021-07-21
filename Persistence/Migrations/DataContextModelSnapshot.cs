@@ -105,17 +105,17 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.City", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("CityName")
-                        .HasColumnType("text");
+                    b.Property<string>("cityName")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("integer");
+                    b.Property<int>("zipCode")
+                        .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Cities");
                 });
@@ -152,22 +152,34 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Area")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CallingCode")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Capital")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Continent")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CountryName")
                         .HasColumnType("text");
 
-                    b.Property<string>("Goverment")
-                        .HasColumnType("text");
+                    b.Property<string>("Currency")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Location")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nation")
-                        .HasColumnType("text");
+                    b.Property<string>("LatLong")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Population")
                         .HasColumnType("integer");
+
+                    b.Property<string>("TimeZone")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -470,6 +482,9 @@ namespace Persistence.Migrations
                     b.Property<string>("password")
                         .HasColumnType("text");
 
+                    b.Property<string>("patient")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("phone")
                         .HasColumnType("text");
 
@@ -525,8 +540,14 @@ namespace Persistence.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<string>("Doctor")
+                        .HasColumnType("TEXT");
+
                     b.Property<double>("Pagesa")
                         .HasColumnType("double precision");
+
+                    b.Property<string>("Patient")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("SurgeryName")
                         .HasColumnType("text");
@@ -629,8 +650,17 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Doctor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Patient")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Pershkrimi")
                         .HasColumnType("text");
+
+                    b.Property<string>("TherapyName")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 

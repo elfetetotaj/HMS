@@ -51,6 +51,9 @@ export default observer (function NurseDetailedHeader({nurse}: Props) {
             <Segment clearing attached='bottom'>
                 {/* <Button color='teal'>Join Activity</Button>
                 <Button>Cancel attendance</Button> */}
+                    <Button as={Link} to='/nurses' color='orange' floated='right'>
+                    Cancel
+                </Button>
                 <Button as={Link} to={`/managenurse/${nurse.id}`} color='orange' floated='right'>
                     Edit nurse
                 </Button>

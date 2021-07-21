@@ -4,8 +4,8 @@ namespace Domain
 {
     public class City
     {
-        public Guid Id { get; set; }
-        public string CityName { get; set; }
-        public int ZipCode { get; set; }
+        public Guid id { get; set; }
+        public string cityName { get; set; }
+        public int zipCode { get; set; }
     }
 }

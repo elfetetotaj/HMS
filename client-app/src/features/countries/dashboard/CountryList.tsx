@@ -6,12 +6,12 @@ import CountryListItem from './CountryListItem';
 export default observer(function CountryList() {
 
     const {countryStore} = useStore();
-    const {countriesByName} = countryStore
+    const {countiesByName} = countryStore
 
-    return ( //video 5.7
+    return (
         <>
-            {countriesByName.map(country => (
-                <CountryListItem key={country.Id} country={country} />
+            {countiesByName.map(country => (
+                <CountryListItem key={country.id} country={country} />
             ))}
         </>
     )

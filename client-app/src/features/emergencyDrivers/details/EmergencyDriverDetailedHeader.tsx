@@ -4,6 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import { EmergencyDriver } from '../../../app/models/emergencyDriver';
+import { useStore } from '../../../app/stores/store';
 
 const emergencyDriverImageStyle = {
     filter: 'brightness(30%)'
@@ -12,7 +13,7 @@ const emergencyDriverImageStyle = {
 const emergencyDriverImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
-    left: '5%',
+    left: '2%',
     width: '100%',
     height: 'auto',
     color: 'white'
@@ -22,23 +23,23 @@ interface Props {
     emergencyDriver: EmergencyDriver
 }
 
-export default observer (function EmergencyDriverDetailedHeader({emergencyDriver: EmergencyDriver}: Props) {
+export default observer (function EmergencyDriverDetailedHeader({emergencyDriver}: Props) {
+    const {emergencyDriverStore: {loading}} = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
-                <Image src={`/assets/user.png`} fluid style={emergencyDriverImageStyle}/>
+                <Image src={`/assets/emergencyDriverImages/EmergencyDriver.png`} fluid style={emergencyDriverImageStyle}/>
                 <Segment style={emergencyDriverImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
                                     size='huge'
-                                    content={EmergencyDriver.Name}
+                                    content={emergencyDriver.name}
                                     style={{color: 'white'}}
                                 />
-                                <p>{format(EmergencyDriver.Dateofbirth!, 'dd MMM yyyy')}</p>
-                                <p>
-                                    EmergencyDriver in <strong>HMS</strong>
+                                <p style={{marginRight: 10}}>
+                                    {emergencyDriver.department}
                                 </p>
                             </Item.Content>
                         </Item>
@@ -49,7 +50,7 @@ export default observer (function EmergencyDriverDetailedHeader({emergencyDriver
                 <Button as={Link} to='/emergencyDrivers' color='orange' floated='right'>
                     Cancel
                 </Button>
-                <Button as={Link} to={`/manageemergencyDriver/${EmergencyDriver.Id}`} color='orange' floated='right'>
+                <Button as={Link} to={`/manageemergencyDriver/${emergencyDriver.id}`} color='orange' floated='right'>
                     Manage EmergencyDriver
                 </Button>
             </Segment>

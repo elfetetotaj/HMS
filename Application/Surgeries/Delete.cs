@@ -24,7 +24,7 @@ namespace Application.Surgeries
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var surgery = await _context.Receptionists.FindAsync(request.Id);
+                var surgery = await _context.Surgeries.FindAsync(request.Id);
 
                // if(nurse==null) return null;
 

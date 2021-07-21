@@ -8,10 +8,14 @@ namespace Application.Countries
         public CountryValidator()
         {
             RuleFor(x => x.CountryName).NotEmpty();
-            RuleFor(x => x.Location).NotEmpty();
+            RuleFor(x => x.LatLong).NotEmpty();
             RuleFor(x => x.Population).NotEmpty();
-            RuleFor(x => x.Nation).NotEmpty();
-            RuleFor(x => x.Goverment).NotEmpty();
+            RuleFor(x => x.Area).NotEmpty();
+            RuleFor(x => x.TimeZone).NotEmpty();
+            RuleFor(x => x.CallingCode).NotEmpty();
+            RuleFor(x => x.Capital).NotEmpty();
+            RuleFor(x => x.Continent).NotEmpty();
+            RuleFor(x => x.Currency).NotEmpty();
            
         }
     }

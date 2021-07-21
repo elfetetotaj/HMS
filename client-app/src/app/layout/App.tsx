@@ -62,6 +62,7 @@ import EmergencyDriverForm from '../../features/emergencyDrivers/form/EmergencyD
 import MedicineDashboard from '../../features/medicines/dashboard/MedicineDashboard';
 import MedicineDetails from '../../features/medicines/details/MedicineDetails';
 import MedicineForm from '../../features/medicines/form/MedicineForm';
+import Home from '../../features/home/Home';
 
 function App() {
   const location = useLocation(); 
@@ -154,7 +155,7 @@ function App() {
               <Route key={location.key} path={['/createTest', '/managetest/:id']} component={TestForm} />
 
               <Route exact path='/bloodTypes' component={BloodTypeDashboard} />
-
+              <Route path='/home' component={Home}/>
               <Route path='/profiles/:username' component={ProfilePage}/>
               <Route path='/errors' component={TestErrors}/>
               <Route path='/server-error' component={ServerError}/>

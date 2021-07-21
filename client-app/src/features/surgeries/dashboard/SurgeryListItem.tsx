@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
@@ -5,7 +6,7 @@ import { Surgery } from '../../../app/models/surgery';
 import { useStore } from '../../../app/stores/store';
 
 interface Props {
-    surgery: Surgery
+    surgery: Surgery;
 }
 
 export default function SurgeryListItem({ surgery }: Props) {
@@ -13,27 +14,27 @@ export default function SurgeryListItem({ surgery }: Props) {
     const { deleteSurgery, loading } = surgeryStore;
     return (
         <Segment.Group>
-
             <Segment>
-                <p> {surgery.SurgeryName}</p>
                 <Item.Group>
                     <Item>
-                        <Item.Image size='tiny' circular src='/assets/user.png' />
+                        <Item.Image size='tiny' src={`/assets/surgeryImages/surgeryImg.png`} />
                         <Item.Content>
-                            <Item.Header as={Link} to={`/surgeries/${surgery.Id}`}>
-                                {surgery.SurgeryName} Operacion i zemres
+                            <Item.Header as={Link} to={`/surgeries/${surgery.id}`}>
+                                {surgery.surgeryName}
                             </Item.Header>
-                            <Item.Description>Pershkrim i operacionit</Item.Description>
-                            {surgery.Description} Operacioni kaloi me sukses
+                            {/* <Item.Description>{surgery.description}</Item.Description> */}
                         </Item.Content>
                     </Item>
                 </Item.Group>
             </Segment>
             <Segment>
                 <span>
-                    <Icon name="dollar" />{surgery.Pagesa} 100.00
-                    <br />
-                    <Icon name='map marker' />{surgery.Terapia} Paracetamol 2 x 1 ne dite
+                    <Icon name='info' />Pershkrimi: {surgery.description}
+                </span>
+            </Segment>
+            <Segment>
+                <span>
+                    <Icon name='currency' /> Pagesa: {surgery.pagesa}
                 </span>
             </Segment>
             <Segment clearing>
@@ -43,13 +44,13 @@ export default function SurgeryListItem({ surgery }: Props) {
                     color='red'
                     floated='right'
                     content='Delete'
-                    onClick={() => deleteSurgery(surgery.Id)}
+                    onClick={() => {if(window.confirm('Are you sure?')){deleteSurgery(surgery.id)};}} 
                     type='submit'
                     disabled={loading}
                 />
                 <Button
                     as={Link}
-                    to={`/surgeries/${surgery.Id}`}
+                    to={`/surgeries/${surgery.id}`}
                     color='teal'
                     floated='right'
                     content='View'
@@ -58,3 +59,6 @@ export default function SurgeryListItem({ surgery }: Props) {
         </Segment.Group>
     )
 }
+
+
+

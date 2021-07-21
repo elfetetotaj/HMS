@@ -27,7 +27,7 @@ export default observer(function FarmacistDetails() {
                 <FarmacistDetailedHeader farmacist={farmacist} />
             
                 <FarmacistDetailedInfo farmacist={farmacist} />
-                <FarmacistDetailedChat />
+                {/* <FarmacistDetailedChat /> */}
             </Grid.Column>
             {/* <Grid.Column width={6}>
                 <FarmacistDetailedSidebar />

@@ -2,13 +2,14 @@ import React from 'react'
 import { Segment, List, Label, Item, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import { Country } from '../../../app/models/country'
+import { Department } from '../../../app/models/department'
 
 interface Props {
-    country: Country;
+    department: Department;
 }
 
-export default observer(function CountryDetailedSidebar() {
+export default observer(function CountryDetailedSidebar({ department: {departmentAttendees, host} }: Props) {
+    if (!departmentAttendees) return null;
     return (
         <>
             <Segment
@@ -19,44 +20,30 @@ export default observer(function CountryDetailedSidebar() {
                 inverted
                 color='teal'
             >
+                {departmentAttendees.length} {departmentAttendees.length === 1 ? 'Doctor' : 'Doctors'} in this Department
             </Segment>
             <Segment attached>
                 <List relaxed divided>
-                    <Item style={{ position: 'relative' }}>
-                        <Label
-                            style={{ position: 'absolute' }}
-                            color='orange'
-                            ribbon='right'
-                        >
-                            Host
-                        </Label>
-                        <Image size='tiny' src={'/assets/user.png'} />
-                        <Item.Content verticalAlign='middle'>
-                            <Item.Header as='h3'>
-                                <Link to={`#`}>Bob</Link>
-                            </Item.Header>
-                            <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
-                        </Item.Content>
-                    </Item>
-
-                    <Item style={{ position: 'relative' }}>
-                        <Image size='tiny' src={'/assets/user.png'} />
-                        <Item.Content verticalAlign='middle'>
-                            <Item.Header as='h3'>
-                                <Link to={`#`}>Tom</Link>
-                            </Item.Header>
-                            <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
-                        </Item.Content>
-                    </Item>
-
-                    <Item style={{ position: 'relative' }}>
-                        <Image size='tiny' src={'/assets/user.png'} />
-                        <Item.Content verticalAlign='middle'>
-                            <Item.Header as='h3'>
-                                <Link to={`#`}>Sally</Link>
-                            </Item.Header>
-                        </Item.Content>
-                    </Item>
+                    {departmentAttendees.map(departmentAttendee => (
+                        <Item style={{ position: 'relative' }} key={departmentAttendee.username} >
+                            {departmentAttendee.username === host?.username &&
+                            <Label
+                                style={{ position: 'absolute' }}
+                                color='orange'
+                                ribbon='right'
+                                
+                            >
+                                Shef i departamentit
+                            </Label>}
+                            <Image size='tiny' src={departmentAttendee.image || '/assets/user.png'} />
+                            <Item.Content verticalAlign='middle'>
+                                <Item.Header as='h3'>
+                                    <Link to={`/profiles/${departmentAttendee.username}`}>{departmentAttendee.displayName}</Link>
+                                </Item.Header>
+                                <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
+                            </Item.Content>
+                        </Item>
+                    ))}
                 </List>
             </Segment>
         </>

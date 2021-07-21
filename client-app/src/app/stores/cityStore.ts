@@ -16,25 +16,22 @@ export default class CityStore {
     get citiesByDate() {
         return Array.from(this.cityRegistry.values())
     }
+
     get citiesByName() {
-        return Array.from(this.cityRegistry.values()).sort((a, b) => a.CityName > b.CityName ? 1:-1);
+        return Array.from(this.cityRegistry.values()).sort((a, b) => a.cityName > b.cityName ? 1:-1);
     }
     loadCities = async () => {
         this.loadingInitial = true;
         try {
             const cities = await agent.Cities.list();
-                cities.forEach(city => {
-                    this.setCity(city);
-                })
-                this.setLoadingInitial(false);
+            cities.forEach(city => {
+                this.setCity(city);
+            })
+            this.setLoadingInitial(false);
         } catch (error) {
             console.log(error);
             this.setLoadingInitial(false);
         }
-    }
-
-    private setCity = (city: City) => {
-        this.cityRegistry.set(city.Id, city);
     }
 
     loadCity = async (id: string) => {
@@ -59,6 +56,10 @@ export default class CityStore {
         }
     }
 
+    private setCity = (city: City) => {
+        this.cityRegistry.set(city.id, city);
+    }
+
     private getCity = (id: string) => {
         return this.cityRegistry.get(id);
     }
@@ -72,7 +73,7 @@ export default class CityStore {
         try {
             await agent.Cities.create(city);
             runInAction(() => {
-                this.cityRegistry.set(city.Id, city);
+                this.cityRegistry.set(city.id, city);
                 this.selectedCity = city;
                 this.editMode = false;
                 this.loading = false;
@@ -86,20 +87,17 @@ export default class CityStore {
     }
 
     updateCity = async (city: City) => {
-        this.loading = true;
         try {
             await agent.Cities.update(city);
             runInAction(() => {
-                this.cityRegistry.set(city.Id, city);
-                this.selectedCity = city;
-                this.editMode = false;
-                this.loading = false;
+                if (city.id) {
+                    let updatedCity = { ...this.getCity(city.id), ...city }
+                    this.cityRegistry.set(city.id, updatedCity as City);
+                    this.selectedCity = updatedCity as City;
+                }
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 
@@ -117,5 +115,9 @@ export default class CityStore {
                 this.loading = false;
             })
         }
+    }
+
+    clearSelectedCity = () => {
+        this.selectedCity = undefined;
     }
 }

@@ -1,21 +1,14 @@
-using FluentValidation;
 using Domain;
+using FluentValidation;
 
 namespace Application.Cities
 {
     public class CityValidator : AbstractValidator<City>
     {
-            public class CommandValidator : AbstractValidator<City>
+        public CityValidator()
         {
-            public CommandValidator()
-            {
-                RuleFor(x => x.Id).NotEmpty();
-                RuleFor(x => x.CityName).NotEmpty();
-                RuleFor(x => x.ZipCode).NotEmpty();
-
-               
-            }
+            RuleFor(x => x.cityName).NotEmpty();
+            RuleFor(x => x.zipCode).NotEmpty();
         }
-        
     }
-}
+} 

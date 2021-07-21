@@ -1,9 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
+using Application.Interfaces;
 using Domain;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Cities
@@ -20,12 +22,13 @@ namespace Application.Cities
             public CommandValidator()
             {
                 RuleFor(x => x.City).SetValidator(new CityValidator());
-
             }
         }
+
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
+
             public Handler(DataContext context)
             {
                 _context = context;
@@ -37,12 +40,10 @@ namespace Application.Cities
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Faild to create City");
+                if (!result) return Result<Unit>.Failure("Failed to create City");
 
                 return Result<Unit>.Success(Unit.Value);
-
-
             }
         }
     }
-}
+} 
